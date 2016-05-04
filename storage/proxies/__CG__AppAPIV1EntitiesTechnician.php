@@ -64,10 +64,10 @@ class Technician extends \App\API\V1\Entities\Technician implements \Doctrine\OR
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'username', 'firstName', 'lastName', 'email', 'password'];
+            return ['__isInitialized__', 'id', 'username', 'firstName', 'lastName', 'email', 'password', 'temporary', 'loginExpiresTime'];
         }
 
-        return ['__isInitialized__', 'id', 'username', 'firstName', 'lastName', 'email', 'password'];
+        return ['__isInitialized__', 'id', 'username', 'firstName', 'lastName', 'email', 'password', 'temporary', 'loginExpiresTime'];
     }
 
     /**
@@ -307,6 +307,50 @@ class Technician extends \App\API\V1\Entities\Technician implements \Doctrine\OR
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPassword', [$password]);
 
         return parent::setPassword($password);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isTemporary()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isTemporary', []);
+
+        return parent::isTemporary();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTemporary($temporary)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTemporary', [$temporary]);
+
+        return parent::setTemporary($temporary);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLoginExpiresTime()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLoginExpiresTime', []);
+
+        return parent::getLoginExpiresTime();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setLoginExpiresTime($loginExpiresTime)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLoginExpiresTime', [$loginExpiresTime]);
+
+        return parent::setLoginExpiresTime($loginExpiresTime);
     }
 
     /**

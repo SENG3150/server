@@ -9,11 +9,6 @@ use App\API\V1\Entities\Technician;
 class TechnicianTransformer extends TransformerAbstract
 {
 	/**
-	 * @var array
-	 */
-	protected $availableIncludes = array();
-
-	/**
 	 * @param Technician $technician
 	 *
 	 * @return array
@@ -21,11 +16,13 @@ class TechnicianTransformer extends TransformerAbstract
 	public function transform(Technician $technician)
 	{
 		return array(
-			'id'        => $technician->getId(),
-			'name'      => $technician->getName(),
-			'firstName' => $technician->getFirstName(),
-			'lastName'  => $technician->getLastName(),
-			'email'     => $technician->getEmail(),
+			'id'               => $technician->getId(),
+			'name'             => $technician->getName(),
+			'firstName'        => $technician->getFirstName(),
+			'lastName'         => $technician->getLastName(),
+			'email'            => $technician->getEmail(),
+			'temporary'        => $technician->isTemporary(),
+			'loginExpiresTime' => $technician->getLoginExpiresTime(),
 		);
 	}
 }

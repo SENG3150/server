@@ -20,6 +20,12 @@ class Machine extends \ArrayObject
 	protected $id;
 
 	/**
+	 * @ORM\Column(name="name", type="text")
+	 * @var string $name
+	 */
+	protected $name;
+
+	/**
 	 * @ORM\ManyToOne(targetEntity="Model", inversedBy="machines", cascade={"persist"}, fetch="EXTRA_LAZY")
 	 * @var Model $model
 	 */
@@ -41,6 +47,26 @@ class Machine extends \ArrayObject
 	public function setId($id)
 	{
 		$this->id = $id;
+
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getName()
+	{
+		return $this->name;
+	}
+
+	/**
+	 * @param string $name
+	 *
+	 * @return $this
+	 */
+	public function setName($name)
+	{
+		$this->name = $name;
 
 		return $this;
 	}

@@ -9,11 +9,6 @@ use App\API\V1\Entities\Administrator;
 class AdministratorTransformer extends TransformerAbstract
 {
 	/**
-	 * @var array
-	 */
-	protected $availableIncludes = array();
-	
-	/**
 	 * @param Administrator $administrator
 	 *
 	 * @return array

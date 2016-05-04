@@ -9,11 +9,6 @@ use App\API\V1\Entities\DomainExpert;
 class DomainExpertTransformer extends TransformerAbstract
 {
 	/**
-	 * @var array
-	 */
-	protected $availableIncludes = array();
-
-	/**
 	 * @param DomainExpert $domainExpert
 	 *
 	 * @return array

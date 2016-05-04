@@ -50,6 +50,18 @@ class Technician extends \ArrayObject implements Primary
 	protected $password;
 
 	/**
+	 * @ORM\Column(name="temporary", type="boolean")
+	 * @var bool $temporary
+	 */
+	protected $temporary;
+
+	/**
+	 * @ORM\Column(name="loginExpiresTime", type="datetime", nullable=true)
+	 * @var \DateTime $loginExpiresTime
+	 */
+	protected $loginExpiresTime;
+
+	/**
 	 * @return int
 	 */
 	public function getId()
@@ -165,6 +177,46 @@ class Technician extends \ArrayObject implements Primary
 	public function setPassword($password)
 	{
 		$this->password = $password;
+
+		return $this;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function isTemporary()
+	{
+		return $this->temporary;
+	}
+
+	/**
+	 * @param boolean $temporary
+	 *
+	 * @return $this
+	 */
+	public function setTemporary($temporary)
+	{
+		$this->temporary = $temporary;
+
+		return $this;
+	}
+
+	/**
+	 * @return \DateTime
+	 */
+	public function getLoginExpiresTime()
+	{
+		return $this->loginExpiresTime;
+	}
+
+	/**
+	 * @param \DateTime $loginExpiresTime
+	 *
+	 * @return $this
+	 */
+	public function setLoginExpiresTime($loginExpiresTime)
+	{
+		$this->loginExpiresTime = $loginExpiresTime;
 
 		return $this;
 	}

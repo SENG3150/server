@@ -14,11 +14,6 @@ class MachineTransformer extends TransformerAbstract
 	protected $availableIncludes = array(
 		'model',
 	);
-
-	/**
-	 * @var array
-	 */
-	protected $defaultIncludes = array();
 	
 	/**
 	 * @param Machine $machine
@@ -28,7 +23,8 @@ class MachineTransformer extends TransformerAbstract
 	public function transform(Machine $machine)
 	{
 		return array(
-			'id' => $machine->getId(),
+			'id'   => $machine->getId(),
+			'name' => $machine->getName(),
 		);
 	}
 
