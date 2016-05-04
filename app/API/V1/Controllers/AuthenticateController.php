@@ -22,7 +22,7 @@ class AuthenticateController extends BaseController
 
 	public function authenticate(Request $request)
 	{
-		$credentials = $request->only('type', 'userid', 'username', 'password');
+		$credentials = $request->only('type', 'username', 'password');
 
 		try
 		{
