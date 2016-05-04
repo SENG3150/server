@@ -35,5 +35,11 @@ $api->version(
 	{
 		/** @var Dingo\Api\Routing\Router $api */
 		$api->get('me', 'App\API\V1\Controllers\UserController@me');
+
+		$api->get('machines', 'App\API\V1\Controllers\MachineController@getList');
+		$api->get('machines/{model}', 'App\API\V1\Controllers\MachineController@get');
+
+		$api->get('models', 'App\API\V1\Controllers\ModelController@getList');
+		$api->get('models/{model}', 'App\API\V1\Controllers\ModelController@get');
 	}
 );

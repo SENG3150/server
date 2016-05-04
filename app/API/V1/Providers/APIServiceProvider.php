@@ -7,10 +7,14 @@ use Validator;
 
 use App\API\V1\Entities\Administrator;
 use App\API\V1\Entities\DomainExpert;
+use App\API\V1\Entities\Machine;
+use App\API\V1\Entities\Model;
 use App\API\V1\Entities\Technician;
 
 use App\API\V1\Repositories\AdministratorRepository;
 use App\API\V1\Repositories\DomainExpertRepository;
+use App\API\V1\Repositories\MachineRepository;
+use App\API\V1\Repositories\ModelRepository;
 use App\API\V1\Repositories\TechnicianRepository;
 
 use App\API\V1\Transformers\AdministratorTransformer;
@@ -80,6 +84,28 @@ class APIServiceProvider extends ServiceProvider
 				return new TechnicianRepository(
 					$app['em'],
 					$app['em']->getClassMetaData(Technician::class)
+				);
+			}
+		);
+
+		$this->app->bind(
+			MachineRepository::class,
+			function ($app)
+			{
+				return new MachineRepository(
+					$app['em'],
+					$app['em']->getClassMetaData(Machine::class)
+				);
+			}
+		);
+
+		$this->app->bind(
+			ModelRepository::class,
+			function ($app)
+			{
+				return new ModelRepository(
+					$app['em'],
+					$app['em']->getClassMetaData(Model::class)
 				);
 			}
 		);
