@@ -221,6 +221,11 @@ class Technician extends \ArrayObject implements Primary
 		return $this;
 	}
 	
+	/**
+	 * @param bool $salutation
+	 *
+	 * @return string
+	 */
 	public function getName($salutation = FALSE)
 	{
 		return join(
@@ -242,5 +247,13 @@ class Technician extends \ArrayObject implements Primary
 	public function matchesPassword($password)
 	{
 		return password_verify($password, $this->getPassword());
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function hasLoginExpired()
+	{
+		return $this->isTemporary() == TRUE && $this->getLoginExpiresTime() < (new \DateTime());
 	}
 }

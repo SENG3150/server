@@ -378,6 +378,17 @@ class Technician extends \App\API\V1\Entities\Technician implements \Doctrine\OR
     /**
      * {@inheritDoc}
      */
+    public function hasLoginExpired()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'hasLoginExpired', []);
+
+        return parent::hasLoginExpired();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function offsetExists($index)
     {
 
