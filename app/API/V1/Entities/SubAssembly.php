@@ -3,6 +3,7 @@
 namespace App\API\V1\Entities;
 
 use Doctrine\ORM\Mapping AS ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -29,6 +30,12 @@ class SubAssembly extends \ArrayObject
 	 * @var MajorAssembly $majorAssembly
 	 */
 	protected $majorAssembly;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="SubAssemblyTest", mappedBy="subAssembly", cascade={"persist"})
+	 * @var ArrayCollection|SubAssemblyTest[] $tests
+	 */
+	protected $tests;
 
 	/**
 	 * @return int
@@ -86,6 +93,26 @@ class SubAssembly extends \ArrayObject
 	public function setMajorAssembly($majorAssembly)
 	{
 		$this->majorAssembly = $majorAssembly;
+
+		return $this;
+	}
+
+	/**
+	 * @return SubAssemblyTest[]|ArrayCollection
+	 */
+	public function getTests()
+	{
+		return $this->tests;
+	}
+
+	/**
+	 * @param SubAssemblyTest[]|ArrayCollection $tests
+	 *
+	 * @return $this
+	 */
+	public function setTests($tests)
+	{
+		$this->tests = $tests;
 
 		return $this;
 	}

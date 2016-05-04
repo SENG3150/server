@@ -13,6 +13,7 @@ class SubAssemblyTransformer extends TransformerAbstract
 	 */
 	protected $availableIncludes = array(
 		'majorAssembly',
+		'tests',
 	);
 	
 	/**
@@ -33,8 +34,18 @@ class SubAssemblyTransformer extends TransformerAbstract
 	 *
 	 * @return \League\Fractal\Resource\Collection
 	 */
-	public function includeMajorAssemblies(SubAssembly $subAssembly)
+	public function includeMajorAssembly(SubAssembly $subAssembly)
 	{
-		return $this->collection($subAssembly->getMajorAssembly(), new SubAssemblyTransformer());
+		return $this->item($subAssembly->getMajorAssembly(), new MajorAssemblyTransformer());
+	}
+
+	/**
+	 * @param \App\API\V1\Entities\SubAssembly $subAssembly
+	 *
+	 * @return \League\Fractal\Resource\Collection
+	 */
+	public function includeTests(SubAssembly $subAssembly)
+	{
+		return $this->collection($subAssembly->getTests(), new SubAssemblyTestTransformer());
 	}
 }
