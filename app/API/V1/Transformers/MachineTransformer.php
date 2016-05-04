@@ -31,7 +31,7 @@ class MachineTransformer extends TransformerAbstract
 	/**
 	 * @param \App\API\V1\Entities\Machine $machine
 	 *
-	 * @return \League\Fractal\Resource\Collection
+	 * @return \League\Fractal\Resource\Item
 	 */
 	public function includeModel(Machine $machine)
 	{

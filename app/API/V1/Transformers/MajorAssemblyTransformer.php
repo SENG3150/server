@@ -39,7 +39,7 @@ class MajorAssemblyTransformer extends TransformerAbstract
 	/**
 	 * @param \App\API\V1\Entities\MajorAssembly $majorAssembly
 	 *
-	 * @return \League\Fractal\Resource\Collection
+	 * @return \League\Fractal\Resource\Item
 	 */
 	public function includeModel(MajorAssembly $majorAssembly)
 	{

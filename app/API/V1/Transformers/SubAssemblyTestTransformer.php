@@ -33,10 +33,10 @@ class SubAssemblyTestTransformer extends TransformerAbstract
 	/**
 	 * @param \App\API\V1\Entities\SubAssemblyTest $subAssemblyTest
 	 *
-	 * @return \League\Fractal\Resource\Collection
+	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeSubAssemblies(SubAssemblyTest $subAssemblyTest)
+	public function includeSubAssembly(SubAssemblyTest $subAssemblyTest)
 	{
-		return $this->collection($subAssemblyTest->getSubAssembly(), new SubAssemblyTransformer());
+		return $this->item($subAssemblyTest->getSubAssembly(), new SubAssemblyTransformer());
 	}
 }

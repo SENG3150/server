@@ -32,7 +32,7 @@ class SubAssemblyTransformer extends TransformerAbstract
 	/**
 	 * @param \App\API\V1\Entities\SubAssembly $subAssembly
 	 *
-	 * @return \League\Fractal\Resource\Collection
+	 * @return \League\Fractal\Resource\Item
 	 */
 	public function includeMajorAssembly(SubAssembly $subAssembly)
 	{
