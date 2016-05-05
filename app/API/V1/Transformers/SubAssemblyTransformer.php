@@ -15,7 +15,14 @@ class SubAssemblyTransformer extends TransformerAbstract
 		'majorAssembly',
 		'tests',
 	);
-	
+
+	/**
+	 * @var array
+	 */
+	protected $defaultIncludes = array(
+		'tests',
+	);
+
 	/**
 	 * @param SubAssembly $subAssembly
 	 *
