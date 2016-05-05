@@ -14,6 +14,13 @@ class MachineTransformer extends TransformerAbstract
 	protected $availableIncludes = array(
 		'model',
 	);
+
+	/**
+	 * @var array
+	 */
+	protected $defaultIncludes = array(
+		'model',
+	);
 	
 	/**
 	 * @param Machine $machine
