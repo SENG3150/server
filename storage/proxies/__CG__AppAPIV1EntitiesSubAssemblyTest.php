@@ -64,10 +64,10 @@ class SubAssemblyTest extends \App\API\V1\Entities\SubAssemblyTest implements \D
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'subAssembly', 'machineGeneral', 'oil', 'wear'];
+            return ['__isInitialized__', 'id', 'subAssembly', 'machineGeneral', 'machineGeneralLower', 'machineGeneralUpper', 'oil', 'oilLower', 'oilUpper', 'wear', 'wearLower', 'wearUpper'];
         }
 
-        return ['__isInitialized__', 'id', 'subAssembly', 'machineGeneral', 'oil', 'wear'];
+        return ['__isInitialized__', 'id', 'subAssembly', 'machineGeneral', 'machineGeneralLower', 'machineGeneralUpper', 'oil', 'oilLower', 'oilUpper', 'wear', 'wearLower', 'wearUpper'];
     }
 
     /**
@@ -246,6 +246,50 @@ class SubAssemblyTest extends \App\API\V1\Entities\SubAssemblyTest implements \D
     /**
      * {@inheritDoc}
      */
+    public function getMachineGeneralLower()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMachineGeneralLower', []);
+
+        return parent::getMachineGeneralLower();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setMachineGeneralLower($machineGeneralLower)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMachineGeneralLower', [$machineGeneralLower]);
+
+        return parent::setMachineGeneralLower($machineGeneralLower);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getMachineGeneralUpper()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMachineGeneralUpper', []);
+
+        return parent::getMachineGeneralUpper();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setMachineGeneralUpper($machineGeneralUpper)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMachineGeneralUpper', [$machineGeneralUpper]);
+
+        return parent::setMachineGeneralUpper($machineGeneralUpper);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function hasOil()
     {
 
@@ -268,6 +312,50 @@ class SubAssemblyTest extends \App\API\V1\Entities\SubAssemblyTest implements \D
     /**
      * {@inheritDoc}
      */
+    public function getOilLower()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOilLower', []);
+
+        return parent::getOilLower();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setOilLower($oilLower)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setOilLower', [$oilLower]);
+
+        return parent::setOilLower($oilLower);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getOilUpper()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOilUpper', []);
+
+        return parent::getOilUpper();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setOilUpper($oilUpper)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setOilUpper', [$oilUpper]);
+
+        return parent::setOilUpper($oilUpper);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function hasWear()
     {
 
@@ -285,6 +373,50 @@ class SubAssemblyTest extends \App\API\V1\Entities\SubAssemblyTest implements \D
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setWear', [$wear]);
 
         return parent::setWear($wear);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getWearLower()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getWearLower', []);
+
+        return parent::getWearLower();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setWearLower($wearLower)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setWearLower', [$wearLower]);
+
+        return parent::setWearLower($wearLower);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getWearUpper()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getWearUpper', []);
+
+        return parent::getWearUpper();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setWearUpper($wearUpper)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setWearUpper', [$wearUpper]);
+
+        return parent::setWearUpper($wearUpper);
     }
 
     /**
