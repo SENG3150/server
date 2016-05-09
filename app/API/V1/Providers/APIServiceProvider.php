@@ -8,13 +8,19 @@ use Validator;
 use App\API\V1\Entities\Administrator;
 use App\API\V1\Entities\DomainExpert;
 use App\API\V1\Entities\Machine;
+use App\API\V1\Entities\MajorAssembly;
 use App\API\V1\Entities\Model;
+use App\API\V1\Entities\SubAssembly;
+use App\API\V1\Entities\SubAssemblyTest;
 use App\API\V1\Entities\Technician;
 
 use App\API\V1\Repositories\AdministratorRepository;
 use App\API\V1\Repositories\DomainExpertRepository;
 use App\API\V1\Repositories\MachineRepository;
+use App\API\V1\Repositories\MajorAssemblyRepository;
 use App\API\V1\Repositories\ModelRepository;
+use App\API\V1\Repositories\SubAssemblyRepository;
+use App\API\V1\Repositories\SubAssemblyTestRepository;
 use App\API\V1\Repositories\TechnicianRepository;
 
 use App\API\V1\Transformers\AdministratorTransformer;
@@ -100,12 +106,45 @@ class APIServiceProvider extends ServiceProvider
 		);
 
 		$this->app->bind(
+			MajorAssemblyRepository::class,
+			function ($app)
+			{
+				return new MajorAssemblyRepository(
+					$app['em'],
+					$app['em']->getClassMetaData(MajorAssembly::class)
+				);
+			}
+		);
+
+		$this->app->bind(
 			ModelRepository::class,
 			function ($app)
 			{
 				return new ModelRepository(
 					$app['em'],
 					$app['em']->getClassMetaData(Model::class)
+				);
+			}
+		);
+
+		$this->app->bind(
+			SubAssemblyRepository::class,
+			function ($app)
+			{
+				return new SubAssemblyRepository(
+					$app['em'],
+					$app['em']->getClassMetaData(SubAssembly::class)
+				);
+			}
+		);
+
+		$this->app->bind(
+			SubAssemblyTestRepository::class,
+			function ($app)
+			{
+				return new SubAssemblyTestRepository(
+					$app['em'],
+					$app['em']->getClassMetaData(SubAssemblyTest::class)
 				);
 			}
 		);

@@ -2,11 +2,11 @@
 
 namespace App\API\V1\Controllers;
 
-use App\API\V1\Repositories\MachineRepository as Repository;
-use App\API\V1\Transformers\MachineTransformer as Transformer;
+use App\API\V1\Repositories\SubAssemblyRepository as Repository;
+use App\API\V1\Transformers\SubAssemblyTransformer as Transformer;
 use Illuminate\Support\Collection;
 
-class MachineController extends APIController
+class SubAssemblyController extends APIController
 {
 	public function getList(Repository $repository)
 	{

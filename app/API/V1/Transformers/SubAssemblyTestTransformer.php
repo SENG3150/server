@@ -23,16 +23,22 @@ class SubAssemblyTestTransformer extends TransformerAbstract
 	public function transform(SubAssemblyTest $subAssemblyTest)
 	{
 		return array(
-			'id'                  => $subAssemblyTest->getId(),
-			'machineGeneral'      => $subAssemblyTest->hasMachineGeneral(),
-			'machineGeneralLower' => $subAssemblyTest->getMachineGeneralLower(),
-			'machineGeneralUpper' => $subAssemblyTest->getMachineGeneralUpper(),
-			'oil'                 => $subAssemblyTest->hasOil(),
-			'oilLower'            => $subAssemblyTest->getOilLower(),
-			'oilUpper'            => $subAssemblyTest->getOilUpper(),
-			'wear'                => $subAssemblyTest->hasWear(),
-			'wearLower'           => $subAssemblyTest->getWearLower(),
-			'wearUpper'           => $subAssemblyTest->getWearUpper(),
+			'id'             => $subAssemblyTest->getId(),
+			'machineGeneral' => array(
+				'test'  => $subAssemblyTest->hasMachineGeneral(),
+				'lower' => $subAssemblyTest->getMachineGeneralLower(),
+				'upper' => $subAssemblyTest->getMachineGeneralUpper(),
+			),
+			'oil'            => array(
+				'test'  => $subAssemblyTest->hasOil(),
+				'lower' => $subAssemblyTest->getOilLower(),
+				'upper' => $subAssemblyTest->getOilUpper(),
+			),
+			'wear'           => array(
+				'test'  => $subAssemblyTest->hasWear(),
+				'lower' => $subAssemblyTest->getWearLower(),
+				'upper' => $subAssemblyTest->getWearUpper(),
+			),
 		);
 	}
 

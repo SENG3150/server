@@ -2,23 +2,23 @@
 
 namespace App\API\V1\Controllers;
 
-use App\API\V1\Repositories\ModelRepository;
-use App\API\V1\Transformers\ModelTransformer;
+use App\API\V1\Repositories\ModelRepository as Repository;
+use App\API\V1\Transformers\ModelTransformer as Transformer;
 use Illuminate\Support\Collection;
 
 class ModelController extends APIController
 {
-	public function getList(ModelRepository $modelRepository)
+	public function getList(Repository $repository)
 	{
-		$models = $modelRepository->findAll();
+		$items = $repository->findAll();
 
-		return $this->response->collection(Collection::make($models), new ModelTransformer());
+		return $this->response->collection(Collection::make($items), new Transformer());
 	}
 
-	public function get($modelId, ModelRepository $modelRepository)
+	public function get($id, Repository $repository)
 	{
-		$model = $modelRepository->find($modelId);
+		$item = $repository->find($id);
 
-		return $this->response->item($model, new ModelTransformer());
+		return $this->response->item($item, new Transformer());
 	}
 }
