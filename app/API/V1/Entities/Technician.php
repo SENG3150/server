@@ -56,7 +56,7 @@ class Technician extends \ArrayObject implements Primary
 	protected $temporary;
 
 	/**
-	 * @ORM\Column(name="loginExpiresTime", type="datetime", nullable=true)
+	 * @ORM\Column(name="login_expires_time", type="datetime", nullable=true)
 	 * @var \DateTime $loginExpiresTime
 	 */
 	protected $loginExpiresTime;
