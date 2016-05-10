@@ -11,7 +11,7 @@ class InspectionController extends APIController
 {
 	public function getList(Repository $repository, Request $request)
 	{
-		var_dump($request->input('include'));
+		entity_dump($request, 4);
 		exit;
 
 		$items = $repository->findAll();
