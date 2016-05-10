@@ -11,9 +11,6 @@ class InspectionController extends APIController
 {
 	public function getList(Repository $repository, Request $request)
 	{
-		entity_dump($request, 4);
-		exit;
-
 		$items = $repository->findAll();
 
 		return $this->response->collection(Collection::make($items), new Transformer());
