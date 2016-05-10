@@ -17,10 +17,8 @@ $api = app('Dingo\Api\Routing\Router');
 $api->version(
 	'v1',
 	[],
-	function ($api)
+	function () use ($api)
 	{
-		/** @var Dingo\Api\Routing\Router $api */
-
 		$api->post('auth/authenticate', 'App\API\V1\Controllers\AuthenticateController@authenticate');
 		$api->get('auth/refresh', 'App\API\V1\Controllers\AuthenticateController@refresh');
 	}
@@ -32,25 +30,84 @@ $api->version(
 		'middleware' => 'api.auth',
 		'provider'   => 'jwt'
 	],
-	function ($api)
+	function () use ($api)
 	{
-		/** @var Dingo\Api\Routing\Router $api */
-
 		$api->get('me', 'App\API\V1\Controllers\UserController@me');
 
-		$api->get('machines', 'App\API\V1\Controllers\MachineController@getList');
-		$api->get('machines/{id}', 'App\API\V1\Controllers\MachineController@get');
-
-		$api->get('majorAssemblies', 'App\API\V1\Controllers\MajorAssemblyController@getList');
-		$api->get('majorAssemblies/{id}', 'App\API\V1\Controllers\MajorAssemblyController@get');
-
-		$api->get('models', 'App\API\V1\Controllers\ModelController@getList');
-		$api->get('models/{id}', 'App\API\V1\Controllers\ModelController@get');
-
-		$api->get('subAssemblies', 'App\API\V1\Controllers\SubAssemblyController@getList');
-		$api->get('subAssemblies/{id}', 'App\API\V1\Controllers\SubAssemblyController@get');
-
-		$api->get('subAssemblyTests', 'App\API\V1\Controllers\SubAssemblyTestController@getList');
-		$api->get('subAssemblyTests/{id}', 'App\API\V1\Controllers\SubAssemblyTestController@get');
+		generateRoutes($api, 'v1', 'inspections');
+		generateRoutes($api, 'v1', 'machines');
+		generateRoutes($api, 'v1', 'majorAssemblies');
+		generateRoutes($api, 'v1', 'models');
+		generateRoutes($api, 'v1', 'subAssemblies');
+		generateRoutes($api, 'v1', 'subAssemblyTests');
 	}
 );
+
+/**
+ * @param Dingo\Api\Routing\Router $api
+ * @param string                   $version
+ * @param string                   $route
+ * @param string                   $controller
+ * @param bool                     $getList
+ * @param bool                     $get
+ * @param bool                     $create
+ * @param bool                     $update
+ * @param bool                     $delete
+ */
+function generateRoutes($api, $version, $route, $controller = NULL, $getList = TRUE, $get = TRUE, $create = FALSE, $update = FALSE, $delete = FALSE)
+{
+	if($controller == NULL)
+	{
+		$controller = ucfirst($route);
+
+		if(stringEndsWith($controller, 's') == TRUE)
+		{
+			$controller = substr($controller, 0, -1);
+		}
+
+		if(stringEndsWith($controller, 'ie') == TRUE)
+		{
+			$controller = substr($controller, 0, -2) . 'y';
+		}
+	}
+
+	$path = "App\\API\\" . strtoupper($version) . "\\Controllers\\" . $controller . "Controller@";
+
+	if($getList == TRUE)
+	{
+		$api->get($route, $path . 'getList');
+	}
+
+	if($get == TRUE)
+	{
+		$api->get($route . '/{id}', $path . 'get');
+	}
+
+	if($create == TRUE)
+	{
+		$api->post($route, $path . 'create');
+	}
+
+	if($update == TRUE)
+	{
+		$api->post($route . '/{id}', $path . 'update');
+	}
+
+	if($delete == TRUE)
+	{
+		$api->delete($route . '/{id}', $path . 'delete');
+	}
+}
+
+/**
+ * @param $haystack
+ * @param $needle
+ *
+ * @return bool
+ * @link http://stackoverflow.com/a/10473026
+ */
+function stringEndsWith($haystack, $needle)
+{
+	// search forward starting from end minus needle length characters
+	return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== FALSE);
+}

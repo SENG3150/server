@@ -17,13 +17,6 @@ class SubAssemblyTransformer extends TransformerAbstract
 	);
 
 	/**
-	 * @var array
-	 */
-	protected $defaultIncludes = array(
-		'tests',
-	);
-
-	/**
 	 * @param SubAssembly $subAssembly
 	 *
 	 * @return array
@@ -37,7 +30,7 @@ class SubAssemblyTransformer extends TransformerAbstract
 	}
 
 	/**
-	 * @param \App\API\V1\Entities\SubAssembly $subAssembly
+	 * @param SubAssembly $subAssembly
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
@@ -47,7 +40,7 @@ class SubAssemblyTransformer extends TransformerAbstract
 	}
 
 	/**
-	 * @param \App\API\V1\Entities\SubAssembly $subAssembly
+	 * @param SubAssembly $subAssembly
 	 *
 	 * @return \League\Fractal\Resource\Collection
 	 */

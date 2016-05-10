@@ -15,13 +15,6 @@ class ModelTransformer extends TransformerAbstract
 		'machines',
 		'majorAssemblies',
 	);
-
-	/**
-	 * @var array
-	 */
-	protected $defaultIncludes = array(
-		'majorAssemblies',
-	);
 	
 	/**
 	 * @param Model $model
@@ -37,7 +30,7 @@ class ModelTransformer extends TransformerAbstract
 	}
 
 	/**
-	 * @param \App\API\V1\Entities\Model $model
+	 * @param Model $model
 	 *
 	 * @return \League\Fractal\Resource\Collection
 	 */
@@ -47,7 +40,7 @@ class ModelTransformer extends TransformerAbstract
 	}
 
 	/**
-	 * @param \App\API\V1\Entities\Model $model
+	 * @param Model $model
 	 *
 	 * @return \League\Fractal\Resource\Collection
 	 */

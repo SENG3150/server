@@ -17,13 +17,6 @@ class MajorAssemblyTransformer extends TransformerAbstract
 	);
 
 	/**
-	 * @var array
-	 */
-	protected $defaultIncludes = array(
-		'subAssemblies',
-	);
-
-	/**
 	 * @param MajorAssembly $majorAssembly
 	 *
 	 * @return array
@@ -37,7 +30,7 @@ class MajorAssemblyTransformer extends TransformerAbstract
 	}
 	
 	/**
-	 * @param \App\API\V1\Entities\MajorAssembly $majorAssembly
+	 * @param MajorAssembly $majorAssembly
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
@@ -47,7 +40,7 @@ class MajorAssemblyTransformer extends TransformerAbstract
 	}
 
 	/**
-	 * @param \App\API\V1\Entities\MajorAssembly $majorAssembly
+	 * @param MajorAssembly $majorAssembly
 	 *
 	 * @return \League\Fractal\Resource\Collection
 	 */

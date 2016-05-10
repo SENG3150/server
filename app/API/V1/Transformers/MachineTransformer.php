@@ -36,7 +36,7 @@ class MachineTransformer extends TransformerAbstract
 	}
 
 	/**
-	 * @param \App\API\V1\Entities\Machine $machine
+	 * @param Machine $machine
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */

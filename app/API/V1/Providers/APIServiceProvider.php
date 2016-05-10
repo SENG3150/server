@@ -7,6 +7,10 @@ use Validator;
 
 use App\API\V1\Entities\Administrator;
 use App\API\V1\Entities\DomainExpert;
+use App\API\V1\Entities\Inspection;
+use App\API\V1\Entities\InspectionComment;
+use App\API\V1\Entities\InspectionMajorAssembly;
+use App\API\V1\Entities\InspectionSubAssembly;
 use App\API\V1\Entities\Machine;
 use App\API\V1\Entities\MajorAssembly;
 use App\API\V1\Entities\Model;
@@ -16,6 +20,10 @@ use App\API\V1\Entities\Technician;
 
 use App\API\V1\Repositories\AdministratorRepository;
 use App\API\V1\Repositories\DomainExpertRepository;
+use App\API\V1\Repositories\InspectionRepository;
+use App\API\V1\Repositories\InspectionCommentRepository;
+use App\API\V1\Repositories\InspectionMajorAssemblyRepository;
+use App\API\V1\Repositories\InspectionSubAssemblyRepository;
 use App\API\V1\Repositories\MachineRepository;
 use App\API\V1\Repositories\MajorAssemblyRepository;
 use App\API\V1\Repositories\ModelRepository;
@@ -90,6 +98,50 @@ class APIServiceProvider extends ServiceProvider
 				return new TechnicianRepository(
 					$app['em'],
 					$app['em']->getClassMetaData(Technician::class)
+				);
+			}
+		);
+
+		$this->app->bind(
+			InspectionRepository::class,
+			function ($app)
+			{
+				return new InspectionRepository(
+					$app['em'],
+					$app['em']->getClassMetaData(Inspection::class)
+				);
+			}
+		);
+
+		$this->app->bind(
+			InspectionCommentRepository::class,
+			function ($app)
+			{
+				return new InspectionCommentRepository(
+					$app['em'],
+					$app['em']->getClassMetaData(InspectionComment::class)
+				);
+			}
+		);
+
+		$this->app->bind(
+			InspectionMajorAssemblyRepository::class,
+			function ($app)
+			{
+				return new InspectionMajorAssemblyRepository(
+					$app['em'],
+					$app['em']->getClassMetaData(InspectionMajorAssembly::class)
+				);
+			}
+		);
+
+		$this->app->bind(
+			InspectionSubAssemblyRepository::class,
+			function ($app)
+			{
+				return new InspectionSubAssemblyRepository(
+					$app['em'],
+					$app['em']->getClassMetaData(InspectionSubAssembly::class)
 				);
 			}
 		);

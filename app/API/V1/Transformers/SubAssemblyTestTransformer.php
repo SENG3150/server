@@ -43,7 +43,7 @@ class SubAssemblyTestTransformer extends TransformerAbstract
 	}
 
 	/**
-	 * @param \App\API\V1\Entities\SubAssemblyTest $subAssemblyTest
+	 * @param SubAssemblyTest $subAssemblyTest
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
