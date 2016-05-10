@@ -39,6 +39,7 @@ class InspectionCommentTransformer extends TransformerAbstract
 			'id'            => $comment->getId(),
 			'timeCommented' => $comment->getTimeCommented(),
 			'authorType'    => $comment->getAuthorType(),
+			'text'          => $comment->getText(),
 		);
 	}
 
