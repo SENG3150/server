@@ -32,6 +32,12 @@ class Machine extends \ArrayObject
 	protected $model;
 
 	/**
+	 * @ORM\OneToMany(targetEntity="Inspection", mappedBy="machine", cascade={"persist"})
+	 * @var Inspection[]|ArrayCollection $inspections
+	 */
+	protected $inspections;
+
+	/**
 	 * @return int
 	 */
 	public function getId()
@@ -87,6 +93,26 @@ class Machine extends \ArrayObject
 	public function setModel($model)
 	{
 		$this->model = $model;
+
+		return $this;
+	}
+
+	/**
+	 * @return Inspection[]|ArrayCollection
+	 */
+	public function getInspections()
+	{
+		return $this->inspections;
+	}
+
+	/**
+	 * @param Inspection[]|ArrayCollection $inspections
+	 *
+	 * @return $this
+	 */
+	public function setInspections($inspections)
+	{
+		$this->inspections = $inspections;
 
 		return $this;
 	}

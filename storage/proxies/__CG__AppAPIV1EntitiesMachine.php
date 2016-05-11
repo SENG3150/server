@@ -64,10 +64,10 @@ class Machine extends \App\API\V1\Entities\Machine implements \Doctrine\ORM\Prox
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'name', 'model'];
+            return ['__isInitialized__', 'id', 'name', 'model', 'inspections'];
         }
 
-        return ['__isInitialized__', 'id', 'name', 'model'];
+        return ['__isInitialized__', 'id', 'name', 'model', 'inspections'];
     }
 
     /**
@@ -241,6 +241,28 @@ class Machine extends \App\API\V1\Entities\Machine implements \Doctrine\ORM\Prox
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setModel', [$model]);
 
         return parent::setModel($model);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getInspections()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getInspections', []);
+
+        return parent::getInspections();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setInspections($inspections)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setInspections', [$inspections]);
+
+        return parent::setInspections($inspections);
     }
 
     /**

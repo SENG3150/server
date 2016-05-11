@@ -13,6 +13,7 @@ class MachineTransformer extends TransformerAbstract
 	 */
 	protected $availableIncludes = array(
 		'model',
+		'inspections',
 	);
 
 	/**
@@ -43,5 +44,15 @@ class MachineTransformer extends TransformerAbstract
 	public function includeModel(Machine $machine)
 	{
 		return $this->item($machine->getModel(), new ModelTransformer());
+	}
+
+	/**
+	 * @param Machine $machine
+	 *
+	 * @return \League\Fractal\Resource\Collection
+	 */
+	public function includeInspections(Machine $machine)
+	{
+		return $this->collection($machine->getInspections(), new InspectionTransformer());
 	}
 }
