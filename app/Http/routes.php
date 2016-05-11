@@ -40,6 +40,9 @@ $api->version(
 		generateRoutes($api, 'v1', 'models');
 		generateRoutes($api, 'v1', 'subAssemblies');
 		generateRoutes($api, 'v1', 'subAssemblyTests');
+		generateRoutes($api, 'v1', 'administrators');
+		generateRoutes($api, 'v1', 'domainExperts');
+		generateRoutes($api, 'v1', 'technicians');
 	}
 );
 
