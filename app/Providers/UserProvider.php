@@ -90,7 +90,7 @@ class UserProvider implements Provider, Auth
 			
 			case self::TYPE_TECHNICIAN:
 			{
-				return $user->isTechnician() == TRUE && $user->getPrimary()->matchesPassword($credentials['password']);
+				return $user->isTechnician() == TRUE && $user->getPrimary()->matchesPassword($credentials['password']) && $user->getPrimary()->hasLoginExpired() == FALSE;
 			}
 			
 			default:
