@@ -68,8 +68,8 @@ class Inspection extends \ArrayObject
 	protected $majorAssemblies;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="InspectionComment", mappedBy="inspection", cascade={"persist"}, fetch="EXTRA_LAZY")
-	 * @var InspectionComment[]|ArrayCollection $comments
+	 * @ORM\OneToMany(targetEntity="Comment", mappedBy="inspection", cascade={"persist"}, fetch="EXTRA_LAZY")
+	 * @var Comment[]|ArrayCollection $comments
 	 */
 	protected $comments;
 	
@@ -254,7 +254,7 @@ class Inspection extends \ArrayObject
 	}
 
 	/**
-	 * @return InspectionComment[]|ArrayCollection
+	 * @return Comment[]|ArrayCollection
 	 */
 	public function getComments()
 	{
@@ -262,7 +262,7 @@ class Inspection extends \ArrayObject
 	}
 
 	/**
-	 * @param InspectionComment[]|ArrayCollection $comments
+	 * @param Comment[]|ArrayCollection $comments
 	 *
 	 * @return $this
 	 */

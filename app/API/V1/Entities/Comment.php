@@ -10,9 +10,9 @@ use App\Entities\User;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="inspection_comments")
+ * @ORM\Table(name="comments")
  */
-class InspectionComment extends \ArrayObject
+class Comment extends \ArrayObject
 {
 	/**
 	 * @ORM\Id
@@ -53,6 +53,27 @@ class InspectionComment extends \ArrayObject
 	 * @var InspectionSubAssembly $subAssembly
 	 */
 	protected $subAssembly;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="MachineGeneralTest", inversedBy="comments", cascade={"persist"},
+	 *                                                      fetch="EXTRA_LAZY")
+	 * @var MachineGeneralTest $machineGeneralTest
+	 */
+	protected $machineGeneralTest;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="OilTest", inversedBy="comments", cascade={"persist"},
+	 *                                                      fetch="EXTRA_LAZY")
+	 * @var OilTest $oilTest
+	 */
+	protected $oilTest;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="WearTest", inversedBy="comments", cascade={"persist"},
+	 *                                                      fetch="EXTRA_LAZY")
+	 * @var WearTest $wearTest
+	 */
+	protected $wearTest;
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="Technician", inversedBy="comments", cascade={"persist"}, fetch="EXTRA_LAZY")
@@ -182,6 +203,66 @@ class InspectionComment extends \ArrayObject
 	public function setSubAssembly($subAssembly)
 	{
 		$this->subAssembly = $subAssembly;
+
+		return $this;
+	}
+
+	/**
+	 * @return \App\API\V1\Entities\MachineGeneralTest
+	 */
+	public function getMachineGeneralTest()
+	{
+		return $this->machineGeneralTest;
+	}
+
+	/**
+	 * @param \App\API\V1\Entities\MachineGeneralTest $machineGeneralTest
+	 *
+	 * @return $this
+	 */
+	public function setMachineGeneralTest($machineGeneralTest)
+	{
+		$this->machineGeneralTest = $machineGeneralTest;
+
+		return $this;
+	}
+
+	/**
+	 * @return \App\API\V1\Entities\OilTest
+	 */
+	public function getOilTest()
+	{
+		return $this->oilTest;
+	}
+
+	/**
+	 * @param \App\API\V1\Entities\OilTest $oilTest
+	 *
+	 * @return $this
+	 */
+	public function setOilTest($oilTest)
+	{
+		$this->oilTest = $oilTest;
+
+		return $this;
+	}
+
+	/**
+	 * @return \App\API\V1\Entities\WearTest
+	 */
+	public function getWearTest()
+	{
+		return $this->wearTest;
+	}
+
+	/**
+	 * @param \App\API\V1\Entities\WearTest $wearTest
+	 *
+	 * @return $this
+	 */
+	public function setWearTest($wearTest)
+	{
+		$this->wearTest = $wearTest;
 
 		return $this;
 	}

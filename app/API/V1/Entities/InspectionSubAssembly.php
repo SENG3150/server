@@ -38,10 +38,28 @@ class InspectionSubAssembly extends \ArrayObject
 	protected $subAssembly;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="InspectionComment", mappedBy="subAssembly", cascade={"persist"}, fetch="EXTRA_LAZY")
-	 * @var InspectionComment[]|ArrayCollection $comments
+	 * @ORM\OneToMany(targetEntity="Comment", mappedBy="subAssembly", cascade={"persist"}, fetch="EXTRA_LAZY")
+	 * @var Comment[]|ArrayCollection $comments
 	 */
 	protected $comments;
+
+	/**
+	 * @ORM\OneToOne(targetEntity="MachineGeneralTest", mappedBy="subAssembly", cascade={"persist"}, fetch="EXTRA_LAZY")
+	 * @var MachineGeneralTest $machineGeneralTest
+	 */
+	protected $machineGeneralTest;
+
+	/**
+	 * @ORM\OneToOne(targetEntity="OilTest", mappedBy="subAssembly", cascade={"persist"}, fetch="EXTRA_LAZY")
+	 * @var OilTest $oilTest
+	 */
+	protected $oilTest;
+
+	/**
+	 * @ORM\OneToOne(targetEntity="WearTest", mappedBy="subAssembly", cascade={"persist"}, fetch="EXTRA_LAZY")
+	 * @var WearTest $wearTest
+	 */
+	protected $wearTest;
 
 	/**
 	 * @return int
@@ -124,7 +142,7 @@ class InspectionSubAssembly extends \ArrayObject
 	}
 
 	/**
-	 * @return InspectionComment[]|ArrayCollection
+	 * @return Comment[]|ArrayCollection
 	 */
 	public function getComments()
 	{
@@ -132,13 +150,73 @@ class InspectionSubAssembly extends \ArrayObject
 	}
 
 	/**
-	 * @param InspectionComment[]|ArrayCollection $comments
+	 * @param Comment[]|ArrayCollection $comments
 	 *
 	 * @return $this
 	 */
 	public function setComments($comments)
 	{
 		$this->comments = $comments;
+
+		return $this;
+	}
+
+	/**
+	 * @return \App\API\V1\Entities\MachineGeneralTest
+	 */
+	public function getMachineGeneralTest()
+	{
+		return $this->machineGeneralTest;
+	}
+
+	/**
+	 * @param \App\API\V1\Entities\MachineGeneralTest $machineGeneralTest
+	 *
+	 * @return $this
+	 */
+	public function setMachineGeneralTest($machineGeneralTest)
+	{
+		$this->machineGeneralTest = $machineGeneralTest;
+
+		return $this;
+	}
+
+	/**
+	 * @return \App\API\V1\Entities\OilTest
+	 */
+	public function getOilTest()
+	{
+		return $this->oilTest;
+	}
+
+	/**
+	 * @param \App\API\V1\Entities\OilTest $oilTest
+	 *
+	 * @return $this
+	 */
+	public function setOilTest($oilTest)
+	{
+		$this->oilTest = $oilTest;
+
+		return $this;
+	}
+
+	/**
+	 * @return \App\API\V1\Entities\WearTest
+	 */
+	public function getWearTest()
+	{
+		return $this->wearTest;
+	}
+
+	/**
+	 * @param \App\API\V1\Entities\WearTest $wearTest
+	 *
+	 * @return $this
+	 */
+	public function setWearTest($wearTest)
+	{
+		$this->wearTest = $wearTest;
 
 		return $this;
 	}

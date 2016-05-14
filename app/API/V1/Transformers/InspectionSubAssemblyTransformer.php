@@ -16,6 +16,9 @@ class InspectionSubAssemblyTransformer extends TransformerAbstract
 		'majorAssembly',
 		'subAssembly',
 		'comments',
+		'machineGeneralTest',
+		'oilTest',
+		'wearTest',
 	);
 
 	/**
@@ -23,6 +26,9 @@ class InspectionSubAssemblyTransformer extends TransformerAbstract
 	 */
 	protected $defaultIncludes = array(
 		'comments',
+		'machineGeneralTest',
+		'oilTest',
+		'wearTest',
 	);
 	
 	/**
@@ -74,6 +80,60 @@ class InspectionSubAssemblyTransformer extends TransformerAbstract
 	 */
 	public function includeComments(InspectionSubAssembly $subAssembly)
 	{
-		return $this->collection($subAssembly->getComments(), new InspectionCommentTransformer());
+		return $this->collection($subAssembly->getComments(), new CommentTransformer());
+	}
+	
+	/**
+	 * @param InspectionSubAssembly $subAssembly
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeMachineGeneralTest(InspectionSubAssembly $subAssembly)
+	{
+		if($subAssembly->getMachineGeneralTest() != NULL)
+		{
+			return $this->item($subAssembly->getMachineGeneralTest(), new MachineGeneralTestTransformer());
+		}
+
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param InspectionSubAssembly $subAssembly
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeOilTest(InspectionSubAssembly $subAssembly)
+	{
+		if($subAssembly->getOilTest() != NULL)
+		{
+			return $this->item($subAssembly->getOilTest(), new OilTestTransformer());
+		}
+
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param InspectionSubAssembly $subAssembly
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeWearTest(InspectionSubAssembly $subAssembly)
+	{
+		if($subAssembly->getWearTest() != NULL)
+		{
+			return $this->item($subAssembly->getWearTest(), new WearTestTransformer());
+		}
+
+		else
+		{
+			return NULL;
+		}
 	}
 }

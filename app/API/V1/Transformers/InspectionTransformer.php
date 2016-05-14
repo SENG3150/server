@@ -90,6 +90,6 @@ class InspectionTransformer extends TransformerAbstract
 	 */
 	public function includeComments(Inspection $inspection)
 	{
-		return $this->collection($inspection->getComments(), new InspectionCommentTransformer());
+		return $this->collection($inspection->getComments(), new CommentTransformer());
 	}
 }

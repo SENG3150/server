@@ -8,7 +8,7 @@ use Validator;
 use App\API\V1\Entities\Administrator;
 use App\API\V1\Entities\DomainExpert;
 use App\API\V1\Entities\Inspection;
-use App\API\V1\Entities\InspectionComment;
+use App\API\V1\Entities\Comment;
 use App\API\V1\Entities\InspectionMajorAssembly;
 use App\API\V1\Entities\InspectionSubAssembly;
 use App\API\V1\Entities\Machine;
@@ -21,7 +21,7 @@ use App\API\V1\Entities\Technician;
 use App\API\V1\Repositories\AdministratorRepository;
 use App\API\V1\Repositories\DomainExpertRepository;
 use App\API\V1\Repositories\InspectionRepository;
-use App\API\V1\Repositories\InspectionCommentRepository;
+use App\API\V1\Repositories\CommentRepository;
 use App\API\V1\Repositories\InspectionMajorAssemblyRepository;
 use App\API\V1\Repositories\InspectionSubAssemblyRepository;
 use App\API\V1\Repositories\MachineRepository;
@@ -114,12 +114,12 @@ class APIServiceProvider extends ServiceProvider
 		);
 
 		$this->app->bind(
-			InspectionCommentRepository::class,
+			CommentRepository::class,
 			function ($app)
 			{
-				return new InspectionCommentRepository(
+				return new CommentRepository(
 					$app['em'],
-					$app['em']->getClassMetaData(InspectionComment::class)
+					$app['em']->getClassMetaData(Comment::class)
 				);
 			}
 		);

@@ -75,6 +75,6 @@ class InspectionMajorAssemblyTransformer extends TransformerAbstract
 	 */
 	public function includeComments(InspectionMajorAssembly $majorAssembly)
 	{
-		return $this->collection($majorAssembly->getComments(), new InspectionCommentTransformer());
+		return $this->collection($majorAssembly->getComments(), new CommentTransformer());
 	}
 }

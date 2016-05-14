@@ -5,9 +5,9 @@ namespace App\API\V1\Transformers;
 use App\Entities\User;
 use League\Fractal\TransformerAbstract;
 
-use App\API\V1\Entities\InspectionComment;
+use App\API\V1\Entities\Comment;
 
-class InspectionCommentTransformer extends TransformerAbstract
+class CommentTransformer extends TransformerAbstract
 {
 	/**
 	 * @var array
@@ -29,11 +29,11 @@ class InspectionCommentTransformer extends TransformerAbstract
 	);
 	
 	/**
-	 * @param InspectionComment $comment
+	 * @param Comment $comment
 	 *
 	 * @return array
 	 */
-	public function transform(InspectionComment $comment)
+	public function transform(Comment $comment)
 	{
 		return array(
 			'id'            => $comment->getId(),
@@ -44,61 +44,61 @@ class InspectionCommentTransformer extends TransformerAbstract
 	}
 
 	/**
-	 * @param InspectionComment $comment
+	 * @param Comment $comment
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeInspection(InspectionComment $comment)
+	public function includeInspection(Comment $comment)
 	{
 		return $this->item($comment->getInspection(), new InspectionTransformer());
 	}
 
 	/**
-	 * @param InspectionComment $comment
+	 * @param Comment $comment
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeMajorAssembly(InspectionComment $comment)
+	public function includeMajorAssembly(Comment $comment)
 	{
 		return $this->item($comment->getMajorAssembly(), new InspectionMajorAssemblyTransformer());
 	}
 
 	/**
-	 * @param InspectionComment $comment
+	 * @param Comment $comment
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeSubAssembly(InspectionComment $comment)
+	public function includeSubAssembly(Comment $comment)
 	{
 		return $this->item($comment->getSubAssembly(), new InspectionSubAssemblyTransformer());
 	}
 
 	/**
-	 * @param InspectionComment $comment
+	 * @param Comment $comment
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeTechnician(InspectionComment $comment)
+	public function includeTechnician(Comment $comment)
 	{
 		return $this->item($comment->getTechnician(), new TechnicianTransformer());
 	}
 
 	/**
-	 * @param InspectionComment $comment
+	 * @param Comment $comment
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeDomainExpert(InspectionComment $comment)
+	public function includeDomainExpert(Comment $comment)
 	{
 		return $this->item($comment->getDomainExpert(), new DomainExpertTransformer());
 	}
 
 	/**
-	 * @param InspectionComment $comment
+	 * @param Comment $comment
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeAuthor(InspectionComment $comment)
+	public function includeAuthor(Comment $comment)
 	{
 		switch($comment->getAuthorType())
 		{
