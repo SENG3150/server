@@ -33,6 +33,13 @@ class WearTest extends \ArrayObject
 	protected $subAssembly;
 
 	/**
+	 * @ORM\OneToOne(targetEntity="ActionItem", mappedBy="wearTest", cascade={"persist"},
+	 *                                                      fetch="EXTRA_LAZY")
+	 * @var ActionItem $actionItem
+	 */
+	protected $actionItem;
+
+	/**
 	 * @ORM\OneToMany(targetEntity="Comment", mappedBy="wearTest", cascade={"persist"}, fetch="EXTRA_LAZY")
 	 * @var Comment[]|ArrayCollection $comments
 	 */
@@ -136,6 +143,26 @@ class WearTest extends \ArrayObject
 	public function setSubAssembly($subAssembly)
 	{
 		$this->subAssembly = $subAssembly;
+
+		return $this;
+	}
+
+	/**
+	 * @return \App\API\V1\Entities\ActionItem
+	 */
+	public function getActionItem()
+	{
+		return $this->actionItem;
+	}
+
+	/**
+	 * @param \App\API\V1\Entities\ActionItem $actionItem
+	 *
+	 * @return $this
+	 */
+	public function setActionItem($actionItem)
+	{
+		$this->actionItem = $actionItem;
 
 		return $this;
 	}

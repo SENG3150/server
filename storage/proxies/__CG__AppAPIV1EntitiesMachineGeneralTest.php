@@ -64,10 +64,10 @@ class MachineGeneralTest extends \App\API\V1\Entities\MachineGeneralTest impleme
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'comments', 'testType', 'docLink'];
+            return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'testType', 'docLink'];
         }
 
-        return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'comments', 'testType', 'docLink'];
+        return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'testType', 'docLink'];
     }
 
     /**
@@ -241,6 +241,28 @@ class MachineGeneralTest extends \App\API\V1\Entities\MachineGeneralTest impleme
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSubAssembly', [$subAssembly]);
 
         return parent::setSubAssembly($subAssembly);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getActionItem()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getActionItem', []);
+
+        return parent::getActionItem();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setActionItem($actionItem)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setActionItem', [$actionItem]);
+
+        return parent::setActionItem($actionItem);
     }
 
     /**

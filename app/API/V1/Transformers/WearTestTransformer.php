@@ -15,6 +15,7 @@ class WearTestTransformer extends TransformerAbstract
 		'inspection',
 		'subAssembly',
 		'comments',
+		'actionItem',
 	);
 
 	/**
@@ -22,6 +23,7 @@ class WearTestTransformer extends TransformerAbstract
 	 */
 	protected $defaultIncludes = array(
 		'comments',
+		'actionItem',
 	);
 	
 	/**
@@ -71,5 +73,15 @@ class WearTestTransformer extends TransformerAbstract
 	public function includeComments(WearTest $wearTest)
 	{
 		return $this->collection($wearTest->getComments(), new CommentTransformer());
+	}
+
+	/**
+	 * @param WearTest $wearTest
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeActionItem(WearTest $wearTest)
+	{
+		return $this->item($wearTest->getActionItem(), new ActionItemTransformer());
 	}
 }

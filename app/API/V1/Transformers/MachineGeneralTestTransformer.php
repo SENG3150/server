@@ -15,6 +15,7 @@ class MachineGeneralTestTransformer extends TransformerAbstract
 		'inspection',
 		'subAssembly',
 		'comments',
+		'actionItem',
 	);
 
 	/**
@@ -22,6 +23,7 @@ class MachineGeneralTestTransformer extends TransformerAbstract
 	 */
 	protected $defaultIncludes = array(
 		'comments',
+		'actionItem',
 	);
 	
 	/**
@@ -66,5 +68,15 @@ class MachineGeneralTestTransformer extends TransformerAbstract
 	public function includeComments(MachineGeneralTest $machineGeneralTest)
 	{
 		return $this->collection($machineGeneralTest->getComments(), new CommentTransformer());
+	}
+
+	/**
+	 * @param MachineGeneralTest $machineGeneralTest
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeActionItem(MachineGeneralTest $machineGeneralTest)
+	{
+		return $this->item($machineGeneralTest->getActionItem(), new ActionItemTransformer());
 	}
 }

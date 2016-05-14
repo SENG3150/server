@@ -64,10 +64,10 @@ class OilTest extends \App\API\V1\Entities\OilTest implements \Doctrine\ORM\Prox
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'comments', 'lead', 'copper', 'tin', 'iron', 'pq90', 'silicon', 'sodium', 'aluminium', 'water', 'viscosity'];
+            return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'lead', 'copper', 'tin', 'iron', 'pq90', 'silicon', 'sodium', 'aluminium', 'water', 'viscosity'];
         }
 
-        return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'comments', 'lead', 'copper', 'tin', 'iron', 'pq90', 'silicon', 'sodium', 'aluminium', 'water', 'viscosity'];
+        return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'lead', 'copper', 'tin', 'iron', 'pq90', 'silicon', 'sodium', 'aluminium', 'water', 'viscosity'];
     }
 
     /**
@@ -241,6 +241,28 @@ class OilTest extends \App\API\V1\Entities\OilTest implements \Doctrine\ORM\Prox
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSubAssembly', [$subAssembly]);
 
         return parent::setSubAssembly($subAssembly);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getActionItem()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getActionItem', []);
+
+        return parent::getActionItem();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setActionItem($actionItem)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setActionItem', [$actionItem]);
+
+        return parent::setActionItem($actionItem);
     }
 
     /**
