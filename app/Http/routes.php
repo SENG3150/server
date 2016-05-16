@@ -43,6 +43,8 @@ $api->version(
 		generateRoutes($api, 'v1', 'administrators');
 		generateRoutes($api, 'v1', 'domainExperts');
 		generateRoutes($api, 'v1', 'technicians');
+
+		$api->get('inspections/incomplete', 'App\API\V1\Controllers\InspectionController@getIncompleteList');
 	}
 );
 
