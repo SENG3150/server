@@ -10,15 +10,25 @@ class ModelController extends APIController
 {
 	public function getList(Repository $repository)
 	{
-		$items = $repository->findAll();
+		$entities = $repository->findAll();
 
-		return $this->response->collection(Collection::make($items), new Transformer());
+		return $this->response->collection(Collection::make($entities), new Transformer());
 	}
 
 	public function get($id, Repository $repository)
 	{
-		$item = $repository->find($id);
+		$entity = $repository->find($id);
 
-		return $this->response->item($item, new Transformer());
+		if($entity != NULL)
+		{
+			return $this->response->item($entity, new Transformer());
+		}
+
+		else
+		{
+			$this->response()->errorNotFound();
+
+			return FALSE;
+		}
 	}
 }

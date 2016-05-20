@@ -164,7 +164,7 @@ class DomainExpert extends \ArrayObject implements Primary
 	 */
 	public function setPassword($password)
 	{
-		$this->password = $password;
+		$this->password = password_hash($password, PASSWORD_BCRYPT);
 
 		return $this;
 	}

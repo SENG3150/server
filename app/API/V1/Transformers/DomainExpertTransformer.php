@@ -17,6 +17,7 @@ class DomainExpertTransformer extends TransformerAbstract
 	{
 		return array(
 			'id'        => $domainExpert->getId(),
+			'username'  => $domainExpert->getUsername(),
 			'name'      => $domainExpert->getName(),
 			'firstName' => $domainExpert->getFirstName(),
 			'lastName'  => $domainExpert->getLastName(),

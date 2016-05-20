@@ -17,6 +17,7 @@ class AdministratorTransformer extends TransformerAbstract
 	{
 		return array(
 			'id'        => $administrator->getId(),
+			'username'  => $administrator->getUsername(),
 			'name'      => $administrator->getName(),
 			'firstName' => $administrator->getFirstName(),
 			'lastName'  => $administrator->getLastName(),

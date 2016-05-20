@@ -40,9 +40,9 @@ $api->version(
 		generateRoutes($api, 'v1', 'models');
 		generateRoutes($api, 'v1', 'subAssemblies');
 		generateRoutes($api, 'v1', 'subAssemblyTests');
-		generateRoutes($api, 'v1', 'administrators');
-		generateRoutes($api, 'v1', 'domainExperts');
-		generateRoutes($api, 'v1', 'technicians');
+		generateRoutes($api, 'v1', 'administrators', 'Administrator', TRUE, TRUE, TRUE, TRUE, TRUE);
+		generateRoutes($api, 'v1', 'domainExperts', 'DomainExpert', TRUE, TRUE, TRUE, TRUE, TRUE);
+		generateRoutes($api, 'v1', 'technicians', 'Technician', TRUE, TRUE, TRUE, TRUE, TRUE);
 
 		$api->get('inspections/incomplete', 'App\API\V1\Controllers\InspectionController@getIncompleteList');
 	}

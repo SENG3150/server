@@ -17,6 +17,7 @@ class TechnicianTransformer extends TransformerAbstract
 	{
 		return array(
 			'id'               => $technician->getId(),
+			'username'         => $technician->getUsername(),
 			'name'             => $technician->getName(),
 			'firstName'        => $technician->getFirstName(),
 			'lastName'         => $technician->getLastName(),
