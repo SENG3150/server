@@ -36,9 +36,9 @@ $api->version(
 
 		generateRoutes($api, 'v1', 'inspections');
 		generateRoutes($api, 'v1', 'machines');
-		generateRoutes($api, 'v1', 'majorAssemblies');
-		generateRoutes($api, 'v1', 'models');
-		generateRoutes($api, 'v1', 'subAssemblies');
+		generateRoutes($api, 'v1', 'majorAssemblies', 'MajorAssembly', TRUE, TRUE, TRUE, TRUE, TRUE);
+		generateRoutes($api, 'v1', 'models', 'Models', TRUE, TRUE, TRUE, TRUE, TRUE);
+		generateRoutes($api, 'v1', 'subAssemblies', 'SubAssembly', TRUE, TRUE, TRUE, TRUE, TRUE);
 		generateRoutes($api, 'v1', 'subAssemblyTests');
 		generateRoutes($api, 'v1', 'administrators', 'Administrator', TRUE, TRUE, TRUE, TRUE, TRUE);
 		generateRoutes($api, 'v1', 'domainExperts', 'DomainExpert', TRUE, TRUE, TRUE, TRUE, TRUE);
