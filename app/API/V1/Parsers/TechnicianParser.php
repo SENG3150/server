@@ -39,15 +39,23 @@ class TechnicianParser extends Parser
 			)
 		);
 
+		if($this->repository->findOneBy(array('username' => $input['username'])) != NULL)
+		{
+			throw new \Dingo\Api\Exception\ValidationHttpException(
+				array(
+					'username' => 'This username is already registered.'
+				)
+			);
+		}
+
 		$entity = new Entity();
 
-		$entity
-			->setUsername($input['username'])
-			->setFirstName($input['firstName'])
-			->setLastName($input['lastName'])
-			->setEmail($input['email'])
-			->setPassword($input['password'])
-			->setTemporary(boolval($input['temporary']));
+		$this->resolve($entity, $input, 'username');
+		$this->resolve($entity, $input, 'firstName');
+		$this->resolve($entity, $input, 'lastName');
+		$this->resolve($entity, $input, 'email');
+		$this->resolve($entity, $input, 'password');
+		$this->resolve($entity, $input, 'temporary', 'bool');
 
 		if($entity->isTemporary() == TRUE)
 		{
@@ -58,8 +66,7 @@ class TechnicianParser extends Parser
 				)
 			);
 
-			$entity
-				->setLoginExpiresTime(new \DateTime($input['loginExpiresTime']));
+			$this->resolve($entity, $input, 'loginExpiresTime', 'datetime');
 		}
 
 		$this->em->persist($entity);
@@ -94,38 +101,17 @@ class TechnicianParser extends Parser
 					}
 				}
 
-				$entity
-					->setUsername($input['username']);
+				$this->resolve($entity, $input, 'username');
 			}
 
-			if(array_key_exists('firstName', $input) == TRUE)
-			{
-				$entity
-					->setFirstName($input['firstName']);
-			}
-
-			if(array_key_exists('lastName', $input) == TRUE)
-			{
-				$entity
-					->setLastName($input['lastName']);
-			}
-
-			if(array_key_exists('email', $input) == TRUE)
-			{
-				$entity
-					->setEmail($input['email']);
-			}
-
-			if(array_key_exists('password', $input) == TRUE)
-			{
-				$entity
-					->setPassword($input['password']);
-			}
+			$this->resolve($entity, $input, 'firstName');
+			$this->resolve($entity, $input, 'lastName');
+			$this->resolve($entity, $input, 'email');
+			$this->resolve($entity, $input, 'password');
 
 			if(array_key_exists('temporary', $input) == TRUE)
 			{
-				$entity
-					->setTemporary(boolval($input['temporary']));
+				$this->resolve($entity, $input, 'temporary', 'bool');
 
 				if($entity->isTemporary() == TRUE)
 				{
@@ -136,8 +122,7 @@ class TechnicianParser extends Parser
 						)
 					);
 
-					$entity
-						->setLoginExpiresTime(new \DateTime($input['loginExpiresTime']));
+					$this->resolve($entity, $input, 'loginExpiresTime', 'datetime');
 				}
 			}
 

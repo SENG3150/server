@@ -40,6 +40,121 @@ class Parser
 	}
 
 	/**
+	 * @param array $input
+	 * @param array $repositories
+	 * @param       $type
+	 *
+	 * @return null
+	 * @throws \Dingo\Api\Exception\ValidationHttpException
+	 */
+	protected function resolveOne(array $input, array $repositories, &$type)
+	{
+		foreach($repositories as $key => $repository)
+		{
+			if(array_key_exists($key, $input) == TRUE && $input[$key] != NULL)
+			{
+				$entity = App::make($repository)->find($input[$key]);
+
+				if($entity != NULL)
+				{
+					$type = $key;
+
+					return $entity;
+				}
+
+				else
+				{
+					throw new \Dingo\Api\Exception\ValidationHttpException(
+						array(
+							$key => 'This ' . $key . ' does not exist.'
+						)
+					);
+				}
+			}
+		}
+
+		return NULL;
+	}
+
+	protected function resolve(&$entity, array $input, $key, $type = 'string', $repository = NULL)
+	{
+		if(array_key_exists($key, $input) == TRUE)
+		{
+			$function = 'set' . ucfirst($key);
+			$value    = NULL;
+
+			switch($type)
+			{
+				case 'string':
+				{
+					$value = $input[$key];
+
+					break;
+				}
+
+				case 'int':
+				{
+					$value = intval($input[$key]);
+
+					break;
+				}
+
+				case 'double':
+				case 'float':
+				{
+					$value = floatval($input[$key]);
+
+					break;
+				}
+
+				case 'datetime':
+				{
+					$this->validateArray(
+						$input,
+						array(
+							$key => 'isodatetime'
+						)
+					);
+
+					$value = new \DateTime($input[$key]);
+
+					break;
+				}
+
+				case 'bool':
+				{
+					$value = boolval($input[$key]);
+
+					break;
+				}
+
+				case 'entity':
+				{
+					$value = App::make($repository)->find($input[$key]);
+
+					if($value == NULL)
+					{
+						throw new \Dingo\Api\Exception\ValidationHttpException(
+							array(
+								$key => 'This ' . $key . ' does not exist.'
+							)
+						);
+					}
+
+					break;
+				}
+
+				default:
+				{
+					throw new \InvalidArgumentException('Type ' . $type . ' not found.');
+				}
+			}
+
+			$entity->$function($value);
+		}
+	}
+
+	/**
 	 * @param array $array
 	 * @param array $rules
 	 * @param array $messages
@@ -63,7 +178,6 @@ class Parser
 	 */
 	public function create($input, $recursive = TRUE)
 	{
-
 	}
 
 	/**
@@ -73,7 +187,6 @@ class Parser
 	 */
 	public function update($input, $id, $recursive = TRUE)
 	{
-
 	}
 
 	/**
