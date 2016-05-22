@@ -93,6 +93,7 @@ class Parser
 				}
 
 				case 'int':
+				case 'integer':
 				{
 					$value = intval($input[$key]);
 
@@ -140,6 +141,13 @@ class Parser
 							)
 						);
 					}
+
+					break;
+				}
+
+				case 'array':
+				{
+					$value = $input[$key];
 
 					break;
 				}
