@@ -37,6 +37,7 @@ class WearTestParser extends Parser
 				'limit'         => 'required',
 				'lifeLower'     => 'required',
 				'lifeUpper'     => 'required',
+				'smu'           => 'required|integer',
 				'timeStarted'   => 'required|isodatetime',
 				'uniqueDetails' => 'required|array',
 			)
@@ -51,6 +52,7 @@ class WearTestParser extends Parser
 		$this->resolve($entity, $input, 'limit');
 		$this->resolve($entity, $input, 'lifeLower');
 		$this->resolve($entity, $input, 'lifeUpper');
+		$this->resolve($entity, $input, 'smu', 'integer');
 		$this->resolve($entity, $input, 'timeStarted', 'datetime');
 		$this->resolve($entity, $input, 'uniqueDetails', 'array');
 		
@@ -79,6 +81,7 @@ class WearTestParser extends Parser
 			$this->resolve($entity, $input, 'limit');
 			$this->resolve($entity, $input, 'lifeLower');
 			$this->resolve($entity, $input, 'lifeUpper');
+			$this->resolve($entity, $input, 'smu', 'integer');
 			$this->resolve($entity, $input, 'timeStarted', 'datetime');
 			$this->resolve($entity, $input, 'uniqueDetails', 'array');
 			

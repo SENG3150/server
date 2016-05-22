@@ -64,10 +64,10 @@ class WearTest extends \App\API\V1\Entities\WearTest implements \Doctrine\ORM\Pr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'description', 'new', 'limit', 'lifeLower', 'lifeUpper', 'timeStart', 'uniqueDetails'];
+            return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'description', 'new', 'limit', 'lifeLower', 'lifeUpper', 'smu', 'timeStart', 'uniqueDetails'];
         }
 
-        return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'description', 'new', 'limit', 'lifeLower', 'lifeUpper', 'timeStart', 'uniqueDetails'];
+        return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'description', 'new', 'limit', 'lifeLower', 'lifeUpper', 'smu', 'timeStart', 'uniqueDetails'];
     }
 
     /**
@@ -395,6 +395,28 @@ class WearTest extends \App\API\V1\Entities\WearTest implements \Doctrine\ORM\Pr
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLifeUpper', [$lifeUpper]);
 
         return parent::setLifeUpper($lifeUpper);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSmu()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSmu', []);
+
+        return parent::getSmu();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setSmu($smu)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSmu', [$smu]);
+
+        return parent::setSmu($smu);
     }
 
     /**

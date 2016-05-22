@@ -40,6 +40,7 @@ class WearTestTransformer extends TransformerAbstract
 			'limit'         => $wearTest->getLimit(),
 			'lifeLower'     => $wearTest->getLifeLower(),
 			'lifeUpper'     => $wearTest->getLifeUpper(),
+			'smu'           => $wearTest->getSmu(),
 			'timeStart'     => $wearTest->getTimeStart(),
 			'uniqueDetails' => $wearTest->getUniqueDetails(),
 		);

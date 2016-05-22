@@ -76,6 +76,12 @@ class WearTest extends \ArrayObject
 	protected $lifeUpper;
 
 	/**
+	 * @ORM\Column(name="smu", type="integer")
+	 * @var int $smu
+	 */
+	protected $smu;
+
+	/**
 	 * @ORM\Column(name="time_started", type="datetime")
 	 * @var \DateTime $timeStart
 	 */
@@ -283,6 +289,26 @@ class WearTest extends \ArrayObject
 	public function setLifeUpper($lifeUpper)
 	{
 		$this->lifeUpper = $lifeUpper;
+
+		return $this;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getSmu()
+	{
+		return $this->smu;
+	}
+
+	/**
+	 * @param int $smu
+	 *
+	 * @return $this
+	 */
+	public function setSmu($smu)
+	{
+		$this->smu = $smu;
 
 		return $this;
 	}
