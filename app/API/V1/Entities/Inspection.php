@@ -72,6 +72,12 @@ class Inspection extends \ArrayObject
 	 * @var Comment[]|ArrayCollection $comments
 	 */
 	protected $comments;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Photo", mappedBy="inspection", cascade={"persist"}, fetch="EXTRA_LAZY")
+	 * @var Photo[]|ArrayCollection $photos
+	 */
+	protected $photos;
 	
 	/**
 	 * @return int
@@ -269,6 +275,26 @@ class Inspection extends \ArrayObject
 	public function setComments($comments)
 	{
 		$this->comments = $comments;
+
+		return $this;
+	}
+
+	/**
+	 * @return Photo[]|ArrayCollection
+	 */
+	public function getPhotos()
+	{
+		return $this->photos;
+	}
+
+	/**
+	 * @param Photo[]|ArrayCollection $photos
+	 *
+	 * @return $this
+	 */
+	public function setPhotos($photos)
+	{
+		$this->photos = $photos;
 
 		return $this;
 	}

@@ -44,6 +44,12 @@ class InspectionSubAssembly extends \ArrayObject
 	protected $comments;
 
 	/**
+	 * @ORM\OneToMany(targetEntity="Photo", mappedBy="subAssembly", cascade={"persist"}, fetch="EXTRA_LAZY")
+	 * @var Photo[]|ArrayCollection $photos
+	 */
+	protected $photos;
+
+	/**
 	 * @ORM\OneToOne(targetEntity="MachineGeneralTest", mappedBy="subAssembly", cascade={"persist"}, fetch="EXTRA_LAZY")
 	 * @var MachineGeneralTest $machineGeneralTest
 	 */
@@ -217,6 +223,26 @@ class InspectionSubAssembly extends \ArrayObject
 	public function setWearTest($wearTest)
 	{
 		$this->wearTest = $wearTest;
+
+		return $this;
+	}
+
+	/**
+	 * @return Photo[]|ArrayCollection
+	 */
+	public function getPhotos()
+	{
+		return $this->photos;
+	}
+
+	/**
+	 * @param Photo[]|ArrayCollection $photos
+	 *
+	 * @return $this
+	 */
+	public function setPhotos($photos)
+	{
+		$this->photos = $photos;
 
 		return $this;
 	}

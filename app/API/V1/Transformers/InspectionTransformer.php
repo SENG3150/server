@@ -17,6 +17,7 @@ class InspectionTransformer extends TransformerAbstract
 		'scheduler',
 		'majorAssemblies',
 		'comments',
+		'photos',
 	);
 
 	/**
@@ -25,6 +26,7 @@ class InspectionTransformer extends TransformerAbstract
 	protected $defaultIncludes = array(
 		'majorAssemblies',
 		'comments',
+		'photos',
 	);
 	
 	/**
@@ -91,5 +93,15 @@ class InspectionTransformer extends TransformerAbstract
 	public function includeComments(Inspection $inspection)
 	{
 		return $this->collection($inspection->getComments(), new CommentTransformer());
+	}
+
+	/**
+	 * @param Inspection $inspection
+	 *
+	 * @return \League\Fractal\Resource\Collection
+	 */
+	public function includePhotos(Inspection $inspection)
+	{
+		return $this->collection($inspection->getPhotos(), new PhotoTransformer());
 	}
 }

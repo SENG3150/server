@@ -16,6 +16,7 @@ class InspectionMajorAssemblyTransformer extends TransformerAbstract
 		'majorAssembly',
 		'subAssemblies',
 		'comments',
+		'photos',
 	);
 
 	/**
@@ -24,6 +25,7 @@ class InspectionMajorAssemblyTransformer extends TransformerAbstract
 	protected $defaultIncludes = array(
 		'subAssemblies',
 		'comments',
+		'photos',
 	);
 	
 	/**
@@ -76,5 +78,15 @@ class InspectionMajorAssemblyTransformer extends TransformerAbstract
 	public function includeComments(InspectionMajorAssembly $majorAssembly)
 	{
 		return $this->collection($majorAssembly->getComments(), new CommentTransformer());
+	}
+
+	/**
+	 * @param InspectionMajorAssembly $majorAssembly
+	 *
+	 * @return \League\Fractal\Resource\Collection
+	 */
+	public function includePhotos(InspectionMajorAssembly $majorAssembly)
+	{
+		return $this->collection($majorAssembly->getPhotos(), new PhotoTransformer());
 	}
 }

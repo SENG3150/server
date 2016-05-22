@@ -46,6 +46,12 @@ class WearTest extends \ArrayObject
 	protected $comments;
 
 	/**
+	 * @ORM\OneToMany(targetEntity="Photo", mappedBy="wearTest", cascade={"persist"}, fetch="EXTRA_LAZY")
+	 * @var Photo[]|ArrayCollection $photos
+	 */
+	protected $photos;
+
+	/**
 	 * @ORM\Column(name="description", type="text")
 	 * @var string $description
 	 */
@@ -189,6 +195,26 @@ class WearTest extends \ArrayObject
 	public function setComments($comments)
 	{
 		$this->comments = $comments;
+
+		return $this;
+	}
+
+	/**
+	 * @return Photo[]|ArrayCollection
+	 */
+	public function getPhotos()
+	{
+		return $this->photos;
+	}
+
+	/**
+	 * @param Photo[]|ArrayCollection $photos
+	 *
+	 * @return $this
+	 */
+	public function setPhotos($photos)
+	{
+		$this->photos = $photos;
 
 		return $this;
 	}

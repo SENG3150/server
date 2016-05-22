@@ -16,6 +16,7 @@ class InspectionSubAssemblyTransformer extends TransformerAbstract
 		'majorAssembly',
 		'subAssembly',
 		'comments',
+		'photos',
 		'machineGeneralTest',
 		'oilTest',
 		'wearTest',
@@ -26,6 +27,7 @@ class InspectionSubAssemblyTransformer extends TransformerAbstract
 	 */
 	protected $defaultIncludes = array(
 		'comments',
+		'photos',
 		'machineGeneralTest',
 		'oilTest',
 		'wearTest',
@@ -81,6 +83,16 @@ class InspectionSubAssemblyTransformer extends TransformerAbstract
 	public function includeComments(InspectionSubAssembly $subAssembly)
 	{
 		return $this->collection($subAssembly->getComments(), new CommentTransformer());
+	}
+
+	/**
+	 * @param InspectionSubAssembly $subAssembly
+	 *
+	 * @return \League\Fractal\Resource\Collection
+	 */
+	public function includePhotos(InspectionSubAssembly $subAssembly)
+	{
+		return $this->collection($subAssembly->getPhotos(), new PhotoTransformer());
 	}
 	
 	/**

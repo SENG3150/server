@@ -15,6 +15,7 @@ class OilTestTransformer extends TransformerAbstract
 		'inspection',
 		'subAssembly',
 		'comments',
+		'photos',
 		'actionItem',
 	);
 
@@ -23,6 +24,7 @@ class OilTestTransformer extends TransformerAbstract
 	 */
 	protected $defaultIncludes = array(
 		'comments',
+		'photos',
 		'actionItem',
 	);
 	
@@ -76,6 +78,16 @@ class OilTestTransformer extends TransformerAbstract
 	public function includeComments(OilTest $oilTest)
 	{
 		return $this->collection($oilTest->getComments(), new CommentTransformer());
+	}
+
+	/**
+	 * @param OilTest $oilTest
+	 *
+	 * @return \League\Fractal\Resource\Collection
+	 */
+	public function includePhotos(OilTest $oilTest)
+	{
+		return $this->collection($oilTest->getPhotos(), new PhotoTransformer());
 	}
 	
 	/**

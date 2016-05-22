@@ -64,10 +64,10 @@ class InspectionMajorAssembly extends \App\API\V1\Entities\InspectionMajorAssemb
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'inspection', 'majorAssembly', 'subAssemblies', 'comments'];
+            return ['__isInitialized__', 'id', 'inspection', 'majorAssembly', 'subAssemblies', 'comments', 'photos'];
         }
 
-        return ['__isInitialized__', 'id', 'inspection', 'majorAssembly', 'subAssemblies', 'comments'];
+        return ['__isInitialized__', 'id', 'inspection', 'majorAssembly', 'subAssemblies', 'comments', 'photos'];
     }
 
     /**
@@ -285,6 +285,28 @@ class InspectionMajorAssembly extends \App\API\V1\Entities\InspectionMajorAssemb
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setComments', [$comments]);
 
         return parent::setComments($comments);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPhotos()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPhotos', []);
+
+        return parent::getPhotos();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPhotos($photos)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPhotos', [$photos]);
+
+        return parent::setPhotos($photos);
     }
 
     /**

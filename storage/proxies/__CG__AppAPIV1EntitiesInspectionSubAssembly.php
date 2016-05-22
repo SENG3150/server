@@ -64,10 +64,10 @@ class InspectionSubAssembly extends \App\API\V1\Entities\InspectionSubAssembly i
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'inspection', 'majorAssembly', 'subAssembly', 'comments', 'machineGeneralTest', 'oilTest', 'wearTest'];
+            return ['__isInitialized__', 'id', 'inspection', 'majorAssembly', 'subAssembly', 'comments', 'photos', 'machineGeneralTest', 'oilTest', 'wearTest'];
         }
 
-        return ['__isInitialized__', 'id', 'inspection', 'majorAssembly', 'subAssembly', 'comments', 'machineGeneralTest', 'oilTest', 'wearTest'];
+        return ['__isInitialized__', 'id', 'inspection', 'majorAssembly', 'subAssembly', 'comments', 'photos', 'machineGeneralTest', 'oilTest', 'wearTest'];
     }
 
     /**
@@ -351,6 +351,28 @@ class InspectionSubAssembly extends \App\API\V1\Entities\InspectionSubAssembly i
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setWearTest', [$wearTest]);
 
         return parent::setWearTest($wearTest);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPhotos()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPhotos', []);
+
+        return parent::getPhotos();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPhotos($photos)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPhotos', [$photos]);
+
+        return parent::setPhotos($photos);
     }
 
     /**

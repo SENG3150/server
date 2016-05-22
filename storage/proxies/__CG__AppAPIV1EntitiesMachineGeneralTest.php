@@ -64,10 +64,10 @@ class MachineGeneralTest extends \App\API\V1\Entities\MachineGeneralTest impleme
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'testType', 'docLink'];
+            return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'photos', 'testType', 'docLink'];
         }
 
-        return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'testType', 'docLink'];
+        return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'photos', 'testType', 'docLink'];
     }
 
     /**
@@ -285,6 +285,28 @@ class MachineGeneralTest extends \App\API\V1\Entities\MachineGeneralTest impleme
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setComments', [$comments]);
 
         return parent::setComments($comments);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPhotos()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPhotos', []);
+
+        return parent::getPhotos();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPhotos($photos)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPhotos', [$photos]);
+
+        return parent::setPhotos($photos);
     }
 
     /**

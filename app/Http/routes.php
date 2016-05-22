@@ -34,6 +34,7 @@ $api->version(
 	{
 		$api->get('auth/me', 'App\API\V1\Controllers\UserController@me');
 		$api->get('inspections/incomplete', 'App\API\V1\Controllers\InspectionController@getIncompleteList');
+		$api->get('photos/{id}/photo', 'App\API\V1\Controllers\PhotoController@photo');
 
 		generateRoutes($api, 'v1', 'actionItems');
 		generateRoutes($api, 'v1', 'administrators');
@@ -47,6 +48,7 @@ $api->version(
 		generateRoutes($api, 'v1', 'majorAssemblies');
 		generateRoutes($api, 'v1', 'models');
 		generateRoutes($api, 'v1', 'oilTests');
+		generateRoutes($api, 'v1', 'photos');
 		generateRoutes($api, 'v1', 'subAssemblies');
 		generateRoutes($api, 'v1', 'subAssemblyTests');
 		generateRoutes($api, 'v1', 'technicians');

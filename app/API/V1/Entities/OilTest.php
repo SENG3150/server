@@ -45,6 +45,12 @@ class OilTest extends \ArrayObject
 	protected $comments;
 
 	/**
+	 * @ORM\OneToMany(targetEntity="Photo", mappedBy="oilTest", cascade={"persist"}, fetch="EXTRA_LAZY")
+	 * @var Photo[]|ArrayCollection $photos
+	 */
+	protected $photos;
+
+	/**
 	 * @ORM\Column(name="lead", type="integer")
 	 * @var int $lead
 	 */
@@ -200,6 +206,26 @@ class OilTest extends \ArrayObject
 	public function setComments($comments)
 	{
 		$this->comments = $comments;
+
+		return $this;
+	}
+
+	/**
+	 * @return Photo[]|ArrayCollection
+	 */
+	public function getPhotos()
+	{
+		return $this->photos;
+	}
+
+	/**
+	 * @param Photo[]|ArrayCollection $photos
+	 *
+	 * @return $this
+	 */
+	public function setPhotos($photos)
+	{
+		$this->photos = $photos;
 
 		return $this;
 	}

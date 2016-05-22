@@ -9,9 +9,9 @@ use App\Entities\User;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="comments")
+ * @ORM\Table(name="photos")
  */
-class Comment extends \ArrayObject
+class Photo extends \ArrayObject
 {
 	/**
 	 * @ORM\Id
@@ -28,60 +28,60 @@ class Comment extends \ArrayObject
 	protected $text;
 
 	/**
-	 * @ORM\Column(name="time_commented", type="datetime")
-	 * @var \DateTime $timeCommented
+	 * @ORM\Column(name="format", type="text")
+	 * @var string $format
 	 */
-	protected $timeCommented;
+	protected $format;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Inspection", inversedBy="comments", cascade={"persist"}, fetch="EXTRA_LAZY")
+	 * @ORM\ManyToOne(targetEntity="Inspection", inversedBy="photos", cascade={"persist"}, fetch="EXTRA_LAZY")
 	 * @var Inspection $inspection
 	 */
 	protected $inspection;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="InspectionMajorAssembly", inversedBy="comments", cascade={"persist"},
+	 * @ORM\ManyToOne(targetEntity="InspectionMajorAssembly", inversedBy="photos", cascade={"persist"},
 	 *                                                        fetch="EXTRA_LAZY")
 	 * @var InspectionMajorAssembly $majorAssembly
 	 */
 	protected $majorAssembly;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="InspectionSubAssembly", inversedBy="comments", cascade={"persist"},
+	 * @ORM\ManyToOne(targetEntity="InspectionSubAssembly", inversedBy="photos", cascade={"persist"},
 	 *                                                      fetch="EXTRA_LAZY")
 	 * @var InspectionSubAssembly $subAssembly
 	 */
 	protected $subAssembly;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="MachineGeneralTest", inversedBy="comments", cascade={"persist"},
+	 * @ORM\ManyToOne(targetEntity="MachineGeneralTest", inversedBy="photos", cascade={"persist"},
 	 *                                                      fetch="EXTRA_LAZY")
 	 * @var MachineGeneralTest $machineGeneralTest
 	 */
 	protected $machineGeneralTest;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="OilTest", inversedBy="comments", cascade={"persist"},
+	 * @ORM\ManyToOne(targetEntity="OilTest", inversedBy="photos", cascade={"persist"},
 	 *                                                      fetch="EXTRA_LAZY")
 	 * @var OilTest $oilTest
 	 */
 	protected $oilTest;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="WearTest", inversedBy="comments", cascade={"persist"},
+	 * @ORM\ManyToOne(targetEntity="WearTest", inversedBy="photos", cascade={"persist"},
 	 *                                                      fetch="EXTRA_LAZY")
 	 * @var WearTest $wearTest
 	 */
 	protected $wearTest;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Technician", inversedBy="comments", cascade={"persist"}, fetch="EXTRA_LAZY")
+	 * @ORM\ManyToOne(targetEntity="Technician", inversedBy="photos", cascade={"persist"}, fetch="EXTRA_LAZY")
 	 * @var Technician $technician
 	 */
 	protected $technician;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="DomainExpert", inversedBy="comments", cascade={"persist"}, fetch="EXTRA_LAZY")
+	 * @ORM\ManyToOne(targetEntity="DomainExpert", inversedBy="photos", cascade={"persist"}, fetch="EXTRA_LAZY")
 	 * @var DomainExpert $domainExpert
 	 */
 	protected $domainExpert;
@@ -127,27 +127,27 @@ class Comment extends \ArrayObject
 	}
 
 	/**
-	 * @return \DateTime
+	 * @return string
 	 */
-	public function getTimeCommented()
+	public function getFormat()
 	{
-		return $this->timeCommented;
+		return $this->format;
 	}
 
 	/**
-	 * @param \DateTime $timeCommented
+	 * @param string $format
 	 *
 	 * @return $this
 	 */
-	public function setTimeCommented($timeCommented)
+	public function setFormat($format)
 	{
-		$this->timeCommented = $timeCommented;
+		$this->format = $format;
 
 		return $this;
 	}
 
 	/**
-	 * @return Inspection
+	 * @return \App\API\V1\Entities\Inspection
 	 */
 	public function getInspection()
 	{
@@ -155,7 +155,7 @@ class Comment extends \ArrayObject
 	}
 
 	/**
-	 * @param Inspection $inspection
+	 * @param \App\API\V1\Entities\Inspection $inspection
 	 *
 	 * @return $this
 	 */
@@ -167,7 +167,7 @@ class Comment extends \ArrayObject
 	}
 
 	/**
-	 * @return InspectionMajorAssembly
+	 * @return \App\API\V1\Entities\InspectionMajorAssembly
 	 */
 	public function getMajorAssembly()
 	{
@@ -175,7 +175,7 @@ class Comment extends \ArrayObject
 	}
 
 	/**
-	 * @param InspectionMajorAssembly $majorAssembly
+	 * @param \App\API\V1\Entities\InspectionMajorAssembly $majorAssembly
 	 *
 	 * @return $this
 	 */
@@ -187,7 +187,7 @@ class Comment extends \ArrayObject
 	}
 
 	/**
-	 * @return InspectionSubAssembly
+	 * @return \App\API\V1\Entities\InspectionSubAssembly
 	 */
 	public function getSubAssembly()
 	{
@@ -195,7 +195,7 @@ class Comment extends \ArrayObject
 	}
 
 	/**
-	 * @param InspectionSubAssembly $subAssembly
+	 * @param \App\API\V1\Entities\InspectionSubAssembly $subAssembly
 	 *
 	 * @return $this
 	 */
@@ -267,7 +267,7 @@ class Comment extends \ArrayObject
 	}
 
 	/**
-	 * @return Technician
+	 * @return \App\API\V1\Entities\Technician
 	 */
 	public function getTechnician()
 	{
@@ -275,7 +275,7 @@ class Comment extends \ArrayObject
 	}
 
 	/**
-	 * @param Technician $technician
+	 * @param \App\API\V1\Entities\Technician $technician
 	 *
 	 * @return $this
 	 */
@@ -287,7 +287,7 @@ class Comment extends \ArrayObject
 	}
 
 	/**
-	 * @return DomainExpert
+	 * @return \App\API\V1\Entities\DomainExpert
 	 */
 	public function getDomainExpert()
 	{
@@ -295,7 +295,7 @@ class Comment extends \ArrayObject
 	}
 
 	/**
-	 * @param DomainExpert $domainExpert
+	 * @param \App\API\V1\Entities\DomainExpert $domainExpert
 	 *
 	 * @return $this
 	 */
@@ -349,7 +349,7 @@ class Comment extends \ArrayObject
 
 		else
 		{
-			throw new \InvalidArgumentException('Comment author must be either a Technician or Domain Expert.');
+			throw new \InvalidArgumentException('Photo author must be either a Technician or Domain Expert.');
 		}
 
 		return $this;
@@ -371,5 +371,15 @@ class Comment extends \ArrayObject
 		{
 			return NULL;
 		}
+	}
+
+	public function getFilePath()
+	{
+		return storage_path('app/public/photos/' . $this->id . '.' . $this->format);
+	}
+
+	public function getURLPath()
+	{
+		return url('photos/' . $this->id . '/photo');
 	}
 }

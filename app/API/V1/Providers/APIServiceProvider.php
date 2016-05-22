@@ -14,6 +14,7 @@ use App\API\V1\Entities\MachineGeneralTest;
 use App\API\V1\Entities\MajorAssembly;
 use App\API\V1\Entities\Model;
 use App\API\V1\Entities\OilTest;
+use App\API\V1\Entities\Photo;
 use App\API\V1\Entities\SubAssembly;
 use App\API\V1\Entities\SubAssemblyTest;
 use App\API\V1\Entities\Technician;
@@ -31,6 +32,7 @@ use App\API\V1\Repositories\MachineGeneralTestRepository;
 use App\API\V1\Repositories\MajorAssemblyRepository;
 use App\API\V1\Repositories\ModelRepository;
 use App\API\V1\Repositories\OilTestRepository;
+use App\API\V1\Repositories\PhotoRepository;
 use App\API\V1\Repositories\SubAssemblyRepository;
 use App\API\V1\Repositories\SubAssemblyTestRepository;
 use App\API\V1\Repositories\TechnicianRepository;
@@ -205,6 +207,17 @@ class APIServiceProvider extends ServiceProvider
 				return new OilTestRepository(
 					$app['em'],
 					$app['em']->getClassMetaData(OilTest::class)
+				);
+			}
+		);
+
+		$this->app->bind(
+			PhotoRepository::class,
+			function ($app)
+			{
+				return new PhotoRepository(
+					$app['em'],
+					$app['em']->getClassMetaData(Photo::class)
 				);
 			}
 		);
