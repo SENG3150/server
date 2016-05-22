@@ -208,7 +208,7 @@ class CommentParser extends Parser
 				$input,
 				array(
 					'domainExpert' => App\API\V1\Repositories\DomainExpertRepository::class,
-					'technician'   => App\API\V1\Repositories\TechnicianRepository::class
+					'technician'   => App\API\V1\Repositories\TechnicianRepository::class,
 				),
 				$authorType
 			);

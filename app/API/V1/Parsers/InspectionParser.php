@@ -30,10 +30,21 @@ class InspectionParser extends Parser
 		$this->validateArray(
 			$input,
 			array(
+				'machine' => 'required',
 			)
 		);
 
 		$entity = new Entity();
+
+		$this->resolve($entity, $input, 'machine', 'entity', App\API\V1\Repositories\MachineRepository::class);
+		$this->resolve($entity, $input, 'technician', 'entity', App\API\V1\Repositories\TechnicianRepository::class);
+		$this->resolve($entity, $input, 'scheduler', 'entity', App\API\V1\Repositories\DomainExpertRepository::class);
+		$this->resolve($entity, $input, 'timeScheduled', 'datetime');
+		$this->resolve($entity, $input, 'timeStarted', 'datetime');
+		$this->resolve($entity, $input, 'timeCompleted', 'datetime');
+
+		$entity
+			->setTimeCreated(new \DateTime());
 
 		$this->em->persist($entity);
 		$this->em->flush();
@@ -52,6 +63,13 @@ class InspectionParser extends Parser
 		if($entity != NULL)
 		{
 			$input = $this->resolveInput($input);
+
+			$this->resolve($entity, $input, 'machine', 'entity', App\API\V1\Repositories\MachineRepository::class);
+			$this->resolve($entity, $input, 'technician', 'entity', App\API\V1\Repositories\TechnicianRepository::class);
+			$this->resolve($entity, $input, 'scheduler', 'entity', App\API\V1\Repositories\DomainExpertRepository::class);
+			$this->resolve($entity, $input, 'timeScheduled', 'datetime');
+			$this->resolve($entity, $input, 'timeStarted', 'datetime');
+			$this->resolve($entity, $input, 'timeCompleted', 'datetime');
 
 			$this->em->persist($entity);
 			$this->em->flush();
