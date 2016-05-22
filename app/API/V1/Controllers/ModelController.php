@@ -2,7 +2,7 @@
 
 namespace App\API\V1\Controllers;
 
-use App\API\V1\Entities\Model as Entity;
+use App\API\V1\Parsers\ModelParser as Parser;
 use App\API\V1\Repositories\ModelRepository as Repository;
 use App\API\V1\Transformers\ModelTransformer as Transformer;
 use Doctrine\ORM\EntityManagerInterface;
@@ -35,53 +35,18 @@ class ModelController extends APIController
 		}
 	}
 
-	public function create(Request $request, EntityManagerInterface $em)
+	public function create(Request $request, Parser $parser)
 	{
-		$entity = new Entity();
-		$input  = $request->input();
-
-		$this->validateArray(
-			$input,
-			array(
-				'name' => 'required',
-			)
-		);
-
-		$entity
-			->setName($input['name']);
-
-		$em->persist($entity);
-		$em->flush();
+		$parser->handle($request);
 
 		return $this->response()->created();
 	}
 
-	public function update($id, Request $request, Repository $repository, EntityManagerInterface $em)
+	public function update($id, Request $request, Parser $parser)
 	{
-		$entity = $repository->find($id);
+		$parser->handle($request, $id);
 
-		if($entity != NULL)
-		{
-			$input = $request->input();
-
-			if(array_key_exists('name', $input) == TRUE)
-			{
-				$entity
-					->setName($input['name']);
-			}
-
-			$em->persist($entity);
-			$em->flush();
-
-			return $this->response()->accepted();
-		}
-
-		else
-		{
-			$this->response()->errorNotFound();
-
-			return FALSE;
-		}
+		return $this->response()->accepted();
 	}
 
 	public function delete($id, Repository $repository, EntityManagerInterface $em)

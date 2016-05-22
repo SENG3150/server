@@ -3,7 +3,6 @@
 namespace App\API\V1\Entities;
 
 use Doctrine\ORM\Mapping AS ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 
 use App\Interfaces\Primary;
 use App\Entities\User;

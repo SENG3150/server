@@ -2,14 +2,14 @@
 
 namespace App\API\V1\Controllers;
 
-use App\API\V1\Parsers\DomainExpertParser as Parser;
-use App\API\V1\Repositories\DomainExpertRepository as Repository;
-use App\API\V1\Transformers\DomainExpertTransformer as Transformer;
+use App\API\V1\Parsers\ActionItemParser as Parser;
+use App\API\V1\Repositories\ActionItemRepository as Repository;
+use App\API\V1\Transformers\ActionItemTransformer as Transformer;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 
-class DomainExpertController extends APIController
+class ActionItemController extends APIController
 {
 	public function getList(Repository $repository)
 	{

@@ -2,10 +2,8 @@
 
 namespace App\API\V1\Controllers;
 
-use App\API\V1\Entities\MajorAssembly as Entity;
-use App\API\V1\Entities\Model;
+use App\API\V1\Parsers\MajorAssemblyParser as Parser;
 use App\API\V1\Repositories\MajorAssemblyRepository as Repository;
-use App\API\V1\Repositories\ModelRepository;
 use App\API\V1\Transformers\MajorAssemblyTransformer as Transformer;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Support\Collection;
@@ -37,91 +35,18 @@ class MajorAssemblyController extends APIController
 		}
 	}
 
-	public function create(Request $request, ModelRepository $modelRepository, EntityManagerInterface $em)
+	public function create(Request $request, Parser $parser)
 	{
-		$entity = new Entity();
-		$input  = $request->input();
+		$parser->handle($request);
 
-		$this->validateArray(
-			$input,
-			array(
-				'name'  => 'required',
-				'model' => 'required',
-			)
-		);
-
-		/** @var Model $model */
-		$model = $modelRepository->find($input['model']);
-
-		if($model != NULL)
-		{
-			$entity
-				->setName($input['name'])
-				->setModel($model);
-
-			$em->persist($entity);
-			$em->flush();
-
-			return $this->response()->created();
-		}
-
-		else
-		{
-			throw new \Dingo\Api\Exception\ValidationHttpException(
-				array(
-					'model' => 'This model does not exist.'
-				)
-			);
-		}
+		return $this->response()->created();
 	}
 
-	public function update($id, Request $request, Repository $repository, ModelRepository $modelRepository, EntityManagerInterface $em)
+	public function update($id, Request $request, Parser $parser)
 	{
-		$entity = $repository->find($id);
+		$parser->handle($request, $id);
 
-		if($entity != NULL)
-		{
-			$input = $request->input();
-
-			if(array_key_exists('name', $input) == TRUE)
-			{
-				$entity
-					->setName($input['name']);
-			}
-
-			if(array_key_exists('model', $input) == TRUE)
-			{
-				/** @var Model $model */
-				$model = $modelRepository->find($input['model']);
-
-				if($model != NULL)
-				{
-					$entity
-						->setModel($model);
-				}
-
-				else
-				{
-					throw new \Dingo\Api\Exception\ValidationHttpException(
-						array(
-							'model' => 'This model does not exist.'
-						)
-					);
-				}
-			}
-
-			$em->persist($entity);
-			$em->flush();
-
-			return $this->response()->accepted();
-		}
-
-		else
-		{
-			$this->response()->errorNotFound();
-
-			return FALSE;
-		}
+		return $this->response()->accepted();
 	}
 
 	public function delete($id, Repository $repository, EntityManagerInterface $em)

@@ -32,19 +32,25 @@ $api->version(
 	],
 	function () use ($api)
 	{
-		$api->get('me', 'App\API\V1\Controllers\UserController@me');
-
-		generateRoutes($api, 'v1', 'inspections');
-		generateRoutes($api, 'v1', 'machines');
-		generateRoutes($api, 'v1', 'majorAssemblies', 'MajorAssembly', TRUE, TRUE, TRUE, TRUE, TRUE);
-		generateRoutes($api, 'v1', 'models', 'Models', TRUE, TRUE, TRUE, TRUE, TRUE);
-		generateRoutes($api, 'v1', 'subAssemblies', 'SubAssembly', TRUE, TRUE, TRUE, TRUE, TRUE);
-		generateRoutes($api, 'v1', 'subAssemblyTests');
-		generateRoutes($api, 'v1', 'administrators', 'Administrator', TRUE, TRUE, TRUE, TRUE, TRUE);
-		generateRoutes($api, 'v1', 'domainExperts', 'DomainExpert', TRUE, TRUE, TRUE, TRUE, TRUE);
-		generateRoutes($api, 'v1', 'technicians', 'Technician', TRUE, TRUE, TRUE, TRUE, TRUE);
-
+		$api->get('auth/me', 'App\API\V1\Controllers\UserController@me');
 		$api->get('inspections/incomplete', 'App\API\V1\Controllers\InspectionController@getIncompleteList');
+
+		generateRoutes($api, 'v1', 'actionItems');
+		generateRoutes($api, 'v1', 'administrators');
+		generateRoutes($api, 'v1', 'comments');
+		generateRoutes($api, 'v1', 'domainExperts');
+		generateRoutes($api, 'v1', 'inspections');
+		generateRoutes($api, 'v1', 'inspectionMajorAssemblies');
+		generateRoutes($api, 'v1', 'inspectionSubAssemblies');
+		generateRoutes($api, 'v1', 'machines');
+		generateRoutes($api, 'v1', 'machineGeneralTests');
+		generateRoutes($api, 'v1', 'majorAssemblies');
+		generateRoutes($api, 'v1', 'models');
+		generateRoutes($api, 'v1', 'oilTests');
+		generateRoutes($api, 'v1', 'subAssemblies');
+		generateRoutes($api, 'v1', 'subAssemblyTests');
+		generateRoutes($api, 'v1', 'technicians');
+		generateRoutes($api, 'v1', 'wearTests');
 	}
 );
 
@@ -59,7 +65,7 @@ $api->version(
  * @param bool                     $update
  * @param bool                     $delete
  */
-function generateRoutes($api, $version, $route, $controller = NULL, $getList = TRUE, $get = TRUE, $create = FALSE, $update = FALSE, $delete = FALSE)
+function generateRoutes($api, $version, $route, $controller = NULL, $getList = TRUE, $get = TRUE, $create = TRUE, $update = TRUE, $delete = TRUE)
 {
 	if($controller == NULL)
 	{

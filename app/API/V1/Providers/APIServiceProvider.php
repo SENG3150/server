@@ -2,38 +2,46 @@
 
 namespace App\API\V1\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Validator;
-
+use App\API\V1\Entities\ActionItem;
 use App\API\V1\Entities\Administrator;
+use App\API\V1\Entities\Comment;
 use App\API\V1\Entities\DomainExpert;
 use App\API\V1\Entities\Inspection;
-use App\API\V1\Entities\Comment;
 use App\API\V1\Entities\InspectionMajorAssembly;
 use App\API\V1\Entities\InspectionSubAssembly;
 use App\API\V1\Entities\Machine;
+use App\API\V1\Entities\MachineGeneralTest;
 use App\API\V1\Entities\MajorAssembly;
 use App\API\V1\Entities\Model;
+use App\API\V1\Entities\OilTest;
 use App\API\V1\Entities\SubAssembly;
 use App\API\V1\Entities\SubAssemblyTest;
 use App\API\V1\Entities\Technician;
+use App\API\V1\Entities\WearTest;
 
+use App\API\V1\Repositories\ActionItemRepository;
 use App\API\V1\Repositories\AdministratorRepository;
+use App\API\V1\Repositories\CommentRepository;
 use App\API\V1\Repositories\DomainExpertRepository;
 use App\API\V1\Repositories\InspectionRepository;
-use App\API\V1\Repositories\CommentRepository;
 use App\API\V1\Repositories\InspectionMajorAssemblyRepository;
 use App\API\V1\Repositories\InspectionSubAssemblyRepository;
 use App\API\V1\Repositories\MachineRepository;
+use App\API\V1\Repositories\MachineGeneralTestRepository;
 use App\API\V1\Repositories\MajorAssemblyRepository;
 use App\API\V1\Repositories\ModelRepository;
+use App\API\V1\Repositories\OilTestRepository;
 use App\API\V1\Repositories\SubAssemblyRepository;
 use App\API\V1\Repositories\SubAssemblyTestRepository;
 use App\API\V1\Repositories\TechnicianRepository;
+use App\API\V1\Repositories\WearTestRepository;
 
 use App\API\V1\Transformers\AdministratorTransformer;
 use App\API\V1\Transformers\DomainExpertTransformer;
 use App\API\V1\Transformers\TechnicianTransformer;
+
+use Illuminate\Support\ServiceProvider;
+use Validator;
 
 class APIServiceProvider extends ServiceProvider
 {
@@ -70,45 +78,23 @@ class APIServiceProvider extends ServiceProvider
 	public function register()
 	{
 		$this->app->bind(
+			ActionItemRepository::class,
+			function ($app)
+			{
+				return new ActionItemRepository(
+					$app['em'],
+					$app['em']->getClassMetaData(ActionItem::class)
+				);
+			}
+		);
+
+		$this->app->bind(
 			AdministratorRepository::class,
 			function ($app)
 			{
 				return new AdministratorRepository(
 					$app['em'],
 					$app['em']->getClassMetaData(Administrator::class)
-				);
-			}
-		);
-
-		$this->app->bind(
-			DomainExpertRepository::class,
-			function ($app)
-			{
-				return new DomainExpertRepository(
-					$app['em'],
-					$app['em']->getClassMetaData(DomainExpert::class)
-				);
-			}
-		);
-
-		$this->app->bind(
-			TechnicianRepository::class,
-			function ($app)
-			{
-				return new TechnicianRepository(
-					$app['em'],
-					$app['em']->getClassMetaData(Technician::class)
-				);
-			}
-		);
-
-		$this->app->bind(
-			InspectionRepository::class,
-			function ($app)
-			{
-				return new InspectionRepository(
-					$app['em'],
-					$app['em']->getClassMetaData(Inspection::class)
 				);
 			}
 		);
@@ -125,6 +111,17 @@ class APIServiceProvider extends ServiceProvider
 		);
 
 		$this->app->bind(
+			DomainExpertRepository::class,
+			function ($app)
+			{
+				return new DomainExpertRepository(
+					$app['em'],
+					$app['em']->getClassMetaData(DomainExpert::class)
+				);
+			}
+		);
+
+		$this->app->bind(
 			InspectionMajorAssemblyRepository::class,
 			function ($app)
 			{
@@ -136,12 +133,34 @@ class APIServiceProvider extends ServiceProvider
 		);
 
 		$this->app->bind(
+			InspectionRepository::class,
+			function ($app)
+			{
+				return new InspectionRepository(
+					$app['em'],
+					$app['em']->getClassMetaData(Inspection::class)
+				);
+			}
+		);
+
+		$this->app->bind(
 			InspectionSubAssemblyRepository::class,
 			function ($app)
 			{
 				return new InspectionSubAssemblyRepository(
 					$app['em'],
 					$app['em']->getClassMetaData(InspectionSubAssembly::class)
+				);
+			}
+		);
+
+		$this->app->bind(
+			MachineGeneralTestRepository::class,
+			function ($app)
+			{
+				return new MachineGeneralTestRepository(
+					$app['em'],
+					$app['em']->getClassMetaData(MachineGeneralTest::class)
 				);
 			}
 		);
@@ -180,6 +199,17 @@ class APIServiceProvider extends ServiceProvider
 		);
 
 		$this->app->bind(
+			OilTestRepository::class,
+			function ($app)
+			{
+				return new OilTestRepository(
+					$app['em'],
+					$app['em']->getClassMetaData(OilTest::class)
+				);
+			}
+		);
+
+		$this->app->bind(
 			SubAssemblyRepository::class,
 			function ($app)
 			{
@@ -202,8 +232,30 @@ class APIServiceProvider extends ServiceProvider
 		);
 
 		$this->app->bind(
-			AdministratorTransformer::class,
+			TechnicianRepository::class,
 			function ($app)
+			{
+				return new TechnicianRepository(
+					$app['em'],
+					$app['em']->getClassMetaData(Technician::class)
+				);
+			}
+		);
+
+		$this->app->bind(
+			WearTestRepository::class,
+			function ($app)
+			{
+				return new WearTestRepository(
+					$app['em'],
+					$app['em']->getClassMetaData(WearTest::class)
+				);
+			}
+		);
+
+		$this->app->bind(
+			AdministratorTransformer::class,
+			function ()
 			{
 				return new AdministratorTransformer();
 			}
@@ -211,7 +263,7 @@ class APIServiceProvider extends ServiceProvider
 
 		$this->app->bind(
 			DomainExpertTransformer::class,
-			function ($app)
+			function ()
 			{
 				return new DomainExpertTransformer();
 			}
@@ -219,13 +271,13 @@ class APIServiceProvider extends ServiceProvider
 
 		$this->app->bind(
 			TechnicianTransformer::class,
-			function ($app)
+			function ()
 			{
 				return new TechnicianTransformer();
 			}
 		);
 
-		$this->app['Dingo\Api\Transformer\Factory']->setAdapter(function ($app)
+		$this->app['Dingo\Api\Transformer\Factory']->setAdapter(function ()
 		{
 			$fractal = new \League\Fractal\Manager;
 

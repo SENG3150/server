@@ -2,9 +2,7 @@
 
 namespace App\API\V1\Controllers;
 
-use App\API\V1\Entities\MajorAssembly;
-use App\API\V1\Entities\SubAssembly as Entity;
-use App\API\V1\Repositories\MajorAssemblyRepository;
+use App\API\V1\Parsers\SubAssemblyParser as Parser;
 use App\API\V1\Repositories\SubAssemblyRepository as Repository;
 use App\API\V1\Transformers\SubAssemblyTransformer as Transformer;
 use Doctrine\ORM\EntityManagerInterface;
@@ -37,91 +35,18 @@ class SubAssemblyController extends APIController
 		}
 	}
 
-	public function create(Request $request, MajorAssemblyRepository $majorAssemblyRepository, EntityManagerInterface $em)
+	public function create(Request $request, Parser $parser)
 	{
-		$entity = new Entity();
-		$input  = $request->input();
+		$parser->handle($request);
 
-		$this->validateArray(
-			$input,
-			array(
-				'name'  => 'required',
-				'model' => 'required',
-			)
-		);
-
-		/** @var MajorAssembly $majorAssembly */
-		$majorAssembly = $majorAssemblyRepository->find($input['majorAssembly']);
-
-		if($majorAssembly != NULL)
-		{
-			$entity
-				->setName($input['name'])
-				->setMajorAssembly($majorAssembly);
-
-			$em->persist($entity);
-			$em->flush();
-
-			return $this->response()->created();
-		}
-
-		else
-		{
-			throw new \Dingo\Api\Exception\ValidationHttpException(
-				array(
-					'majorAssembly' => 'This major assembly does not exist.'
-				)
-			);
-		}
+		return $this->response()->created();
 	}
 
-	public function update($id, Request $request, Repository $repository, MajorAssemblyRepository $majorAssemblyRepository, EntityManagerInterface $em)
+	public function update($id, Request $request, Parser $parser)
 	{
-		$entity = $repository->find($id);
+		$parser->handle($request, $id);
 
-		if($entity != NULL)
-		{
-			$input = $request->input();
-
-			if(array_key_exists('name', $input) == TRUE)
-			{
-				$entity
-					->setName($input['name']);
-			}
-
-			if(array_key_exists('model', $input) == TRUE)
-			{
-				/** @var MajorAssembly $majorAssembly */
-				$majorAssembly = $majorAssemblyRepository->find($input['majorAssembly']);
-
-				if($majorAssembly != NULL)
-				{
-					$entity
-						->setMajorAssembly($majorAssembly);
-				}
-
-				else
-				{
-					throw new \Dingo\Api\Exception\ValidationHttpException(
-						array(
-							'majorAssembly' => 'This major assembly does not exist.'
-						)
-					);
-				}
-			}
-
-			$em->persist($entity);
-			$em->flush();
-
-			return $this->response()->accepted();
-		}
-
-		else
-		{
-			$this->response()->errorNotFound();
-
-			return FALSE;
-		}
+		return $this->response()->accepted();
 	}
 
 	public function delete($id, Repository $repository, EntityManagerInterface $em)
