@@ -30,14 +30,15 @@ class SubAssemblyParser extends Parser
 		$this->validateArray(
 			$input,
 			array(
-				'name' => 'required',
+				'majorAssembly' => 'required',
+				'name'          => 'required',
 			)
 		);
 
 		$entity = new Entity();
 
-		$entity
-			->setName($input['name']);
+		$this->resolve($entity, $input, 'majorAssembly', 'entity', App\API\V1\Repositories\MajorAssemblyRepository::class);
+		$this->resolve($entity, $input, 'name');
 
 		$this->em->persist($entity);
 		$this->em->flush();
@@ -57,11 +58,8 @@ class SubAssemblyParser extends Parser
 		{
 			$input = $this->resolveInput($input);
 
-			if(array_key_exists('name', $input) == TRUE)
-			{
-				$entity
-					->setName($input['name']);
-			}
+			$this->resolve($entity, $input, 'majorAssembly', 'entity', App\API\V1\Repositories\MajorAssemblyRepository::class);
+			$this->resolve($entity, $input, 'name');
 
 			$this->em->persist($entity);
 			$this->em->flush();
