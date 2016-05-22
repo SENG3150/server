@@ -30,10 +30,17 @@ class InspectionSubAssemblyParser extends Parser
 		$this->validateArray(
 			$input,
 			array(
+				'inspection'    => 'required',
+				'majorAssembly' => 'required',
+				'subAssembly'   => 'required',
 			)
 		);
 
 		$entity = new Entity();
+
+		$this->resolve($entity, $input, 'inspection', 'entity', App\API\V1\Repositories\InspectionRepository::class);
+		$this->resolve($entity, $input, 'majorAssembly', 'entity', App\API\V1\Repositories\InspectionMajorAssemblyRepository::class);
+		$this->resolve($entity, $input, 'subAssembly', 'entity', App\API\V1\Repositories\SubAssemblyRepository::class);
 
 		$this->em->persist($entity);
 		$this->em->flush();
@@ -52,6 +59,10 @@ class InspectionSubAssemblyParser extends Parser
 		if($entity != NULL)
 		{
 			$input = $this->resolveInput($input);
+
+			$this->resolve($entity, $input, 'inspection', 'entity', App\API\V1\Repositories\InspectionRepository::class);
+			$this->resolve($entity, $input, 'majorAssembly', 'entity', App\API\V1\Repositories\InspectionMajorAssemblyRepository::class);
+			$this->resolve($entity, $input, 'subAssembly', 'entity', App\API\V1\Repositories\SubAssemblyRepository::class);
 
 			$this->em->persist($entity);
 			$this->em->flush();

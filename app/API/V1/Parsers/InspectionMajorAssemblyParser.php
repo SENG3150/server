@@ -30,10 +30,15 @@ class InspectionMajorAssemblyParser extends Parser
 		$this->validateArray(
 			$input,
 			array(
+				'inspection'    => 'required',
+				'majorAssembly' => 'required',
 			)
 		);
 
 		$entity = new Entity();
+
+		$this->resolve($entity, $input, 'inspection', 'entity', App\API\V1\Repositories\InspectionRepository::class);
+		$this->resolve($entity, $input, 'majorAssembly', 'entity', App\API\V1\Repositories\MajorAssemblyRepository::class);
 
 		$this->em->persist($entity);
 		$this->em->flush();
@@ -52,6 +57,9 @@ class InspectionMajorAssemblyParser extends Parser
 		if($entity != NULL)
 		{
 			$input = $this->resolveInput($input);
+
+			$this->resolve($entity, $input, 'inspection', 'entity', App\API\V1\Repositories\InspectionRepository::class);
+			$this->resolve($entity, $input, 'majorAssembly', 'entity', App\API\V1\Repositories\MajorAssemblyRepository::class);
 
 			$this->em->persist($entity);
 			$this->em->flush();
