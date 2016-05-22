@@ -8,6 +8,7 @@ use App\API\V1\Transformers\PhotoTransformer as Transformer;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
+use Response;
 
 class PhotoController extends APIController
 {
@@ -41,7 +42,16 @@ class PhotoController extends APIController
 
 		if($entity != NULL)
 		{
-			return response()->download($entity->getFilePath(), $entity->getText() . '.' . $entity->getFormat());
+			$photo = file_get_contents($entity->getFilePath());
+
+			return Response::make(
+				$photo,
+				200,
+				array(
+					'Content-Type'        => 'image/' . $entity->getFormat(),
+					'Content-Disposition' => 'inline; filename="' . $entity->getText() . '.' . $entity->getFormat() . '"',
+				)
+			);
 		}
 
 		else
