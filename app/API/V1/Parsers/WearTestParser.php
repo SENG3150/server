@@ -11,14 +11,14 @@ class WearTestParser extends Parser
 {
 	/** @var Repository $repository */
 	var $repository;
-
+	
 	public function __construct()
 	{
 		parent::__construct();
-
+		
 		$this->repository = App::make(Repository::class);
 	}
-
+	
 	/**
 	 * @param Request|array $input
 	 * @param bool          $recursive
@@ -26,19 +26,38 @@ class WearTestParser extends Parser
 	public function create($input, $recursive = TRUE)
 	{
 		$input = $this->resolveInput($input);
-
+		
 		$this->validateArray(
 			$input,
 			array(
+				'inspection'    => 'required',
+				'subAssembly'   => 'required',
+				'description'   => 'required',
+				'new'           => 'required',
+				'limit'         => 'required',
+				'lifeLower'     => 'required',
+				'lifeUpper'     => 'required',
+				'timeStarted'   => 'required|isodatetime',
+				'uniqueDetails' => 'required|array',
 			)
 		);
-
+		
 		$entity = new Entity();
-
+		
+		$this->resolve($entity, $input, 'inspection', 'entity', App\API\V1\Repositories\InspectionRepository::class);
+		$this->resolve($entity, $input, 'subAssembly', 'entity', App\API\V1\Repositories\InspectionSubAssemblyRepository::class);
+		$this->resolve($entity, $input, 'description');
+		$this->resolve($entity, $input, 'new');
+		$this->resolve($entity, $input, 'limit');
+		$this->resolve($entity, $input, 'lifeLower');
+		$this->resolve($entity, $input, 'lifeUpper');
+		$this->resolve($entity, $input, 'timeStarted', 'datetime');
+		$this->resolve($entity, $input, 'uniqueDetails', 'array');
+		
 		$this->em->persist($entity);
 		$this->em->flush();
 	}
-
+	
 	/**
 	 * @param Request|array $input
 	 * @param int           $id
@@ -48,15 +67,25 @@ class WearTestParser extends Parser
 	{
 		/** @var Entity $entity */
 		$entity = $this->repository->find($id);
-
+		
 		if($entity != NULL)
 		{
 			$input = $this->resolveInput($input);
 
+			$this->resolve($entity, $input, 'inspection', 'entity', App\API\V1\Repositories\InspectionRepository::class);
+			$this->resolve($entity, $input, 'subAssembly', 'entity', App\API\V1\Repositories\InspectionSubAssemblyRepository::class);
+			$this->resolve($entity, $input, 'description');
+			$this->resolve($entity, $input, 'new');
+			$this->resolve($entity, $input, 'limit');
+			$this->resolve($entity, $input, 'lifeLower');
+			$this->resolve($entity, $input, 'lifeUpper');
+			$this->resolve($entity, $input, 'timeStarted', 'datetime');
+			$this->resolve($entity, $input, 'uniqueDetails', 'array');
+			
 			$this->em->persist($entity);
 			$this->em->flush();
 		}
-
+		
 		else
 		{
 			throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();

@@ -30,10 +30,35 @@ class OilTestParser extends Parser
 		$this->validateArray(
 			$input,
 			array(
+				'inspection'  => 'required',
+				'subAssembly' => 'required',
+				'lead'        => 'required|integer',
+				'copper'      => 'required|integer',
+				'tin'         => 'required|integer',
+				'iron'        => 'required|integer',
+				'pq90'        => 'required|integer',
+				'silicon'     => 'required|integer',
+				'sodium'      => 'required|integer',
+				'aluminium'   => 'required|integer',
+				'water'       => 'required|numeric',
+				'viscosity'   => 'required|integer',
 			)
 		);
 
 		$entity = new Entity();
+
+		$this->resolve($entity, $input, 'inspection', 'entity', App\API\V1\Repositories\InspectionRepository::class);
+		$this->resolve($entity, $input, 'subAssembly', 'entity', App\API\V1\Repositories\InspectionSubAssemblyRepository::class);
+		$this->resolve($entity, $input, 'lead', 'integer');
+		$this->resolve($entity, $input, 'copper', 'integer');
+		$this->resolve($entity, $input, 'tin', 'integer');
+		$this->resolve($entity, $input, 'iron', 'integer');
+		$this->resolve($entity, $input, 'pq90', 'integer');
+		$this->resolve($entity, $input, 'silicon', 'integer');
+		$this->resolve($entity, $input, 'sodium', 'integer');
+		$this->resolve($entity, $input, 'aluminium', 'integer');
+		$this->resolve($entity, $input, 'water', 'double');
+		$this->resolve($entity, $input, 'viscosity', 'integer');
 
 		$this->em->persist($entity);
 		$this->em->flush();
@@ -52,6 +77,19 @@ class OilTestParser extends Parser
 		if($entity != NULL)
 		{
 			$input = $this->resolveInput($input);
+
+			$this->resolve($entity, $input, 'inspection', 'entity', App\API\V1\Repositories\InspectionRepository::class);
+			$this->resolve($entity, $input, 'subAssembly', 'entity', App\API\V1\Repositories\InspectionSubAssemblyRepository::class);
+			$this->resolve($entity, $input, 'lead', 'integer');
+			$this->resolve($entity, $input, 'copper', 'integer');
+			$this->resolve($entity, $input, 'tin', 'integer');
+			$this->resolve($entity, $input, 'iron', 'integer');
+			$this->resolve($entity, $input, 'pq90', 'integer');
+			$this->resolve($entity, $input, 'silicon', 'integer');
+			$this->resolve($entity, $input, 'sodium', 'integer');
+			$this->resolve($entity, $input, 'aluminium', 'integer');
+			$this->resolve($entity, $input, 'water', 'double');
+			$this->resolve($entity, $input, 'viscosity', 'integer');
 
 			$this->em->persist($entity);
 			$this->em->flush();

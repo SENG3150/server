@@ -30,10 +30,19 @@ class MachineGeneralTestParser extends Parser
 		$this->validateArray(
 			$input,
 			array(
+				'inspection'  => 'required',
+				'subAssembly' => 'required',
+				'testType'    => 'required',
+				'docLink'     => 'required',
 			)
 		);
 
 		$entity = new Entity();
+
+		$this->resolve($entity, $input, 'inspection', 'entity', App\API\V1\Repositories\InspectionRepository::class);
+		$this->resolve($entity, $input, 'subAssembly', 'entity', App\API\V1\Repositories\InspectionSubAssemblyRepository::class);
+		$this->resolve($entity, $input, 'testType');
+		$this->resolve($entity, $input, 'docLink');
 
 		$this->em->persist($entity);
 		$this->em->flush();
@@ -52,6 +61,11 @@ class MachineGeneralTestParser extends Parser
 		if($entity != NULL)
 		{
 			$input = $this->resolveInput($input);
+
+			$this->resolve($entity, $input, 'inspection', 'entity', App\API\V1\Repositories\InspectionRepository::class);
+			$this->resolve($entity, $input, 'subAssembly', 'entity', App\API\V1\Repositories\InspectionSubAssemblyRepository::class);
+			$this->resolve($entity, $input, 'testType');
+			$this->resolve($entity, $input, 'docLink');
 
 			$this->em->persist($entity);
 			$this->em->flush();
