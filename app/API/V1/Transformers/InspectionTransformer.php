@@ -72,7 +72,15 @@ class InspectionTransformer extends TransformerAbstract
 	 */
 	public function includeScheduler(Inspection $inspection)
 	{
-		return $this->item($inspection->getScheduler(), new DomainExpertTransformer());
+		if($inspection->getScheduler() != NULL)
+		{
+			return $this->item($inspection->getScheduler(), new DomainExpertTransformer());
+		}
+
+		else
+		{
+			return NULL;
+		}
 	}
 
 	/**

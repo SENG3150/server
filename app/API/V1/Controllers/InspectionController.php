@@ -85,7 +85,7 @@ class InspectionController extends APIController
 		return $this->response->collection(Collection::make($entities), new Transformer());
 	}
 
-	public function createBulk(Request $request, Repository $repository, Parser $parser, InspectionMajorAssemblyParser $inspectionMajorAssemblyParser, InspectionSubAssemblyParser $inspectionSubAssemblyParser)
+	public function createBulk(Request $request, Parser $parser, InspectionMajorAssemblyParser $inspectionMajorAssemblyParser, InspectionSubAssemblyParser $inspectionSubAssemblyParser)
 	{
 		/** @var Inspection $entity */
 		$entity = $parser->handle($request);
