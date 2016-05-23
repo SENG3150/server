@@ -260,7 +260,7 @@ class InspectionController extends APIController
 
 									if(array_key_exists('actionItem', $machineGeneralTest) == TRUE && $machineGeneralTest['actionItem'] != NULL)
 									{
-										$actionItem = $machineGeneralTest['machineGeneralTest'];
+										$actionItem = $machineGeneralTest['actionItem'];
 
 										$actionItem['machineGeneralTest'] = $machineGeneralTestEntity->getId();
 
@@ -302,7 +302,7 @@ class InspectionController extends APIController
 
 									if(array_key_exists('actionItem', $oilTest) == TRUE && $oilTest['actionItem'] != NULL)
 									{
-										$actionItem = $oilTest['oilTest'];
+										$actionItem = $oilTest['actionItem'];
 
 										$actionItem['oilTest'] = $oilTestEntity->getId();
 
@@ -344,7 +344,7 @@ class InspectionController extends APIController
 
 									if(array_key_exists('actionItem', $wearTest) == TRUE && $wearTest['actionItem'] != NULL)
 									{
-										$actionItem = $wearTest['wearTest'];
+										$actionItem = $wearTest['actionItem'];
 
 										$actionItem['wearTest'] = $wearTestEntity->getId();
 
