@@ -34,6 +34,7 @@ $api->version(
 	{
 		$api->get('auth/me', 'App\API\V1\Controllers\UserController@me');
 		$api->get('inspections/incomplete', 'App\API\V1\Controllers\InspectionController@getIncompleteList');
+		$api->get('inspections/{id}/graphs', 'App\API\V1\Controllers\InspectionController@graphs');
 		$api->post('inspections/bulk', 'App\API\V1\Controllers\InspectionController@createBulk');
 		$api->get('photos/{id}/photo', 'App\API\V1\Controllers\PhotoController@photo');
 

@@ -115,4 +115,81 @@ class InspectionController extends APIController
 			}
 		}
 	}
+
+	public function graphs($id, Repository $repository)
+	{
+		$entity = $repository->find($id);
+
+		if($entity != NULL)
+		{
+			$output = array(
+				'subAssemblies' => array()
+			);
+
+			/** @var InspectionMajorAssembly $inspectionMajorAssembly */
+			foreach($entity->getMajorAssemblies() as $inspectionMajorAssembly)
+			{
+				foreach($inspectionMajorAssembly->getSubAssemblies() as $inspectionSubAssembly)
+				{
+					$line = array(
+						'name'      => $inspectionSubAssembly->getSubAssembly()->getName(),
+						'oilTests'  => array(),
+						'wearTests' => array(),
+					);
+
+					$subAssembly = $inspectionSubAssembly->getSubAssembly();
+
+					foreach($subAssembly->getInspections() as $inspection)
+					{
+						if($inspection->getOilTest() != NULL)
+						{
+							$oilTest = $inspection->getOilTest();
+
+							$line['oilTests'][] = array(
+								'timeCompleted' => $oilTest->getInspection()->getTimeCompleted()->format(DATE_ISO8601),
+								'lead'          => $oilTest->getLead(),
+								'copper'        => $oilTest->getCopper(),
+								'tin'           => $oilTest->getTin(),
+								'iron'          => $oilTest->getIron(),
+								'pq90'          => $oilTest->getPq90(),
+								'silicon'       => $oilTest->getSilicon(),
+								'sodium'        => $oilTest->getSodium(),
+								'aluminium'     => $oilTest->getAluminium(),
+								'water'         => $oilTest->getWater(),
+								'viscosity'     => $oilTest->getViscosity(),
+							);
+						}
+						
+						if($inspection->getWearTest() != NULL)
+						{
+							$wearTest = $inspection->getWearTest();
+
+							$line['wearTests'][] = array(
+								'timeCompleted' => $wearTest->getInspection()->getTimeCompleted()->format(DATE_ISO8601),
+								'description'   => $wearTest->getDescription(),
+								'new'           => $wearTest->getNew(),
+								'limit'         => $wearTest->getLimit(),
+								'lifeLower'     => $wearTest->getLifeLower(),
+								'lifeUpper'     => $wearTest->getLifeUpper(),
+								'smu'           => $wearTest->getSmu(),
+								'timeStart'     => $wearTest->getTimeStart()->format(DATE_ISO8601),
+								'uniqueDetails' => $wearTest->getUniqueDetails(),
+							);
+						}
+					}
+
+					$output['subAssemblies'][] = $line;
+				}
+			}
+
+			return response()->json($output);
+		}
+
+		else
+		{
+			$this->response()->errorNotFound();
+
+			return FALSE;
+		}
+	}
 }
