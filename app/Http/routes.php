@@ -36,6 +36,7 @@ $api->version(
 		$api->get('inspections/incomplete', 'App\API\V1\Controllers\InspectionController@getIncompleteList');
 		$api->get('inspections/{id}/graphs', 'App\API\V1\Controllers\InspectionController@graphs');
 		$api->post('inspections/bulk', 'App\API\V1\Controllers\InspectionController@createBulk');
+		$api->post('inspections/{id}/bulk', 'App\API\V1\Controllers\InspectionController@updateBulk');
 		$api->get('photos/{id}/photo', 'App\API\V1\Controllers\PhotoController@photo');
 
 		generateRoutes($api, 'v1', 'actionItems');
