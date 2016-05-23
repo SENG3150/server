@@ -38,6 +38,12 @@ class SubAssembly extends \ArrayObject
 	protected $tests;
 
 	/**
+	 * @ORM\OneToMany(targetEntity="InspectionSubAssembly", mappedBy="subAssembly", cascade={"persist"})
+	 * @var ArrayCollection|InspectionSubAssembly[] $inspections
+	 */
+	protected $inspections;
+
+	/**
 	 * @return int
 	 */
 	public function getId()
@@ -113,6 +119,26 @@ class SubAssembly extends \ArrayObject
 	public function setTests($tests)
 	{
 		$this->tests = $tests;
+
+		return $this;
+	}
+
+	/**
+	 * @return InspectionSubAssembly[]|ArrayCollection
+	 */
+	public function getInspections()
+	{
+		return $this->inspections;
+	}
+
+	/**
+	 * @param InspectionSubAssembly[]|ArrayCollection $inspections
+	 *
+	 * @return $this
+	 */
+	public function setInspections($inspections)
+	{
+		$this->inspections = $inspections;
 
 		return $this;
 	}

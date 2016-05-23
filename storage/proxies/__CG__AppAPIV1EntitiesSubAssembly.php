@@ -64,10 +64,10 @@ class SubAssembly extends \App\API\V1\Entities\SubAssembly implements \Doctrine\
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'name', 'majorAssembly', 'tests'];
+            return ['__isInitialized__', 'id', 'name', 'majorAssembly', 'tests', 'inspections'];
         }
 
-        return ['__isInitialized__', 'id', 'name', 'majorAssembly', 'tests'];
+        return ['__isInitialized__', 'id', 'name', 'majorAssembly', 'tests', 'inspections'];
     }
 
     /**
@@ -263,6 +263,28 @@ class SubAssembly extends \App\API\V1\Entities\SubAssembly implements \Doctrine\
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTests', [$tests]);
 
         return parent::setTests($tests);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getInspections()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getInspections', []);
+
+        return parent::getInspections();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setInspections($inspections)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setInspections', [$inspections]);
+
+        return parent::setInspections($inspections);
     }
 
     /**

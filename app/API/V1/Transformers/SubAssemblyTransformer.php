@@ -14,6 +14,7 @@ class SubAssemblyTransformer extends TransformerAbstract
 	protected $availableIncludes = array(
 		'majorAssembly',
 		'tests',
+		'inspections',
 	);
 
 	/**
@@ -47,5 +48,15 @@ class SubAssemblyTransformer extends TransformerAbstract
 	public function includeTests(SubAssembly $subAssembly)
 	{
 		return $this->collection($subAssembly->getTests(), new SubAssemblyTestTransformer());
+	}
+
+	/**
+	 * @param SubAssembly $subAssembly
+	 *
+	 * @return \League\Fractal\Resource\Collection
+	 */
+	public function includeInspections(SubAssembly $subAssembly)
+	{
+		return $this->collection($subAssembly->getInspections(), new InspectionSubAssemblyTransformer());
 	}
 }
