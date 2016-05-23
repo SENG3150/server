@@ -183,24 +183,32 @@ class Parser
 	/**
 	 * @param Request|array $input
 	 * @param bool          $recursive
+	 *
+	 * @return object
 	 */
 	public function create($input, $recursive = TRUE)
 	{
+		return NULL;
 	}
 
 	/**
 	 * @param Request|array $input
 	 * @param int           $id
 	 * @param bool          $recursive
+	 *
+	 * @return object
 	 */
 	public function update($input, $id, $recursive = TRUE)
 	{
+		return NULL;
 	}
 
 	/**
 	 * @param Request|array $input
 	 * @param int           $id
 	 * @param bool          $recursive
+	 *
+	 * @return object
 	 */
 	public function handle($input, $id = NULL, $recursive = TRUE)
 	{
@@ -208,18 +216,18 @@ class Parser
 		{
 			if(array_key_exists('id', $input) == TRUE)
 			{
-				$this->update($input, $input['id'], $recursive);
+				return $this->update($input, $input['id'], $recursive);
 			}
 
 			else
 			{
-				$this->create($input, $recursive);
+				return $this->create($input, $recursive);
 			}
 		}
 
 		else
 		{
-			$this->update($input, $id, $recursive);
+			return $this->update($input, $id, $recursive);
 		}
 	}
 }

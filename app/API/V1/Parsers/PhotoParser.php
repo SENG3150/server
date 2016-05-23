@@ -22,6 +22,8 @@ class PhotoParser extends Parser
 	/**
 	 * @param Request|array $input
 	 * @param bool          $recursive
+	 *
+	 * @return Entity
 	 */
 	public function create($input, $recursive = TRUE)
 	{
@@ -199,12 +201,16 @@ class PhotoParser extends Parser
 		$this->em->flush();
 		
 		file_put_contents($entity->getFilePath(), $photo);
+
+		return $entity;
 	}
 
 	/**
 	 * @param Request|array $input
 	 * @param int           $id
 	 * @param bool          $recursive
+	 *
+	 * @return Entity
 	 */
 	public function update($input, $id, $recursive = TRUE)
 	{
@@ -360,6 +366,8 @@ class PhotoParser extends Parser
 
 			$this->em->persist($entity);
 			$this->em->flush();
+
+			return $entity;
 		}
 
 		else
