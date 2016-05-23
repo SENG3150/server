@@ -35,7 +35,7 @@ class AdministratorParser extends Parser
 				'username'  => 'required',
 				'firstName' => 'required',
 				'lastName'  => 'required',
-				'email'     => 'required',
+				'email'     => 'required|email',
 				'password'  => 'required',
 			)
 		);
