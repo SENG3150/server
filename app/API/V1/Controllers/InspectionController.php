@@ -126,6 +126,8 @@ class InspectionController extends APIController
 				}
 			}
 		}
+
+		return $this->response->item($entity, new Transformer());
 	}
 
 	public function updateBulk($id, Request $request, Parser $parser, InspectionMajorAssemblyRepository $inspectionMajorAssemblyRepository, InspectionSubAssemblyRepository $inspectionSubAssemblyRepository, CommentParser $commentParser, MachineGeneralTestParser $machineGeneralTestParser, OilTestParser $oilTestParser, WearTestParser $wearTestParser, PhotoParser $photoParser, ActionItemParser $actionItemParser)
