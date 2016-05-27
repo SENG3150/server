@@ -97,7 +97,7 @@ class InspectionController extends APIController
 		return $this->response->collection(Collection::make($entities), new Transformer());
 	}
 
-	public function createBulk(Request $request, Parser $parser, InspectionMajorAssemblyParser $inspectionMajorAssemblyParser, InspectionSubAssemblyParser $inspectionSubAssemblyParser)
+	public function createBulk(Request $request, Repository $repository, Parser $parser, InspectionMajorAssemblyParser $inspectionMajorAssemblyParser, InspectionSubAssemblyParser $inspectionSubAssemblyParser, EntityManagerInterface $em)
 	{
 		/** @var Inspection $entity */
 		$entity = $parser->handle($request);
@@ -122,10 +122,18 @@ class InspectionController extends APIController
 
 						/** @var InspectionSubAssembly $subAssemblyEntity */
 						$subAssemblyEntity = $inspectionSubAssemblyParser->handle($subAssembly);
+
+						$em->detach($subAssemblyEntity);
 					}
 				}
+
+				$em->detach($majorAssemblyEntity);
 			}
 		}
+
+		$em->detach($entity);
+
+		$entity = $repository->find($entity->getId());
 
 		return $this->response->item($entity, new Transformer());
 	}
