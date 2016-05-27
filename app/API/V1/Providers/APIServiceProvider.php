@@ -42,6 +42,7 @@ use App\API\V1\Transformers\AdministratorTransformer;
 use App\API\V1\Transformers\DomainExpertTransformer;
 use App\API\V1\Transformers\TechnicianTransformer;
 
+use Doctrine\DBAL\Types\Type;
 use Illuminate\Support\ServiceProvider;
 use Validator;
 
@@ -52,6 +53,8 @@ class APIServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
+		Type::overrideType('datetime', 'App\API\V1\Providers\DateTimeTypeProvider');
+
 		$this->app->bind('AdministratorRepository', \App\API\V1\Repositories\AdministratorRepository::class);
 		$this->app->bind('DomainExpertRepository', \App\API\V1\Repositories\DomainExpertRepository::class);
 		$this->app->bind('TechnicianRepository', \App\API\V1\Repositories\TechnicianRepository::class);
