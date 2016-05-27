@@ -24,7 +24,8 @@ class TechnicianTransformer extends TransformerAbstract
 			'email'            => $technician->getEmail(),
 			'temporary'        => $technician->isTemporary(),
 			'loginExpiresTime' => $technician->getLoginExpiresTime(),
-			'expired'          => $technician->hasLoginExpired()
+			'expired'          => $technician->hasLoginExpired(),
+			'emailHash'        => md5(strtolower(trim($technician->getEmail()))),
 		);
 	}
 }

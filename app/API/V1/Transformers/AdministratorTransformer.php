@@ -22,6 +22,7 @@ class AdministratorTransformer extends TransformerAbstract
 			'firstName' => $administrator->getFirstName(),
 			'lastName'  => $administrator->getLastName(),
 			'email'     => $administrator->getEmail(),
+			'emailHash' => md5(strtolower(trim($administrator->getEmail()))),
 		);
 	}
 }

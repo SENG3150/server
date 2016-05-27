@@ -22,6 +22,7 @@ class DomainExpertTransformer extends TransformerAbstract
 			'firstName' => $domainExpert->getFirstName(),
 			'lastName'  => $domainExpert->getLastName(),
 			'email'     => $domainExpert->getEmail(),
+			'emailHash' => md5(strtolower(trim($domainExpert->getEmail()))),
 		);
 	}
 }
