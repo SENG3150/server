@@ -148,7 +148,7 @@
 				<div class="row">
 					@foreach($subAssembly->graphs as $graph)
 						<div class="col-xs-6 m-b">
-							<img src="{{ $graph }}">
+							<img class="img-responsive" src="{{ $graph }}">
 						</div>
 					@endforeach
 				</div>
