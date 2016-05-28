@@ -2,11 +2,9 @@
 
 namespace App\API\V1\Transformers;
 
-use League\Fractal\TransformerAbstract;
-
 use App\API\V1\Entities\MachineGeneralTest;
 
-class MachineGeneralTestTransformer extends TransformerAbstract
+class MachineGeneralTestTransformer extends Transformer
 {
 	/**
 	 * @var array

@@ -2,11 +2,9 @@
 
 namespace App\API\V1\Transformers;
 
-use League\Fractal\TransformerAbstract;
-
 use App\API\V1\Entities\WearTest;
 
-class WearTestTransformer extends TransformerAbstract
+class WearTestTransformer extends Transformer
 {
 	/**
 	 * @var array

@@ -2,11 +2,9 @@
 
 namespace App\API\V1\Transformers;
 
-use League\Fractal\TransformerAbstract;
-
 use App\API\V1\Entities\Technician;
 
-class TechnicianTransformer extends TransformerAbstract
+class TechnicianTransformer extends Transformer
 {
 	/**
 	 * @param Technician $technician

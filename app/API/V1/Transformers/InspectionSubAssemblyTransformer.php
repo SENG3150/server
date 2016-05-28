@@ -2,11 +2,9 @@
 
 namespace App\API\V1\Transformers;
 
-use League\Fractal\TransformerAbstract;
-
 use App\API\V1\Entities\InspectionSubAssembly;
 
-class InspectionSubAssemblyTransformer extends TransformerAbstract
+class InspectionSubAssemblyTransformer extends Transformer
 {
 	/**
 	 * @var array

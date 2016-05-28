@@ -454,4 +454,10 @@ class InspectionController extends APIController
 			return FALSE;
 		}
 	}
+
+	public function download($id, Request $request)
+	{
+		$majorAssemblies = json_decode($request->input('majorAssemblies'));
+		var_dump($majorAssemblies);
+	}
 }

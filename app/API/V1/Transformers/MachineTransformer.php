@@ -2,11 +2,9 @@
 
 namespace App\API\V1\Transformers;
 
-use League\Fractal\TransformerAbstract;
-
 use App\API\V1\Entities\Machine;
 
-class MachineTransformer extends TransformerAbstract
+class MachineTransformer extends Transformer
 {
 	/**
 	 * @var array

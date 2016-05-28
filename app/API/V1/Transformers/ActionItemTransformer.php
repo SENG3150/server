@@ -2,11 +2,9 @@
 
 namespace App\API\V1\Transformers;
 
-use League\Fractal\TransformerAbstract;
-
 use App\API\V1\Entities\ActionItem;
 
-class ActionItemTransformer extends TransformerAbstract
+class ActionItemTransformer extends Transformer
 {
 	/**
 	 * @var array
