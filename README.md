@@ -190,99 +190,99 @@ To retrieve the user details make a GET request to ```/auth/me``` and you will r
 ## Routes
 Routes are available by looking at the [routes file](https://github.com/SENG3150/server/blob/master/app/Http/routes.php) and [controllers](https://github.com/SENG3150/server/tree/master/app/API/V1/Controllers).
 
-| Method    | URI                            | Action                                                           | Protected | Version(s) |
-|-----------|--------------------------------|------------------------------------------------------------------|-----------|------------|
-| POST      | auth/authenticate              | App\API\V1\Controllers\AuthenticateController@authenticate       | No        | v1         |
-| GET, HEAD | auth/refresh                   | App\API\V1\Controllers\AuthenticateController@refresh            | No        | v1         |
-| GET, HEAD | auth/me                        | App\API\V1\Controllers\UserController@me                         | Yes       | v1         |
-| GET, HEAD | actionItems                    | App\API\V1\Controllers\ActionItemController@getList              | Yes       | v1         |
-| GET, HEAD | actionItems/{id}               | App\API\V1\Controllers\ActionItemController@get                  | Yes       | v1         |
-| POST      | actionItems                    | App\API\V1\Controllers\ActionItemController@create               | Yes       | v1         |
-| POST      | actionItems/{id}               | App\API\V1\Controllers\ActionItemController@update               | Yes       | v1         |
-| DELETE    | actionItems/{id}               | App\API\V1\Controllers\ActionItemController@delete               | Yes       | v1         |
-| GET, HEAD | administrators                 | App\API\V1\Controllers\AdministratorController@getList           | Yes       | v1         |
-| GET, HEAD | administrators/{id}            | App\API\V1\Controllers\AdministratorController@get               | Yes       | v1         |
-| POST      | administrators                 | App\API\V1\Controllers\AdministratorController@create            | Yes       | v1         |
-| POST      | administrators/{id}            | App\API\V1\Controllers\AdministratorController@update            | Yes       | v1         |
-| DELETE    | administrators/{id}            | App\API\V1\Controllers\AdministratorController@delete            | Yes       | v1         |
-| GET, HEAD | comments                       | App\API\V1\Controllers\CommentController@getList                 | Yes       | v1         |
-| GET, HEAD | comments/{id}                  | App\API\V1\Controllers\CommentController@get                     | Yes       | v1         |
-| POST      | comments                       | App\API\V1\Controllers\CommentController@create                  | Yes       | v1         |
-| POST      | comments/{id}                  | App\API\V1\Controllers\CommentController@update                  | Yes       | v1         |
-| DELETE    | comments/{id}                  | App\API\V1\Controllers\CommentController@delete                  | Yes       | v1         |
-| GET, HEAD | domainExperts                  | App\API\V1\Controllers\DomainExpertController@getList            | Yes       | v1         |
-| GET, HEAD | domainExperts/{id}             | App\API\V1\Controllers\DomainExpertController@get                | Yes       | v1         |
-| POST      | domainExperts                  | App\API\V1\Controllers\DomainExpertController@create             | Yes       | v1         |
-| POST      | domainExperts/{id}             | App\API\V1\Controllers\DomainExpertController@update             | Yes       | v1         |
-| DELETE    | domainExperts/{id}             | App\API\V1\Controllers\DomainExpertController@delete             | Yes       | v1         |
-| GET, HEAD | inspections                    | App\API\V1\Controllers\InspectionController@getList              | Yes       | v1         |
-| GET, HEAD | inspections/incomplete         | App\API\V1\Controllers\InspectionController@getIncompleteList    | Yes       | v1         |
-| GET, HEAD | inspections/{id}               | App\API\V1\Controllers\InspectionController@get                  | Yes       | v1         |
-| GET, HEAD | inspections/{id}/graphs        | App\API\V1\Controllers\InspectionController@graphs               | Yes       | v1         |
-| POST      | inspections                    | App\API\V1\Controllers\InspectionController@create               | Yes       | v1         |
-| POST      | inspections/bulk               | App\API\V1\Controllers\InspectionController@createBulk           | Yes       | v1         |
-| POST      | inspections/{id}               | App\API\V1\Controllers\InspectionController@update               | Yes       | v1         |
-| POST      | inspections/{id}/bulk          | App\API\V1\Controllers\InspectionController@updateBulk           | Yes       | v1         |
-| POST      | inspections/{id}/download      | App\API\V1\Controllers\InspectionController@download             | Yes       | v1         |
-| DELETE    | inspections/{id}               | App\API\V1\Controllers\InspectionController@delete               | Yes       | v1         |
-| GET, HEAD | inspectionMajorAssemblies      | App\API\V1\Controllers\InspectionMajorAssemblyController@getList | Yes       | v1         |
-| GET, HEAD | inspectionMajorAssemblies/{id} | App\API\V1\Controllers\InspectionMajorAssemblyController@get     | Yes       | v1         |
-| POST      | inspectionMajorAssemblies      | App\API\V1\Controllers\InspectionMajorAssemblyController@create  | Yes       | v1         |
-| POST      | inspectionMajorAssemblies/{id} | App\API\V1\Controllers\InspectionMajorAssemblyController@update  | Yes       | v1         |
-| DELETE    | inspectionMajorAssemblies/{id} | App\API\V1\Controllers\InspectionMajorAssemblyController@delete  | Yes       | v1         |
-| GET, HEAD | inspectionSubAssemblies        | App\API\V1\Controllers\InspectionSubAssemblyController@getList   | Yes       | v1         |
-| GET, HEAD | inspectionSubAssemblies/{id}   | App\API\V1\Controllers\InspectionSubAssemblyController@get       | Yes       | v1         |
-| POST      | inspectionSubAssemblies        | App\API\V1\Controllers\InspectionSubAssemblyController@create    | Yes       | v1         |
-| POST      | inspectionSubAssemblies/{id}   | App\API\V1\Controllers\InspectionSubAssemblyController@update    | Yes       | v1         |
-| DELETE    | inspectionSubAssemblies/{id}   | App\API\V1\Controllers\InspectionSubAssemblyController@delete    | Yes       | v1         |
-| GET, HEAD | machines                       | App\API\V1\Controllers\MachineController@getList                 | Yes       | v1         |
-| GET, HEAD | machines/{id}                  | App\API\V1\Controllers\MachineController@get                     | Yes       | v1         |
-| POST      | machines                       | App\API\V1\Controllers\MachineController@create                  | Yes       | v1         |
-| POST      | machines/{id}                  | App\API\V1\Controllers\MachineController@update                  | Yes       | v1         |
-| DELETE    | machines/{id}                  | App\API\V1\Controllers\MachineController@delete                  | Yes       | v1         |
-| GET, HEAD | machineGeneralTests            | App\API\V1\Controllers\MachineGeneralTestController@getList      | Yes       | v1         |
-| GET, HEAD | machineGeneralTests/{id}       | App\API\V1\Controllers\MachineGeneralTestController@get          | Yes       | v1         |
-| POST      | machineGeneralTests            | App\API\V1\Controllers\MachineGeneralTestController@create       | Yes       | v1         |
-| POST      | machineGeneralTests/{id}       | App\API\V1\Controllers\MachineGeneralTestController@update       | Yes       | v1         |
-| DELETE    | machineGeneralTests/{id}       | App\API\V1\Controllers\MachineGeneralTestController@delete       | Yes       | v1         |
-| GET, HEAD | majorAssemblies                | App\API\V1\Controllers\MajorAssemblyController@getList           | Yes       | v1         |
-| GET, HEAD | majorAssemblies/{id}           | App\API\V1\Controllers\MajorAssemblyController@get               | Yes       | v1         |
-| POST      | majorAssemblies                | App\API\V1\Controllers\MajorAssemblyController@create            | Yes       | v1         |
-| POST      | majorAssemblies/{id}           | App\API\V1\Controllers\MajorAssemblyController@update            | Yes       | v1         |
-| DELETE    | majorAssemblies/{id}           | App\API\V1\Controllers\MajorAssemblyController@delete            | Yes       | v1         |
-| GET, HEAD | models                         | App\API\V1\Controllers\ModelController@getList                   | Yes       | v1         |
-| GET, HEAD | models/{id}                    | App\API\V1\Controllers\ModelController@get                       | Yes       | v1         |
-| POST      | models                         | App\API\V1\Controllers\ModelController@create                    | Yes       | v1         |
-| POST      | models/{id}                    | App\API\V1\Controllers\ModelController@update                    | Yes       | v1         |
-| DELETE    | models/{id}                    | App\API\V1\Controllers\ModelController@delete                    | Yes       | v1         |
-| GET, HEAD | oilTests                       | App\API\V1\Controllers\OilTestController@getList                 | Yes       | v1         |
-| GET, HEAD | oilTests/{id}                  | App\API\V1\Controllers\OilTestController@get                     | Yes       | v1         |
-| POST      | oilTests                       | App\API\V1\Controllers\OilTestController@create                  | Yes       | v1         |
-| POST      | oilTests/{id}                  | App\API\V1\Controllers\OilTestController@update                  | Yes       | v1         |
-| DELETE    | oilTests/{id}                  | App\API\V1\Controllers\OilTestController@delete                  | Yes       | v1         |
-| GET, HEAD | photos                         | App\API\V1\Controllers\PhotoController@getList                   | Yes       | v1         |
-| GET, HEAD | photos/{id}                    | App\API\V1\Controllers\PhotoController@get                       | Yes       | v1         |
-| GET, HEAD | photos/{id}/photo              | App\API\V1\Controllers\PhotoController@photo                     | Yes       | v1         |
-| POST      | photos                         | App\API\V1\Controllers\PhotoController@create                    | Yes       | v1         |
-| POST      | photos/{id}                    | App\API\V1\Controllers\PhotoController@update                    | Yes       | v1         |
-| DELETE    | photos/{id}                    | App\API\V1\Controllers\PhotoController@delete                    | Yes       | v1         |
-| GET, HEAD | subAssemblies                  | App\API\V1\Controllers\SubAssemblyController@getList             | Yes       | v1         |
-| GET, HEAD | subAssemblies/{id}             | App\API\V1\Controllers\SubAssemblyController@get                 | Yes       | v1         |
-| POST      | subAssemblies                  | App\API\V1\Controllers\SubAssemblyController@create              | Yes       | v1         |
-| POST      | subAssemblies/{id}             | App\API\V1\Controllers\SubAssemblyController@update              | Yes       | v1         |
-| DELETE    | subAssemblies/{id}             | App\API\V1\Controllers\SubAssemblyController@delete              | Yes       | v1         |
-| GET, HEAD | subAssemblyTests               | App\API\V1\Controllers\SubAssemblyTestController@getList         | Yes       | v1         |
-| GET, HEAD | subAssemblyTests/{id}          | App\API\V1\Controllers\SubAssemblyTestController@get             | Yes       | v1         |
-| POST      | subAssemblyTests               | App\API\V1\Controllers\SubAssemblyTestController@create          | Yes       | v1         |
-| POST      | subAssemblyTests/{id}          | App\API\V1\Controllers\SubAssemblyTestController@update          | Yes       | v1         |
-| DELETE    | subAssemblyTests/{id}          | App\API\V1\Controllers\SubAssemblyTestController@delete          | Yes       | v1         |
-| GET, HEAD | technicians                    | App\API\V1\Controllers\TechnicianController@getList              | Yes       | v1         |
-| GET, HEAD | technicians/{id}               | App\API\V1\Controllers\TechnicianController@get                  | Yes       | v1         |
-| POST      | technicians                    | App\API\V1\Controllers\TechnicianController@create               | Yes       | v1         |
-| POST      | technicians/{id}               | App\API\V1\Controllers\TechnicianController@update               | Yes       | v1         |
-| DELETE    | technicians/{id}               | App\API\V1\Controllers\TechnicianController@delete               | Yes       | v1         |
-| GET, HEAD | wearTests                      | App\API\V1\Controllers\WearTestController@getList                | Yes       | v1         |
-| GET, HEAD | wearTests/{id}                 | App\API\V1\Controllers\WearTestController@get                    | Yes       | v1         |
-| POST      | wearTests                      | App\API\V1\Controllers\WearTestController@create                 | Yes       | v1         |
-| POST      | wearTests/{id}                 | App\API\V1\Controllers\WearTestController@update                 | Yes       | v1         |
-| DELETE    | wearTests/{id}                 | App\API\V1\Controllers\WearTestController@delete                 | Yes       | v1         |
+| Method    | URI                             | Action                                                           | Protected | Version(s) |
+|-----------|---------------------------------|------------------------------------------------------------------|-----------|------------|
+| POST      | /auth/authenticate              | App\API\V1\Controllers\AuthenticateController@authenticate       | No        | v1         |
+| GET, HEAD | /auth/refresh                   | App\API\V1\Controllers\AuthenticateController@refresh            | No        | v1         |
+| GET, HEAD | /auth/me                        | App\API\V1\Controllers\UserController@me                         | Yes       | v1         |
+| GET, HEAD | /actionItems                    | App\API\V1\Controllers\ActionItemController@getList              | Yes       | v1         |
+| GET, HEAD | /actionItems/{id}               | App\API\V1\Controllers\ActionItemController@get                  | Yes       | v1         |
+| POST      | /actionItems                    | App\API\V1\Controllers\ActionItemController@create               | Yes       | v1         |
+| POST      | /actionItems/{id}               | App\API\V1\Controllers\ActionItemController@update               | Yes       | v1         |
+| DELETE    | /actionItems/{id}               | App\API\V1\Controllers\ActionItemController@delete               | Yes       | v1         |
+| GET, HEAD | /administrators                 | App\API\V1\Controllers\AdministratorController@getList           | Yes       | v1         |
+| GET, HEAD | /administrators/{id}            | App\API\V1\Controllers\AdministratorController@get               | Yes       | v1         |
+| POST      | /administrators                 | App\API\V1\Controllers\AdministratorController@create            | Yes       | v1         |
+| POST      | /administrators/{id}            | App\API\V1\Controllers\AdministratorController@update            | Yes       | v1         |
+| DELETE    | /administrators/{id}            | App\API\V1\Controllers\AdministratorController@delete            | Yes       | v1         |
+| GET, HEAD | /comments                       | App\API\V1\Controllers\CommentController@getList                 | Yes       | v1         |
+| GET, HEAD | /comments/{id}                  | App\API\V1\Controllers\CommentController@get                     | Yes       | v1         |
+| POST      | /comments                       | App\API\V1\Controllers\CommentController@create                  | Yes       | v1         |
+| POST      | /comments/{id}                  | App\API\V1\Controllers\CommentController@update                  | Yes       | v1         |
+| DELETE    | /comments/{id}                  | App\API\V1\Controllers\CommentController@delete                  | Yes       | v1         |
+| GET, HEAD | /domainExperts                  | App\API\V1\Controllers\DomainExpertController@getList            | Yes       | v1         |
+| GET, HEAD | /domainExperts/{id}             | App\API\V1\Controllers\DomainExpertController@get                | Yes       | v1         |
+| POST      | /domainExperts                  | App\API\V1\Controllers\DomainExpertController@create             | Yes       | v1         |
+| POST      | /domainExperts/{id}             | App\API\V1\Controllers\DomainExpertController@update             | Yes       | v1         |
+| DELETE    | /domainExperts/{id}             | App\API\V1\Controllers\DomainExpertController@delete             | Yes       | v1         |
+| GET, HEAD | /inspections                    | App\API\V1\Controllers\InspectionController@getList              | Yes       | v1         |
+| GET, HEAD | /inspections/incomplete         | App\API\V1\Controllers\InspectionController@getIncompleteList    | Yes       | v1         |
+| GET, HEAD | /inspections/{id}               | App\API\V1\Controllers\InspectionController@get                  | Yes       | v1         |
+| GET, HEAD | /inspections/{id}/graphs        | App\API\V1\Controllers\InspectionController@graphs               | Yes       | v1         |
+| POST      | /inspections                    | App\API\V1\Controllers\InspectionController@create               | Yes       | v1         |
+| POST      | /inspections/bulk               | App\API\V1\Controllers\InspectionController@createBulk           | Yes       | v1         |
+| POST      | /inspections/{id}               | App\API\V1\Controllers\InspectionController@update               | Yes       | v1         |
+| POST      | /inspections/{id}/bulk          | App\API\V1\Controllers\InspectionController@updateBulk           | Yes       | v1         |
+| POST      | /inspections/{id}/download      | App\API\V1\Controllers\InspectionController@download             | Yes       | v1         |
+| DELETE    | /inspections/{id}               | App\API\V1\Controllers\InspectionController@delete               | Yes       | v1         |
+| GET, HEAD | /inspectionMajorAssemblies      | App\API\V1\Controllers\InspectionMajorAssemblyController@getList | Yes       | v1         |
+| GET, HEAD | /inspectionMajorAssemblies/{id} | App\API\V1\Controllers\InspectionMajorAssemblyController@get     | Yes       | v1         |
+| POST      | /inspectionMajorAssemblies      | App\API\V1\Controllers\InspectionMajorAssemblyController@create  | Yes       | v1         |
+| POST      | /inspectionMajorAssemblies/{id} | App\API\V1\Controllers\InspectionMajorAssemblyController@update  | Yes       | v1         |
+| DELETE    | /inspectionMajorAssemblies/{id} | App\API\V1\Controllers\InspectionMajorAssemblyController@delete  | Yes       | v1         |
+| GET, HEAD | /inspectionSubAssemblies        | App\API\V1\Controllers\InspectionSubAssemblyController@getList   | Yes       | v1         |
+| GET, HEAD | /inspectionSubAssemblies/{id}   | App\API\V1\Controllers\InspectionSubAssemblyController@get       | Yes       | v1         |
+| POST      | /inspectionSubAssemblies        | App\API\V1\Controllers\InspectionSubAssemblyController@create    | Yes       | v1         |
+| POST      | /inspectionSubAssemblies/{id}   | App\API\V1\Controllers\InspectionSubAssemblyController@update    | Yes       | v1         |
+| DELETE    | /inspectionSubAssemblies/{id}   | App\API\V1\Controllers\InspectionSubAssemblyController@delete    | Yes       | v1         |
+| GET, HEAD | /machines                       | App\API\V1\Controllers\MachineController@getList                 | Yes       | v1         |
+| GET, HEAD | /machines/{id}                  | App\API\V1\Controllers\MachineController@get                     | Yes       | v1         |
+| POST      | /machines                       | App\API\V1\Controllers\MachineController@create                  | Yes       | v1         |
+| POST      | /machines/{id}                  | App\API\V1\Controllers\MachineController@update                  | Yes       | v1         |
+| DELETE    | /machines/{id}                  | App\API\V1\Controllers\MachineController@delete                  | Yes       | v1         |
+| GET, HEAD | /machineGeneralTests            | App\API\V1\Controllers\MachineGeneralTestController@getList      | Yes       | v1         |
+| GET, HEAD | /machineGeneralTests/{id}       | App\API\V1\Controllers\MachineGeneralTestController@get          | Yes       | v1         |
+| POST      | /machineGeneralTests            | App\API\V1\Controllers\MachineGeneralTestController@create       | Yes       | v1         |
+| POST      | /machineGeneralTests/{id}       | App\API\V1\Controllers\MachineGeneralTestController@update       | Yes       | v1         |
+| DELETE    | /machineGeneralTests/{id}       | App\API\V1\Controllers\MachineGeneralTestController@delete       | Yes       | v1         |
+| GET, HEAD | /majorAssemblies                | App\API\V1\Controllers\MajorAssemblyController@getList           | Yes       | v1         |
+| GET, HEAD | /majorAssemblies/{id}           | App\API\V1\Controllers\MajorAssemblyController@get               | Yes       | v1         |
+| POST      | /majorAssemblies                | App\API\V1\Controllers\MajorAssemblyController@create            | Yes       | v1         |
+| POST      | /majorAssemblies/{id}           | App\API\V1\Controllers\MajorAssemblyController@update            | Yes       | v1         |
+| DELETE    | /majorAssemblies/{id}           | App\API\V1\Controllers\MajorAssemblyController@delete            | Yes       | v1         |
+| GET, HEAD | /models                         | App\API\V1\Controllers\ModelController@getList                   | Yes       | v1         |
+| GET, HEAD | /models/{id}                    | App\API\V1\Controllers\ModelController@get                       | Yes       | v1         |
+| POST      | /models                         | App\API\V1\Controllers\ModelController@create                    | Yes       | v1         |
+| POST      | /models/{id}                    | App\API\V1\Controllers\ModelController@update                    | Yes       | v1         |
+| DELETE    | /models/{id}                    | App\API\V1\Controllers\ModelController@delete                    | Yes       | v1         |
+| GET, HEAD | /oilTests                       | App\API\V1\Controllers\OilTestController@getList                 | Yes       | v1         |
+| GET, HEAD | /oilTests/{id}                  | App\API\V1\Controllers\OilTestController@get                     | Yes       | v1         |
+| POST      | /oilTests                       | App\API\V1\Controllers\OilTestController@create                  | Yes       | v1         |
+| POST      | /oilTests/{id}                  | App\API\V1\Controllers\OilTestController@update                  | Yes       | v1         |
+| DELETE    | /oilTests/{id}                  | App\API\V1\Controllers\OilTestController@delete                  | Yes       | v1         |
+| GET, HEAD | /photos                         | App\API\V1\Controllers\PhotoController@getList                   | Yes       | v1         |
+| GET, HEAD | /photos/{id}                    | App\API\V1\Controllers\PhotoController@get                       | Yes       | v1         |
+| GET, HEAD | /photos/{id}/photo              | App\API\V1\Controllers\PhotoController@photo                     | Yes       | v1         |
+| POST      | /photos                         | App\API\V1\Controllers\PhotoController@create                    | Yes       | v1         |
+| POST      | /photos/{id}                    | App\API\V1\Controllers\PhotoController@update                    | Yes       | v1         |
+| DELETE    | /photos/{id}                    | App\API\V1\Controllers\PhotoController@delete                    | Yes       | v1         |
+| GET, HEAD | /subAssemblies                  | App\API\V1\Controllers\SubAssemblyController@getList             | Yes       | v1         |
+| GET, HEAD | /subAssemblies/{id}             | App\API\V1\Controllers\SubAssemblyController@get                 | Yes       | v1         |
+| POST      | /subAssemblies                  | App\API\V1\Controllers\SubAssemblyController@create              | Yes       | v1         |
+| POST      | /subAssemblies/{id}             | App\API\V1\Controllers\SubAssemblyController@update              | Yes       | v1         |
+| DELETE    | /subAssemblies/{id}             | App\API\V1\Controllers\SubAssemblyController@delete              | Yes       | v1         |
+| GET, HEAD | /subAssemblyTests               | App\API\V1\Controllers\SubAssemblyTestController@getList         | Yes       | v1         |
+| GET, HEAD | /subAssemblyTests/{id}          | App\API\V1\Controllers\SubAssemblyTestController@get             | Yes       | v1         |
+| POST      | /subAssemblyTests               | App\API\V1\Controllers\SubAssemblyTestController@create          | Yes       | v1         |
+| POST      | /subAssemblyTests/{id}          | App\API\V1\Controllers\SubAssemblyTestController@update          | Yes       | v1         |
+| DELETE    | /subAssemblyTests/{id}          | App\API\V1\Controllers\SubAssemblyTestController@delete          | Yes       | v1         |
+| GET, HEAD | /technicians                    | App\API\V1\Controllers\TechnicianController@getList              | Yes       | v1         |
+| GET, HEAD | /technicians/{id}               | App\API\V1\Controllers\TechnicianController@get                  | Yes       | v1         |
+| POST      | /technicians                    | App\API\V1\Controllers\TechnicianController@create               | Yes       | v1         |
+| POST      | /technicians/{id}               | App\API\V1\Controllers\TechnicianController@update               | Yes       | v1         |
+| DELETE    | /technicians/{id}               | App\API\V1\Controllers\TechnicianController@delete               | Yes       | v1         |
+| GET, HEAD | /wearTests                      | App\API\V1\Controllers\WearTestController@getList                | Yes       | v1         |
+| GET, HEAD | /wearTests/{id}                 | App\API\V1\Controllers\WearTestController@get                    | Yes       | v1         |
+| POST      | /wearTests                      | App\API\V1\Controllers\WearTestController@create                 | Yes       | v1         |
+| POST      | /wearTests/{id}                 | App\API\V1\Controllers\WearTestController@update                 | Yes       | v1         |
+| DELETE    | /wearTests/{id}                 | App\API\V1\Controllers\WearTestController@delete                 | Yes       | v1         |
