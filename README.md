@@ -135,9 +135,9 @@ Rather than comment each individual class (which I feel is largely unnecessary d
 ### Controllers
 Controllers perform the main logic for each request. Most of the controllers follow a standard structure of having ```getList```, ```get```, ```create```, ```update``` and ```delete``` methods. Some notable controllers are:
 
-- AuthenticateController: This controller performs all of the logic for authentication.
-- InspectionController: This controller contains methods to help load in inspection data, and also to facilitate generation of the inspection report PDF.
-- PhotoController: This controller serves photos for inspections.
+- [AuthenticateController](https://github.com/SENG3150/server/blob/master/app/API/V1/Controllers/AuthenticateController.php): This controller performs all of the logic for authentication.
+- [InspectionController](https://github.com/SENG3150/server/blob/master/app/API/V1/Controllers/InspectionController.php): This controller contains methods to help load in inspection data, and also to facilitate generation of the inspection report PDF.
+- [PhotoController](https://github.com/SENG3150/server/blob/master/app/API/V1/Controllers/PhotoController.php): This controller serves photos for inspections.
 
 ### Entities
 Entities are the classes that map to the database, and contain all of the information that the Doctrine ORM needs to generate and read from the database. The entities have proxies generated for them to help make the system faster on each request.
@@ -145,23 +145,23 @@ Entities are the classes that map to the database, and contain all of the inform
 ### Parsers
 Parsers are the classes that convert a JSON request into an entity. Each parser maps to an Entity class, and provide abstraction for the Controller classes. Some notable parsers are:
 
-- PhotoParser: This parser accepts and saves to file the photo data which is sent in base64 encoding.
+- [PhotoParser](https://github.com/SENG3150/server/blob/master/app/API/V1/Parsers/PhotoParser.php): This parser accepts and saves to file the photo data which is sent in base64 encoding.
 
 ### Providers
 Providers help setup the different Laravel features that are used throughout the rest of the server. 
 
-- APIServiceProvider: This is the first class loaded by the API and adds the Repositories that are used later on in Controllers through direct injection.
-- DateTimeTypeProvider: This class overrides the default Doctrine datetime column type to ensure that all datetimes are converted to the system's timezone before and after database calls.
+- [APIServiceProvider](https://github.com/SENG3150/server/blob/master/app/API/V1/Providers/APIServiceProvider.php): This is the first class loaded by the API and adds the Repositories that are used later on in Controllers through direct injection.
+- [DateTimeTypeProvider](https://github.com/SENG3150/server/blob/master/app/API/V1/Providers/DateTimeTypeProvider.php): This class overrides the default Doctrine datetime column type to ensure that all datetimes are converted to the system's timezone before and after database calls.
 
 ### Repositories
 Repositories add extra methods to the standard Doctrine repository, which can be helpful throughout the rest of the server. Some notable repositories are:
 
-- AdministratorRepository: This repository contains a method to find an Administrator by their username.
+- [AdministratorRepository](https://github.com/SENG3150/server/blob/master/app/API/V1/Repositories/AdministratorRepository.php): This repository contains a method to find an Administrator by their username.
 
 ### Transformers
-Transformers are used to convert Entities to JSON when output by a Controller. Transformers make use of [http://fractal.thephpleague.com/transformers/](Fractal)'s ```include``` feature, which allows the requester to include subentities in a single request. These includes are defined in each Transformer class, and some transformers provide a set of default includes which the requester then does not need to specifically include. Some notable transformers are:
+Transformers are used to convert Entities to JSON when output by a Controller. Transformers make use of [Fractal](http://fractal.thephpleague.com/transformers/)'s ```include``` feature, which allows the requester to include subentities in a single request. These includes are defined in each Transformer class, and some transformers provide a set of default includes which the requester then does not need to specifically include. Some notable transformers are:
 
-- CommentTransformer: This transformer contains a lot of includes which shows how transformers are used to pull in subentities.
+- [CommentTransformer](https://github.com/SENG3150/server/blob/master/app/API/V1/Transformers/CommentTransformer.php): This transformer contains a lot of includes which shows how transformers are used to pull in subentities.
 
 ### Others
 Some other files of note are as follows:
