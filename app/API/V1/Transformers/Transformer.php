@@ -9,11 +9,11 @@ use App\API\V1\Entities\Photo;
 
 class Transformer extends TransformerAbstract
 {
-	public function item($data, $transformer)
+	public function item($data, $transformer, $resourceKey = null)
 	{
 		if($data != NULL)
 		{
-			return parent::item($data, $transformer);
+			return parent::item($data, $transformer, $resourceKey);
 		}
 
 		else
@@ -22,11 +22,11 @@ class Transformer extends TransformerAbstract
 		}
 	}
 
-	public function collection($data, $transformer)
+	public function collection($data, $transformer, $resourceKey = null)
 	{
 		if($data != NULL)
 		{
-			return parent::collection($data, $transformer);
+			return parent::collection($data, $transformer, $resourceKey);
 		}
 
 		else
