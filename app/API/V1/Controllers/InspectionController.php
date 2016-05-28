@@ -25,6 +25,7 @@ use App\API\V1\Transformers\InspectionTransformer as Transformer;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
+use Barryvdh\Snappy\PdfWrapper as PDF;
 
 class InspectionController extends APIController
 {
@@ -455,9 +456,25 @@ class InspectionController extends APIController
 		}
 	}
 
-	public function download($id, Request $request)
+	public function download($id, Request $request, PDF $pdf, Repository $repository)
 	{
-		$majorAssemblies = json_decode($request->input('majorAssemblies'));
-		var_dump($majorAssemblies);
+		$entity = $repository->find($id);
+
+		if($entity != NULL)
+		{
+			$data = array(
+				'inspection'      => $entity,
+				'majorAssemblies' => json_decode($request->input('majorAssemblies'))
+			);
+
+			return $pdf->loadHTML(view('v1/inspections/report', $data)->render())->inline('Inspection ' . $id . ' - Report.pdf');
+		}
+
+		else
+		{
+			$this->response()->errorNotFound();
+
+			return FALSE;
+		}
 	}
 }

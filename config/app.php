@@ -159,6 +159,7 @@ return [
 		LaravelDoctrine\ORM\DoctrineServiceProvider::class,
 		Dingo\Api\Provider\LaravelServiceProvider::class,
 		Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+		Barryvdh\Snappy\ServiceProvider::class,
 	],
 
 	/*
@@ -212,6 +213,8 @@ return [
 		'APIRoute'      => Dingo\Api\Facade\Route::class,
 		'JWTAuth'       => Tymon\JWTAuth\Facades\JWTAuth::class,
 		'JWTFactory'    => Tymon\JWTAuth\Facades\JWTFactory::class,
+		'PDF'           => Barryvdh\Snappy\Facades\SnappyPdf::class,
+		'Image'         => Barryvdh\Snappy\Facades\SnappyImage::class,
 
 	],
 

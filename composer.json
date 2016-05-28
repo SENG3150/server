@@ -13,8 +13,12 @@
     "laravel-doctrine/orm": "1.1.*",
     "tymon/jwt-auth": "dev-master#1d0789c3e602ed5e593b404da77671c06743675c",
     "dingo/api": "1.0.*@dev",
+    "barryvdh/laravel-snappy": "^0.3.0",
     "barryvdh/laravel-cors": "^0.7.1",
-    "intervention/validation": "^1.1"
+    "wemersonjanuario/wkhtmltopdf-windows": "0.12.*",
+    "intervention/validation": "^1.1",
+    "h4cc/wkhtmltopdf-amd64": "0.12.3",
+    "h4cc/wkhtmltoimage-amd64": "0.12.3"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",
