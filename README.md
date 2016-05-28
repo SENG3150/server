@@ -195,12 +195,6 @@ Routes are available by looking at the [routes file](https://github.com/SENG3150
 | POST      | auth/authenticate              | App\API\V1\Controllers\AuthenticateController@authenticate       | No        | v1         |
 | GET, HEAD | auth/refresh                   | App\API\V1\Controllers\AuthenticateController@refresh            | No        | v1         |
 | GET, HEAD | auth/me                        | App\API\V1\Controllers\UserController@me                         | Yes       | v1         |
-| GET, HEAD | inspections/incomplete         | App\API\V1\Controllers\InspectionController@getIncompleteList    | Yes       | v1         |
-| POST      | inspections/{id}/download      | App\API\V1\Controllers\InspectionController@download             | Yes       | v1         |
-| GET, HEAD | inspections/{id}/graphs        | App\API\V1\Controllers\InspectionController@graphs               | Yes       | v1         |
-| POST      | inspections/bulk               | App\API\V1\Controllers\InspectionController@createBulk           | Yes       | v1         |
-| POST      | inspections/{id}/bulk          | App\API\V1\Controllers\InspectionController@updateBulk           | Yes       | v1         |
-| GET, HEAD | photos/{id}/photo              | App\API\V1\Controllers\PhotoController@photo                     | Yes       | v1         |
 | GET, HEAD | actionItems                    | App\API\V1\Controllers\ActionItemController@getList              | Yes       | v1         |
 | GET, HEAD | actionItems/{id}               | App\API\V1\Controllers\ActionItemController@get                  | Yes       | v1         |
 | POST      | actionItems                    | App\API\V1\Controllers\ActionItemController@create               | Yes       | v1         |
@@ -222,9 +216,14 @@ Routes are available by looking at the [routes file](https://github.com/SENG3150
 | POST      | domainExperts/{id}             | App\API\V1\Controllers\DomainExpertController@update             | Yes       | v1         |
 | DELETE    | domainExperts/{id}             | App\API\V1\Controllers\DomainExpertController@delete             | Yes       | v1         |
 | GET, HEAD | inspections                    | App\API\V1\Controllers\InspectionController@getList              | Yes       | v1         |
+| GET, HEAD | inspections/incomplete         | App\API\V1\Controllers\InspectionController@getIncompleteList    | Yes       | v1         |
 | GET, HEAD | inspections/{id}               | App\API\V1\Controllers\InspectionController@get                  | Yes       | v1         |
+| GET, HEAD | inspections/{id}/graphs        | App\API\V1\Controllers\InspectionController@graphs               | Yes       | v1         |
 | POST      | inspections                    | App\API\V1\Controllers\InspectionController@create               | Yes       | v1         |
+| POST      | inspections/bulk               | App\API\V1\Controllers\InspectionController@createBulk           | Yes       | v1         |
 | POST      | inspections/{id}               | App\API\V1\Controllers\InspectionController@update               | Yes       | v1         |
+| POST      | inspections/{id}/bulk          | App\API\V1\Controllers\InspectionController@updateBulk           | Yes       | v1         |
+| POST      | inspections/{id}/download      | App\API\V1\Controllers\InspectionController@download             | Yes       | v1         |
 | DELETE    | inspections/{id}               | App\API\V1\Controllers\InspectionController@delete               | Yes       | v1         |
 | GET, HEAD | inspectionMajorAssemblies      | App\API\V1\Controllers\InspectionMajorAssemblyController@getList | Yes       | v1         |
 | GET, HEAD | inspectionMajorAssemblies/{id} | App\API\V1\Controllers\InspectionMajorAssemblyController@get     | Yes       | v1         |
@@ -263,6 +262,7 @@ Routes are available by looking at the [routes file](https://github.com/SENG3150
 | DELETE    | oilTests/{id}                  | App\API\V1\Controllers\OilTestController@delete                  | Yes       | v1         |
 | GET, HEAD | photos                         | App\API\V1\Controllers\PhotoController@getList                   | Yes       | v1         |
 | GET, HEAD | photos/{id}                    | App\API\V1\Controllers\PhotoController@get                       | Yes       | v1         |
+| GET, HEAD | photos/{id}/photo              | App\API\V1\Controllers\PhotoController@photo                     | Yes       | v1         |
 | POST      | photos                         | App\API\V1\Controllers\PhotoController@create                    | Yes       | v1         |
 | POST      | photos/{id}                    | App\API\V1\Controllers\PhotoController@update                    | Yes       | v1         |
 | DELETE    | photos/{id}                    | App\API\V1\Controllers\PhotoController@delete                    | Yes       | v1         |
