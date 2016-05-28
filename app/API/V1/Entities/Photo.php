@@ -380,6 +380,14 @@ class Photo extends \ArrayObject
 
 	public function getURLPath()
 	{
-		return url('photos/' . $this->id . '/photo');
+		if(strpos(config('url'), 'https://') === 0)
+		{
+			return secure_asset('photos/' . $this->id . '/photo');
+		}
+
+		else
+		{
+			return url('photos/' . $this->id . '/photo');
+		}
 	}
 }
