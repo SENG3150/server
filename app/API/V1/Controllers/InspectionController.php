@@ -393,6 +393,7 @@ class InspectionController extends APIController
 				foreach($inspectionMajorAssembly->getSubAssemblies() as $inspectionSubAssembly)
 				{
 					$line = array(
+						'id'        => $inspectionSubAssembly->getId(),
 						'name'      => $inspectionSubAssembly->getSubAssembly()->getName(),
 						'oilTests'  => array(),
 						'wearTests' => array(),
