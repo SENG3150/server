@@ -115,7 +115,7 @@ To clone the server run this command in the terminal:
 After cloning the repository go into the directory and run the following commands in the terminal:
 	
 	composer install
-	composer run-script init
+	composer run-script setup
 
 This will setup the project's dependencies, however you will still need to setup the database. You must first create a MySQL database, and then store its details in the .env file like so:
 
@@ -123,24 +123,36 @@ This will setup the project's dependencies, however you will still need to setup
     DB_USERNAME=root
     DB_PASSWORD=
 
-To begin with a populated database import the SQL in the [database/sql/init.sql](https://github.com/SENG3150/server/tree/master/database/sql/init.sql) file (which assumes you named your database ```seng3150```, or to begin with a clean database run the following command in the terminal:
+To begin with a populated database import the SQL in the [database/sql/init.sql](https://github.com/SENG3150/server/tree/master/database/sql/init.sql) file (which assumes you named your database ```seng3150```), or to begin with a clean database run the following command in the terminal:
 
 	php artisan doctrine:schema:create
 	
 The system is now ready to receive requests made against it.
 
-## Compiling The Application
+## Developing The Server
 As you make changes to the entities, you need to generate proxies for your entities, so that the system can load quickly for each request. To do this, run the following command in the terminal:
 
 	php artisan doctrine:generate:proxies
 
 This will not be necessary unless you modify the entities as their proxies are already generated and committed.
 
-If your changes to an entity modify their database structure, you can persist this to the database by running the following command in the terminal:
+If your changes to an entity modify its database structure, you can persist this to the database by running the following command in the terminal:
 
 	php artisan doctrine:schema:update
 	
 ## Logging In
+Make a POST request to ```/auth/authenticate``` with ```Content-Type``` set to ```application/json```. The JSON structure should look like the following:
+	
+	{
+		type: 'administrator',
+		username: 'administrator',
+		password: 'password'
+	}
+
+If the response is successful, you will receive a token which you can use to make subsequent requests to the server, while remaining authenticated as the given user. To send through the token value send it in the ```Authorization``` header as follows:
+
+	Authorization: Bearer {token}
+
 You can use the following credentials to login successfully.
 
 |                      | Type          | Username      | Password      |
@@ -149,3 +161,30 @@ You can use the following credentials to login successfully.
 | Domain Expert        | domainexpert  | domainexpert  | domainexpert  |
 | Technician           | technician    | technician    | technician    |
 | Temporary Technician | technician    | temp          | technician    |
+
+To retrieve the user details make a GET request to ```/auth/me``` and you will receive a request similar to the following:
+
+	{
+      "id": "administrator-administrator",
+      "type": "administrator",
+      "primary": {
+        "id": 2,
+        "username": "administrator",
+        "name": "Administrator Administrator",
+        "firstName": "Administrator",
+        "lastName": "Administrator",
+        "email": "administrator@example.com",
+        "emailHash": "768aa9757e70b9ac63928cd3f8893ce2"
+      },
+      "administrator": {
+        "id": 2,
+        "username": "administrator",
+        "name": "Administrator Administrator",
+        "firstName": "Administrator",
+        "lastName": "Administrator",
+        "email": "administrator@example.com",
+        "emailHash": "768aa9757e70b9ac63928cd3f8893ce2"
+      }
+    }
+
+Other routes are available by looking at the [routes file](https://github.com/SENG3150/server/blob/master/app/Http/routes.php) and [controllers](https://github.com/SENG3150/server/tree/master/app/API/V1/Controllers).

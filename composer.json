@@ -59,7 +59,7 @@
       "Illuminate\\Foundation\\ComposerScripts::postUpdate",
       "php artisan optimize"
     ],
-    "init": [
+    "setup": [
       "php -r \"copy('.env.example', '.env');\"",
       "php artisan key:generate",
       "php artisan jwt:secret",
