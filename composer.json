@@ -58,6 +58,13 @@
     "post-update-cmd": [
       "Illuminate\\Foundation\\ComposerScripts::postUpdate",
       "php artisan optimize"
+    ],
+    "init": [
+      "php -r \"copy('.env.example', '.env');\"",
+      "php artisan key:generate",
+      "php artisan jwt:secret",
+      "Illuminate\\Foundation\\ComposerScripts::postInstall",
+      "php artisan optimize"
     ]
   },
   "config": {
