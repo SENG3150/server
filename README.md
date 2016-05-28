@@ -190,8 +190,8 @@ To retrieve the user details make a GET request to ```/auth/me``` and you will r
 ## Routes
 Routes are available by looking at the [routes file](https://github.com/SENG3150/server/blob/master/app/Http/routes.php) and [controllers](https://github.com/SENG3150/server/tree/master/app/API/V1/Controllers).
 
-| Host               | Method   | URI                            | Action                                                           | Protected | Version(s) |
-|--------------------|----------|--------------------------------|------------------------------------------------------------------|-----------|------------|
+| Host               | Method    | URI                            | Action                                                           | Protected | Version(s) |
+|--------------------|-----------|--------------------------------|------------------------------------------------------------------|-----------|------------|
 | seng3150.api.local | POST      | auth/authenticate              | App\API\V1\Controllers\AuthenticateController@authenticate       | No        | v1         |
 | seng3150.api.local | GET, HEAD | auth/refresh                   | App\API\V1\Controllers\AuthenticateController@refresh            | No        | v1         |
 | seng3150.api.local | GET, HEAD | auth/me                        | App\API\V1\Controllers\UserController@me                         | Yes       | v1         |
