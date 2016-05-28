@@ -129,6 +129,47 @@ To begin with a populated database import the SQL in the [database/sql/init.sql]
 	
 The system is now ready to receive requests made against it.
 
+## Explanation / Comments
+Rather than comment each individual class (which I feel is largely unnecessary due to the naming conventions I have followed), an explanation is below for each type of class in the [API/V1](https://github.com/SENG3150/server/blob/master/app/API/V1) folder.
+
+### Controllers
+Controllers perform the main logic for each request. Most of the controllers follow a standard structure of having ```getList```, ```get```, ```create```, ```update``` and ```delete``` methods. Some notable controllers are:
+
+- AuthenticateController: This controller performs all of the logic for authentication.
+- InspectionController: This controller contains methods to help load in inspection data, and also to facilitate generation of the inspection report PDF.
+- PhotoController: This controller serves photos for inspections.
+
+### Entities
+Entities are the classes that map to the database, and contain all of the information that the Doctrine ORM needs to generate and read from the database. The entities have proxies generated for them to help make the system faster on each request.
+
+### Parsers
+Parsers are the classes that convert a JSON request into an entity. Each parser maps to an Entity class, and provide abstraction for the Controller classes. Some notable parsers are:
+
+- PhotoParser: This parser accepts and saves to file the photo data which is sent in base64 encoding.
+
+### Providers
+Providers help setup the different Laravel features that are used throughout the rest of the server. 
+
+- APIServiceProvider: This is the first class loaded by the API and adds the Repositories that are used later on in Controllers through direct injection.
+- DateTimeTypeProvider: This class overrides the default Doctrine datetime column type to ensure that all datetimes are converted to the system's timezone before and after database calls.
+
+### Repositories
+Repositories add extra methods to the standard Doctrine repository, which can be helpful throughout the rest of the server. Some notable repositories are:
+
+- AdministratorRepository: This repository contains a method to find an Administrator by their username.
+
+### Transformers
+Transformers are used to convert Entities to JSON when output by a Controller. Transformers make use of [http://fractal.thephpleague.com/transformers/](Fractal)'s ```include``` feature, which allows the requester to include subentities in a single request. These includes are defined in each Transformer class, and some transformers provide a set of default includes which the requester then does not need to specifically include. Some notable transformers are:
+
+- CommentTransformer: This transformer contains a lot of includes which shows how transformers are used to pull in subentities.
+
+### Others
+Some other files of note are as follows:
+
+- [app/Http/routes.php](https://github.com/SENG3150/server/blob/master/app/Http/routes.php): This file contains all of the routes that comprise the API.
+- [app/Providers/UserProvider.php](https://github.com/SENG3150/server/blob/master/app/Providers/UserProvider.php): This file contains the required methods to get the authenticated user from a token.
+- [app/helpers.php](https://github.com/SENG3150/server/blob/master/app/helpers.php): This file contains a few helper methods to make development easier.
+
 ## Developing The Server
 As you make changes to the entities, you need to generate proxies for your entities, so that the system can load quickly for each request. To do this, run the following command in the terminal:
 
