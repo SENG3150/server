@@ -69,7 +69,7 @@
 					@if($inspection->getTimeCreated() != NULL)
 						{{  $inspection->getTimeCreated()->format('H:i D, M jS Y') }}
 					@else
-						Not Assigned
+						Not Created
 					@endif
 				</dd>
 
@@ -78,7 +78,7 @@
 					@if($inspection->getTimeScheduled() != NULL)
 						{{  $inspection->getTimeScheduled()->format('H:i D, M jS Y') }}
 					@else
-						Not Assigned
+						Not Scheduled
 					@endif
 				</dd>
 
@@ -87,7 +87,7 @@
 					@if($inspection->getTimeStarted() != NULL)
 						{{  $inspection->getTimeStarted()->format('H:i D, M jS Y') }}
 					@else
-						Not Assigned
+						Not Started
 					@endif
 				</dd>
 
@@ -96,7 +96,7 @@
 					@if($inspection->getTimeCompleted() != NULL)
 						{{  $inspection->getTimeCompleted()->format('H:i D, M jS Y') }}
 					@else
-						Not Assigned
+						Not Completed
 					@endif
 				</dd>
 			</dl>
