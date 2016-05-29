@@ -40,7 +40,7 @@ class WearTestParser extends Parser
 				'lifeLower'     => 'required',
 				'lifeUpper'     => 'required',
 				'smu'           => 'required|integer',
-				'timeStarted'   => 'required|isodatetime',
+				'timeStart'     => 'required|isodatetime',
 				'uniqueDetails' => 'required|array',
 			)
 		);
@@ -55,7 +55,7 @@ class WearTestParser extends Parser
 		$this->resolve($entity, $input, 'lifeLower');
 		$this->resolve($entity, $input, 'lifeUpper');
 		$this->resolve($entity, $input, 'smu', 'integer');
-		$this->resolve($entity, $input, 'timeStarted', 'datetime');
+		$this->resolve($entity, $input, 'timeStart', 'datetime');
 		$this->resolve($entity, $input, 'uniqueDetails', 'array');
 		
 		$this->em->persist($entity);
