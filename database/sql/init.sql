@@ -621,7 +621,7 @@ CREATE TABLE IF NOT EXISTS `tests_wear` (
   `sub_assembly_id` int(11) DEFAULT NULL,
   `description` longtext COLLATE utf8_unicode_ci NOT NULL,
   `new` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `limit` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `test_limit` longtext COLLATE utf8_unicode_ci NOT NULL,
   `life_lower` longtext COLLATE utf8_unicode_ci NOT NULL,
   `life_upper` longtext COLLATE utf8_unicode_ci NOT NULL,
   `smu` int(11) NOT NULL,
