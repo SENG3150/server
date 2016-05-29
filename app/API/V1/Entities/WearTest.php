@@ -64,7 +64,7 @@ class WearTest extends \ArrayObject
 	protected $new;
 
 	/**
-	 * @ORM\Column(name="limit", type="text")
+	 * @ORM\Column(name="test_limit", type="text")
 	 * @var string $limit
 	 */
 	protected $limit;
