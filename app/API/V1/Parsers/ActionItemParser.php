@@ -69,9 +69,9 @@ class ActionItemParser extends Parser
 			$entity
 				->setTechnician($technician)
 				->setStatus($input['status'])
-				->setIssue($input['status'])
-				->setAction($input['status'])
-				->setTimeActioned(new \DateTime($input['status']));
+				->setIssue($input['issue'])
+				->setAction($input['action'])
+				->setTimeActioned(new \DateTime($input['timeActioned']));
 
 			$testType = NULL;
 			
