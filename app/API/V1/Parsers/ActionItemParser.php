@@ -59,82 +59,67 @@ class ActionItemParser extends Parser
 				'timeActioned' => 'required|isodatetime',
 			)
 		);
-		
-		$technician = $this->technicianRepository->find($input['technician']);
-		
-		if($technician != NULL)
+
+		$entity = new Entity();
+
+		$this->resolve($entity, $input, 'status');
+		$this->resolve($entity, $input, 'issue');
+		$this->resolve($entity, $input, 'action');
+		$this->resolve($entity, $input, 'timeActioned', 'datetime');
+		$this->resolve($entity, $input, 'technician', 'entity', TechnicianRepository::class);
+
+		$testType = NULL;
+
+		$test = $this->resolveOne(
+			$input,
+			array(
+				'machineGeneralTest' => MachineGeneralTestRepository::class,
+				'oilTest'            => OilTestRepository::class,
+				'wearTest'           => WearTestRepository::class,
+			),
+			$testType
+		);
+
+		switch($testType)
 		{
-			$entity = new Entity();
-			
-			$entity
-				->setTechnician($technician)
-				->setStatus($input['status'])
-				->setIssue($input['issue'])
-				->setAction($input['action'])
-				->setTimeActioned(new \DateTime($input['timeActioned']));
-
-			$testType = NULL;
-			
-			$test = $this->resolveOne(
-				$input,
-				array(
-					'machineGeneralTest' => MachineGeneralTestRepository::class,
-					'oilTest'            => OilTestRepository::class,
-					'wearTest'           => WearTestRepository::class,
-				),
-				$testType
-			);
-
-			switch($testType)
+			case 'machineGeneralTest':
 			{
-				case 'machineGeneralTest':
-				{
-					$entity
-						->setMachineGeneralTest($test);
+				$entity
+					->setMachineGeneralTest($test);
 
-					break;
-				}
-
-				case 'oilTest':
-				{
-					$entity
-						->setOilTest($test);
-
-					break;
-				}
-
-				case 'wearTest':
-				{
-					$entity
-						->setWearTest($test);
-
-					break;
-				}
-
-				default:
-				{
-					throw new \Dingo\Api\Exception\ValidationHttpException(
-						array(
-							'test' => 'No test was specified.'
-						)
-					);
-				}
+				break;
 			}
 
-			$this->em->persist($entity);
-			$this->em->flush();
+			case 'oilTest':
+			{
+				$entity
+					->setOilTest($test);
 
-			return $entity;
+				break;
+			}
+
+			case 'wearTest':
+			{
+				$entity
+					->setWearTest($test);
+
+				break;
+			}
+
+			default:
+			{
+				throw new \Dingo\Api\Exception\ValidationHttpException(
+					array(
+						'test' => 'No test was specified.'
+					)
+				);
+			}
 		}
-		
-		else
-		{
-			throw new \Dingo\Api\Exception\ValidationHttpException(
-				array(
-					'technician' => 'This technician does not exist.'
-				)
-			);
-		}
+
+		$this->em->persist($entity);
+		$this->em->flush();
+
+		return $entity;
 	}
 	
 	/**
