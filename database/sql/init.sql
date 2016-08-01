@@ -636,7 +636,7 @@ CREATE TABLE IF NOT EXISTS `tests_wear` (
 -- Dumping data for table `tests_wear`
 --
 
-INSERT INTO `tests_wear` (`id`, `inspection_id`, `sub_assembly_id`, `description`, `new`, `limit`, `life_lower`, `life_upper`, `smu`, `time_started`, `unique_details`) VALUES
+INSERT INTO `tests_wear` (`id`, `inspection_id`, `sub_assembly_id`, `description`, `new`, `test_limit`, `life_lower`, `life_upper`, `smu`, `time_started`, `unique_details`) VALUES
 (1, 1, 14, 'Desc', 'New', 'Limit', 'Lower', 'Upper', 0, '2016-05-14 17:00:00', 'a:2:{s:4:"Test";s:15:"serialize here!";s:1:"A";s:1:"B";}'),
 (2, 1, 15, 'Desc', 'New', 'Limit', 'Lower', 'Upper', 0, '2016-05-14 17:00:00', 'a:2:{s:4:"Test";s:15:"serialize here!";s:1:"A";s:1:"B";}'),
 (3, 1, 16, 'Desc', 'New', 'Limit', 'Lower', 'Upper', 0, '2016-05-14 17:00:00', 'a:2:{s:4:"Test";s:15:"serialize here!";s:1:"A";s:1:"B";}'),
