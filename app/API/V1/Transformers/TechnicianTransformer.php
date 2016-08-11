@@ -11,6 +11,9 @@ class TechnicianTransformer extends Transformer
 	 *
 	 * @return array
 	 */
+	protected $availableIncludes = array(
+		'inspections',
+			);
 	public function transform(Technician $technician)
 	{
 		return array(
@@ -26,4 +29,16 @@ class TechnicianTransformer extends Transformer
 			'emailHash'        => md5(strtolower(trim($technician->getEmail()))),
 		);
 	}
+	/**
+	 * @param Technician $technician
+	 *
+	 * @return array
+	 */
+	public function includeInspections(Technician $technician){
+		return $this->collection($technician->getInspections(), new InspectionTransformer());
+
+		//search inspections for Technician=this.id
+		//return array of those inspections
+	}
+
 }

@@ -61,9 +61,18 @@ class Technician extends \ArrayObject implements Primary
 	 */
 	protected $loginExpiresTime;
 
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Inspection", mappedBy="technician", cascade={"persist"}, fetch="EXTRA_LAZY")
+	 * @var Inspection[]|ArrayCollection $inspections
+	 */
+
+	protected $inspections;
 	/**
 	 * @return int
+	 *
 	 */
+
 	public function getId()
 	{
 		return $this->id;
@@ -255,5 +264,25 @@ class Technician extends \ArrayObject implements Primary
 	public function hasLoginExpired()
 	{
 		return $this->isTemporary() == TRUE && $this->getLoginExpiresTime() < (new \DateTime());
+	}
+
+	/**
+	 * @return ArrayCollection|Inspection[]
+	 */
+	public function getInspections()
+	{
+		return $this->inspections;
+	}
+
+	/**
+	 * @param ArrayCollection|Inspection[] $inspections
+	 *
+	 * @return $this
+	 */
+	public function setInspections($inspections)
+	{
+		$this->inspections = $inspections;
+
+		return $this;
 	}
 }

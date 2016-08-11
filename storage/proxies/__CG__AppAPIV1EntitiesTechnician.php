@@ -64,10 +64,10 @@ class Technician extends \App\API\V1\Entities\Technician implements \Doctrine\OR
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'username', 'firstName', 'lastName', 'email', 'password', 'temporary', 'loginExpiresTime'];
+            return ['__isInitialized__', 'id', 'username', 'firstName', 'lastName', 'email', 'password', 'temporary', 'loginExpiresTime', 'inspections'];
         }
 
-        return ['__isInitialized__', 'id', 'username', 'firstName', 'lastName', 'email', 'password', 'temporary', 'loginExpiresTime'];
+        return ['__isInitialized__', 'id', 'username', 'firstName', 'lastName', 'email', 'password', 'temporary', 'loginExpiresTime', 'inspections'];
     }
 
     /**
@@ -384,6 +384,28 @@ class Technician extends \App\API\V1\Entities\Technician implements \Doctrine\OR
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'hasLoginExpired', []);
 
         return parent::hasLoginExpired();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getInspections()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getInspections', []);
+
+        return parent::getInspections();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setInspections($inspections)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setInspections', [$inspections]);
+
+        return parent::setInspections($inspections);
     }
 
     /**
