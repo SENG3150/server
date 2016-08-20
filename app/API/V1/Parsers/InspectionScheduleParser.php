@@ -47,9 +47,6 @@ class InspectionScheduleParser extends Parser
 		$this->resolve($entity, $input, 'value', 'integer');
 		$this->resolve($entity, $input, 'period', 'string');
 
-		$entity
-			->setTimeCreated(new \DateTime());
-
 		$this->em->persist($entity);
 		$this->em->flush();
 
