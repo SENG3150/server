@@ -149,6 +149,17 @@ class APIServiceProvider extends ServiceProvider
 		);
 
 		$this->app->bind(
+			InspectionScheduleRepository::class,
+			function ($app)
+			{
+				return new InspectionScheduleRepository(
+					$app['em'],
+					$app['em']->getClassMetaData(InspectionSchedule::class)
+				);
+			}
+		);
+
+		$this->app->bind(
 			InspectionSubAssemblyRepository::class,
 			function ($app)
 			{
