@@ -64,10 +64,10 @@ class Machine extends \App\API\V1\Entities\Machine implements \Doctrine\ORM\Prox
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'name', 'model', 'inspections'];
+            return ['__isInitialized__', 'id', 'name', 'model', 'inspections', 'downtime'];
         }
 
-        return ['__isInitialized__', 'id', 'name', 'model', 'inspections'];
+        return ['__isInitialized__', 'id', 'name', 'model', 'inspections', 'downtime'];
     }
 
     /**
