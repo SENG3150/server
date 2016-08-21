@@ -25,6 +25,21 @@ class SubAssemblyTransformer extends Transformer
 		return array(
 			'id'   => $subAssembly->getId(),
 			'name' => $subAssembly->getName(),
+			'machineGeneral' => array(
+				'test'  => $subAssembly->hasMachineGeneral(),
+				'lower' => $subAssembly->getMachineGeneralLower(),
+				'upper' => $subAssembly->getMachineGeneralUpper(),
+			),
+			'oil'            => array(
+				'test'  => $subAssembly->hasOil(),
+				'lower' => $subAssembly->getOilLower(),
+				'upper' => $subAssembly->getOilUpper(),
+			),
+			'wear'           => array(
+				'test'  => $subAssembly->hasWear(),
+				'lower' => $subAssembly->getWearLower(),
+				'upper' => $subAssembly->getWearUpper(),
+			),
 		);
 	}
 
