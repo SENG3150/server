@@ -11,178 +11,177 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class SubAssembly extends \ArrayObject
 {
-	/**
-	 * @ORM\Id
-	 * @ORM\GeneratedValue
-	 * @ORM\Column(name="id", type="integer")
-	 * @var int $id
-	 */
-	protected $id;
-	
-	/**
-	 * @ORM\Column(name="name", type="text")
-	 * @var string $name
-	 */
-	protected $name;
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(name="id", type="integer")
+     * @var int $id
+     */
+    protected $id;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="MajorAssembly", inversedBy="subAssemblies", cascade={"persist"}, fetch="EXTRA_LAZY")
-	 * @var MajorAssembly $majorAssembly
-	 */
-	protected $majorAssembly;
+    /**
+     * @ORM\Column(name="name", type="text")
+     * @var string $name
+     */
+    protected $name;
 
-
-	/**
-	 * @ORM\OneToMany(targetEntity="InspectionSubAssembly", mappedBy="subAssembly", cascade={"persist"})
-	 * @var ArrayCollection|InspectionSubAssembly[] $inspections
-	 */
-	protected $inspections;
+    /**
+     * @ORM\ManyToOne(targetEntity="MajorAssembly", inversedBy="subAssemblies", cascade={"persist"}, fetch="EXTRA_LAZY")
+     * @var MajorAssembly $majorAssembly
+     */
+    protected $majorAssembly;
 
 
-	/**
-	 * @ORM\Column(name="machine_general", type="boolean")
-	 * @var bool $machineGeneral
-	 */
-	protected $machineGeneral;
+    /**
+     * @ORM\OneToMany(targetEntity="InspectionSubAssembly", mappedBy="subAssembly", cascade={"persist"})
+     * @var ArrayCollection|InspectionSubAssembly[] $inspections
+     */
+    protected $inspections;
 
-	/**
-	 * @ORM\Column(name="oil", type="boolean")
-	 * @var bool $oil
-	 */
-	protected $oil;
 
-	/**
-	 * @ORM\Column(name="wear", type="boolean")
-	 * @var bool $wear
-	 */
-	protected $wear;
+    /**
+     * @ORM\Column(name="machine_general", type="boolean")
+     * @var bool $machineGeneral
+     */
+    protected $machineGeneral;
 
-	/**
-	 * @return int
-	 */
-	public function getId()
-	{
-		return $this->id;
-	}
+    /**
+     * @ORM\Column(name="oil", type="boolean")
+     * @var bool $oil
+     */
+    protected $oil;
 
-	/**
-	 * @param int $id
-	 *
-	 * @return $this
-	 */
-	public function setId($id)
-	{
-		$this->id = $id;
+    /**
+     * @ORM\Column(name="wear", type="boolean")
+     * @var bool $wear
+     */
+    protected $wear;
 
-		return $this;
-	}
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getName()
-	{
-		return $this->name;
-	}
+    /**
+     * @param int $id
+     *
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
 
-	/**
-	 * @param string $name
-	 *
-	 * @return $this
-	 */
-	public function setName($name)
-	{
-		$this->name = $name;
+        return $this;
+    }
 
-		return $this;
-	}
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
-	/**
-	 * @return mixed
-	 */
-	public function getMajorAssembly()
-	{
-		return $this->majorAssembly;
-	}
+    /**
+     * @param string $name
+     *
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
 
-	/**
-	 * @param mixed $majorAssembly
-	 *
-	 * @return $this
-	 */
-	public function setMajorAssembly($majorAssembly)
-	{
-		$this->majorAssembly = $majorAssembly;
+        return $this;
+    }
 
-		return $this;
-	}
+    /**
+     * @return mixed
+     */
+    public function getMajorAssembly()
+    {
+        return $this->majorAssembly;
+    }
 
-	/**
-	 * @return InspectionSubAssembly[]|ArrayCollection
-	 */
-	public function getInspections()
-	{
-		return $this->inspections;
-	}
+    /**
+     * @param mixed $majorAssembly
+     *
+     * @return $this
+     */
+    public function setMajorAssembly($majorAssembly)
+    {
+        $this->majorAssembly = $majorAssembly;
 
-	/**
-	 * @param InspectionSubAssembly[]|ArrayCollection $inspections
-	 *
-	 * @return $this
-	 */
-	public function setInspections($inspections)
-	{
-		$this->inspections = $inspections;
+        return $this;
+    }
 
-		return $this;
-	}
+    /**
+     * @return InspectionSubAssembly[]|ArrayCollection
+     */
+    public function getInspections()
+    {
+        return $this->inspections;
+    }
 
-	/**
-	 * @return boolean
-	 */
-	public function hasMachineGeneral()
-	{
-		return $this->machineGeneral;
-	}
+    /**
+     * @param InspectionSubAssembly[]|ArrayCollection $inspections
+     *
+     * @return $this
+     */
+    public function setInspections($inspections)
+    {
+        $this->inspections = $inspections;
 
-	/**
-	 * @param boolean $machineGeneral
-	 */
-	public function setMachineGeneral($machineGeneral)
-	{
-		$this->machineGeneral = $machineGeneral;
-	}
+        return $this;
+    }
 
-	/**
-	 * @return boolean
-	 */
-	public function hasOil()
-	{
-		return $this->oil;
-	}
+    /**
+     * @return boolean
+     */
+    public function hasMachineGeneral()
+    {
+        return $this->machineGeneral;
+    }
 
-	/**
-	 * @param boolean $oil
-	 */
-	public function setOil($oil)
-	{
-		$this->oil = $oil;
-	}
+    /**
+     * @param boolean $machineGeneral
+     */
+    public function setMachineGeneral($machineGeneral)
+    {
+        $this->machineGeneral = $machineGeneral;
+    }
 
-	/**
-	 * @return boolean
-	 */
-	public function hasWear()
-	{
-		return $this->wear;
-	}
+    /**
+     * @return boolean
+     */
+    public function hasOil()
+    {
+        return $this->oil;
+    }
 
-	/**
-	 * @param boolean $wear
-	 */
-	public function setWear($wear)
-	{
-		$this->wear = $wear;
-	}
+    /**
+     * @param boolean $oil
+     */
+    public function setOil($oil)
+    {
+        $this->oil = $oil;
+    }
 
+    /**
+     * @return boolean
+     */
+    public function hasWear()
+    {
+        return $this->wear;
+    }
+
+    /**
+     * @param boolean $wear
+     */
+    public function setWear($wear)
+    {
+        $this->wear = $wear;
+    }
 }

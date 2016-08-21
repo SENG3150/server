@@ -3,13 +3,15 @@ namespace App\API\V1\Transformers;
 
 use App\API\V1\Entities\Downtime;
 
-class DowntimeTransformer extends Transformer{
+class DowntimeTransformer extends Transformer
+{
     /**
      * @var array
      */
     protected $defaultIncludes = array(
         'machine',
     );
+
     /**
      * @param Downtime $downtime
      *
@@ -18,12 +20,13 @@ class DowntimeTransformer extends Transformer{
     public function transform(Downtime $downtime)
     {
         return array(
-            'id'            => $downtime->getId(),
+            'id' => $downtime->getId(),
             'downTimeHours' => $downtime->getDownTimeHours(),
-            'reason'    => $downtime->getReason(),
+            'reason' => $downtime->getReason(),
         );
 
     }
+
     /**
      * @param Downtime $downtime
      *
