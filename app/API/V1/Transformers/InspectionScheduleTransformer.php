@@ -2,7 +2,7 @@
 
 namespace App\API\V1\Transformers;
 
-use App\API\V1\Entities\Inspection;
+use App\API\V1\Entities\InspectionSchedule;
 
 class InspectionScheduleTransformer extends Transformer
 {
@@ -11,6 +11,7 @@ class InspectionScheduleTransformer extends Transformer
 	 */
 	protected $availableIncludes = array(
 		'inspection',
+		'inspections',
 	);
 	
 	/**
@@ -22,8 +23,6 @@ class InspectionScheduleTransformer extends Transformer
 	{
 		return array(
 			'id'                    => $inspectionSchedule->getId(),
-			'inspection'            => $inspectionSchedule->getInspection(),
-			'nextInspectionTime'    => $inspectionSchedule->getNextInspectionTime(),
 			'value'                 => $inspectionSchedule->getValue(),
 			'period'                => $inspectionSchedule->getPeriod(),
 		);
@@ -37,5 +36,15 @@ class InspectionScheduleTransformer extends Transformer
 	public function includeInspection(InspectionSchedule $inspectionSchedule)
 	{
 		return $this->item($inspectionSchedule->getInspection(), new InspectionTransformer());
+	}
+
+	/**
+	 * @param InspectionSchedule $inspectionSchedule
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeInspections(InspectionSchedule $inspectionSchedule)
+	{
+		return $this->collection($inspectionSchedule->getInspections(), new InspectionTransformer());
 	}
 }

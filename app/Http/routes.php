@@ -50,6 +50,7 @@ $api->version(
 		generateRoutes($api, 'v1', 'inspections');
 		generateRoutes($api, 'v1', 'inspectionMajorAssemblies');
 		generateRoutes($api, 'v1', 'inspectionSubAssemblies');
+		generateRoutes($api, 'v1', 'inspectionSchedules');
 		generateRoutes($api, 'v1', 'machines');
 		generateRoutes($api, 'v1', 'machineGeneralTests');
 		generateRoutes($api, 'v1', 'majorAssemblies');

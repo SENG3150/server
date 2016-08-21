@@ -62,6 +62,12 @@ class Inspection extends \ArrayObject
 	protected $scheduler;
 
 	/**
+	 * @ORM\ManyToOne(targetEntity="InspectionSchedule", inversedBy="inspection", cascade={"persist"}, fetch="EXTRA_LAZY")
+	 * @var InspectionSchedule $schedule
+	 */
+	protected $schedule;
+
+	/**
 	 * @ORM\OneToMany(targetEntity="InspectionMajorAssembly", mappedBy="inspection", cascade={"persist"}, fetch="EXTRA_LAZY")
 	 * @var InspectionMajorAssembly[]|ArrayCollection $majorAssemblies
 	 */
@@ -236,6 +242,26 @@ class Inspection extends \ArrayObject
 	{
 		$this->scheduler = $scheduler;
 		
+		return $this;
+	}
+
+	/**
+	 * @return \App\API\V1\Entities\InspectionSchedule
+	 */
+	public function getSchedule()
+	{
+		return $this->schedule;
+	}
+
+	/**
+	 * @param \App\API\V1\Entities\InspectionSchedule $schedule
+	 *
+	 * @return $this
+	 */
+	public function setSchedule($schedule)
+	{
+		$this->schedule = $schedule;
+
 		return $this;
 	}
 

@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="inspectionSchedule")
+ * @ORM\Table(name="inspection_schedules")
  */
 class InspectionSchedule extends \ArrayObject
 {
@@ -20,16 +20,16 @@ class InspectionSchedule extends \ArrayObject
 	protected $id;
 
 	/**
-	* @ORM\OneToOne(targetEntity="Inspection", cascade={"persist"}, fetch="EXTRA_LAZY")
-	* @var Inspection $inspection
-	*/
+	 * @ORM\ManyToOne(targetEntity="Inspection", inversedBy="schedule", cascade={"persist"}, fetch="EXTRA_LAZY")
+	 * @var Inspection $inspection
+	 */
 	protected $inspection;
 
 	/**
-	 * @ORM\Column(name="next_inspection_time", type="datetime", nullable=true)
-	 * @var \DateTime $nextInspectionTime
+	 * @ORM\OneToMany(targetEntity="Inspection", mappedBy="schedule", cascade={"persist"}, fetch="EXTRA_LAZY")
+	 * @var ArrayCollection|Inspection[] $inspections
 	 */
-	protected $nextInspectionTime;
+	protected $inspections;
 
 	/**
 	 * @ORM\Column(name="value", type="integer")
@@ -84,22 +84,22 @@ class InspectionSchedule extends \ArrayObject
 	}
 
 	/**
-	 * @return \DateTime
+	 * @return \App\API\V1\Entities\Inspection[]|\Doctrine\Common\Collections\ArrayCollection
 	 */
-	public function getNextInspectionTime()
+	public function getInspections()
 	{
-		return $this->nextInspectionTime;
+		return $this->inspections;
 	}
-	
+
 	/**
-	 * @param \DateTime $nextInspectionTime
+	 * @param \App\API\V1\Entities\Inspection[]|\Doctrine\Common\Collections\ArrayCollection $inspections
 	 *
 	 * @return $this
 	 */
-	public function setNextInspectionTime($nextInspectionTime)
+	public function setInspections($inspections)
 	{
-		$this->nextInspectionTime = $nextInspectionTime;
-		
+		$this->inspections = $inspections;
+
 		return $this;
 	}
 

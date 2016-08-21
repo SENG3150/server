@@ -2,30 +2,12 @@
 
 namespace App\API\V1\Controllers;
 
-use App\API\V1\Entities\ActionItem;
-use App\API\V1\Entities\Inspection;
-use App\API\V1\Entities\InspectionMajorAssembly;
-use App\API\V1\Entities\InspectionSubAssembly;
-use App\API\V1\Entities\MachineGeneralTest;
-use App\API\V1\Entities\OilTest;
-use App\API\V1\Entities\WearTest;
-use App\API\V1\Parsers\ActionItemParser;
-use App\API\V1\Parsers\CommentParser;
-use App\API\V1\Parsers\InspectionParser as Parser;
-use App\API\V1\Parsers\InspectionMajorAssemblyParser;
-use App\API\V1\Parsers\InspectionSubAssemblyParser;
-use App\API\V1\Parsers\MachineGeneralTestParser;
-use App\API\V1\Parsers\OilTestParser;
-use App\API\V1\Parsers\PhotoParser;
-use App\API\V1\Parsers\WearTestParser;
-use App\API\V1\Repositories\InspectionMajorAssemblyRepository;
-use App\API\V1\Repositories\InspectionRepository as Repository;
-use App\API\V1\Repositories\InspectionSubAssemblyRepository;
-use App\API\V1\Transformers\InspectionTransformer as Transformer;
+use App\API\V1\Parsers\InspectionScheduleParser as Parser;
+use App\API\V1\Repositories\InspectionScheduleRepository as Repository;
+use App\API\V1\Transformers\InspectionScheduleTransformer as Transformer;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
-use Barryvdh\Snappy\PdfWrapper as PDF;
 
 class InspectionScheduleController extends APIController
 {
