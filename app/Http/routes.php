@@ -54,7 +54,6 @@ $api->version(
 		generateRoutes($api, 'v1', 'oilTests');
 		generateRoutes($api, 'v1', 'photos');
 		generateRoutes($api, 'v1', 'subAssemblies');
-		generateRoutes($api, 'v1', 'subAssemblyTests');
 		generateRoutes($api, 'v1', 'technicians');
 		generateRoutes($api, 'v1', 'wearTests');
 	}

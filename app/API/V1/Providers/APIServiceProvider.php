@@ -16,7 +16,6 @@ use App\API\V1\Entities\Model;
 use App\API\V1\Entities\OilTest;
 use App\API\V1\Entities\Photo;
 use App\API\V1\Entities\SubAssembly;
-use App\API\V1\Entities\SubAssemblyTest;
 use App\API\V1\Entities\Technician;
 use App\API\V1\Entities\WearTest;
 
@@ -34,7 +33,6 @@ use App\API\V1\Repositories\ModelRepository;
 use App\API\V1\Repositories\OilTestRepository;
 use App\API\V1\Repositories\PhotoRepository;
 use App\API\V1\Repositories\SubAssemblyRepository;
-use App\API\V1\Repositories\SubAssemblyTestRepository;
 use App\API\V1\Repositories\TechnicianRepository;
 use App\API\V1\Repositories\WearTestRepository;
 
@@ -243,17 +241,6 @@ class APIServiceProvider extends ServiceProvider
 				return new SubAssemblyRepository(
 					$app['em'],
 					$app['em']->getClassMetaData(SubAssembly::class)
-				);
-			}
-		);
-
-		$this->app->bind(
-			SubAssemblyTestRepository::class,
-			function ($app)
-			{
-				return new SubAssemblyTestRepository(
-					$app['em'],
-					$app['em']->getClassMetaData(SubAssemblyTest::class)
 				);
 			}
 		);
