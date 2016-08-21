@@ -6,6 +6,7 @@ use App\API\V1\Entities\ActionItem;
 use App\API\V1\Entities\Administrator;
 use App\API\V1\Entities\Comment;
 use App\API\V1\Entities\DomainExpert;
+use App\API\V1\Entities\Downtime;
 use App\API\V1\Entities\Inspection;
 use App\API\V1\Entities\InspectionMajorAssembly;
 use App\API\V1\Entities\InspectionSubAssembly;
@@ -23,6 +24,7 @@ use App\API\V1\Repositories\ActionItemRepository;
 use App\API\V1\Repositories\AdministratorRepository;
 use App\API\V1\Repositories\CommentRepository;
 use App\API\V1\Repositories\DomainExpertRepository;
+use App\API\V1\Repositories\DowntimeRepository;
 use App\API\V1\Repositories\InspectionRepository;
 use App\API\V1\Repositories\InspectionMajorAssemblyRepository;
 use App\API\V1\Repositories\InspectionSubAssemblyRepository;
@@ -120,6 +122,17 @@ class APIServiceProvider extends ServiceProvider
 				return new DomainExpertRepository(
 					$app['em'],
 					$app['em']->getClassMetaData(DomainExpert::class)
+				);
+			}
+		);
+
+		$this->app->bind(
+			DowntimeRepository::class,
+			function ($app)
+			{
+				return new DowntimeRepository(
+					$app['em'],
+					$app['em']->getClassMetaData(Downtime::class)
 				);
 			}
 		);

@@ -19,7 +19,7 @@ class Downtime extends \ArrayObject
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Machine", inversedBy="Machine", cascade={"persist"},
+     * @ORM\ManyToOne(targetEntity="Machine", inversedBy="downtime", cascade={"persist"},
      *                                                      fetch="EXTRA_LAZY")
      * @var Machine $machine
      */
@@ -32,7 +32,7 @@ class Downtime extends \ArrayObject
     protected $systemName;
 
     /**
-     * @ORM\Column(name="downTimeHours", type="decimal")
+     * @ORM\Column(name="downTimeHours", type="decimal", precision=10, scale=5)
      * @var double $downTimeHours
      */
     protected $downTimeHours;

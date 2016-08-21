@@ -8,26 +8,25 @@ use App\API\V1\Transformers\DowntimeTransformer as Transformer;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
+use App\API\V1\Repositories\MachineRepository;
 
-class  DowntimeController extends APIController{
+
+class  DowntimeController extends APIController
+{
     public function getList(Repository $repository)
     {
         $entities = $repository->findAll();
 
         return $this->response->collection(Collection::make($entities), new Transformer());
     }
-    
+
     public function get($id, Repository $repository)
     {
         $entity = $repository->find($id);
 
-        if($entity != NULL)
-        {
+        if ($entity != NULL) {
             return $this->response->item($entity, new Transformer());
-        }
-
-        else
-        {
+        } else {
             $this->response()->errorNotFound();
 
             return FALSE;
@@ -52,35 +51,46 @@ class  DowntimeController extends APIController{
     {
         $entity = $repository->find($id);
 
-        if($entity != NULL)
-        {
+        if ($entity != NULL) {
             $em->remove($entity);
             $em->flush();
 
             return $this->response()->accepted();
-        }
-
-        else
-        {
+        } else {
             $this->response()->errorNotFound();
 
             return FALSE;
         }
     }
-    public function machine($id, Repository $repository)
+
+    public function machine($id, Repository $repository, MachineRepository $machineRepository)
     {
-        $entity = $repository->find($id);
+        $machine = $machineRepository->find($id);
 
-        if($entity != NULL)
-        {
-            return $this->response->item($entity, new Transformer());
-        }
+        if ($machine != NULL) {
+            $items = $repository->findByMachine($machine);
 
-        else
-        {
+            return $this->response->collection(Collection::make($items), new Transformer());
+        } else {
             $this->response()->errorNotFound();
 
             return FALSE;
         }
+    }
+
+    public function createBulk(Request $request, Parser $parser)
+    {
+        $input = $request->input();
+
+        if (array_key_exists('data', $input) == TRUE) {
+            foreach ($input['data'] as $item) {
+                $item['machine'] = $input['machine'];
+
+                /** @var Downtime $downtimeEntity */
+                $downtimeEntity = $parser->handle($item);
+            }
+        }
+
+        return $this->response->created();
     }
 }

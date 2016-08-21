@@ -8,7 +8,7 @@ class DowntimeTransformer extends Transformer
     /**
      * @var array
      */
-    protected $defaultIncludes = array(
+    protected $availableIncludes = array(
         'machine',
     );
 
@@ -21,6 +21,7 @@ class DowntimeTransformer extends Transformer
     {
         return array(
             'id' => $downtime->getId(),
+            'systemName' => $downtime->getSystemName(),
             'downTimeHours' => $downtime->getDownTimeHours(),
             'reason' => $downtime->getReason(),
         );

@@ -39,11 +39,14 @@ $api->version(
 		$api->post('inspections/bulk', 'App\API\V1\Controllers\InspectionController@createBulk');
 		$api->post('inspections/{id}/bulk', 'App\API\V1\Controllers\InspectionController@updateBulk');
 		$api->get('photos/{id}/photo', 'App\API\V1\Controllers\PhotoController@photo');
+		$api->get('downtime/machine/{id}', 'App\API\V1\Controllers\DowntimeController@machine');
+		$api->post('downtime/bulk', 'App\API\V1\Controllers\DowntimeController@createBulk');
 
 		generateRoutes($api, 'v1', 'actionItems');
 		generateRoutes($api, 'v1', 'administrators');
 		generateRoutes($api, 'v1', 'comments');
 		generateRoutes($api, 'v1', 'domainExperts');
+		generateRoutes($api, 'v1', 'downtime');
 		generateRoutes($api, 'v1', 'inspections');
 		generateRoutes($api, 'v1', 'inspectionMajorAssemblies');
 		generateRoutes($api, 'v1', 'inspectionSubAssemblies');

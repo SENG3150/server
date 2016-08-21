@@ -26,7 +26,7 @@ class DowntimeParser extends Parser
 		
 		$entity = new Entity();
 		
-		$this->resolve($entity, $input, 'machine', 'entity', App\API\V1\Repositories\DowntimeRepository::class);
+		$this->resolve($entity, $input, 'machine', 'entity', App\API\V1\Repositories\MachineRepository::class);
 		$this->resolve($entity, $input, 'systemName');
 		$this->resolve($entity, $input, 'downTimeHours', 'double');
 		$this->resolve($entity, $input, 'reason');
@@ -53,7 +53,7 @@ class DowntimeParser extends Parser
 		{
 			$input = $this->resolveInput($input);
 			
-			$this->resolve($entity, $input, 'machine', 'entity', App\API\V1\Repositories\DowntimeRepository::class);
+			$this->resolve($entity, $input, 'machine', 'entity', App\API\V1\Repositories\MachineRepository::class);
 			$this->resolve($entity, $input, 'systemName');
 			$this->resolve($entity, $input, 'downTimeHours', 'double');
 			$this->resolve($entity, $input, 'reason');
