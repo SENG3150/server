@@ -23,8 +23,8 @@ class Downtime extends \ArrayObject{
     protected $machine;
 
     /**
-     * @ORM\Column(name="downTimeHours", type="double")
-     * @var int $downTimeHours
+     * @ORM\Column(name="downTimeHours", type="decimal")
+     * @var double $downTimeHours
      */
     protected $downTimeHours;
 
