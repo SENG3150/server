@@ -268,12 +268,12 @@ class SubAssembly extends \App\API\V1\Entities\SubAssembly implements \Doctrine\
     /**
      * {@inheritDoc}
      */
-    public function isMachineGeneral()
+    public function hasMachineGeneral()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isMachineGeneral', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'hasMachineGeneral', []);
 
-        return parent::isMachineGeneral();
+        return parent::hasMachineGeneral();
     }
 
     /**
@@ -290,12 +290,12 @@ class SubAssembly extends \App\API\V1\Entities\SubAssembly implements \Doctrine\
     /**
      * {@inheritDoc}
      */
-    public function isOil()
+    public function hasOil()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isOil', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'hasOil', []);
 
-        return parent::isOil();
+        return parent::hasOil();
     }
 
     /**
@@ -312,12 +312,12 @@ class SubAssembly extends \App\API\V1\Entities\SubAssembly implements \Doctrine\
     /**
      * {@inheritDoc}
      */
-    public function isWear()
+    public function hasWear()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isWear', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'hasWear', []);
 
-        return parent::isWear();
+        return parent::hasWear();
     }
 
     /**

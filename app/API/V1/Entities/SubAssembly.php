@@ -140,7 +140,7 @@ class SubAssembly extends \ArrayObject
 	/**
 	 * @return boolean
 	 */
-	public function isMachineGeneral()
+	public function hasMachineGeneral()
 	{
 		return $this->machineGeneral;
 	}
@@ -156,7 +156,7 @@ class SubAssembly extends \ArrayObject
 	/**
 	 * @return boolean
 	 */
-	public function isOil()
+	public function hasOil()
 	{
 		return $this->oil;
 	}
@@ -172,7 +172,7 @@ class SubAssembly extends \ArrayObject
 	/**
 	 * @return boolean
 	 */
-	public function isWear()
+	public function hasWear()
 	{
 		return $this->wear;
 	}

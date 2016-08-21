@@ -26,7 +26,7 @@ class SubAssemblyTransformer extends Transformer
             'name' => $subAssembly->getName(),
             'machineGeneral' => $subAssembly->hasMachineGeneral(),
             'oil' => $subAssembly->hasOil(),
-            'wear' => $subAssembly->hasWear()
+            'wear' => $subAssembly->hasWear(),
         );
     }
 

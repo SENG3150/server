@@ -35,14 +35,8 @@ class SubAssemblyParser extends Parser
 				'majorAssembly' => 'required',
 				'name'          => 'required',
 				'machineGeneral.test'  => 'required|bool',
-				'machineGeneral.lower' => 'required',
-				'machineGeneral.upper' => 'required',
 				'oilTest.test'         => 'required|bool',
-				'oilTest.lower'        => 'required',
-				'oilTest.upper'        => 'required',
 				'wearTest.test'        => 'required|bool',
-				'wearTest.lower'       => 'required',
-				'wearTest.upper'       => 'required',
 			)
 		);
 
@@ -55,19 +49,13 @@ class SubAssemblyParser extends Parser
 		$wearTest           = $input['wear'];
 
 		$entity
-			->setMachineGeneral($machineGeneralTest['test'])
-			->setMachineGeneralLower($machineGeneralTest['lower'])
-			->setMachineGeneralUpper($machineGeneralTest['upper']);
+			->setMachineGeneral($machineGeneralTest['test']);
 
 		$entity
-			->setOil($oilTest['test'])
-			->setOilLower($oilTest['lower'])
-			->setOilUpper($oilTest['upper']);
+			->setOil($oilTest['test']);
 
 		$entity
-			->setWear($wearTest['test'])
-			->setWearLower($wearTest['lower'])
-			->setWearUpper($wearTest['upper']);
+			->setWear($wearTest['test']);
 
 		$this->em->persist($entity);
 		$this->em->flush();
