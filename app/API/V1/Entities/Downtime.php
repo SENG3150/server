@@ -3,11 +3,13 @@
 namespace App\API\V1\Entities;
 
 use Doctrine\ORM\Mapping AS ORM;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="downtime_data")
  */
-class Downtime extends \ArrayObject{
+class Downtime extends \ArrayObject
+{
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -15,6 +17,7 @@ class Downtime extends \ArrayObject{
      * @var int $id
      */
     protected $id;
+
     /**
      * @ORM\ManyToOne(targetEntity="Machine", inversedBy="Machine", cascade={"persist"},
      *                                                      fetch="EXTRA_LAZY")
@@ -26,7 +29,6 @@ class Downtime extends \ArrayObject{
      * @ORM\Column(name="systemName", type="text")
      * @var string $systemName
      */
-
     protected $systemName;
 
     /**
@@ -36,7 +38,7 @@ class Downtime extends \ArrayObject{
     protected $downTimeHours;
 
     /**
-     * @ORM\Column(name="reason", type="text")
+     * @ORM\Column(name="reason", type="text", nullable=true)
      * @var string $reason
      */
     protected $reason;
@@ -73,7 +75,6 @@ class Downtime extends \ArrayObject{
         $this->machine = $machine;
     }
 
-    
     /**
      * @return string
      */
@@ -121,6 +122,6 @@ class Downtime extends \ArrayObject{
     {
         $this->reason = $reason;
     }
-    
+
 }
 

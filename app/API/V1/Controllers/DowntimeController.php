@@ -67,4 +67,20 @@ class  DowntimeController extends APIController{
             return FALSE;
         }
     }
+    public function machine($id, Repository $repository)
+    {
+        $entity = $repository->find($id);
+
+        if($entity != NULL)
+        {
+            return $this->response->item($entity, new Transformer());
+        }
+
+        else
+        {
+            $this->response()->errorNotFound();
+
+            return FALSE;
+        }
+    }
 }

@@ -64,10 +64,10 @@ class SubAssembly extends \App\API\V1\Entities\SubAssembly implements \Doctrine\
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'name', 'majorAssembly', 'tests', 'inspections', 'subAssembly', 'machineGeneral', 'machineGeneralLower', 'machineGeneralUpper', 'oil', 'oilLower', 'oilUpper', 'wear', 'wearLower', 'wearUpper'];
+            return ['__isInitialized__', 'id', 'name', 'majorAssembly', 'inspections', 'machineGeneral', 'oil', 'wear'];
         }
 
-        return ['__isInitialized__', 'id', 'name', 'majorAssembly', 'tests', 'inspections', 'subAssembly', 'machineGeneral', 'machineGeneralLower', 'machineGeneralUpper', 'oil', 'oilLower', 'oilUpper', 'wear', 'wearLower', 'wearUpper'];
+        return ['__isInitialized__', 'id', 'name', 'majorAssembly', 'inspections', 'machineGeneral', 'oil', 'wear'];
     }
 
     /**
@@ -246,28 +246,6 @@ class SubAssembly extends \App\API\V1\Entities\SubAssembly implements \Doctrine\
     /**
      * {@inheritDoc}
      */
-    public function getTests()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTests', []);
-
-        return parent::getTests();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setTests($tests)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTests', [$tests]);
-
-        return parent::setTests($tests);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getInspections()
     {
 
@@ -285,28 +263,6 @@ class SubAssembly extends \App\API\V1\Entities\SubAssembly implements \Doctrine\
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setInspections', [$inspections]);
 
         return parent::setInspections($inspections);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getSubAssembly()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSubAssembly', []);
-
-        return parent::getSubAssembly();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setSubAssembly($subAssembly)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSubAssembly', [$subAssembly]);
-
-        return parent::setSubAssembly($subAssembly);
     }
 
     /**
@@ -334,50 +290,6 @@ class SubAssembly extends \App\API\V1\Entities\SubAssembly implements \Doctrine\
     /**
      * {@inheritDoc}
      */
-    public function getMachineGeneralLower()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMachineGeneralLower', []);
-
-        return parent::getMachineGeneralLower();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setMachineGeneralLower($machineGeneralLower)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMachineGeneralLower', [$machineGeneralLower]);
-
-        return parent::setMachineGeneralLower($machineGeneralLower);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getMachineGeneralUpper()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMachineGeneralUpper', []);
-
-        return parent::getMachineGeneralUpper();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setMachineGeneralUpper($machineGeneralUpper)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMachineGeneralUpper', [$machineGeneralUpper]);
-
-        return parent::setMachineGeneralUpper($machineGeneralUpper);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function isOil()
     {
 
@@ -400,50 +312,6 @@ class SubAssembly extends \App\API\V1\Entities\SubAssembly implements \Doctrine\
     /**
      * {@inheritDoc}
      */
-    public function getOilLower()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOilLower', []);
-
-        return parent::getOilLower();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setOilLower($oilLower)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setOilLower', [$oilLower]);
-
-        return parent::setOilLower($oilLower);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getOilUpper()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOilUpper', []);
-
-        return parent::getOilUpper();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setOilUpper($oilUpper)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setOilUpper', [$oilUpper]);
-
-        return parent::setOilUpper($oilUpper);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function isWear()
     {
 
@@ -461,50 +329,6 @@ class SubAssembly extends \App\API\V1\Entities\SubAssembly implements \Doctrine\
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setWear', [$wear]);
 
         return parent::setWear($wear);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getWearLower()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getWearLower', []);
-
-        return parent::getWearLower();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setWearLower($wearLower)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setWearLower', [$wearLower]);
-
-        return parent::setWearLower($wearLower);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getWearUpper()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getWearUpper', []);
-
-        return parent::getWearUpper();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setWearUpper($wearUpper)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setWearUpper', [$wearUpper]);
-
-        return parent::setWearUpper($wearUpper);
     }
 
     /**

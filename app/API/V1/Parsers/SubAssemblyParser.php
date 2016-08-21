@@ -104,17 +104,6 @@ class SubAssemblyParser extends Parser
 						->setMachineGeneral(boolval($machineGeneralTest['test']));
 				}
 
-				if(array_key_exists('lower', $machineGeneralTest) == TRUE)
-				{
-					$entity
-						->setMachineGeneralLower($machineGeneralTest['lower']);
-				}
-
-				if(array_key_exists('upper', $machineGeneralTest) == TRUE)
-				{
-					$entity
-						->setMachineGeneralUpper($machineGeneralTest['upper']);
-				}
 			}
 
 			if(array_key_exists('oil', $input) == TRUE)
@@ -126,18 +115,6 @@ class SubAssemblyParser extends Parser
 					$entity
 						->setOil(boolval($oilTest['test']));
 				}
-
-				if(array_key_exists('lower', $oilTest) == TRUE)
-				{
-					$entity
-						->setOilLower($oilTest['lower']);
-				}
-
-				if(array_key_exists('upper', $oilTest) == TRUE)
-				{
-					$entity
-						->setOilUpper($oilTest['upper']);
-				}
 			}
 
 			if(array_key_exists('wear', $input) == TRUE)
@@ -148,18 +125,6 @@ class SubAssemblyParser extends Parser
 				{
 					$entity
 						->setWear(boolval($wearTest['test']));
-				}
-
-				if(array_key_exists('lower', $wearTest) == TRUE)
-				{
-					$entity
-						->setWearLower($wearTest['lower']);
-				}
-
-				if(array_key_exists('upper', $wearTest) == TRUE)
-				{
-					$entity
-						->setWearUpper($wearTest['upper']);
 				}
 			}
 			

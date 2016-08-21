@@ -31,22 +31,13 @@ class SubAssembly extends \ArrayObject
 	 */
 	protected $majorAssembly;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="SubAssemblyTest", mappedBy="subAssembly", cascade={"persist"})
-	 * @var ArrayCollection|SubAssemblyTest[] $tests
-	 */
-	protected $tests;
 
 	/**
 	 * @ORM\OneToMany(targetEntity="InspectionSubAssembly", mappedBy="subAssembly", cascade={"persist"})
 	 * @var ArrayCollection|InspectionSubAssembly[] $inspections
 	 */
 	protected $inspections;
-	/**
-	 * @ORM\ManyToOne(targetEntity="SubAssembly", inversedBy="tests", cascade={"persist"}, fetch="EXTRA_LAZY")
-	 * @var SubAssembly $subAssembly
-	 */
-	protected $subAssembly;
+
 
 	/**
 	 * @ORM\Column(name="machine_general", type="boolean")
@@ -55,34 +46,10 @@ class SubAssembly extends \ArrayObject
 	protected $machineGeneral;
 
 	/**
-	 * @ORM\Column(name="machine_general_lower", type="decimal", nullable=true, precision=10, scale=5)
-	 * @var double $machineGeneralLower
-	 */
-	protected $machineGeneralLower;
-
-	/**
-	 * @ORM\Column(name="machine_general_upper", type="decimal", nullable=true, precision=10, scale=5)
-	 * @var double $machineGeneralUpper
-	 */
-	protected $machineGeneralUpper;
-
-	/**
 	 * @ORM\Column(name="oil", type="boolean")
 	 * @var bool $oil
 	 */
 	protected $oil;
-
-	/**
-	 * @ORM\Column(name="oil_lower", type="decimal", nullable=true, precision=10, scale=5)
-	 * @var double $oilLower
-	 */
-	protected $oilLower;
-
-	/**
-	 * @ORM\Column(name="oil_upper", type="decimal", nullable=true, precision=10, scale=5)
-	 * @var double $oilUpper
-	 */
-	protected $oilUpper;
 
 	/**
 	 * @ORM\Column(name="wear", type="boolean")
@@ -90,17 +57,6 @@ class SubAssembly extends \ArrayObject
 	 */
 	protected $wear;
 
-	/**
-	 * @ORM\Column(name="wear_lower", type="decimal", nullable=true, precision=10, scale=5)
-	 * @var double $wearLower
-	 */
-	protected $wearLower;
-
-	/**
-	 * @ORM\Column(name="wear_upper", type="decimal", nullable=true, precision=10, scale=5)
-	 * @var double $wearUpper
-	 */
-	protected $wearUpper;
 	/**
 	 * @return int
 	 */
@@ -162,26 +118,6 @@ class SubAssembly extends \ArrayObject
 	}
 
 	/**
-	 * @return SubAssemblyTest[]|ArrayCollection
-	 */
-	public function getTests()
-	{
-		return $this->tests;
-	}
-
-	/**
-	 * @param SubAssemblyTest[]|ArrayCollection $tests
-	 *
-	 * @return $this
-	 */
-	public function setTests($tests)
-	{
-		$this->tests = $tests;
-
-		return $this;
-	}
-
-	/**
 	 * @return InspectionSubAssembly[]|ArrayCollection
 	 */
 	public function getInspections()
@@ -202,22 +138,6 @@ class SubAssembly extends \ArrayObject
 	}
 
 	/**
-	 * @return SubAssembly
-	 */
-	public function getSubAssembly()
-	{
-		return $this->subAssembly;
-	}
-
-	/**
-	 * @param SubAssembly $subAssembly
-	 */
-	public function setSubAssembly($subAssembly)
-	{
-		$this->subAssembly = $subAssembly;
-	}
-
-	/**
 	 * @return boolean
 	 */
 	public function isMachineGeneral()
@@ -231,38 +151,6 @@ class SubAssembly extends \ArrayObject
 	public function setMachineGeneral($machineGeneral)
 	{
 		$this->machineGeneral = $machineGeneral;
-	}
-
-	/**
-	 * @return float
-	 */
-	public function getMachineGeneralLower()
-	{
-		return $this->machineGeneralLower;
-	}
-
-	/**
-	 * @param float $machineGeneralLower
-	 */
-	public function setMachineGeneralLower($machineGeneralLower)
-	{
-		$this->machineGeneralLower = $machineGeneralLower;
-	}
-
-	/**
-	 * @return float
-	 */
-	public function getMachineGeneralUpper()
-	{
-		return $this->machineGeneralUpper;
-	}
-
-	/**
-	 * @param float $machineGeneralUpper
-	 */
-	public function setMachineGeneralUpper($machineGeneralUpper)
-	{
-		$this->machineGeneralUpper = $machineGeneralUpper;
 	}
 
 	/**
@@ -282,38 +170,6 @@ class SubAssembly extends \ArrayObject
 	}
 
 	/**
-	 * @return float
-	 */
-	public function getOilLower()
-	{
-		return $this->oilLower;
-	}
-
-	/**
-	 * @param float $oilLower
-	 */
-	public function setOilLower($oilLower)
-	{
-		$this->oilLower = $oilLower;
-	}
-
-	/**
-	 * @return float
-	 */
-	public function getOilUpper()
-	{
-		return $this->oilUpper;
-	}
-
-	/**
-	 * @param float $oilUpper
-	 */
-	public function setOilUpper($oilUpper)
-	{
-		$this->oilUpper = $oilUpper;
-	}
-
-	/**
 	 * @return boolean
 	 */
 	public function isWear()
@@ -329,36 +185,4 @@ class SubAssembly extends \ArrayObject
 		$this->wear = $wear;
 	}
 
-	/**
-	 * @return float
-	 */
-	public function getWearLower()
-	{
-		return $this->wearLower;
-	}
-
-	/**
-	 * @param float $wearLower
-	 */
-	public function setWearLower($wearLower)
-	{
-		$this->wearLower = $wearLower;
-	}
-
-	/**
-	 * @return float
-	 */
-	public function getWearUpper()
-	{
-		return $this->wearUpper;
-	}
-
-	/**
-	 * @param float $wearUpper
-	 */
-	public function setWearUpper($wearUpper)
-	{
-		$this->wearUpper = $wearUpper;
-	}
-	
 }
