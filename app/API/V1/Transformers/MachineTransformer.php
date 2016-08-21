@@ -12,6 +12,7 @@ class MachineTransformer extends Transformer
 	protected $availableIncludes = array(
 		'model',
 		'inspections',
+		'downtime',
 	);
 
 	/**
@@ -42,6 +43,16 @@ class MachineTransformer extends Transformer
 	public function includeModel(Machine $machine)
 	{
 		return $this->item($machine->getModel(), new ModelTransformer());
+	}
+
+	/**
+	 * @param Downtime $downtime
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeDowntime(Downtime $downtime)
+	{
+		return $this->item($downtime->getModel(), new DowntimeTransformer());
 	}
 
 	/**

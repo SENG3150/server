@@ -16,9 +16,17 @@ class Downtime extends \ArrayObject{
      */
     protected $id;
     /**
+     * @ORM\ManyToOne(targetEntity="Machine", inversedBy="Machine", cascade={"persist"},
+     *                                                      fetch="EXTRA_LAZY")
+     * @var Machine $machine
+     */
+    protected $machine;
+
+    /**
      * @ORM\Column(name="systemName", type="text")
      * @var string $systemName
      */
+
     protected $systemName;
 
     /**
@@ -49,6 +57,23 @@ class Downtime extends \ArrayObject{
         $this->id = $id;
     }
 
+    /**
+     * @return Machine
+     */
+    public function getMachine()
+    {
+        return $this->machine;
+    }
+
+    /**
+     * @param Machine $machine
+     */
+    public function setMachine($machine)
+    {
+        $this->machine = $machine;
+    }
+
+    
     /**
      * @return string
      */

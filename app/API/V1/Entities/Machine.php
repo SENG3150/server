@@ -38,6 +38,12 @@ class Machine extends \ArrayObject
 	protected $inspections;
 
 	/**
+	 * @ORM\OneToMany(targetEntity="Downtime", mappedBy="Downtime", cascade={"persist"})
+	 * @var Downtime[]|ArrayCollection $downtime
+	 */
+	protected $downtime;
+
+	/**
 	 * @return int
 	 */
 	public function getId()
@@ -116,4 +122,21 @@ class Machine extends \ArrayObject
 
 		return $this;
 	}
+
+	/**
+	 * @return Downtime[]|ArrayCollection
+	 */
+	public function getDowntime()
+	{
+		return $this->downtime;
+	}
+
+	/**
+	 * @param Downtime[]|ArrayCollection $downtime
+	 */
+	public function setDowntime($downtime)
+	{
+		$this->downtime = $downtime;
+	}
+	
 }
