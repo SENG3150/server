@@ -29,13 +29,6 @@ class InspectionParser extends Parser
 	{
 		$input = $this->resolveInput($input);
 
-		$this->validateArray(
-			$input,
-			array(
-				'machine' => 'required',
-			)
-		);
-
 		$entity = new Entity();
 
 		$this->resolve($entity, $input, 'machine', 'entity', App\API\V1\Repositories\MachineRepository::class);
