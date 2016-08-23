@@ -9,7 +9,7 @@ use App\Interfaces\Primary;
  * @ORM\Entity
  * @ORM\Table(name="administrators")
  */
-class Administrator extends \ArrayObject implements Primary
+class Administrator extends DeletableEntity implements Primary
 {
     /**
      * @ORM\Id

@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity
  * @ORM\Table(name="inspection_schedules")
  */
-class InspectionSchedule extends \ArrayObject
+class InspectionSchedule extends DeletableEntity
 {
 	/**
 	 * @ORM\Id
@@ -42,12 +42,6 @@ class InspectionSchedule extends \ArrayObject
 	 * @var \String $period
 	 */
 	protected $period;
-
-	/**
-	 * @ORM\Column(name="hidden", type="boolean")
-	 * @var bool $hidden
-	 */
-	protected $hidden;
 
 	/**
 	 * @return int
@@ -105,26 +99,6 @@ class InspectionSchedule extends \ArrayObject
 	public function setInspections($inspections)
 	{
 		$this->inspections = $inspections;
-
-		return $this;
-	}
-
-	/**
-	 * @return boolean
-	 */
-	public function isHidden()
-	{
-		return $this->hidden;
-	}
-
-	/**
-	 * @param boolean $hidden
-	 *
-	 * @return $this
-	 */
-	public function setHidden($hidden)
-	{
-		$this->hidden = $hidden;
 
 		return $this;
 	}

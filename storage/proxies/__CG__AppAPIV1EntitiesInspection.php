@@ -64,10 +64,10 @@ class Inspection extends \App\API\V1\Entities\Inspection implements \Doctrine\OR
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'timeCreated', 'timeScheduled', 'timeStarted', 'timeCompleted', 'machine', 'technician', 'scheduler', 'schedule', 'majorAssemblies', 'comments', 'photos'];
+            return ['__isInitialized__', 'id', 'timeCreated', 'timeScheduled', 'timeStarted', 'timeCompleted', 'machine', 'technician', 'scheduler', 'schedule', 'majorAssemblies', 'comments', 'photos', 'deleted'];
         }
 
-        return ['__isInitialized__', 'id', 'timeCreated', 'timeScheduled', 'timeStarted', 'timeCompleted', 'machine', 'technician', 'scheduler', 'schedule', 'majorAssemblies', 'comments', 'photos'];
+        return ['__isInitialized__', 'id', 'timeCreated', 'timeScheduled', 'timeStarted', 'timeCompleted', 'machine', 'technician', 'scheduler', 'schedule', 'majorAssemblies', 'comments', 'photos', 'deleted'];
     }
 
     /**
@@ -439,6 +439,28 @@ class Inspection extends \App\API\V1\Entities\Inspection implements \Doctrine\OR
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPhotos', [$photos]);
 
         return parent::setPhotos($photos);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function delete()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'delete', []);
+
+        return parent::delete();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isDeleted()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isDeleted', []);
+
+        return parent::isDeleted();
     }
 
     /**

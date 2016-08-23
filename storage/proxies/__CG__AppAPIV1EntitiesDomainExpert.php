@@ -64,10 +64,10 @@ class DomainExpert extends \App\API\V1\Entities\DomainExpert implements \Doctrin
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'username', 'firstName', 'lastName', 'email', 'password'];
+            return ['__isInitialized__', 'id', 'username', 'firstName', 'lastName', 'email', 'password', 'deleted'];
         }
 
-        return ['__isInitialized__', 'id', 'username', 'firstName', 'lastName', 'email', 'password'];
+        return ['__isInitialized__', 'id', 'username', 'firstName', 'lastName', 'email', 'password', 'deleted'];
     }
 
     /**
@@ -329,6 +329,28 @@ class DomainExpert extends \App\API\V1\Entities\DomainExpert implements \Doctrin
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'matchesPassword', [$password]);
 
         return parent::matchesPassword($password);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function delete()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'delete', []);
+
+        return parent::delete();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isDeleted()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isDeleted', []);
+
+        return parent::isDeleted();
     }
 
     /**

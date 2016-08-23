@@ -9,7 +9,7 @@ use App\Interfaces\Primary;
  * @ORM\Entity
  * @ORM\Table(name="domain_experts")
  */
-class DomainExpert extends \ArrayObject implements Primary
+class DomainExpert extends DeletableEntity implements Primary
 {
 	/**
 	 * @ORM\Id

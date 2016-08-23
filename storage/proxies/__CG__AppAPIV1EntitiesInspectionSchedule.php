@@ -64,10 +64,10 @@ class InspectionSchedule extends \App\API\V1\Entities\InspectionSchedule impleme
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'inspection', 'inspections', 'value', 'period'];
+            return ['__isInitialized__', 'id', 'inspection', 'inspections', 'value', 'period', 'deleted'];
         }
 
-        return ['__isInitialized__', 'id', 'inspection', 'inspections', 'value', 'period'];
+        return ['__isInitialized__', 'id', 'inspection', 'inspections', 'value', 'period', 'deleted'];
     }
 
     /**
@@ -285,6 +285,28 @@ class InspectionSchedule extends \App\API\V1\Entities\InspectionSchedule impleme
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPeriod', [$period]);
 
         return parent::setPeriod($period);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function delete()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'delete', []);
+
+        return parent::delete();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isDeleted()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isDeleted', []);
+
+        return parent::isDeleted();
     }
 
     /**

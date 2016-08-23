@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity
  * @ORM\Table(name="inspections")
  */
-class Inspection extends \ArrayObject
+class Inspection extends DeletableEntity
 {
 	/**
 	 * @ORM\Id
@@ -85,12 +85,6 @@ class Inspection extends \ArrayObject
 	 */
 	protected $photos;
 
-	/**
-	 * @ORM\Column(name="hidden", type="boolean")
-	 * @var bool $hidden
-	 */
-	protected $hidden;
-	
 	/**
 	 * @return int
 	 */
@@ -307,26 +301,6 @@ class Inspection extends \ArrayObject
 	public function setComments($comments)
 	{
 		$this->comments = $comments;
-
-		return $this;
-	}
-
-	/**
-	 * @return boolean
-	 */
-	public function isHidden()
-	{
-		return $this->hidden;
-	}
-
-	/**
-	 * @param boolean $hidden
-	 *
-	 * @return $this
-	 */
-	public function setHidden($hidden)
-	{
-		$this->hidden = $hidden;
 
 		return $this;
 	}

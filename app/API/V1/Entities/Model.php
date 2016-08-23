@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity
  * @ORM\Table(name="models")
  */
-class Model extends \ArrayObject
+class Model extends DeletableEntity
 {
 	/**
 	 * @ORM\Id

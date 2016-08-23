@@ -64,10 +64,10 @@ class Machine extends \App\API\V1\Entities\Machine implements \Doctrine\ORM\Prox
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'name', 'model', 'inspections', 'downtime'];
+            return ['__isInitialized__', 'id', 'name', 'model', 'inspections', 'downtime', 'deleted'];
         }
 
-        return ['__isInitialized__', 'id', 'name', 'model', 'inspections', 'downtime'];
+        return ['__isInitialized__', 'id', 'name', 'model', 'inspections', 'downtime', 'deleted'];
     }
 
     /**
@@ -285,6 +285,28 @@ class Machine extends \App\API\V1\Entities\Machine implements \Doctrine\ORM\Prox
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDowntime', [$downtime]);
 
         return parent::setDowntime($downtime);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function delete()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'delete', []);
+
+        return parent::delete();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isDeleted()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isDeleted', []);
+
+        return parent::isDeleted();
     }
 
     /**

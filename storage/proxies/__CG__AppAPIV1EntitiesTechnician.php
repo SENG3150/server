@@ -64,10 +64,10 @@ class Technician extends \App\API\V1\Entities\Technician implements \Doctrine\OR
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'username', 'firstName', 'lastName', 'email', 'password', 'temporary', 'loginExpiresTime', 'inspections'];
+            return ['__isInitialized__', 'id', 'username', 'firstName', 'lastName', 'email', 'password', 'temporary', 'loginExpiresTime', 'inspections', 'deleted'];
         }
 
-        return ['__isInitialized__', 'id', 'username', 'firstName', 'lastName', 'email', 'password', 'temporary', 'loginExpiresTime', 'inspections'];
+        return ['__isInitialized__', 'id', 'username', 'firstName', 'lastName', 'email', 'password', 'temporary', 'loginExpiresTime', 'inspections', 'deleted'];
     }
 
     /**
@@ -406,6 +406,28 @@ class Technician extends \App\API\V1\Entities\Technician implements \Doctrine\OR
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setInspections', [$inspections]);
 
         return parent::setInspections($inspections);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function delete()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'delete', []);
+
+        return parent::delete();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isDeleted()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isDeleted', []);
+
+        return parent::isDeleted();
     }
 
     /**

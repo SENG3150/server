@@ -64,10 +64,10 @@ class Model extends \App\API\V1\Entities\Model implements \Doctrine\ORM\Proxy\Pr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'name', 'majorAssemblies', 'machines'];
+            return ['__isInitialized__', 'id', 'name', 'majorAssemblies', 'machines', 'deleted'];
         }
 
-        return ['__isInitialized__', 'id', 'name', 'majorAssemblies', 'machines'];
+        return ['__isInitialized__', 'id', 'name', 'majorAssemblies', 'machines', 'deleted'];
     }
 
     /**
@@ -263,6 +263,28 @@ class Model extends \App\API\V1\Entities\Model implements \Doctrine\ORM\Proxy\Pr
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMachines', [$machines]);
 
         return parent::setMachines($machines);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function delete()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'delete', []);
+
+        return parent::delete();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isDeleted()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isDeleted', []);
+
+        return parent::isDeleted();
     }
 
     /**
