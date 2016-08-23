@@ -5,12 +5,11 @@ use Doctrine\ORM\Mapping AS ORM;
 
 abstract class DeletableEntity extends \ArrayObject implements DeletableInterface
 {
-
     /**
      * @ORM\Column(name="deleted", type="boolean")
      * @var bool $deleted
      */
-    protected $deleted;
+    protected $deleted = FALSE;
 
     public function delete()
     {

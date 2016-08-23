@@ -39,7 +39,8 @@ class InspectionParser extends Parser
 		$this->resolve($entity, $input, 'timeCompleted', 'datetime');
 
 		$entity
-			->setTimeCreated(new \DateTime());
+			->setTimeCreated(new \DateTime())
+			->de;
 
 		$this->em->persist($entity);
 		$this->em->flush();
