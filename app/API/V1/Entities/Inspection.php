@@ -84,6 +84,12 @@ class Inspection extends \ArrayObject
 	 * @var Photo[]|ArrayCollection $photos
 	 */
 	protected $photos;
+
+	/**
+	 * @ORM\Column(name="hidden", type="boolean")
+	 * @var bool $hidden
+	 */
+	protected $hidden;
 	
 	/**
 	 * @return int
@@ -301,6 +307,26 @@ class Inspection extends \ArrayObject
 	public function setComments($comments)
 	{
 		$this->comments = $comments;
+
+		return $this;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function isHidden()
+	{
+		return $this->hidden;
+	}
+
+	/**
+	 * @param boolean $hidden
+	 *
+	 * @return $this
+	 */
+	public function setHidden($hidden)
+	{
+		$this->hidden = $hidden;
 
 		return $this;
 	}

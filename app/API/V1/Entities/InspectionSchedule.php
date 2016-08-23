@@ -44,6 +44,12 @@ class InspectionSchedule extends \ArrayObject
 	protected $period;
 
 	/**
+	 * @ORM\Column(name="hidden", type="boolean")
+	 * @var bool $hidden
+	 */
+	protected $hidden;
+
+	/**
 	 * @return int
 	 */
 	public function getId()
@@ -99,6 +105,26 @@ class InspectionSchedule extends \ArrayObject
 	public function setInspections($inspections)
 	{
 		$this->inspections = $inspections;
+
+		return $this;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function isHidden()
+	{
+		return $this->hidden;
+	}
+
+	/**
+	 * @param boolean $hidden
+	 *
+	 * @return $this
+	 */
+	public function setHidden($hidden)
+	{
+		$this->hidden = $hidden;
 
 		return $this;
 	}
