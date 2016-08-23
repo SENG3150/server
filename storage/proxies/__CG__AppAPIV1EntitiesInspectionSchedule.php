@@ -64,10 +64,10 @@ class InspectionSchedule extends \App\API\V1\Entities\InspectionSchedule impleme
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'inspection', 'inspections', 'value', 'period'];
+            return ['__isInitialized__', 'id', 'inspection', 'inspections', 'value', 'period', 'hidden'];
         }
 
-        return ['__isInitialized__', 'id', 'inspection', 'inspections', 'value', 'period'];
+        return ['__isInitialized__', 'id', 'inspection', 'inspections', 'value', 'period', 'hidden'];
     }
 
     /**
@@ -241,6 +241,28 @@ class InspectionSchedule extends \App\API\V1\Entities\InspectionSchedule impleme
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setInspections', [$inspections]);
 
         return parent::setInspections($inspections);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isHidden()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isHidden', []);
+
+        return parent::isHidden();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setHidden($hidden)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setHidden', [$hidden]);
+
+        return parent::setHidden($hidden);
     }
 
     /**

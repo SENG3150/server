@@ -64,10 +64,10 @@ class Inspection extends \App\API\V1\Entities\Inspection implements \Doctrine\OR
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'timeCreated', 'timeScheduled', 'timeStarted', 'timeCompleted', 'machine', 'technician', 'scheduler', 'schedule', 'majorAssemblies', 'comments', 'photos'];
+            return ['__isInitialized__', 'id', 'timeCreated', 'timeScheduled', 'timeStarted', 'timeCompleted', 'machine', 'technician', 'scheduler', 'schedule', 'majorAssemblies', 'comments', 'photos', 'hidden'];
         }
 
-        return ['__isInitialized__', 'id', 'timeCreated', 'timeScheduled', 'timeStarted', 'timeCompleted', 'machine', 'technician', 'scheduler', 'schedule', 'majorAssemblies', 'comments', 'photos'];
+        return ['__isInitialized__', 'id', 'timeCreated', 'timeScheduled', 'timeStarted', 'timeCompleted', 'machine', 'technician', 'scheduler', 'schedule', 'majorAssemblies', 'comments', 'photos', 'hidden'];
     }
 
     /**
@@ -417,6 +417,28 @@ class Inspection extends \App\API\V1\Entities\Inspection implements \Doctrine\OR
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setComments', [$comments]);
 
         return parent::setComments($comments);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isHidden()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isHidden', []);
+
+        return parent::isHidden();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setHidden($hidden)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setHidden', [$hidden]);
+
+        return parent::setHidden($hidden);
     }
 
     /**
