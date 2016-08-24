@@ -1,9 +1,10 @@
 <?php
 namespace App\API\V1\Entities;
 
+use App\Entities\Entity;
 use Doctrine\ORM\Mapping AS ORM;
 
-abstract class DeletableEntity extends \ArrayObject implements DeletableInterface
+abstract class DeletableEntity extends Entity implements DeletableInterface
 {
     /**
      * @ORM\Column(name="deleted", type="boolean")

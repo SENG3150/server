@@ -2,6 +2,7 @@
 
 namespace App\API\V1\Entities;
 
+use App\Entities\Entity;
 use Doctrine\ORM\Mapping AS ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -9,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity
  * @ORM\Table(name="inspection_major_assemblies")
  */
-class InspectionMajorAssembly extends \ArrayObject
+class InspectionMajorAssembly extends Entity
 {
 	/**
 	 * @ORM\Id

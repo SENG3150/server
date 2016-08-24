@@ -2,6 +2,7 @@
 
 namespace App\API\V1\Entities;
 
+use App\Entities\Entity;
 use Doctrine\ORM\Mapping AS ORM;
 
 use App\Interfaces\Primary;
@@ -11,7 +12,7 @@ use App\Entities\User;
  * @ORM\Entity
  * @ORM\Table(name="photos")
  */
-class Photo extends \ArrayObject
+class Photo extends Entity
 {
 	/**
 	 * @ORM\Id

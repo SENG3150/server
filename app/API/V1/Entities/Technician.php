@@ -4,6 +4,7 @@ namespace App\API\V1\Entities;
 
 use Doctrine\ORM\Mapping AS ORM;
 use App\Interfaces\Primary;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity

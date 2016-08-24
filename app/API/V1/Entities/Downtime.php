@@ -2,13 +2,14 @@
 
 namespace App\API\V1\Entities;
 
+use App\Entities\Entity;
 use Doctrine\ORM\Mapping AS ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="downtime_data")
  */
-class Downtime extends \ArrayObject
+class Downtime extends Entity
 {
     /**
      * @ORM\Id
