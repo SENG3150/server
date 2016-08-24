@@ -131,46 +131,65 @@ class Parser
 
 				case 'entity':
 				{
-					if($value instanceof App\Entities\Entity == FALSE)
+					$value = $input[$key];
+					
+					if(is_object($value) == FALSE && is_array($value) == FALSE)
 					{
-						if(isset($value->id) == TRUE)
-						{
-							$value = App::make($repository)->find($value->id);
-							
-							if($value == NULL)
-							{
-								throw new \Dingo\Api\Exception\ValidationHttpException(
-									array(
-										$key => 'This ' . $key . ' does not exist.'
-									)
-								);
-							}
-						}
+						$value = App::make($repository)->find($input[$key]);
 						
-						else if(array_key_exists('id', $value) == TRUE)
-						{
-							$value = App::make($repository)->find($value['id']);
-							
-							if($value == NULL)
-							{
-								throw new \Dingo\Api\Exception\ValidationHttpException(
-									array(
-										$key => 'This ' . $key . ' does not exist.'
-									)
-								);
-							}
-						}
-						
-						else
+						if($value == NULL)
 						{
 							throw new \Dingo\Api\Exception\ValidationHttpException(
 								array(
-									$key => 'Must be an instance of Entity or have an "id" property.'
+									$key => 'This ' . $key . ' does not exist.'
 								)
 							);
 						}
 					}
-
+					
+					else
+					{
+						if($value instanceof App\Entities\Entity == FALSE)
+						{
+							if(isset($value->id) == TRUE)
+							{
+								$value = App::make($repository)->find($value->id);
+								
+								if($value == NULL)
+								{
+									throw new \Dingo\Api\Exception\ValidationHttpException(
+										array(
+											$key => 'This ' . $key . ' does not exist.'
+										)
+									);
+								}
+							}
+							
+							else if(array_key_exists('id', $value) == TRUE)
+							{
+								$value = App::make($repository)->find($value['id']);
+								
+								if($value == NULL)
+								{
+									throw new \Dingo\Api\Exception\ValidationHttpException(
+										array(
+											$key => 'This ' . $key . ' does not exist.'
+										)
+									);
+								}
+							}
+							
+							else
+							{
+								throw new \Dingo\Api\Exception\ValidationHttpException(
+									array(
+										$key => 'Must be an instance of Entity or have an "id" property.'
+									)
+								);
+							}
+						}
+					}
+					
 					break;
 				}
 
