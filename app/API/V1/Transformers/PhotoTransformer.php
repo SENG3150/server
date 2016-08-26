@@ -18,13 +18,15 @@ class PhotoTransformer extends Transformer
 		'technician',
 		'domainExpert',
 		'author',
+		'raw',
 	);
-
+	
 	/**
 	 * @var array
 	 */
 	protected $defaultIncludes = array(
 		'author',
+		'raw',
 	);
 	
 	/**
@@ -42,7 +44,7 @@ class PhotoTransformer extends Transformer
 			'url'        => $photo->getURLPath(),
 		);
 	}
-
+	
 	/**
 	 * @param Photo $photo
 	 *
@@ -52,7 +54,7 @@ class PhotoTransformer extends Transformer
 	{
 		return $this->item($photo->getInspection(), new InspectionTransformer());
 	}
-
+	
 	/**
 	 * @param Photo $photo
 	 *
@@ -62,7 +64,7 @@ class PhotoTransformer extends Transformer
 	{
 		return $this->item($photo->getMajorAssembly(), new InspectionMajorAssemblyTransformer());
 	}
-
+	
 	/**
 	 * @param Photo $photo
 	 *
@@ -72,7 +74,7 @@ class PhotoTransformer extends Transformer
 	{
 		return $this->item($photo->getSubAssembly(), new InspectionSubAssemblyTransformer());
 	}
-
+	
 	/**
 	 * @param Photo $photo
 	 *
@@ -82,7 +84,7 @@ class PhotoTransformer extends Transformer
 	{
 		return $this->item($photo->getTechnician(), new TechnicianTransformer());
 	}
-
+	
 	/**
 	 * @param Photo $photo
 	 *
@@ -92,7 +94,7 @@ class PhotoTransformer extends Transformer
 	{
 		return $this->item($photo->getDomainExpert(), new DomainExpertTransformer());
 	}
-
+	
 	/**
 	 * @param Photo $photo
 	 *
@@ -105,21 +107,39 @@ class PhotoTransformer extends Transformer
 			case (User::TYPE_TECHNICIAN):
 			{
 				return $this->includeTechnician($photo);
-
+				
 				break;
 			}
-
+			
 			case (User::TYPE_DOMAIN_EXPERT):
 			{
 				return $this->includeDomainExpert($photo);
-
+				
 				break;
 			}
-
+			
 			default:
 			{
 				return NULL;
 			}
 		}
+	}
+	
+	/**
+	 * @param Photo $photo
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeRaw(Photo $photo)
+	{
+		return $this->item(
+			$photo->getFilePath(),
+			function ($item)
+			{
+				return array(
+					'data' => base64_encode(file_get_contents($item)),
+				);
+			}
+		);
 	}
 }
