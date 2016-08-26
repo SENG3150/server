@@ -52,18 +52,6 @@ class MachineGeneralTest extends Entity
 	protected $photos;
 
 	/**
-	 * @ORM\Column(name="test_type", type="text")
-	 * @var string $testType
-	 */
-	protected $testType;
-
-	/**
-	 * @ORM\Column(name="doc_link", type="text")
-	 * @var string $docLink
-	 */
-	protected $docLink;
-
-	/**
 	 * @return int
 	 */
 	public function getId()
@@ -179,46 +167,6 @@ class MachineGeneralTest extends Entity
 	public function setPhotos($photos)
 	{
 		$this->photos = $photos;
-
-		return $this;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getTestType()
-	{
-		return $this->testType;
-	}
-
-	/**
-	 * @param string $testType
-	 *
-	 * @return $this
-	 */
-	public function setTestType($testType)
-	{
-		$this->testType = $testType;
-
-		return $this;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getDocLink()
-	{
-		return $this->docLink;
-	}
-
-	/**
-	 * @param string $docLink
-	 *
-	 * @return $this
-	 */
-	public function setDocLink($docLink)
-	{
-		$this->docLink = $docLink;
 
 		return $this;
 	}
