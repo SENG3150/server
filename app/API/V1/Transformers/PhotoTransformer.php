@@ -18,7 +18,6 @@ class PhotoTransformer extends Transformer
 		'technician',
 		'domainExpert',
 		'author',
-		'raw',
 	);
 	
 	/**
@@ -26,7 +25,6 @@ class PhotoTransformer extends Transformer
 	 */
 	protected $defaultIncludes = array(
 		'author',
-		'raw',
 	);
 	
 	/**
