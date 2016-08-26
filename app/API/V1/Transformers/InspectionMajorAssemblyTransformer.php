@@ -3,6 +3,7 @@
 namespace App\API\V1\Transformers;
 
 use App\API\V1\Entities\InspectionMajorAssembly;
+use App\Transformers\Transformer;
 
 class InspectionMajorAssemblyTransformer extends Transformer
 {

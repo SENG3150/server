@@ -2,11 +2,9 @@
 
 namespace App\Transformers;
 
-use League\Fractal\TransformerAbstract;
-
 use App\Entities\User;
 
-class UserTransformer extends TransformerAbstract
+class UserTransformer extends Transformer
 {
 	/**
 	 * @var array

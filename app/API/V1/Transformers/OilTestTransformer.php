@@ -3,6 +3,7 @@
 namespace App\API\V1\Transformers;
 
 use App\API\V1\Entities\OilTest;
+use App\Transformers\Transformer;
 
 class OilTestTransformer extends Transformer
 {

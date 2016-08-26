@@ -1,11 +1,8 @@
 <?php
 
-namespace App\API\V1\Transformers;
+namespace App\Transformers;
 
-use App\Entities\User;
 use League\Fractal\TransformerAbstract;
-
-use App\API\V1\Entities\Photo;
 
 class Transformer extends TransformerAbstract
 {

@@ -4,6 +4,7 @@ namespace App\API\V1\Parsers;
 
 use App\API\V1\Entities\MachineGeneralTest as Entity;
 use App\API\V1\Repositories\MachineGeneralTestRepository as Repository;
+use App\Parsers\Parser;
 use Illuminate\Http\Request;
 use App;
 

@@ -3,6 +3,7 @@
 namespace App\API\V1\Transformers;
 
 use App\API\V1\Entities\Administrator;
+use App\Transformers\Transformer;
 
 class AdministratorTransformer extends Transformer
 {

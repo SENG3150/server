@@ -4,6 +4,7 @@ namespace App\API\V1\Parsers;
 
 use App\API\V1\Entities\SubAssembly as Entity;
 use App\API\V1\Repositories\SubAssemblyRepository as Repository;
+use App\Parsers\Parser;
 use Illuminate\Http\Request;
 use App;
 

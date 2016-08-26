@@ -2,8 +2,8 @@
 
 namespace App\API\V1\Repositories;
 
-use Doctrine\ORM\EntityRepository;
+use App\Repositories\Repository;
 
-class InspectionSubAssemblyRepository extends EntityRepository
+class InspectionSubAssemblyRepository extends Repository
 {
 }

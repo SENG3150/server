@@ -3,6 +3,7 @@
 namespace App\API\V1\Transformers;
 
 use App\API\V1\Entities\Machine;
+use App\Transformers\Transformer;
 
 class MachineTransformer extends Transformer
 {
@@ -46,13 +47,13 @@ class MachineTransformer extends Transformer
 	}
 
 	/**
-	 * @param Downtime $downtime
+	 * @param Machine $machine
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeDowntime(Downtime $downtime)
+	public function includeDowntime(Machine $machine)
 	{
-		return $this->item($downtime->getModel(), new DowntimeTransformer());
+		return $this->item($machine->getDowntime(), new DowntimeTransformer());
 	}
 
 	/**

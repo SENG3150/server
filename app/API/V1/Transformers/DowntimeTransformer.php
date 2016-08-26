@@ -2,6 +2,7 @@
 namespace App\API\V1\Transformers;
 
 use App\API\V1\Entities\Downtime;
+use App\Transformers\Transformer;
 
 class DowntimeTransformer extends Transformer
 {

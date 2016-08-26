@@ -1,6 +1,6 @@
 <?php
 
-namespace App\API\V1\Parsers;
+namespace App\Parsers;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Http\Request;

@@ -4,10 +4,10 @@ namespace App\API\V1\Repositories;
 
 use App\API\V1\Entities\InspectionSchedule;
 use Doctrine\DBAL\Types\IntegerType;
-use Doctrine\ORM\EntityRepository;
+use App\Repositories\Repository;
 use Illuminate\Console\Scheduling\Schedule;
 
-class InspectionRepository extends EntityRepository
+class InspectionRepository extends Repository
 {
 	public function findBySchedule(InspectionSchedule $schedule)
 	{

@@ -5,6 +5,7 @@ namespace App\API\V1\Transformers;
 use App\Entities\User;
 
 use App\API\V1\Entities\Comment;
+use App\Transformers\Transformer;
 
 class CommentTransformer extends Transformer
 {

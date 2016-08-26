@@ -3,6 +3,7 @@ namespace App\API\V1\Parsers;
 
 use App\API\V1\Entities\Downtime as Entity;
 use App\API\V1\Repositories\DowntimeRepository as Repository;
+use App\Parsers\Parser;
 use Illuminate\Http\Request;
 use App;
 
