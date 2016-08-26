@@ -9,20 +9,10 @@ use Illuminate\Console\Scheduling\Schedule;
 
 class InspectionRepository extends EntityRepository
 {
-	public function findByVisible()
-	{
-		return $this->findBy(
-			array(
-				'hidden' => FALSE,
-			)
-		);
-	}
-
 	public function findBySchedule(InspectionSchedule $schedule)
 	{
 		return $this->findBy(
 			array(
-				'hidden' => FALSE,
 				'schedule' => $schedule,
 			)
 		);

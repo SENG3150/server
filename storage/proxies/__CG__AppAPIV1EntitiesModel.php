@@ -64,10 +64,10 @@ class Model extends \App\API\V1\Entities\Model implements \Doctrine\ORM\Proxy\Pr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'name', 'majorAssemblies', 'machines', 'deleted'];
+            return ['__isInitialized__', 'id', 'name', 'majorAssemblies', 'machines', 'timeDeleted', 'deleted'];
         }
 
-        return ['__isInitialized__', 'id', 'name', 'majorAssemblies', 'machines', 'deleted'];
+        return ['__isInitialized__', 'id', 'name', 'majorAssemblies', 'machines', 'timeDeleted', 'deleted'];
     }
 
     /**
@@ -263,28 +263,6 @@ class Model extends \App\API\V1\Entities\Model implements \Doctrine\ORM\Proxy\Pr
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMachines', [$machines]);
 
         return parent::setMachines($machines);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function delete()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'delete', []);
-
-        return parent::delete();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function isDeleted()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isDeleted', []);
-
-        return parent::isDeleted();
     }
 
     /**
@@ -516,6 +494,61 @@ class Model extends \App\API\V1\Entities\Model implements \Doctrine\ORM\Proxy\Pr
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIteratorClass', []);
 
         return parent::getIteratorClass();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTimeDeleted()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTimeDeleted', []);
+
+        return parent::getTimeDeleted();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTimeDeleted($timeDeleted)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTimeDeleted', [$timeDeleted]);
+
+        return parent::setTimeDeleted($timeDeleted);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isDeleted()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isDeleted', []);
+
+        return parent::isDeleted();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDeleted($deleted)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDeleted', [$deleted]);
+
+        return parent::setDeleted($deleted);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function delete()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'delete', []);
+
+        return parent::delete();
     }
 
 }

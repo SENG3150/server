@@ -36,7 +36,7 @@ return [
 			'proxies'    => [
 				'namespace'     => false,
 				'path'          => storage_path('proxies'),
-				'auto_generate' => env('DOCTRINE_PROXY_AUTOGENERATE', false)
+				'auto_generate' => env('DOCTRINE_PROXY_AUTOGENERATE', false),
 			],
 			/*
 			|--------------------------------------------------------------------------
@@ -51,7 +51,9 @@ return [
 				'listeners'   => [],
 				'subscribers' => []
 			],
-			'filters'    => [],
+			'filters'    => [
+				'deletable' => \App\Entities\Filters\DeletableFilter::class,
+			],
 			/*
 			|--------------------------------------------------------------------------
 			| Doctrine mapping types
