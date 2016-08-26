@@ -53,46 +53,10 @@ class WearTest extends Entity
 	protected $photos;
 
 	/**
-	 * @ORM\Column(name="description", type="text")
-	 * @var string $description
-	 */
-	protected $description;
-
-	/**
-	 * @ORM\Column(name="new", type="text")
-	 * @var string $new
-	 */
-	protected $new;
-
-	/**
-	 * @ORM\Column(name="test_limit", type="text")
-	 * @var string $limit
-	 */
-	protected $limit;
-
-	/**
-	 * @ORM\Column(name="life_lower", type="text")
-	 * @var string $lifeLower
-	 */
-	protected $lifeLower;
-
-	/**
-	 * @ORM\Column(name="life_upper", type="text")
-	 * @var string $lifeUpper
-	 */
-	protected $lifeUpper;
-
-	/**
 	 * @ORM\Column(name="smu", type="integer")
 	 * @var int $smu
 	 */
 	protected $smu;
-
-	/**
-	 * @ORM\Column(name="time_started", type="datetime")
-	 * @var \DateTime $timeStart
-	 */
-	protected $timeStart;
 
 	/**
 	 * @ORM\Column(name="unique_details", type="array")
@@ -221,106 +185,6 @@ class WearTest extends Entity
 	}
 
 	/**
-	 * @return string
-	 */
-	public function getDescription()
-	{
-		return $this->description;
-	}
-
-	/**
-	 * @param string $description
-	 *
-	 * @return $this
-	 */
-	public function setDescription($description)
-	{
-		$this->description = $description;
-
-		return $this;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getNew()
-	{
-		return $this->new;
-	}
-
-	/**
-	 * @param string $new
-	 *
-	 * @return $this
-	 */
-	public function setNew($new)
-	{
-		$this->new = $new;
-
-		return $this;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getLimit()
-	{
-		return $this->limit;
-	}
-
-	/**
-	 * @param string $limit
-	 *
-	 * @return $this
-	 */
-	public function setLimit($limit)
-	{
-		$this->limit = $limit;
-
-		return $this;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getLifeLower()
-	{
-		return $this->lifeLower;
-	}
-
-	/**
-	 * @param string $lifeLower
-	 *
-	 * @return $this
-	 */
-	public function setLifeLower($lifeLower)
-	{
-		$this->lifeLower = $lifeLower;
-
-		return $this;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getLifeUpper()
-	{
-		return $this->lifeUpper;
-	}
-
-	/**
-	 * @param string $lifeUpper
-	 *
-	 * @return $this
-	 */
-	public function setLifeUpper($lifeUpper)
-	{
-		$this->lifeUpper = $lifeUpper;
-
-		return $this;
-	}
-
-	/**
 	 * @return int
 	 */
 	public function getSmu()
@@ -336,26 +200,6 @@ class WearTest extends Entity
 	public function setSmu($smu)
 	{
 		$this->smu = $smu;
-
-		return $this;
-	}
-
-	/**
-	 * @return \DateTime
-	 */
-	public function getTimeStart()
-	{
-		return $this->timeStart;
-	}
-
-	/**
-	 * @param \DateTime $timeStart
-	 *
-	 * @return $this
-	 */
-	public function setTimeStart($timeStart)
-	{
-		$this->timeStart = $timeStart;
 
 		return $this;
 	}

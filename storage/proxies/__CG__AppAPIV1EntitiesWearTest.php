@@ -64,10 +64,10 @@ class WearTest extends \App\API\V1\Entities\WearTest implements \Doctrine\ORM\Pr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'photos', 'description', 'new', 'limit', 'lifeLower', 'lifeUpper', 'smu', 'timeStart', 'uniqueDetails'];
+            return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'photos', 'smu', 'uniqueDetails'];
         }
 
-        return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'photos', 'description', 'new', 'limit', 'lifeLower', 'lifeUpper', 'smu', 'timeStart', 'uniqueDetails'];
+        return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'photos', 'smu', 'uniqueDetails'];
     }
 
     /**
@@ -312,116 +312,6 @@ class WearTest extends \App\API\V1\Entities\WearTest implements \Doctrine\ORM\Pr
     /**
      * {@inheritDoc}
      */
-    public function getDescription()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDescription', []);
-
-        return parent::getDescription();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setDescription($description)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDescription', [$description]);
-
-        return parent::setDescription($description);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getNew()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNew', []);
-
-        return parent::getNew();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setNew($new)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNew', [$new]);
-
-        return parent::setNew($new);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getLimit()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLimit', []);
-
-        return parent::getLimit();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setLimit($limit)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLimit', [$limit]);
-
-        return parent::setLimit($limit);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getLifeLower()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLifeLower', []);
-
-        return parent::getLifeLower();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setLifeLower($lifeLower)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLifeLower', [$lifeLower]);
-
-        return parent::setLifeLower($lifeLower);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getLifeUpper()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLifeUpper', []);
-
-        return parent::getLifeUpper();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setLifeUpper($lifeUpper)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLifeUpper', [$lifeUpper]);
-
-        return parent::setLifeUpper($lifeUpper);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getSmu()
     {
 
@@ -439,28 +329,6 @@ class WearTest extends \App\API\V1\Entities\WearTest implements \Doctrine\ORM\Pr
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSmu', [$smu]);
 
         return parent::setSmu($smu);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getTimeStart()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTimeStart', []);
-
-        return parent::getTimeStart();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setTimeStart($timeStart)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTimeStart', [$timeStart]);
-
-        return parent::setTimeStart($timeStart);
     }
 
     /**
