@@ -2,7 +2,6 @@
 
 namespace App\API\V1\Controllers;
 
-use App\API\V1\Entities\ActionItem;
 use App\API\V1\Entities\Inspection;
 use App\API\V1\Entities\InspectionMajorAssembly;
 use App\API\V1\Entities\InspectionSubAssembly;
@@ -22,6 +21,7 @@ use App\API\V1\Repositories\InspectionMajorAssemblyRepository;
 use App\API\V1\Repositories\InspectionRepository as Repository;
 use App\API\V1\Repositories\InspectionSubAssemblyRepository;
 use App\API\V1\Transformers\InspectionTransformer as Transformer;
+use App\Entities\Traits\Deletable;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
@@ -66,23 +66,35 @@ class InspectionController extends APIController
 
 		return $this->response()->accepted();
 	}
-
+	
 	public function delete($id, Repository $repository, EntityManagerInterface $em)
 	{
 		$entity = $repository->find($id);
-
+		
 		if($entity != NULL)
 		{
-			$em->remove($entity);
-			$em->flush();
-
-			return $this->response()->accepted();
+			if(hasTrait($entity, Deletable::class) == TRUE)
+			{
+				$entity->delete();
+				
+				$em->persist($entity);
+				$em->flush();
+				
+				return $this->response()->accepted();
+			}
+			
+			else
+			{
+				$this->response()->errorMethodNotAllowed();
+				
+				return FALSE;
+			}
 		}
-
+		
 		else
 		{
 			$this->response()->errorNotFound();
-
+			
 			return FALSE;
 		}
 	}

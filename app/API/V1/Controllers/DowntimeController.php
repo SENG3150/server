@@ -5,6 +5,7 @@ namespace App\API\V1\Controllers;
 use App\API\V1\Parsers\DowntimeParser as Parser;
 use App\API\V1\Repositories\DowntimeRepository as Repository;
 use App\API\V1\Transformers\DowntimeTransformer as Transformer;
+use App\Entities\Traits\Deletable;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
@@ -46,22 +47,38 @@ class  DowntimeController extends APIController
 
         return $this->response()->accepted();
     }
-
-    public function delete($id, Repository $repository, EntityManagerInterface $em)
-    {
-        $entity = $repository->find($id);
-
-        if ($entity != NULL) {
-            $em->remove($entity);
-            $em->flush();
-
-            return $this->response()->accepted();
-        } else {
-            $this->response()->errorNotFound();
-
-            return FALSE;
-        }
-    }
+	
+	public function delete($id, Repository $repository, EntityManagerInterface $em)
+	{
+		$entity = $repository->find($id);
+		
+		if($entity != NULL)
+		{
+			if(hasTrait($entity, Deletable::class) == TRUE)
+			{
+				$entity->delete();
+				
+				$em->persist($entity);
+				$em->flush();
+				
+				return $this->response()->accepted();
+			}
+			
+			else
+			{
+				$this->response()->errorMethodNotAllowed();
+				
+				return FALSE;
+			}
+		}
+		
+		else
+		{
+			$this->response()->errorNotFound();
+			
+			return FALSE;
+		}
+	}
 
     public function machine($id, Repository $repository, MachineRepository $machineRepository)
     {
