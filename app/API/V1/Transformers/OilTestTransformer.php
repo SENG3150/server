@@ -2,7 +2,7 @@
 
 namespace App\API\V1\Transformers;
 
-use App\API\V1\Entities\OilTest;
+use App\API\V1\Entities\OilTest as Entity;
 use App\Transformers\Transformer;
 
 class OilTestTransformer extends Transformer
@@ -17,7 +17,7 @@ class OilTestTransformer extends Transformer
 		'photos',
 		'actionItem',
 	);
-
+	
 	/**
 	 * @var array
 	 */
@@ -28,74 +28,122 @@ class OilTestTransformer extends Transformer
 	);
 	
 	/**
-	 * @param OilTest $oilTest
+	 * @param Entity $entity
 	 *
 	 * @return array
 	 */
-	public function transform(OilTest $oilTest)
+	public function transform(Entity $entity)
 	{
-		return array(
-			'id'        => $oilTest->getId(),
-			'lead'      => $oilTest->getLead(),
-			'copper'    => $oilTest->getCopper(),
-			'tin'       => $oilTest->getTin(),
-			'iron'      => $oilTest->getIron(),
-			'pq90'      => $oilTest->getPq90(),
-			'silicon'   => $oilTest->getSilicon(),
-			'sodium'    => $oilTest->getSodium(),
-			'aluminium' => $oilTest->getAluminium(),
-			'water'     => $oilTest->getWater(),
-			'viscosity' => $oilTest->getViscosity(),
-		);
-	}
-
-	/**
-	 * @param OilTest $oilTest
-	 *
-	 * @return \League\Fractal\Resource\Item
-	 */
-	public function includeInspection(OilTest $oilTest)
-	{
-		return $this->item($oilTest->getInspection(), new InspectionTransformer());
-	}
-
-	/**
-	 * @param OilTest $oilTest
-	 *
-	 * @return \League\Fractal\Resource\Item
-	 */
-	public function includeSubAssembly(OilTest $oilTest)
-	{
-		return $this->item($oilTest->getSubAssembly(), new InspectionSubAssemblyTransformer());
-	}
-
-	/**
-	 * @param OilTest $oilTest
-	 *
-	 * @return \League\Fractal\Resource\Collection
-	 */
-	public function includeComments(OilTest $oilTest)
-	{
-		return $this->collection($oilTest->getComments(), new CommentTransformer());
-	}
-
-	/**
-	 * @param OilTest $oilTest
-	 *
-	 * @return \League\Fractal\Resource\Collection
-	 */
-	public function includePhotos(OilTest $oilTest)
-	{
-		return $this->collection($oilTest->getPhotos(), new PhotoTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return array(
+				'id'        => $entity->getId(),
+				'lead'      => $entity->getLead(),
+				'copper'    => $entity->getCopper(),
+				'tin'       => $entity->getTin(),
+				'iron'      => $entity->getIron(),
+				'pq90'      => $entity->getPq90(),
+				'silicon'   => $entity->getSilicon(),
+				'sodium'    => $entity->getSodium(),
+				'aluminium' => $entity->getAluminium(),
+				'water'     => $entity->getWater(),
+				'viscosity' => $entity->getViscosity(),
+			);
+		}
+		
+		else
+		{
+			return array();
+		}
 	}
 	
 	/**
-	 * @param OilTest $oilTest
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeActionItem(OilTest $oilTest)
+	public function includeInspection(Entity $entity)
 	{
-		return $this->item($oilTest->getActionItem(), new ActionItemTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getInspection(), new InspectionTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeSubAssembly(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getSubAssembly(), new InspectionSubAssemblyTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Collection
+	 */
+	public function includeComments(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getComments(), new CommentTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Collection
+	 */
+	public function includePhotos(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getPhotos(), new PhotoTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeActionItem(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getActionItem(), new ActionItemTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
 }

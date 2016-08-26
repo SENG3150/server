@@ -2,7 +2,7 @@
 
 namespace App\API\V1\Transformers;
 
-use App\API\V1\Entities\InspectionSubAssembly;
+use App\API\V1\Entities\InspectionSubAssembly as Entity;
 use App\Transformers\Transformer;
 
 class InspectionSubAssemblyTransformer extends Transformer
@@ -20,7 +20,7 @@ class InspectionSubAssemblyTransformer extends Transformer
 		'oilTest',
 		'wearTest',
 	);
-
+	
 	/**
 	 * @var array
 	 */
@@ -33,79 +33,37 @@ class InspectionSubAssemblyTransformer extends Transformer
 	);
 	
 	/**
-	 * @param InspectionSubAssembly $subAssembly
+	 * @param Entity $entity
 	 *
 	 * @return array
 	 */
-	public function transform(InspectionSubAssembly $subAssembly)
+	public function transform(Entity $entity)
 	{
-		return array(
-			'id' => $subAssembly->getId(),
-		);
-	}
-
-	/**
-	 * @param InspectionSubAssembly $subAssembly
-	 *
-	 * @return \League\Fractal\Resource\Item
-	 */
-	public function includeInspection(InspectionSubAssembly $subAssembly)
-	{
-		return $this->item($subAssembly->getInspection(), new InspectionTransformer());
-	}
-
-	/**
-	 * @param InspectionSubAssembly $subAssembly
-	 *
-	 * @return \League\Fractal\Resource\Item
-	 */
-	public function includeMajorAssembly(InspectionSubAssembly $subAssembly)
-	{
-		return $this->item($subAssembly->getMajorAssembly(), new InspectionMajorAssemblyTransformer());
-	}
-
-	/**
-	 * @param InspectionSubAssembly $subAssembly
-	 *
-	 * @return \League\Fractal\Resource\Item
-	 */
-	public function includeSubAssembly(InspectionSubAssembly $subAssembly)
-	{
-		return $this->item($subAssembly->getSubAssembly(), new SubAssemblyTransformer());
-	}
-
-	/**
-	 * @param InspectionSubAssembly $subAssembly
-	 *
-	 * @return \League\Fractal\Resource\Collection
-	 */
-	public function includeComments(InspectionSubAssembly $subAssembly)
-	{
-		return $this->collection($subAssembly->getComments(), new CommentTransformer());
-	}
-
-	/**
-	 * @param InspectionSubAssembly $subAssembly
-	 *
-	 * @return \League\Fractal\Resource\Collection
-	 */
-	public function includePhotos(InspectionSubAssembly $subAssembly)
-	{
-		return $this->collection($subAssembly->getPhotos(), new PhotoTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return array(
+				'id' => $entity->getId(),
+			);
+		}
+		
+		else
+		{
+			return array();
+		}
 	}
 	
 	/**
-	 * @param InspectionSubAssembly $subAssembly
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeMachineGeneralTest(InspectionSubAssembly $subAssembly)
+	public function includeInspection(Entity $entity)
 	{
-		if($subAssembly->getMachineGeneralTest() != NULL)
+		if($this->verifyItem($entity) == TRUE)
 		{
-			return $this->item($subAssembly->getMachineGeneralTest(), new MachineGeneralTestTransformer());
+			return $this->item($entity->getInspection(), new InspectionTransformer());
 		}
-
+		
 		else
 		{
 			return NULL;
@@ -113,17 +71,17 @@ class InspectionSubAssemblyTransformer extends Transformer
 	}
 	
 	/**
-	 * @param InspectionSubAssembly $subAssembly
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeOilTest(InspectionSubAssembly $subAssembly)
+	public function includeMajorAssembly(Entity $entity)
 	{
-		if($subAssembly->getOilTest() != NULL)
+		if($this->verifyItem($entity) == TRUE)
 		{
-			return $this->item($subAssembly->getOilTest(), new OilTestTransformer());
+			return $this->item($entity->getMajorAssembly(), new InspectionMajorAssemblyTransformer());
 		}
-
+		
 		else
 		{
 			return NULL;
@@ -131,17 +89,107 @@ class InspectionSubAssemblyTransformer extends Transformer
 	}
 	
 	/**
-	 * @param InspectionSubAssembly $subAssembly
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeWearTest(InspectionSubAssembly $subAssembly)
+	public function includeSubAssembly(Entity $entity)
 	{
-		if($subAssembly->getWearTest() != NULL)
+		if($this->verifyItem($entity) == TRUE)
 		{
-			return $this->item($subAssembly->getWearTest(), new WearTestTransformer());
+			return $this->item($entity->getSubAssembly(), new SubAssemblyTransformer());
 		}
-
+		
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Collection
+	 */
+	public function includeComments(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getComments(), new CommentTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Collection
+	 */
+	public function includePhotos(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getPhotos(), new PhotoTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeMachineGeneralTest(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getMachineGeneralTest(), new MachineGeneralTestTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeOilTest(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getOilTest(), new OilTestTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeWearTest(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getWearTest(), new WearTestTransformer());
+		}
+		
 		else
 		{
 			return NULL;

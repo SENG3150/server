@@ -2,7 +2,7 @@
 
 namespace App\API\V1\Transformers;
 
-use App\API\V1\Entities\InspectionSchedule;
+use App\API\V1\Entities\InspectionSchedule as Entity;
 use App\Transformers\Transformer;
 
 class InspectionScheduleTransformer extends Transformer
@@ -16,36 +16,60 @@ class InspectionScheduleTransformer extends Transformer
 	);
 	
 	/**
-	 * @param InspectionSchedule $inspectionSchedule
+	 * @param Entity $entity
 	 *
 	 * @return array
 	 */
-	public function transform(InspectionSchedule $inspectionSchedule)
+	public function transform(Entity $entity)
 	{
-		return array(
-			'id'                    => $inspectionSchedule->getId(),
-			'value'                 => $inspectionSchedule->getValue(),
-			'period'                => $inspectionSchedule->getPeriod(),
-		);
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return array(
+				'id'     => $entity->getId(),
+				'value'  => $entity->getValue(),
+				'period' => $entity->getPeriod(),
+			);
+		}
+		
+		else
+		{
+			return array();
+		}
 	}
-
+	
 	/**
-	 * @param InspectionSchedule $inspectionSchedule
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeInspection(InspectionSchedule $inspectionSchedule)
+	public function includeInspection(Entity $entity)
 	{
-		return $this->item($inspectionSchedule->getInspection(), new InspectionTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getInspection(), new InspectionTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param InspectionSchedule $inspectionSchedule
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeInspections(InspectionSchedule $inspectionSchedule)
+	public function includeInspections(Entity $entity)
 	{
-		return $this->collection($inspectionSchedule->getInspections(), new InspectionTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getInspections(), new InspectionTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
 }

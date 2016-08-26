@@ -2,7 +2,7 @@
 
 namespace App\API\V1\Transformers;
 
-use App\API\V1\Entities\Machine;
+use App\API\V1\Entities\Machine as Entity;
 use App\Transformers\Transformer;
 
 class MachineTransformer extends Transformer
@@ -15,7 +15,7 @@ class MachineTransformer extends Transformer
 		'inspections',
 		'downtime',
 	);
-
+	
 	/**
 	 * @var array
 	 */
@@ -24,45 +24,77 @@ class MachineTransformer extends Transformer
 	);
 	
 	/**
-	 * @param Machine $machine
+	 * @param Entity $entity
 	 *
 	 * @return array
 	 */
-	public function transform(Machine $machine)
+	public function transform(Entity $entity)
 	{
-		return array(
-			'id'   => $machine->getId(),
-			'name' => $machine->getName(),
-		);
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return array(
+				'id'   => $entity->getId(),
+				'name' => $entity->getName(),
+			);
+		}
+		
+		else
+		{
+			return array();
+		}
 	}
-
+	
 	/**
-	 * @param Machine $machine
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeModel(Machine $machine)
+	public function includeModel(Entity $entity)
 	{
-		return $this->item($machine->getModel(), new ModelTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getModel(), new ModelTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param Machine $machine
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeDowntime(Machine $machine)
+	public function includeDowntime(Entity $entity)
 	{
-		return $this->item($machine->getDowntime(), new DowntimeTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getDowntime(), new DowntimeTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param Machine $machine
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Collection
 	 */
-	public function includeInspections(Machine $machine)
+	public function includeInspections(Entity $entity)
 	{
-		return $this->collection($machine->getInspections(), new InspectionTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getInspections(), new InspectionTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
 }

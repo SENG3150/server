@@ -2,7 +2,7 @@
 
 namespace App\API\V1\Transformers;
 
-use App\API\V1\Entities\Model;
+use App\API\V1\Entities\Model as Entity;
 use App\Transformers\Transformer;
 
 class ModelTransformer extends Transformer
@@ -16,35 +16,59 @@ class ModelTransformer extends Transformer
 	);
 	
 	/**
-	 * @param Model $model
+	 * @param Entity $entity
 	 *
 	 * @return array
 	 */
-	public function transform(Model $model)
+	public function transform(Entity $entity)
 	{
-		return array(
-			'id'   => $model->getId(),
-			'name' => $model->getName(),
-		);
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return array(
+				'id'   => $entity->getId(),
+				'name' => $entity->getName(),
+			);
+		}
+		
+		else
+		{
+			return array();
+		}
 	}
-
+	
 	/**
-	 * @param Model $model
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Collection
 	 */
-	public function includeMajorAssemblies(Model $model)
+	public function includeMajorAssemblies(Entity $entity)
 	{
-		return $this->collection($model->getMajorAssemblies(), new MajorAssemblyTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getMajorAssemblies(), new MajorAssemblyTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param Model $model
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Collection
 	 */
-	public function includeMachines(Model $model)
+	public function includeMachines(Entity $entity)
 	{
-		return $this->collection($model->getMachines(), new MachineTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getMachines(), new MachineTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
 }

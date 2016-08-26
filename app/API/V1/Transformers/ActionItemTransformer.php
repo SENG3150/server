@@ -2,7 +2,7 @@
 
 namespace App\API\V1\Transformers;
 
-use App\API\V1\Entities\ActionItem;
+use App\API\V1\Entities\ActionItem as Entity;
 use App\Transformers\Transformer;
 
 class ActionItemTransformer extends Transformer
@@ -16,7 +16,7 @@ class ActionItemTransformer extends Transformer
 		'wearTest',
 		'technician',
 	);
-
+	
 	/**
 	 * @var array
 	 */
@@ -25,58 +25,98 @@ class ActionItemTransformer extends Transformer
 	);
 	
 	/**
-	 * @param ActionItem $actionItem
+	 * @param Entity $entity
 	 *
 	 * @return array
 	 */
-	public function transform(ActionItem $actionItem)
+	public function transform(Entity $entity)
 	{
-		return array(
-			'id'           => $actionItem->getId(),
-			'status'       => $actionItem->getStatus(),
-			'issue'        => $actionItem->getIssue(),
-			'action'       => $actionItem->getAction(),
-			'timeActioned' => $actionItem->getTimeActioned(),
-		);
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return array(
+				'id'           => $entity->getId(),
+				'status'       => $entity->getStatus(),
+				'issue'        => $entity->getIssue(),
+				'action'       => $entity->getAction(),
+				'timeActioned' => $entity->getTimeActioned(),
+			);
+		}
+		
+		else
+		{
+			return array();
+		}
 	}
-
+	
 	/**
-	 * @param ActionItem $actionItem
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeMachineGeneralTest(ActionItem $actionItem)
+	public function includeMachineGeneralTest(Entity $entity)
 	{
-		return $this->item($actionItem->getMachineGeneralTest(), new MachineGeneralTestTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getMachineGeneralTest(), new MachineGeneralTestTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param ActionItem $actionItem
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeOilTest(ActionItem $actionItem)
+	public function includeOilTest(Entity $entity)
 	{
-		return $this->item($actionItem->getOilTest(), new OilTestTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getOilTest(), new OilTestTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param ActionItem $actionItem
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeWearTest(ActionItem $actionItem)
+	public function includeWearTest(Entity $entity)
 	{
-		return $this->item($actionItem->getWearTest(), new WearTestTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getWearTest(), new WearTestTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param ActionItem $actionItem
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeTechnician(ActionItem $actionItem)
+	public function includeTechnician(Entity $entity)
 	{
-		return $this->item($actionItem->getTechnician(), new TechnicianTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getTechnician(), new TechnicianTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
 }

@@ -2,7 +2,7 @@
 
 namespace App\API\V1\Transformers;
 
-use App\API\V1\Entities\MachineGeneralTest;
+use App\API\V1\Entities\MachineGeneralTest as Entity;
 use App\Transformers\Transformer;
 
 class MachineGeneralTestTransformer extends Transformer
@@ -17,7 +17,7 @@ class MachineGeneralTestTransformer extends Transformer
 		'photos',
 		'actionItem',
 	);
-
+	
 	/**
 	 * @var array
 	 */
@@ -28,66 +28,112 @@ class MachineGeneralTestTransformer extends Transformer
 	);
 	
 	/**
-	 * @param MachineGeneralTest $machineGeneralTest
+	 * @param Entity $entity
 	 *
 	 * @return array
 	 */
-	public function transform(MachineGeneralTest $machineGeneralTest)
+	public function transform(Entity $entity)
 	{
-		return array(
-			'id'       => $machineGeneralTest->getId(),
-			'testType' => $machineGeneralTest->getTestType(),
-			'docLink'  => $machineGeneralTest->getDocLink(),
-		);
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return array(
+				'id' => $entity->getId(),
+			);
+		}
+		
+		else
+		{
+			return array();
+		}
 	}
-
+	
 	/**
-	 * @param MachineGeneralTest $machineGeneralTest
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeInspection(MachineGeneralTest $machineGeneralTest)
+	public function includeInspection(Entity $entity)
 	{
-		return $this->item($machineGeneralTest->getInspection(), new InspectionTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getInspection(), new InspectionTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param MachineGeneralTest $machineGeneralTest
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeSubAssembly(MachineGeneralTest $machineGeneralTest)
+	public function includeSubAssembly(Entity $entity)
 	{
-		return $this->item($machineGeneralTest->getSubAssembly(), new InspectionSubAssemblyTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getSubAssembly(), new InspectionSubAssemblyTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param MachineGeneralTest $machineGeneralTest
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Collection
 	 */
-	public function includeComments(MachineGeneralTest $machineGeneralTest)
+	public function includeComments(Entity $entity)
 	{
-		return $this->collection($machineGeneralTest->getComments(), new CommentTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getComments(), new CommentTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param MachineGeneralTest $machineGeneralTest
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Collection
 	 */
-	public function includePhotos(MachineGeneralTest $machineGeneralTest)
+	public function includePhotos(Entity $entity)
 	{
-		return $this->collection($machineGeneralTest->getPhotos(), new PhotoTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getPhotos(), new PhotoTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param MachineGeneralTest $machineGeneralTest
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeActionItem(MachineGeneralTest $machineGeneralTest)
+	public function includeActionItem(Entity $entity)
 	{
-		return $this->item($machineGeneralTest->getActionItem(), new ActionItemTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getActionItem(), new ActionItemTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
 }
