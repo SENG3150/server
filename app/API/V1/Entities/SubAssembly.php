@@ -57,6 +57,12 @@ class SubAssembly extends Entity
      * @var bool $wear
      */
     protected $wear;
+	
+	/**
+	 * @ORM\Column(name="unique_details", type="array")
+	 * @var array $uniqueDetails
+	 */
+	protected $uniqueDetails = array();
 
     /**
      * @return int
@@ -185,4 +191,24 @@ class SubAssembly extends Entity
     {
         $this->wear = $wear;
     }
+	
+	/**
+	 * @return array
+	 */
+	public function getUniqueDetails()
+	{
+		return $this->uniqueDetails;
+	}
+	
+	/**
+	 * @param array $uniqueDetails
+	 *
+	 * @return $this
+	 */
+	public function setUniqueDetails($uniqueDetails)
+	{
+		$this->uniqueDetails = $uniqueDetails;
+		
+		return $this;
+	}
 }

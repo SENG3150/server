@@ -16,7 +16,7 @@ class WearTestTransformer extends Transformer
 		'photos',
 		'actionItem',
 	);
-
+	
 	/**
 	 * @var array
 	 */
@@ -35,17 +35,11 @@ class WearTestTransformer extends Transformer
 	{
 		return array(
 			'id'            => $wearTest->getId(),
-			'description'   => $wearTest->getDescription(),
-			'new'           => $wearTest->getNew(),
-			'limit'         => $wearTest->getLimit(),
-			'lifeLower'     => $wearTest->getLifeLower(),
-			'lifeUpper'     => $wearTest->getLifeUpper(),
 			'smu'           => $wearTest->getSmu(),
-			'timeStart'     => $wearTest->getTimeStart(),
 			'uniqueDetails' => $wearTest->getUniqueDetails(),
 		);
 	}
-
+	
 	/**
 	 * @param WearTest $wearTest
 	 *
@@ -55,7 +49,7 @@ class WearTestTransformer extends Transformer
 	{
 		return $this->item($wearTest->getInspection(), new InspectionTransformer());
 	}
-
+	
 	/**
 	 * @param WearTest $wearTest
 	 *
@@ -65,7 +59,7 @@ class WearTestTransformer extends Transformer
 	{
 		return $this->item($wearTest->getSubAssembly(), new InspectionSubAssemblyTransformer());
 	}
-
+	
 	/**
 	 * @param WearTest $wearTest
 	 *
@@ -75,7 +69,7 @@ class WearTestTransformer extends Transformer
 	{
 		return $this->collection($wearTest->getComments(), new CommentTransformer());
 	}
-
+	
 	/**
 	 * @param WearTest $wearTest
 	 *
@@ -85,7 +79,7 @@ class WearTestTransformer extends Transformer
 	{
 		return $this->collection($wearTest->getPhotos(), new PhotoTransformer());
 	}
-
+	
 	/**
 	 * @param WearTest $wearTest
 	 *

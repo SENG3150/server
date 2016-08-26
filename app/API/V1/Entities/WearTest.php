@@ -62,7 +62,7 @@ class WearTest extends Entity
 	 * @ORM\Column(name="unique_details", type="array")
 	 * @var array $uniqueDetails
 	 */
-	protected $uniqueDetails;
+	protected $uniqueDetails = array();
 
 	/**
 	 * @return int
