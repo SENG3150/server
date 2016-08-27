@@ -96,6 +96,34 @@ class RecurringInspections extends Command
 				}
 			}
 			
+			// Sort the inspections by time scheduled ascending
+			usort(
+				$inspections,
+				function ($a, $b)
+				{
+					/** @var Inspection $a */
+					/** @var Inspection $b */
+					
+					if($a->getTimeScheduled() != NULL)
+					{
+						if($b->getTimeScheduled() != NULL)
+						{
+							return ($a->getTimeScheduled() < $b->getTimeScheduled()) ? (-1) : (1);
+						}
+						
+						else
+						{
+							return 1;
+						}
+					}
+					
+					else
+					{
+						return -1;
+					}
+				}
+			);
+			
 			while($count < 2)
 			{
 				$lastInspection = end($inspections);
