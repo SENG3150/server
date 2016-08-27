@@ -20,7 +20,7 @@ class RecurringInspections extends Command
      *
      * @var string
      */
-    protected $signature = 'inspections:recurring';
+    protected $signature = 'recurring-inspections';
 
     /**
      * The console command description.
@@ -71,7 +71,7 @@ class RecurringInspections extends Command
     public function handle()
     {
         /** @var $InspectionSchedule[] $inspectionSchedules */
-        $inspectionSchedules = $this->inspectionScheduleRepository->findByVisible();
+        $inspectionSchedules = $this->inspectionScheduleRepository;
         foreach($inspectionSchedules as $inspectionSchedule)
         {
             $stamp = new Carbon();
