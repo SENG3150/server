@@ -2,6 +2,8 @@
 
 namespace App\API\V1\Entities;
 
+use App\Entities\Entity;
+use App\Entities\Traits\Deletable;
 use Doctrine\ORM\Mapping AS ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -9,8 +11,10 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity
  * @ORM\Table(name="inspections")
  */
-class Inspection extends \ArrayObject
+class Inspection extends Entity
 {
+	use Deletable;
+	
 	/**
 	 * @ORM\Id
 	 * @ORM\GeneratedValue
@@ -85,12 +89,6 @@ class Inspection extends \ArrayObject
 	 */
 	protected $photos;
 
-	/**
-	 * @ORM\Column(name="hidden", type="boolean")
-	 * @var bool $hidden
-	 */
-	protected $hidden;
-	
 	/**
 	 * @return int
 	 */
@@ -307,26 +305,6 @@ class Inspection extends \ArrayObject
 	public function setComments($comments)
 	{
 		$this->comments = $comments;
-
-		return $this;
-	}
-
-	/**
-	 * @return boolean
-	 */
-	public function isHidden()
-	{
-		return $this->hidden;
-	}
-
-	/**
-	 * @param boolean $hidden
-	 *
-	 * @return $this
-	 */
-	public function setHidden($hidden)
-	{
-		$this->hidden = $hidden;
 
 		return $this;
 	}

@@ -8,6 +8,7 @@ use App\API\V1\Repositories\MachineGeneralTestRepository;
 use App\API\V1\Repositories\OilTestRepository;
 use App\API\V1\Repositories\WearTestRepository;
 use App\API\V1\Repositories\TechnicianRepository;
+use App\Parsers\Parser;
 use Illuminate\Http\Request;
 use App;
 

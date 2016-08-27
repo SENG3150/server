@@ -64,10 +64,10 @@ class InspectionSchedule extends \App\API\V1\Entities\InspectionSchedule impleme
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'inspection', 'inspections', 'value', 'period', 'hidden'];
+            return ['__isInitialized__', 'id', 'inspection', 'inspections', 'value', 'period', 'timeDeleted', 'deleted'];
         }
 
-        return ['__isInitialized__', 'id', 'inspection', 'inspections', 'value', 'period', 'hidden'];
+        return ['__isInitialized__', 'id', 'inspection', 'inspections', 'value', 'period', 'timeDeleted', 'deleted'];
     }
 
     /**
@@ -241,28 +241,6 @@ class InspectionSchedule extends \App\API\V1\Entities\InspectionSchedule impleme
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setInspections', [$inspections]);
 
         return parent::setInspections($inspections);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function isHidden()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isHidden', []);
-
-        return parent::isHidden();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setHidden($hidden)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setHidden', [$hidden]);
-
-        return parent::setHidden($hidden);
     }
 
     /**
@@ -538,6 +516,61 @@ class InspectionSchedule extends \App\API\V1\Entities\InspectionSchedule impleme
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIteratorClass', []);
 
         return parent::getIteratorClass();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTimeDeleted()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTimeDeleted', []);
+
+        return parent::getTimeDeleted();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTimeDeleted($timeDeleted)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTimeDeleted', [$timeDeleted]);
+
+        return parent::setTimeDeleted($timeDeleted);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isDeleted()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isDeleted', []);
+
+        return parent::isDeleted();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDeleted($deleted)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDeleted', [$deleted]);
+
+        return parent::setDeleted($deleted);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function delete()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'delete', []);
+
+        return parent::delete();
     }
 
 }

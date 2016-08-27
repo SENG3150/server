@@ -2,6 +2,8 @@
 
 namespace App\API\V1\Entities;
 
+use App\Entities\Entity;
+use App\Entities\Traits\Deletable;
 use Doctrine\ORM\Mapping AS ORM;
 use App\Interfaces\Primary;
 
@@ -9,8 +11,10 @@ use App\Interfaces\Primary;
  * @ORM\Entity
  * @ORM\Table(name="administrators")
  */
-class Administrator extends \ArrayObject implements Primary
+class Administrator extends Entity implements Primary
 {
+	use Deletable;
+	
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

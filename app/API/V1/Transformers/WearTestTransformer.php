@@ -2,7 +2,8 @@
 
 namespace App\API\V1\Transformers;
 
-use App\API\V1\Entities\WearTest;
+use App\API\V1\Entities\WearTest as Entity;
+use App\Transformers\Transformer;
 
 class WearTestTransformer extends Transformer
 {
@@ -16,7 +17,7 @@ class WearTestTransformer extends Transformer
 		'photos',
 		'actionItem',
 	);
-
+	
 	/**
 	 * @var array
 	 */
@@ -27,72 +28,114 @@ class WearTestTransformer extends Transformer
 	);
 	
 	/**
-	 * @param WearTest $wearTest
+	 * @param Entity $entity
 	 *
 	 * @return array
 	 */
-	public function transform(WearTest $wearTest)
+	public function transform(Entity $entity)
 	{
-		return array(
-			'id'            => $wearTest->getId(),
-			'description'   => $wearTest->getDescription(),
-			'new'           => $wearTest->getNew(),
-			'limit'         => $wearTest->getLimit(),
-			'lifeLower'     => $wearTest->getLifeLower(),
-			'lifeUpper'     => $wearTest->getLifeUpper(),
-			'smu'           => $wearTest->getSmu(),
-			'timeStart'     => $wearTest->getTimeStart(),
-			'uniqueDetails' => $wearTest->getUniqueDetails(),
-		);
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return array(
+				'id'            => $entity->getId(),
+				'smu'           => $entity->getSmu(),
+				'uniqueDetails' => $entity->getUniqueDetails(),
+			);
+		}
+		
+		else
+		{
+			return array();
+		}
 	}
-
+	
 	/**
-	 * @param WearTest $wearTest
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeInspection(WearTest $wearTest)
+	public function includeInspection(Entity $entity)
 	{
-		return $this->item($wearTest->getInspection(), new InspectionTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getInspection(), new InspectionTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param WearTest $wearTest
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeSubAssembly(WearTest $wearTest)
+	public function includeSubAssembly(Entity $entity)
 	{
-		return $this->item($wearTest->getSubAssembly(), new InspectionSubAssemblyTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getSubAssembly(), new InspectionSubAssemblyTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param WearTest $wearTest
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Collection
 	 */
-	public function includeComments(WearTest $wearTest)
+	public function includeComments(Entity $entity)
 	{
-		return $this->collection($wearTest->getComments(), new CommentTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getComments(), new CommentTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param WearTest $wearTest
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Collection
 	 */
-	public function includePhotos(WearTest $wearTest)
+	public function includePhotos(Entity $entity)
 	{
-		return $this->collection($wearTest->getPhotos(), new PhotoTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getPhotos(), new PhotoTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param WearTest $wearTest
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeActionItem(WearTest $wearTest)
+	public function includeActionItem(Entity $entity)
 	{
-		return $this->item($wearTest->getActionItem(), new ActionItemTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getActionItem(), new ActionItemTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
 }

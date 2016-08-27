@@ -4,6 +4,7 @@ namespace App\API\V1\Parsers;
 
 use App\API\V1\Entities\MachineGeneralTest as Entity;
 use App\API\V1\Repositories\MachineGeneralTestRepository as Repository;
+use App\Parsers\Parser;
 use Illuminate\Http\Request;
 use App;
 
@@ -34,8 +35,6 @@ class MachineGeneralTestParser extends Parser
 			array(
 				'inspection'  => 'required',
 				'subAssembly' => 'required',
-				'testType'    => 'required',
-				'docLink'     => 'required',
 			)
 		);
 
@@ -43,8 +42,6 @@ class MachineGeneralTestParser extends Parser
 
 		$this->resolve($entity, $input, 'inspection', 'entity', App\API\V1\Repositories\InspectionRepository::class);
 		$this->resolve($entity, $input, 'subAssembly', 'entity', App\API\V1\Repositories\InspectionSubAssemblyRepository::class);
-		$this->resolve($entity, $input, 'testType');
-		$this->resolve($entity, $input, 'docLink');
 
 		$this->em->persist($entity);
 		$this->em->flush();
@@ -70,8 +67,6 @@ class MachineGeneralTestParser extends Parser
 
 			$this->resolve($entity, $input, 'inspection', 'entity', App\API\V1\Repositories\InspectionRepository::class);
 			$this->resolve($entity, $input, 'subAssembly', 'entity', App\API\V1\Repositories\InspectionSubAssemblyRepository::class);
-			$this->resolve($entity, $input, 'testType');
-			$this->resolve($entity, $input, 'docLink');
 
 			$this->em->persist($entity);
 			$this->em->flush();

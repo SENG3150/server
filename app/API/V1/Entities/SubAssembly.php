@@ -2,6 +2,7 @@
 
 namespace App\API\V1\Entities;
 
+use App\Entities\Entity;
 use Doctrine\ORM\Mapping AS ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -9,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity
  * @ORM\Table(name="sub_assemblies")
  */
-class SubAssembly extends \ArrayObject
+class SubAssembly extends Entity
 {
     /**
      * @ORM\Id
@@ -56,6 +57,12 @@ class SubAssembly extends \ArrayObject
      * @var bool $wear
      */
     protected $wear;
+	
+	/**
+	 * @ORM\Column(name="unique_details", type="array")
+	 * @var array $uniqueDetails
+	 */
+	protected $uniqueDetails = array();
 
     /**
      * @return int
@@ -184,4 +191,24 @@ class SubAssembly extends \ArrayObject
     {
         $this->wear = $wear;
     }
+	
+	/**
+	 * @return array
+	 */
+	public function getUniqueDetails()
+	{
+		return $this->uniqueDetails;
+	}
+	
+	/**
+	 * @param array $uniqueDetails
+	 *
+	 * @return $this
+	 */
+	public function setUniqueDetails($uniqueDetails)
+	{
+		$this->uniqueDetails = $uniqueDetails;
+		
+		return $this;
+	}
 }

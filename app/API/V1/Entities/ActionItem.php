@@ -2,13 +2,14 @@
 
 namespace App\API\V1\Entities;
 
+use App\Entities\Entity;
 use Doctrine\ORM\Mapping AS ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="action_items")
  */
-class ActionItem extends \ArrayObject
+class ActionItem extends Entity
 {
     /**
      * @ORM\Id

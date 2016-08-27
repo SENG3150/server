@@ -90,3 +90,17 @@ if(function_exists('stringEndsWith') == FALSE)
 		return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== FALSE);
 	}
 }
+
+if(function_exists('hasTrait') == FALSE)
+{
+	/**
+	 * @param mixed $class
+	 * @param string $trait
+	 *
+	 * @return bool
+	 */
+	function hasTrait($class, $trait)
+	{
+		return in_array($trait, class_uses($class));
+	}
+}

@@ -2,25 +2,34 @@
 
 namespace App\API\V1\Transformers;
 
-use App\API\V1\Entities\DomainExpert;
+use App\API\V1\Entities\DomainExpert as Entity;
+use App\Transformers\Transformer;
 
 class DomainExpertTransformer extends Transformer
 {
 	/**
-	 * @param DomainExpert $domainExpert
+	 * @param Entity $entity
 	 *
 	 * @return array
 	 */
-	public function transform(DomainExpert $domainExpert)
+	public function transform(Entity $entity)
 	{
-		return array(
-			'id'        => $domainExpert->getId(),
-			'username'  => $domainExpert->getUsername(),
-			'name'      => $domainExpert->getName(),
-			'firstName' => $domainExpert->getFirstName(),
-			'lastName'  => $domainExpert->getLastName(),
-			'email'     => $domainExpert->getEmail(),
-			'emailHash' => md5(strtolower(trim($domainExpert->getEmail()))),
-		);
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return array(
+				'id'        => $entity->getId(),
+				'username'  => $entity->getUsername(),
+				'name'      => $entity->getName(),
+				'firstName' => $entity->getFirstName(),
+				'lastName'  => $entity->getLastName(),
+				'email'     => $entity->getEmail(),
+				'emailHash' => md5(strtolower(trim($entity->getEmail()))),
+			);
+		}
+		
+		else
+		{
+			return array();
+		}
 	}
 }

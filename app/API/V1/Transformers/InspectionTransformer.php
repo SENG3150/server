@@ -2,7 +2,8 @@
 
 namespace App\API\V1\Transformers;
 
-use App\API\V1\Entities\Inspection;
+use App\API\V1\Entities\Inspection as Entity;
+use App\Transformers\Transformer;
 
 class InspectionTransformer extends Transformer
 {
@@ -17,7 +18,7 @@ class InspectionTransformer extends Transformer
 		'comments',
 		'photos',
 	);
-
+	
 	/**
 	 * @var array
 	 */
@@ -28,86 +29,134 @@ class InspectionTransformer extends Transformer
 	);
 	
 	/**
-	 * @param Inspection $inspection
+	 * @param Entity $entity
 	 *
 	 * @return array
 	 */
-	public function transform(Inspection $inspection)
+	public function transform(Entity $entity)
 	{
-		return array(
-			'id'            => $inspection->getId(),
-			'timeCreated'   => $inspection->getTimeCreated(),
-			'timeScheduled' => $inspection->getTimeScheduled(),
-			'timeStarted'   => $inspection->getTimeStarted(),
-			'timeCompleted' => $inspection->getTimeCompleted(),
-		);
-	}
-
-	/**
-	 * @param Inspection $inspection
-	 *
-	 * @return \League\Fractal\Resource\Item
-	 */
-	public function includeMachine(Inspection $inspection)
-	{
-		return $this->item($inspection->getMachine(), new MachineTransformer());
-	}
-
-	/**
-	 * @param Inspection $inspection
-	 *
-	 * @return \League\Fractal\Resource\Item
-	 */
-	public function includeTechnician(Inspection $inspection)
-	{
-		return $this->item($inspection->getTechnician(), new TechnicianTransformer());
-	}
-
-	/**
-	 * @param Inspection $inspection
-	 *
-	 * @return \League\Fractal\Resource\Item
-	 */
-	public function includeScheduler(Inspection $inspection)
-	{
-		if($inspection->getScheduler() != NULL)
+		if($this->verifyItem($entity) == TRUE)
 		{
-			return $this->item($inspection->getScheduler(), new DomainExpertTransformer());
+			return array(
+				'id'            => $entity->getId(),
+				'timeCreated'   => $entity->getTimeCreated(),
+				'timeScheduled' => $entity->getTimeScheduled(),
+				'timeStarted'   => $entity->getTimeStarted(),
+				'timeCompleted' => $entity->getTimeCompleted(),
+			);
 		}
-
+		
+		else
+		{
+			return array();
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeMachine(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getMachine(), new MachineTransformer());
+		}
+		
 		else
 		{
 			return NULL;
 		}
 	}
-
+	
 	/**
-	 * @param Inspection $inspection
+	 * @param Entity $entity
 	 *
-	 * @return \League\Fractal\Resource\Collection
+	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeMajorAssemblies(Inspection $inspection)
+	public function includeTechnician(Entity $entity)
 	{
-		return $this->collection($inspection->getMajorAssemblies(), new InspectionMajorAssemblyTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getTechnician(), new TechnicianTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param Inspection $inspection
+	 * @param Entity $entity
 	 *
-	 * @return \League\Fractal\Resource\Collection
+	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeComments(Inspection $inspection)
+	public function includeScheduler(Entity $entity)
 	{
-		return $this->collection($inspection->getComments(), new CommentTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getScheduler(), new DomainExpertTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param Inspection $inspection
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Collection
 	 */
-	public function includePhotos(Inspection $inspection)
+	public function includeMajorAssemblies(Entity $entity)
 	{
-		return $this->collection($inspection->getPhotos(), new PhotoTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getMajorAssemblies(), new InspectionMajorAssemblyTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Collection
+	 */
+	public function includeComments(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getComments(), new CommentTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Collection
+	 */
+	public function includePhotos(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getPhotos(), new PhotoTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
 }

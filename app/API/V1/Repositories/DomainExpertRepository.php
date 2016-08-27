@@ -2,9 +2,9 @@
 
 namespace App\API\V1\Repositories;
 
-use Doctrine\ORM\EntityRepository;
+use App\Repositories\Repository;
 
-class DomainExpertRepository extends EntityRepository
+class DomainExpertRepository extends Repository
 {
 	public function findOneByUsername($username)
 	{

@@ -2,15 +2,20 @@
 
 namespace App\API\V1\Entities;
 
+use App\Entities\Entity;
+use App\Entities\Traits\Deletable;
 use Doctrine\ORM\Mapping AS ORM;
 use App\Interfaces\Primary;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="technicians")
  */
-class Technician extends \ArrayObject implements Primary
+class Technician extends Entity implements Primary
 {
+	use Deletable;
+	
 	/**
 	 * @ORM\Id
 	 * @ORM\GeneratedValue

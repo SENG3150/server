@@ -64,10 +64,10 @@ class MachineGeneralTest extends \App\API\V1\Entities\MachineGeneralTest impleme
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'photos', 'testType', 'docLink'];
+            return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'photos'];
         }
 
-        return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'photos', 'testType', 'docLink'];
+        return ['__isInitialized__', 'id', 'inspection', 'subAssembly', 'actionItem', 'comments', 'photos'];
     }
 
     /**
@@ -307,50 +307,6 @@ class MachineGeneralTest extends \App\API\V1\Entities\MachineGeneralTest impleme
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPhotos', [$photos]);
 
         return parent::setPhotos($photos);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getTestType()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTestType', []);
-
-        return parent::getTestType();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setTestType($testType)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTestType', [$testType]);
-
-        return parent::setTestType($testType);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getDocLink()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDocLink', []);
-
-        return parent::getDocLink();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setDocLink($docLink)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDocLink', [$docLink]);
-
-        return parent::setDocLink($docLink);
     }
 
     /**

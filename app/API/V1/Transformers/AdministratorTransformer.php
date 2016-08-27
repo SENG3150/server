@@ -2,25 +2,34 @@
 
 namespace App\API\V1\Transformers;
 
-use App\API\V1\Entities\Administrator;
+use App\API\V1\Entities\Administrator as Entity;
+use App\Transformers\Transformer;
 
 class AdministratorTransformer extends Transformer
 {
 	/**
-	 * @param Administrator $administrator
+	 * @param Entity $entity
 	 *
 	 * @return array
 	 */
-	public function transform(Administrator $administrator)
+	public function transform(Entity $entity)
 	{
-		return array(
-			'id'        => $administrator->getId(),
-			'username'  => $administrator->getUsername(),
-			'name'      => $administrator->getName(),
-			'firstName' => $administrator->getFirstName(),
-			'lastName'  => $administrator->getLastName(),
-			'email'     => $administrator->getEmail(),
-			'emailHash' => md5(strtolower(trim($administrator->getEmail()))),
-		);
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return array(
+				'id'        => $entity->getId(),
+				'username'  => $entity->getUsername(),
+				'name'      => $entity->getName(),
+				'firstName' => $entity->getFirstName(),
+				'lastName'  => $entity->getLastName(),
+				'email'     => $entity->getEmail(),
+				'emailHash' => md5(strtolower(trim($entity->getEmail()))),
+			);
+		}
+		
+		else
+		{
+			return array();
+		}
 	}
 }

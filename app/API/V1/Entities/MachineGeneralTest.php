@@ -2,6 +2,7 @@
 
 namespace App\API\V1\Entities;
 
+use App\Entities\Entity;
 use Doctrine\ORM\Mapping AS ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -9,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity
  * @ORM\Table(name="tests_machine_general")
  */
-class MachineGeneralTest extends \ArrayObject
+class MachineGeneralTest extends Entity
 {
 	/**
 	 * @ORM\Id
@@ -49,18 +50,6 @@ class MachineGeneralTest extends \ArrayObject
 	 * @var Photo[]|ArrayCollection $photos
 	 */
 	protected $photos;
-
-	/**
-	 * @ORM\Column(name="test_type", type="text")
-	 * @var string $testType
-	 */
-	protected $testType;
-
-	/**
-	 * @ORM\Column(name="doc_link", type="text")
-	 * @var string $docLink
-	 */
-	protected $docLink;
 
 	/**
 	 * @return int
@@ -178,46 +167,6 @@ class MachineGeneralTest extends \ArrayObject
 	public function setPhotos($photos)
 	{
 		$this->photos = $photos;
-
-		return $this;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getTestType()
-	{
-		return $this->testType;
-	}
-
-	/**
-	 * @param string $testType
-	 *
-	 * @return $this
-	 */
-	public function setTestType($testType)
-	{
-		$this->testType = $testType;
-
-		return $this;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getDocLink()
-	{
-		return $this->docLink;
-	}
-
-	/**
-	 * @param string $docLink
-	 *
-	 * @return $this
-	 */
-	public function setDocLink($docLink)
-	{
-		$this->docLink = $docLink;
 
 		return $this;
 	}

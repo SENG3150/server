@@ -2,7 +2,8 @@
 
 namespace App\API\V1\Transformers;
 
-use App\API\V1\Entities\MajorAssembly;
+use App\API\V1\Entities\MajorAssembly as Entity;
+use App\Transformers\Transformer;
 
 class MajorAssemblyTransformer extends Transformer
 {
@@ -13,37 +14,61 @@ class MajorAssemblyTransformer extends Transformer
 		'model',
 		'subAssemblies',
 	);
-
+	
 	/**
-	 * @param MajorAssembly $majorAssembly
+	 * @param Entity $entity
 	 *
 	 * @return array
 	 */
-	public function transform(MajorAssembly $majorAssembly)
+	public function transform(Entity $entity)
 	{
-		return array(
-			'id'   => $majorAssembly->getId(),
-			'name' => $majorAssembly->getName(),
-		);
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return array(
+				'id'   => $entity->getId(),
+				'name' => $entity->getName(),
+			);
+		}
+		
+		else
+		{
+			return array();
+		}
 	}
 	
 	/**
-	 * @param MajorAssembly $majorAssembly
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeModel(MajorAssembly $majorAssembly)
+	public function includeModel(Entity $entity)
 	{
-		return $this->item($majorAssembly->getModel(), new ModelTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getModel(), new ModelTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param MajorAssembly $majorAssembly
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Collection
 	 */
-	public function includeSubAssemblies(MajorAssembly $majorAssembly)
+	public function includeSubAssemblies(Entity $entity)
 	{
-		return $this->collection($majorAssembly->getSubAssemblies(), new SubAssemblyTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getSubAssemblies(), new SubAssemblyTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
 }

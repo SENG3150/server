@@ -2,8 +2,8 @@
 
 namespace App\API\V1\Repositories;
 
-use Doctrine\ORM\EntityRepository;
+use App\Repositories\Repository;
 
-class CommentRepository extends EntityRepository
+class CommentRepository extends Repository
 {
 }

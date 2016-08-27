@@ -4,7 +4,8 @@ namespace App\API\V1\Transformers;
 
 use App\Entities\User;
 
-use App\API\V1\Entities\Photo;
+use App\API\V1\Entities\Photo as Entity;
+use App\Transformers\Transformer;
 
 class PhotoTransformer extends Transformer
 {
@@ -18,8 +19,9 @@ class PhotoTransformer extends Transformer
 		'technician',
 		'domainExpert',
 		'author',
+		'raw',
 	);
-
+	
 	/**
 	 * @var array
 	 */
@@ -28,98 +30,180 @@ class PhotoTransformer extends Transformer
 	);
 	
 	/**
-	 * @param Photo $photo
+	 * @param Entity $entity
 	 *
 	 * @return array
 	 */
-	public function transform(Photo $photo)
+	public function transform(Entity $entity)
 	{
-		return array(
-			'id'         => $photo->getId(),
-			'authorType' => $photo->getAuthorType(),
-			'text'       => $photo->getText(),
-			'format'     => $photo->getFormat(),
-			'url'        => $photo->getURLPath(),
-		);
-	}
-
-	/**
-	 * @param Photo $photo
-	 *
-	 * @return \League\Fractal\Resource\Item
-	 */
-	public function includeInspection(Photo $photo)
-	{
-		return $this->item($photo->getInspection(), new InspectionTransformer());
-	}
-
-	/**
-	 * @param Photo $photo
-	 *
-	 * @return \League\Fractal\Resource\Item
-	 */
-	public function includeMajorAssembly(Photo $photo)
-	{
-		return $this->item($photo->getMajorAssembly(), new InspectionMajorAssemblyTransformer());
-	}
-
-	/**
-	 * @param Photo $photo
-	 *
-	 * @return \League\Fractal\Resource\Item
-	 */
-	public function includeSubAssembly(Photo $photo)
-	{
-		return $this->item($photo->getSubAssembly(), new InspectionSubAssemblyTransformer());
-	}
-
-	/**
-	 * @param Photo $photo
-	 *
-	 * @return \League\Fractal\Resource\Item
-	 */
-	public function includeTechnician(Photo $photo)
-	{
-		return $this->item($photo->getTechnician(), new TechnicianTransformer());
-	}
-
-	/**
-	 * @param Photo $photo
-	 *
-	 * @return \League\Fractal\Resource\Item
-	 */
-	public function includeDomainExpert(Photo $photo)
-	{
-		return $this->item($photo->getDomainExpert(), new DomainExpertTransformer());
-	}
-
-	/**
-	 * @param Photo $photo
-	 *
-	 * @return \League\Fractal\Resource\Item
-	 */
-	public function includeAuthor(Photo $photo)
-	{
-		switch($photo->getAuthorType())
+		if($this->verifyItem($entity) == TRUE)
 		{
-			case (User::TYPE_TECHNICIAN):
+			return array(
+				'id'         => $entity->getId(),
+				'authorType' => $entity->getAuthorType(),
+				'text'       => $entity->getText(),
+				'format'     => $entity->getFormat(),
+				'url'        => $entity->getURLPath(),
+			);
+		}
+		
+		else
+		{
+			return array();
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeInspection(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getInspection(), new InspectionTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeMajorAssembly(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getMajorAssembly(), new InspectionMajorAssemblyTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeSubAssembly(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getSubAssembly(), new InspectionSubAssemblyTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeTechnician(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getTechnician(), new TechnicianTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeDomainExpert(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getDomainExpert(), new DomainExpertTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeAuthor(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			switch($entity->getAuthorType())
 			{
-				return $this->includeTechnician($photo);
-
-				break;
+				case (User::TYPE_TECHNICIAN):
+				{
+					return $this->includeTechnician($entity);
+					
+					break;
+				}
+				
+				case (User::TYPE_DOMAIN_EXPERT):
+				{
+					return $this->includeDomainExpert($entity);
+					
+					break;
+				}
+				
+				default:
+				{
+					return NULL;
+				}
 			}
-
-			case (User::TYPE_DOMAIN_EXPERT):
-			{
-				return $this->includeDomainExpert($photo);
-
-				break;
-			}
-
-			default:
-			{
-				return NULL;
-			}
+		}
+		
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Item
+	 */
+	public function includeRaw(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item(
+				$entity->getFilePath(),
+				function ($item)
+				{
+					return array(
+						'data' => base64_encode(file_get_contents($item)),
+					);
+				}
+			);
+		}
+		
+		else
+		{
+			return NULL;
 		}
 	}
 }

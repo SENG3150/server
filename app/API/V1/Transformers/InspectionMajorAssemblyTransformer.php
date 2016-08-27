@@ -2,7 +2,8 @@
 
 namespace App\API\V1\Transformers;
 
-use App\API\V1\Entities\InspectionMajorAssembly;
+use App\API\V1\Entities\InspectionMajorAssembly as Entity;
+use App\Transformers\Transformer;
 
 class InspectionMajorAssemblyTransformer extends Transformer
 {
@@ -16,7 +17,7 @@ class InspectionMajorAssemblyTransformer extends Transformer
 		'comments',
 		'photos',
 	);
-
+	
 	/**
 	 * @var array
 	 */
@@ -27,64 +28,112 @@ class InspectionMajorAssemblyTransformer extends Transformer
 	);
 	
 	/**
-	 * @param InspectionMajorAssembly $majorAssembly
+	 * @param Entity $entity
 	 *
 	 * @return array
 	 */
-	public function transform(InspectionMajorAssembly $majorAssembly)
+	public function transform(Entity $entity)
 	{
-		return array(
-			'id' => $majorAssembly->getId(),
-		);
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return array(
+				'id' => $entity->getId(),
+			);
+		}
+		
+		else
+		{
+			return array();
+		}
 	}
-
+	
 	/**
-	 * @param InspectionMajorAssembly $majorAssembly
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeInspection(InspectionMajorAssembly $majorAssembly)
+	public function includeInspection(Entity $entity)
 	{
-		return $this->item($majorAssembly->getInspection(), new InspectionTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getInspection(), new InspectionTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param InspectionMajorAssembly $majorAssembly
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Item
 	 */
-	public function includeMajorAssembly(InspectionMajorAssembly $majorAssembly)
+	public function includeMajorAssembly(Entity $entity)
 	{
-		return $this->item($majorAssembly->getMajorAssembly(), new MajorAssemblyTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getMajorAssembly(), new MajorAssemblyTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param InspectionMajorAssembly $majorAssembly
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Collection
 	 */
-	public function includeSubAssemblies(InspectionMajorAssembly $majorAssembly)
+	public function includeSubAssemblies(Entity $entity)
 	{
-		return $this->collection($majorAssembly->getSubAssemblies(), new InspectionSubAssemblyTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getSubAssemblies(), new InspectionSubAssemblyTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param InspectionMajorAssembly $majorAssembly
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Collection
 	 */
-	public function includeComments(InspectionMajorAssembly $majorAssembly)
+	public function includeComments(Entity $entity)
 	{
-		return $this->collection($majorAssembly->getComments(), new CommentTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getComments(), new CommentTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
-
+	
 	/**
-	 * @param InspectionMajorAssembly $majorAssembly
+	 * @param Entity $entity
 	 *
 	 * @return \League\Fractal\Resource\Collection
 	 */
-	public function includePhotos(InspectionMajorAssembly $majorAssembly)
+	public function includePhotos(Entity $entity)
 	{
-		return $this->collection($majorAssembly->getPhotos(), new PhotoTransformer());
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getPhotos(), new PhotoTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
 	}
 }

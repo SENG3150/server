@@ -2,16 +2,8 @@
 
 namespace App\API\V1\Repositories;
 
-use Doctrine\ORM\EntityRepository;
+use App\Repositories\Repository;
 
-class InspectionScheduleRepository extends EntityRepository
+class InspectionScheduleRepository extends Repository
 {
-	public function findByVisible()
-	{
-		return $this->findBy(
-			array(
-				'hidden' => FALSE,
-			)
-		);
-	}
 }

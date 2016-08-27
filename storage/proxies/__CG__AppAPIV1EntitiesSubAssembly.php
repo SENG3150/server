@@ -64,10 +64,10 @@ class SubAssembly extends \App\API\V1\Entities\SubAssembly implements \Doctrine\
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'name', 'majorAssembly', 'inspections', 'machineGeneral', 'oil', 'wear'];
+            return ['__isInitialized__', 'id', 'name', 'majorAssembly', 'inspections', 'machineGeneral', 'oil', 'wear', 'uniqueDetails'];
         }
 
-        return ['__isInitialized__', 'id', 'name', 'majorAssembly', 'inspections', 'machineGeneral', 'oil', 'wear'];
+        return ['__isInitialized__', 'id', 'name', 'majorAssembly', 'inspections', 'machineGeneral', 'oil', 'wear', 'uniqueDetails'];
     }
 
     /**
@@ -329,6 +329,28 @@ class SubAssembly extends \App\API\V1\Entities\SubAssembly implements \Doctrine\
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setWear', [$wear]);
 
         return parent::setWear($wear);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUniqueDetails()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUniqueDetails', []);
+
+        return parent::getUniqueDetails();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUniqueDetails($uniqueDetails)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUniqueDetails', [$uniqueDetails]);
+
+        return parent::setUniqueDetails($uniqueDetails);
     }
 
     /**

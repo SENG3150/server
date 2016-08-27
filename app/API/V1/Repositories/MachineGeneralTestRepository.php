@@ -2,8 +2,8 @@
 
 namespace App\API\V1\Repositories;
 
-use Doctrine\ORM\EntityRepository;
+use App\Repositories\Repository;
 
-class MachineGeneralTestRepository extends EntityRepository
+class MachineGeneralTestRepository extends Repository
 {
 }
