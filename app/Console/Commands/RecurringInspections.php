@@ -119,6 +119,7 @@ class RecurringInspections extends Command
 						break;
 					}
 					
+					default:
 					case 'days':
 					{
 						$time->addDays($number);
