@@ -206,7 +206,7 @@ CREATE TABLE `inspections` (
 --
 
 INSERT INTO `inspections` (`id`, `machine_id`, `technician_id`, `scheduler_id`, `schedule_id`, `time_created`, `time_scheduled`, `time_started`, `time_completed`, `deleted`, `time_deleted`) VALUES
-(1, 1, 1, 1, NULL, '2016-08-26 10:00:00', '2016-08-29 09:00:00', '2016-08-29 09:00:00', '2016-08-29 14:00:00', 0, NULL);
+(1, 1, 1, 1, NULL, '2016-08-26 10:00:00', '2016-08-26 12:00:00', '2016-08-26 12:00:00', '2016-08-26 14:00:00', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -251,7 +251,7 @@ CREATE TABLE `inspection_schedules` (
 --
 
 INSERT INTO `inspection_schedules` (`id`, `inspection_id`, `value`, `period`, `deleted`, `time_deleted`) VALUES
-(1, 1, 1, 'days', 0, NULL);
+(1, 1, 3, 'hours', 0, NULL);
 
 -- --------------------------------------------------------
 
