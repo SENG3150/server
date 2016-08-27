@@ -34,40 +34,40 @@ if(function_exists('generateRoutes') == FALSE)
 		if($controller == NULL)
 		{
 			$controller = ucfirst($route);
-
+			
 			if(stringEndsWith($controller, 's') == TRUE)
 			{
 				$controller = substr($controller, 0, -1);
 			}
-
+			
 			if(stringEndsWith($controller, 'ie') == TRUE)
 			{
 				$controller = substr($controller, 0, -2) . 'y';
 			}
 		}
-
+		
 		$path = "App\\API\\" . strtoupper($version) . "\\Controllers\\" . $controller . "Controller@";
-
+		
 		if($getList == TRUE)
 		{
 			$api->get($route, $path . 'getList');
 		}
-
+		
 		if($get == TRUE)
 		{
 			$api->get($route . '/{id}', $path . 'get');
 		}
-
+		
 		if($create == TRUE)
 		{
 			$api->post($route, $path . 'create');
 		}
-
+		
 		if($update == TRUE)
 		{
 			$api->post($route . '/{id}', $path . 'update');
 		}
-
+		
 		if($delete == TRUE)
 		{
 			$api->delete($route . '/{id}', $path . 'delete');
@@ -94,7 +94,7 @@ if(function_exists('stringEndsWith') == FALSE)
 if(function_exists('hasTrait') == FALSE)
 {
 	/**
-	 * @param mixed $class
+	 * @param mixed  $class
 	 * @param string $trait
 	 *
 	 * @return bool

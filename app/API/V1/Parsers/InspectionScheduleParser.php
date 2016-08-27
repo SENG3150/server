@@ -34,7 +34,6 @@ class InspectionScheduleParser extends Parser
 			$input,
 			array(
 				'inspection'                => 'required',
-				'nextInspectionTime'        => 'required|isodatetime',
 				'value'                     => 'required|integer',
 				'period'                    => 'required|string',
 
@@ -44,7 +43,6 @@ class InspectionScheduleParser extends Parser
 		$entity = new Entity();
 
 		$this->resolve($entity, $input, 'inspection', 'entity', App\API\V1\Repositories\InspectionRepository::class);
-		$this->resolve($entity, $input, 'nextInspectionTime', 'datetime');
 		$this->resolve($entity, $input, 'value', 'integer');
 		$this->resolve($entity, $input, 'period', 'string');
 
@@ -71,7 +69,6 @@ class InspectionScheduleParser extends Parser
 			$input = $this->resolveInput($input);
 
 			$this->resolve($entity, $input, 'inspection', 'entity', App\API\V1\Repositories\InspectionRepository::class);
-			$this->resolve($entity, $input, 'nextInspectionTime', 'datetime');
 			$this->resolve($entity, $input, 'value', 'integer');
 			$this->resolve($entity, $input, 'period', 'string');
 

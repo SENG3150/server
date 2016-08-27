@@ -42,7 +42,7 @@ class Machine extends Entity
 	protected $inspections;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Downtime", mappedBy="Downtime", cascade={"persist"})
+	 * @ORM\OneToMany(targetEntity="Downtime", mappedBy="machine", cascade={"persist"})
 	 * @var Downtime[]|ArrayCollection $downtime
 	 */
 	protected $downtime;

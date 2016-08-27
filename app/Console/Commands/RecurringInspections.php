@@ -8,8 +8,8 @@ use App\API\V1\Entities\InspectionSubAssembly;
 use App\API\V1\Entities\InspectionSchedule;
 use App\API\V1\Repositories\InspectionRepository;
 use App\API\V1\Repositories\InspectionScheduleRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
-use Faker\Provider\zh_TW\DateTime;
 use Illuminate\Console\Command;
 use Carbon\Carbon;
 use Doctrine\DBAL\Types\Type;
@@ -29,30 +29,22 @@ class RecurringInspections extends Command
 	 * @var string
 	 */
 	protected $description = 'Search the Inspection Schedule list for upcoming recurring inspections and creates new inspection items';
+	
 	/**
 	 * @var EntityManagerInterface $em
 	 */
 	private $em;
 	
 	/**
-	 *
-	 *
 	 * @var InspectionScheduleRepository $inspectionScheduleRepository
 	 */
 	protected $inspectionScheduleRepository;
 	
 	/**
-	 *
-	 *
 	 * @var InspectionRepository $inspectionRepository
 	 */
 	protected $inspectionRepository;
 	
-	/**
-	 * Create a new command instance.
-	 *
-	 * @var InspectionScheduleRepository $inspectionScheduleRepository
-	 */
 	public function __construct()
 	{
 		parent::__construct();
@@ -73,95 +65,148 @@ class RecurringInspections extends Command
 	{
 		/** @var InspectionSchedule[] $inspectionSchedules */
 		$inspectionSchedules = $this->inspectionScheduleRepository->findAll();
+		
 		foreach($inspectionSchedules as $inspectionSchedule)
 		{
-			$stamp = new Carbon();
+			$period = $inspectionSchedule->getPeriod();
+			$number = $inspectionSchedule->getValue();
 			
-			if($inspectionSchedule->getPeriod() == 'minutes')
+			$inspections = $inspectionSchedule->getInspections();
+			
+			if($inspections instanceof Collection)
 			{
-				$stamp->addMinutes(2 * $inspectionSchedule->getValue());
+				$inspections = $inspections->getValues();
 			}
 			
-			if($inspectionSchedule->getPeriod() == 'hours')
+			if(count($inspections) == 0)
 			{
-				$stamp->addHours(2 * $inspectionSchedule->getValue());
+				// Create the first duplicated inspection
+				$inspections = array(
+					$inspectionSchedule->getInspection()
+				);
 			}
 			
-			if($inspectionSchedule->getPeriod() == 'days')
-			{
-				$stamp->addDays(2 * $inspectionSchedule->getValue());
-			}
+			$count = 0;
 			
-			if($inspectionSchedule->getPeriod() == 'weeks')
+			foreach($inspections as $inspection)
 			{
-				$stamp->addWeeks(2 * $inspectionSchedule->getValue());
-			}
-			
-			if($inspectionSchedule->getPeriod() == 'months')
-			{
-				$stamp->addMonths(2 * $inspectionSchedule->getValue());
-			}
-			
-			if($inspectionSchedule->getPeriod() == 'years')
-			{
-				$stamp->addYears(2 * $inspectionSchedule->getValue());
-			}
-			
-			$needNewInspection = TRUE;
-			
-			foreach($inspectionSchedule->getInspections() as $inspection)
-			{
-				if((new \DateTime()) <=$inspection->getTimeScheduled() && $inspection->getTimeScheduled() <= ($stamp))
+				if($inspection->getTimeScheduled() > (new \DateTime()))
 				{
-					$needNewInspection = FALSE;
+					$count++;
 				}
 			}
 			
-			if($needNewInspection == TRUE)
+			while($count < 2)
 			{
-				$this->addNewInspection($inspectionSchedule, $this->em);
+				$lastInspection = end($inspections);
+				
+				// Copy time across from last inspection
+				$time = new Carbon($lastInspection->getTimeScheduled()->format(DATE_ISO8601));
+				
+				switch($period)
+				{
+					case 'minutes':
+					{
+						$time->addMinutes($number);
+						
+						break;
+					}
+					
+					case 'hours':
+					{
+						$time->addHours($number);
+						
+						break;
+					}
+					
+					case 'days':
+					{
+						$time->addDays($number);
+						
+						break;
+					}
+					
+					case 'weeks':
+					{
+						$time->addWeeks($number);
+						
+						break;
+					}
+					
+					case 'months':
+					{
+						$time->addMonths($number);
+						
+						break;
+					}
+					
+					case 'years':
+					{
+						$time->addYears($number);
+						
+						break;
+					}
+				}
+				
+				$inspections[] = $this->duplicateInspection($inspectionSchedule, $time);
+				
+				$count++;
 			}
 		}
+		
+		return TRUE;
 	}
 	
 	/**
 	 * Adds a new inspection similar to the parent inspection.
 	 *
-	 *
 	 * @param \App\API\V1\Entities\InspectionSchedule $schedule
-	 * @param \Doctrine\ORM\EntityManagerInterface    $em
+	 * @param \DateTime                               $time
 	 *
-	 * @internal param \App\API\V1\Entities\InspectionSchedule $
+	 * @return \App\API\V1\Entities\Inspection
 	 */
-	public function addNewInspection(InspectionSchedule $schedule, EntityManagerInterface $em)
+	public function duplicateInspection(InspectionSchedule $schedule, \DateTime $time)
 	{
-		$stamp         = new Carbon();
-		$oldInspection = $schedule->getInspection();
+		$baseInspection = $schedule->getInspection();
+		
 		$newInspection = new Inspection();
 		
-		$newInspection->setTimeCreated($stamp);
-		$newInspection->setTimeScheduled($stamp);
-		$newInspection->setMachine($oldInspection->getMachine());
-		$newInspection->setTechnician($oldInspection->getTechnician());
-		$newInspection->setScheduler($oldInspection->getScheduler());
-		$newInspection->setSchedule($schedule);
-		$em->persist($newInspection);
-		$em->flush();
-		foreach($oldInspection->getMajorAssemblies() as $oldMajorAssembly) {
+		$newInspection
+			->setTimeCreated(new \DateTime())
+			->setTimeScheduled($time)
+			->setMachine($baseInspection->getMachine())
+			->setTechnician($baseInspection->getTechnician())
+			->setScheduler($baseInspection->getScheduler())
+			->setSchedule($schedule);
+		
+		$this->em->persist($newInspection);
+		$this->em->flush();
+		
+		foreach($baseInspection->getMajorAssemblies() as $oldMajorAssembly)
+		{
 			$majorAssembly = new InspectionMajorAssembly();
-			$majorAssembly->setInspection($newInspection);
-			$majorAssembly->setMajorAssembly($oldMajorAssembly->getMajorAssembly());
-			$em->persist($majorAssembly);
-			$em->flush();
-
-			foreach($oldMajorAssembly->getSubAssemblies() as $oldSubAssembly) {
+			
+			$majorAssembly
+				->setInspection($newInspection)
+				->setMajorAssembly($oldMajorAssembly->getMajorAssembly());
+			
+			$this->em->persist($majorAssembly);
+			$this->em->flush();
+			
+			foreach($oldMajorAssembly->getSubAssemblies() as $oldSubAssembly)
+			{
 				$subAssembly = new InspectionSubAssembly();
-				$subAssembly->setMajorAssembly($majorAssembly);
-				$subAssembly->setInspection($newInspection);
-				$subAssembly->setSubAssembly($oldSubAssembly->getSubAssembly());
-				$em->persist($subAssembly);
-				$em->flush();
+				
+				$subAssembly
+					->setMajorAssembly($majorAssembly)
+					->setInspection($newInspection)
+					->setSubAssembly($oldSubAssembly->getSubAssembly());
+				
+				$this->em->persist($subAssembly);
+				$this->em->flush();
 			}
 		}
+		
+		return $newInspection;
 	}
 }
