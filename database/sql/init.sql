@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2016 at 05:55 PM
+-- Generation Time: Aug 27, 2016 at 06:12 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -97,18 +97,18 @@ CREATE TABLE `administrators` (
   `last_name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `email` longtext COLLATE utf8_unicode_ci NOT NULL,
   `password` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `time_deleted` datetime DEFAULT NULL,
-  `deleted` tinyint(1) NOT NULL DEFAULT '0'
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `time_deleted` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `administrators`
 --
 
-INSERT INTO `administrators` (`id`, `username`, `first_name`, `last_name`, `email`, `password`, `time_deleted`, `deleted`) VALUES
-(1, 'mitch', 'Mitchell', 'Davis', 'mitch@example.com', '$2a$12$1B5.xCjUpivSCNqsNCp2desyQAmGqIwDc7HTENLK6yBUBhMY0wgHO', NULL, 0),
-(2, 'administrator', 'Administrator', 'Administrator', 'administrator@example.com', '$2a$12$2fKp5HyEmAvR8ool5/TWUeS2/xpus0gn3UbvdI9VB.jsnOi3vQfRK', NULL, 0),
-(3, 'johnny', 'Johnny', 'Admin', 'johnny@example.com', '$2y$10$lgqGnyV8FmrzcSdV7i/eJ.wrNxSx4YCQ38MbtW1xkrpK4wq6qKP0K', NULL, 0);
+INSERT INTO `administrators` (`id`, `username`, `first_name`, `last_name`, `email`, `password`, `deleted`, `time_deleted`) VALUES
+(1, 'mitch', 'Mitchell', 'Davis', 'mitch@example.com', '$2a$12$1B5.xCjUpivSCNqsNCp2desyQAmGqIwDc7HTENLK6yBUBhMY0wgHO', 0, NULL),
+(2, 'administrator', 'Administrator', 'Administrator', 'administrator@example.com', '$2a$12$2fKp5HyEmAvR8ool5/TWUeS2/xpus0gn3UbvdI9VB.jsnOi3vQfRK', 0, NULL),
+(3, 'johnny', 'Johnny', 'Admin', 'johnny@example.com', '$2y$10$lgqGnyV8FmrzcSdV7i/eJ.wrNxSx4YCQ38MbtW1xkrpK4wq6qKP0K', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -155,17 +155,17 @@ CREATE TABLE `domain_experts` (
   `last_name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `email` longtext COLLATE utf8_unicode_ci NOT NULL,
   `password` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `time_deleted` datetime DEFAULT NULL,
-  `deleted` tinyint(1) NOT NULL DEFAULT '0'
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `time_deleted` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `domain_experts`
 --
 
-INSERT INTO `domain_experts` (`id`, `username`, `first_name`, `last_name`, `email`, `password`, `time_deleted`, `deleted`) VALUES
-(1, 'domainexpert', 'Domain', 'Expert', 'domainexpert@example.com', '$2a$12$uGfVGjPNWafUKRXU5zfwtuKbFsiS/oRUXvxS5JsUn6o.mAkuxV8c.', NULL, 0),
-(2, 'frank', 'Frank', 'Expert', 'frank@example.com', '$2y$10$PHUfUAhs00UdJPFul/EFx.Mr9hP1fNkmm4FD5DPusJqCqx7od1noe', NULL, 0);
+INSERT INTO `domain_experts` (`id`, `username`, `first_name`, `last_name`, `email`, `password`, `deleted`, `time_deleted`) VALUES
+(1, 'domainexpert', 'Domain', 'Expert', 'mitch@wingmanwebdesign.com.au', '$2a$12$uGfVGjPNWafUKRXU5zfwtuKbFsiS/oRUXvxS5JsUn6o.mAkuxV8c.', 0, NULL),
+(2, 'frank', 'Frank', 'Expert', 'frank@example.com', '$2y$10$PHUfUAhs00UdJPFul/EFx.Mr9hP1fNkmm4FD5DPusJqCqx7od1noe', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -192,21 +192,21 @@ CREATE TABLE `inspections` (
   `machine_id` int(11) DEFAULT NULL,
   `technician_id` int(11) DEFAULT NULL,
   `scheduler_id` int(11) DEFAULT NULL,
+  `schedule_id` int(11) DEFAULT NULL,
   `time_created` datetime DEFAULT NULL,
   `time_scheduled` datetime DEFAULT NULL,
   `time_started` datetime DEFAULT NULL,
   `time_completed` datetime DEFAULT NULL,
-  `schedule_id` int(11) DEFAULT NULL,
-  `time_deleted` datetime DEFAULT NULL,
-  `deleted` tinyint(1) NOT NULL DEFAULT '0'
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `time_deleted` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `inspections`
 --
 
-INSERT INTO `inspections` (`id`, `machine_id`, `technician_id`, `scheduler_id`, `time_created`, `time_scheduled`, `time_started`, `time_completed`, `schedule_id`, `time_deleted`, `deleted`) VALUES
-(1, 1, 1, 1, '2016-05-11 14:20:00', '2016-05-25 09:00:00', '2016-05-25 12:23:56', '2016-05-25 12:24:31', NULL, NULL, 0);
+INSERT INTO `inspections` (`id`, `machine_id`, `technician_id`, `scheduler_id`, `schedule_id`, `time_created`, `time_scheduled`, `time_started`, `time_completed`, `deleted`, `time_deleted`) VALUES
+(1, 1, 1, 1, NULL, '2016-08-26 10:00:00', '2016-08-29 09:00:00', '2016-08-29 09:00:00', '2016-08-29 14:00:00', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -242,9 +242,16 @@ CREATE TABLE `inspection_schedules` (
   `inspection_id` int(11) DEFAULT NULL,
   `value` int(11) NOT NULL,
   `period` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `time_deleted` datetime DEFAULT NULL,
-  `deleted` tinyint(1) NOT NULL DEFAULT '0'
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `time_deleted` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `inspection_schedules`
+--
+
+INSERT INTO `inspection_schedules` (`id`, `inspection_id`, `value`, `period`, `deleted`, `time_deleted`) VALUES
+(1, 1, 1, 'days', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -305,17 +312,19 @@ CREATE TABLE `machines` (
   `id` int(11) NOT NULL,
   `model_id` int(11) DEFAULT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `time_deleted` datetime DEFAULT NULL,
-  `deleted` tinyint(1) NOT NULL DEFAULT '0'
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `time_deleted` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `machines`
 --
 
-INSERT INTO `machines` (`id`, `model_id`, `name`, `time_deleted`, `deleted`) VALUES
-(1, 1, 'Machine 1', NULL, 0),
-(2, 1, 'Machine 2', NULL, 0);
+INSERT INTO `machines` (`id`, `model_id`, `name`, `deleted`, `time_deleted`) VALUES
+(1, 1, 'Machine 1', 0, NULL),
+(2, 1, 'Machine 2', 0, NULL),
+(3, 2, 'Machine 4', 0, NULL),
+(4, 5, 'Machine 5', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -338,7 +347,14 @@ INSERT INTO `major_assemblies` (`id`, `model_id`, `name`) VALUES
 (2, 1, 'Crowd System (CWD)'),
 (3, 1, 'Swing System (SWG)'),
 (4, 1, 'Propel System (PPL)'),
-(5, 1, 'Brakes');
+(5, 1, 'Brakes'),
+(6, 5, 'Major Assembly 1'),
+(7, 5, 'Major Assembly 2'),
+(8, 5, 'Major Assembly 3'),
+(9, 5, 'Major Assembly 4'),
+(10, 5, 'Major Assembly 5'),
+(11, 5, 'Major Assembly 6'),
+(12, 4, 'Major Assembly 1');
 
 -- --------------------------------------------------------
 
@@ -349,16 +365,20 @@ INSERT INTO `major_assemblies` (`id`, `model_id`, `name`) VALUES
 CREATE TABLE `models` (
   `id` int(11) NOT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `time_deleted` datetime DEFAULT NULL,
-  `deleted` tinyint(1) NOT NULL DEFAULT '0'
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `time_deleted` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `models`
 --
 
-INSERT INTO `models` (`id`, `name`, `time_deleted`, `deleted`) VALUES
-(1, '4100 XPC-AC Shovel', NULL, 0);
+INSERT INTO `models` (`id`, `name`, `deleted`, `time_deleted`) VALUES
+(1, '4100 XPC-AC Shovel', 0, NULL),
+(2, 'Model 2', 0, NULL),
+(3, 'Model 3', 0, NULL),
+(4, 'Model 4', 0, NULL),
+(5, 'Model 5', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -401,92 +421,38 @@ CREATE TABLE `sub_assemblies` (
 --
 
 INSERT INTO `sub_assemblies` (`id`, `major_assembly_id`, `name`, `machine_general`, `oil`, `wear`, `unique_details`) VALUES
-(1, 1, 'Hoist Ropes - House', 0, 0, 0, ''),
-(2, 1, 'Hoist Ropes - Equaliser', 0, 0, 0, ''),
-(3, 2, 'Crowd Motor Base', 0, 0, 0, ''),
-(4, 2, 'LH Saddle Block Bush', 0, 0, 0, ''),
-(5, 2, 'RH Saddle Block Bush', 0, 0, 0, ''),
-(6, 2, 'LV Saddle Block Wearplate', 0, 0, 0, ''),
-(7, 2, 'LH Saddle Block Wearplate', 0, 0, 0, ''),
-(8, 2, 'RV Saddle Block Wearplate', 0, 0, 0, ''),
-(9, 2, 'RH Saddle Block Wearplate', 0, 0, 0, ''),
-(10, 2, 'LH Crowd Rack', 0, 0, 0, ''),
-(11, 2, 'RH Crowd Rack', 0, 0, 0, ''),
-(12, 2, 'LH Crowd Pinion', 0, 0, 0, ''),
-(13, 2, 'RH Crowd Pinion', 0, 0, 0, ''),
-(14, 3, 'Roller Circle', 0, 0, 0, ''),
-(15, 3, 'Swing Pinion Gears', 0, 0, 0, ''),
-(16, 3, 'Swing Rear Gear', 0, 0, 0, ''),
-(17, 4, 'LHS Crawler Pads', 0, 0, 0, ''),
-(18, 4, 'RHS Crawler Pads', 0, 0, 0, ''),
-(19, 4, 'LHS Propel Idler Bush', 0, 0, 0, ''),
-(20, 4, 'RHS Propel Idler Bush', 0, 0, 0, ''),
-(21, 4, 'LHS Propel Guide Rail', 0, 0, 0, ''),
-(22, 4, 'RHS Propel Guide Rail', 0, 0, 0, ''),
-(23, 5, 'Front Hoist Brake', 0, 0, 0, ''),
-(24, 5, 'Rear Hoist Brake', 0, 0, 0, ''),
-(25, 5, 'Crowd Brake', 0, 0, 0, ''),
-(26, 5, 'Rear Swing Brake', 0, 0, 0, ''),
-(27, 5, 'RHF Swing Brake', 0, 0, 0, ''),
-(28, 5, 'LHF Swing Brake', 0, 0, 0, ''),
-(29, 5, 'RH Propel Brake', 0, 0, 0, ''),
-(30, 5, 'LH Propel Brake', 0, 0, 0, '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sub_assembly_tests`
---
-
-CREATE TABLE `sub_assembly_tests` (
-  `id` int(11) NOT NULL,
-  `sub_assembly_id` int(11) DEFAULT NULL,
-  `machine_general` tinyint(1) NOT NULL,
-  `machine_general_lower` decimal(10,5) DEFAULT NULL,
-  `machine_general_upper` decimal(10,5) DEFAULT NULL,
-  `oil` tinyint(1) NOT NULL,
-  `oil_lower` decimal(10,5) DEFAULT NULL,
-  `oil_upper` decimal(10,5) DEFAULT NULL,
-  `wear` tinyint(1) NOT NULL,
-  `wear_lower` decimal(10,5) DEFAULT NULL,
-  `wear_upper` decimal(10,5) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `sub_assembly_tests`
---
-
-INSERT INTO `sub_assembly_tests` (`id`, `sub_assembly_id`, `machine_general`, `machine_general_lower`, `machine_general_upper`, `oil`, `oil_lower`, `oil_upper`, `wear`, `wear_lower`, `wear_upper`) VALUES
-(1, 1, 1, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL),
-(2, 2, 1, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL),
-(3, 3, 0, NULL, NULL, 1, NULL, NULL, 0, NULL, NULL),
-(4, 4, 0, NULL, NULL, 1, NULL, NULL, 0, NULL, NULL),
-(5, 5, 0, NULL, NULL, 1, NULL, NULL, 0, NULL, NULL),
-(6, 6, 0, NULL, NULL, 1, NULL, NULL, 0, NULL, NULL),
-(7, 7, 0, NULL, NULL, 1, NULL, NULL, 0, NULL, NULL),
-(8, 8, 0, NULL, NULL, 1, NULL, NULL, 0, NULL, NULL),
-(9, 9, 0, NULL, NULL, 1, NULL, NULL, 0, NULL, NULL),
-(10, 10, 0, NULL, NULL, 1, NULL, NULL, 0, NULL, NULL),
-(11, 11, 0, NULL, NULL, 1, NULL, NULL, 0, NULL, NULL),
-(12, 12, 0, NULL, NULL, 1, NULL, NULL, 0, NULL, NULL),
-(13, 13, 0, NULL, NULL, 1, NULL, NULL, 0, NULL, NULL),
-(14, 14, 0, NULL, NULL, 0, NULL, NULL, 1, NULL, NULL),
-(15, 15, 0, NULL, NULL, 0, NULL, NULL, 1, NULL, NULL),
-(16, 16, 0, NULL, NULL, 0, NULL, NULL, 1, NULL, NULL),
-(17, 17, 1, NULL, NULL, 1, NULL, NULL, 0, NULL, NULL),
-(18, 18, 1, NULL, NULL, 1, NULL, NULL, 0, NULL, NULL),
-(19, 19, 1, NULL, NULL, 1, NULL, NULL, 0, NULL, NULL),
-(20, 20, 1, NULL, NULL, 1, NULL, NULL, 0, NULL, NULL),
-(21, 21, 1, NULL, NULL, 1, NULL, NULL, 0, NULL, NULL),
-(22, 22, 1, NULL, NULL, 1, NULL, NULL, 0, NULL, NULL),
-(23, 23, 0, NULL, NULL, 1, NULL, NULL, 1, NULL, NULL),
-(24, 24, 0, NULL, NULL, 1, NULL, NULL, 1, NULL, NULL),
-(25, 25, 0, NULL, NULL, 1, NULL, NULL, 1, NULL, NULL),
-(26, 26, 0, NULL, NULL, 1, NULL, NULL, 1, NULL, NULL),
-(27, 27, 0, NULL, NULL, 1, NULL, NULL, 1, NULL, NULL),
-(28, 28, 0, NULL, NULL, 1, NULL, NULL, 1, NULL, NULL),
-(29, 29, 0, NULL, NULL, 1, NULL, NULL, 1, NULL, NULL),
-(30, 30, 0, NULL, NULL, 1, NULL, NULL, 1, NULL, NULL);
+(1, 1, 'Hoist Ropes - House', 1, 0, 0, 'a:0:{}'),
+(2, 1, 'Hoist Ropes - Equaliser', 1, 0, 0, 'a:0:{}'),
+(3, 2, 'Crowd Motor Base', 0, 1, 0, 'a:0:{}'),
+(4, 2, 'LH Saddle Block Bush', 0, 1, 0, 'a:0:{}'),
+(5, 2, 'RH Saddle Block Bush', 0, 1, 0, 'a:0:{}'),
+(6, 2, 'LV Saddle Block Wearplate', 0, 1, 0, 'a:0:{}'),
+(7, 2, 'LH Saddle Block Wearplate', 0, 1, 0, 'a:0:{}'),
+(8, 2, 'RV Saddle Block Wearplate', 0, 1, 0, 'a:0:{}'),
+(9, 2, 'RH Saddle Block Wearplate', 0, 1, 0, 'a:0:{}'),
+(10, 2, 'LH Crowd Rack', 0, 1, 0, 'a:0:{}'),
+(11, 2, 'RH Crowd Rack', 0, 1, 0, 'a:0:{}'),
+(12, 2, 'LH Crowd Pinion', 0, 1, 0, 'a:0:{}'),
+(13, 2, 'RH Crowd Pinion', 0, 1, 0, 'a:0:{}'),
+(14, 3, 'Roller Circle', 0, 0, 1, 'a:2:{i:0;s:3:"Field 1";i:1;s:3:"Field 2";}'),
+(15, 3, 'Swing Pinion Gears', 0, 0, 1, 'a:2:{i:0;s:3:"Field 1";i:1;s:3:"Field 2";}'),
+(16, 3, 'Swing Rear Gear', 0, 0, 1, 'a:2:{i:0;s:3:"Field 1";i:1;s:3:"Field 2";}'),
+(17, 4, 'LHS Crawler Pads', 1, 1, 0, 'a:0:{}'),
+(18, 4, 'RHS Crawler Pads', 1, 1, 0, 'a:0:{}'),
+(19, 4, 'LHS Propel Idler Bush', 1, 1, 0, 'a:0:{}'),
+(20, 4, 'RHS Propel Idler Bush', 1, 1, 0, 'a:0:{}'),
+(21, 4, 'LHS Propel Guide Rail', 1, 1, 0, 'a:0:{}'),
+(22, 4, 'RHS Propel Guide Rail', 1, 1, 0, 'a:0:{}'),
+(23, 5, 'Front Hoist Brake', 0, 1, 1, 'a:2:{i:0;s:3:"Field 1";i:1;s:3:"Field 2";}'),
+(24, 5, 'Rear Hoist Brake', 0, 1, 1, 'a:2:{i:0;s:3:"Field 1";i:1;s:3:"Field 2";}'),
+(25, 5, 'Crowd Brake', 0, 1, 1, 'a:2:{i:0;s:3:"Field 1";i:1;s:3:"Field 2";}'),
+(26, 5, 'Rear Swing Brake', 0, 1, 1, 'a:2:{i:0;s:3:"Field 1";i:1;s:3:"Field 2";}'),
+(27, 5, 'RHF Swing Brake', 0, 1, 1, 'a:2:{i:0;s:3:"Field 1";i:1;s:3:"Field 2";}'),
+(28, 5, 'LHF Swing Brake', 0, 1, 1, 'a:2:{i:0;s:3:"Field 1";i:1;s:3:"Field 2";}'),
+(29, 5, 'RH Propel Brake', 0, 1, 1, 'a:2:{i:0;s:3:"Field 1";i:1;s:3:"Field 2";}'),
+(30, 5, 'LH Propel Brake', 0, 1, 1, 'a:2:{i:0;s:3:"Field 1";i:1;s:3:"Field 2";}'),
+(31, 6, 'Sub Assembly 1', 1, 0, 0, 'a:0:{}'),
+(32, 12, '1', 0, 1, 0, 'a:0:{}');
 
 -- --------------------------------------------------------
 
@@ -503,18 +469,18 @@ CREATE TABLE `technicians` (
   `password` longtext COLLATE utf8_unicode_ci NOT NULL,
   `temporary` tinyint(1) NOT NULL,
   `login_expires_time` datetime DEFAULT NULL,
-  `time_deleted` datetime DEFAULT NULL,
-  `deleted` tinyint(1) NOT NULL DEFAULT '0'
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `time_deleted` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `technicians`
 --
 
-INSERT INTO `technicians` (`id`, `username`, `first_name`, `last_name`, `email`, `password`, `temporary`, `login_expires_time`, `time_deleted`, `deleted`) VALUES
-(1, 'technician', 'Technician', 'Technician', 'technician@example.com', '$2a$12$R51y./7/iNSEZamYgC0RWuz/bSweRgw1GnBsIC0jgZRuVSy4zfzj2', 0, NULL, NULL, 0),
-(2, 'temp', 'Temporary', 'Technician', 'temporary-technician@example.com', '$2a$12$R51y./7/iNSEZamYgC0RWuz/bSweRgw1GnBsIC0jgZRuVSy4zfzj2', 1, '2016-05-31 23:59:59', NULL, 0),
-(3, 'albert', 'Albert', 'Tech', 'albert@example.com', '$2y$10$VBH43BZ7xkYRtKMYEi2YX.rTSxPzCYb6CXc2ehnXXUWCWCRMz6h8m', 0, NULL, NULL, 0);
+INSERT INTO `technicians` (`id`, `username`, `first_name`, `last_name`, `email`, `password`, `temporary`, `login_expires_time`, `deleted`, `time_deleted`) VALUES
+(1, 'technician', 'Technician', 'Technician', 'technician@example.com', '$2a$12$R51y./7/iNSEZamYgC0RWuz/bSweRgw1GnBsIC0jgZRuVSy4zfzj2', 0, NULL, 0, NULL),
+(2, 'temp', 'Temporary', 'Technician', 'temporary-technician@example.com', '$2a$12$R51y./7/iNSEZamYgC0RWuz/bSweRgw1GnBsIC0jgZRuVSy4zfzj2', 1, '2016-05-31 23:59:59', 0, NULL),
+(3, 'albert', 'Albert', 'Tech', 'albert@example.com', '$2y$10$VBH43BZ7xkYRtKMYEi2YX.rTSxPzCYb6CXc2ehnXXUWCWCRMz6h8m', 0, NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -614,17 +580,17 @@ CREATE TABLE `tests_wear` (
 --
 
 INSERT INTO `tests_wear` (`id`, `inspection_id`, `sub_assembly_id`, `smu`, `unique_details`) VALUES
-(1, 1, 14, 0, 'a:2:{s:4:"Test";s:15:"serialize here!";s:1:"A";s:1:"B";}'),
-(2, 1, 15, 0, 'a:2:{s:4:"Test";s:15:"serialize here!";s:1:"A";s:1:"B";}'),
-(3, 1, 16, 0, 'a:2:{s:4:"Test";s:15:"serialize here!";s:1:"A";s:1:"B";}'),
-(4, 1, 23, 0, 'a:2:{s:4:"Test";s:15:"serialize here!";s:1:"A";s:1:"B";}'),
-(5, 1, 24, 0, 'a:2:{s:4:"Test";s:15:"serialize here!";s:1:"A";s:1:"B";}'),
-(6, 1, 25, 0, 'a:2:{s:4:"Test";s:15:"serialize here!";s:1:"A";s:1:"B";}'),
-(7, 1, 26, 0, 'a:2:{s:4:"Test";s:15:"serialize here!";s:1:"A";s:1:"B";}'),
-(8, 1, 27, 0, 'a:2:{s:4:"Test";s:15:"serialize here!";s:1:"A";s:1:"B";}'),
-(9, 1, 28, 0, 'a:2:{s:4:"Test";s:15:"serialize here!";s:1:"A";s:1:"B";}'),
-(10, 1, 29, 0, 'a:2:{s:4:"Test";s:15:"serialize here!";s:1:"A";s:1:"B";}'),
-(11, 1, 30, 0, 'a:2:{s:4:"Test";s:15:"serialize here!";s:1:"A";s:1:"B";}');
+(1, 1, 14, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}'),
+(2, 1, 15, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}'),
+(3, 1, 16, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}'),
+(4, 1, 23, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}'),
+(5, 1, 24, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}'),
+(6, 1, 25, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}'),
+(7, 1, 26, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}'),
+(8, 1, 27, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}'),
+(9, 1, 28, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}'),
+(10, 1, 29, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}'),
+(11, 1, 30, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}');
 
 --
 -- Indexes for dumped tables
@@ -749,13 +715,6 @@ ALTER TABLE `sub_assemblies`
   ADD KEY `IDX_73F3A10DF50BDA8F` (`major_assembly_id`);
 
 --
--- Indexes for table `sub_assembly_tests`
---
-ALTER TABLE `sub_assembly_tests`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_55068B372FD708D2` (`sub_assembly_id`);
-
---
 -- Indexes for table `technicians`
 --
 ALTER TABLE `technicians`
@@ -828,7 +787,7 @@ ALTER TABLE `inspection_major_assemblies`
 -- AUTO_INCREMENT for table `inspection_schedules`
 --
 ALTER TABLE `inspection_schedules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `inspection_sub_assemblies`
 --
@@ -838,17 +797,17 @@ ALTER TABLE `inspection_sub_assemblies`
 -- AUTO_INCREMENT for table `machines`
 --
 ALTER TABLE `machines`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `major_assemblies`
 --
 ALTER TABLE `major_assemblies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `models`
 --
 ALTER TABLE `models`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `photos`
 --
@@ -858,12 +817,7 @@ ALTER TABLE `photos`
 -- AUTO_INCREMENT for table `sub_assemblies`
 --
 ALTER TABLE `sub_assemblies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
---
--- AUTO_INCREMENT for table `sub_assembly_tests`
---
-ALTER TABLE `sub_assembly_tests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `technicians`
 --
@@ -976,12 +930,6 @@ ALTER TABLE `photos`
 --
 ALTER TABLE `sub_assemblies`
   ADD CONSTRAINT `FK_73F3A10DF50BDA8F` FOREIGN KEY (`major_assembly_id`) REFERENCES `major_assemblies` (`id`);
-
---
--- Constraints for table `sub_assembly_tests`
---
-ALTER TABLE `sub_assembly_tests`
-  ADD CONSTRAINT `FK_55068B372FD708D2` FOREIGN KEY (`sub_assembly_id`) REFERENCES `sub_assemblies` (`id`);
 
 --
 -- Constraints for table `tests_machine_general`
