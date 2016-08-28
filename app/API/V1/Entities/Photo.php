@@ -23,7 +23,7 @@ class Photo extends Entity
 	protected $id;
 
 	/**
-	 * @ORM\Column(name="text", type="text")
+	 * @ORM\Column(name="text", type="text", nullable=true)
 	 * @var string $text
 	 */
 	protected $text;
