@@ -64,10 +64,10 @@ class SubAssembly extends \App\API\V1\Entities\SubAssembly implements \Doctrine\
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'name', 'majorAssembly', 'inspections', 'machineGeneral', 'oil', 'wear', 'uniqueDetails'];
+            return ['__isInitialized__', 'id', 'name', 'majorAssembly', 'inspections', 'machineGeneral', 'oil', 'wear', 'uniqueDetails', 'timeDeleted', 'deleted'];
         }
 
-        return ['__isInitialized__', 'id', 'name', 'majorAssembly', 'inspections', 'machineGeneral', 'oil', 'wear', 'uniqueDetails'];
+        return ['__isInitialized__', 'id', 'name', 'majorAssembly', 'inspections', 'machineGeneral', 'oil', 'wear', 'uniqueDetails', 'timeDeleted', 'deleted'];
     }
 
     /**
@@ -582,6 +582,61 @@ class SubAssembly extends \App\API\V1\Entities\SubAssembly implements \Doctrine\
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIteratorClass', []);
 
         return parent::getIteratorClass();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTimeDeleted()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTimeDeleted', []);
+
+        return parent::getTimeDeleted();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTimeDeleted($timeDeleted)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTimeDeleted', [$timeDeleted]);
+
+        return parent::setTimeDeleted($timeDeleted);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isDeleted()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isDeleted', []);
+
+        return parent::isDeleted();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDeleted($deleted)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDeleted', [$deleted]);
+
+        return parent::setDeleted($deleted);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function delete()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'delete', []);
+
+        return parent::delete();
     }
 
 }

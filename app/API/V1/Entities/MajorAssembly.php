@@ -3,6 +3,7 @@
 namespace App\API\V1\Entities;
 
 use App\Entities\Entity;
+use App\Entities\Traits\Deletable;
 use Doctrine\ORM\Mapping AS ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -12,6 +13,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class MajorAssembly extends Entity
 {
+	use Deletable;
+	
 	/**
 	 * @ORM\Id
 	 * @ORM\GeneratedValue
