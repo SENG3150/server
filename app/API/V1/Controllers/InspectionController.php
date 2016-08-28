@@ -441,13 +441,7 @@ class InspectionController extends APIController
 
 							$line['wearTests'][] = array(
 								'timeCompleted' => $wearTest->getInspection()->getTimeCompleted()->format(DATE_ISO8601),
-								'description'   => $wearTest->getDescription(),
-								'new'           => $wearTest->getNew(),
-								'limit'         => $wearTest->getLimit(),
-								'lifeLower'     => $wearTest->getLifeLower(),
-								'lifeUpper'     => $wearTest->getLifeUpper(),
 								'smu'           => $wearTest->getSmu(),
-								'timeStart'     => $wearTest->getTimeStart()->format(DATE_ISO8601),
 								'uniqueDetails' => $wearTest->getUniqueDetails(),
 							);
 						}
