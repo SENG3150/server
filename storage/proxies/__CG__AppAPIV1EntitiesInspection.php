@@ -64,10 +64,10 @@ class Inspection extends \App\API\V1\Entities\Inspection implements \Doctrine\OR
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'timeCreated', 'timeScheduled', 'timeStarted', 'timeCompleted', 'machine', 'technician', 'scheduler', 'schedule', 'majorAssemblies', 'comments', 'photos', 'timeDeleted', 'deleted'];
+            return ['__isInitialized__', 'id', 'timeCreated', 'timeScheduled', 'timeStarted', 'timeCompleted', 'machine', 'technician', 'scheduler', 'schedule', 'majorAssemblies', 'comments', 'photos', 'schedules', 'timeDeleted', 'deleted'];
         }
 
-        return ['__isInitialized__', 'id', 'timeCreated', 'timeScheduled', 'timeStarted', 'timeCompleted', 'machine', 'technician', 'scheduler', 'schedule', 'majorAssemblies', 'comments', 'photos', 'timeDeleted', 'deleted'];
+        return ['__isInitialized__', 'id', 'timeCreated', 'timeScheduled', 'timeStarted', 'timeCompleted', 'machine', 'technician', 'scheduler', 'schedule', 'majorAssemblies', 'comments', 'photos', 'schedules', 'timeDeleted', 'deleted'];
     }
 
     /**
@@ -439,6 +439,28 @@ class Inspection extends \App\API\V1\Entities\Inspection implements \Doctrine\OR
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPhotos', [$photos]);
 
         return parent::setPhotos($photos);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSchedules()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSchedules', []);
+
+        return parent::getSchedules();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setSchedules($schedules)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSchedules', [$schedules]);
+
+        return parent::setSchedules($schedules);
     }
 
     /**

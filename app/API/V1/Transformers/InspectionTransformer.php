@@ -17,6 +17,7 @@ class InspectionTransformer extends Transformer
 		'majorAssemblies',
 		'comments',
 		'photos',
+		'schedules',
 	);
 	
 	/**
@@ -26,6 +27,7 @@ class InspectionTransformer extends Transformer
 		'majorAssemblies',
 		'comments',
 		'photos',
+		'schedules',
 	);
 	
 	/**
@@ -152,6 +154,24 @@ class InspectionTransformer extends Transformer
 		if($this->verifyItem($entity) == TRUE)
 		{
 			return $this->collection($entity->getPhotos(), new PhotoTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return \League\Fractal\Resource\Collection
+	 */
+	public function includeSchedules(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->collection($entity->getSchedules(), new InspectionScheduleTransformer());
 		}
 		
 		else

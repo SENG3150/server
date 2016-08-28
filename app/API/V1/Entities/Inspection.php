@@ -90,6 +90,12 @@ class Inspection extends Entity
 	protected $photos;
 
 	/**
+	 * @ORM\OneToMany(targetEntity="InspectionSchedule", mappedBy="inspection", cascade={"persist"}, fetch="EXTRA_LAZY")
+	 * @var InspectionSchedule[]|ArrayCollection $schedules
+	 */
+	protected $schedules;
+
+	/**
 	 * @return int
 	 */
 	public function getId()
@@ -288,7 +294,7 @@ class Inspection extends Entity
 
 		return $this;
 	}
-
+	
 	/**
 	 * @return Comment[]|ArrayCollection
 	 */
@@ -326,6 +332,26 @@ class Inspection extends Entity
 	{
 		$this->photos = $photos;
 
+		return $this;
+	}
+	
+	/**
+	 * @return \App\API\V1\Entities\InspectionSchedule[]|\Doctrine\Common\Collections\ArrayCollection
+	 */
+	public function getSchedules()
+	{
+		return $this->schedules;
+	}
+	
+	/**
+	 * @param \App\API\V1\Entities\InspectionSchedule[]|\Doctrine\Common\Collections\ArrayCollection $schedules
+	 *
+	 * @return $this
+	 */
+	public function setSchedules($schedules)
+	{
+		$this->schedules = $schedules;
+		
 		return $this;
 	}
 }
