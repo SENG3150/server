@@ -151,7 +151,7 @@ class InspectionController extends APIController
 		return $this->response->item($entity, new Transformer());
 	}
 
-	public function updateBulk($id, Request $request, Parser $parser, InspectionMajorAssemblyRepository $inspectionMajorAssemblyRepository, InspectionSubAssemblyRepository $inspectionSubAssemblyRepository, CommentParser $commentParser, MachineGeneralTestParser $machineGeneralTestParser, OilTestParser $oilTestParser, WearTestParser $wearTestParser, PhotoParser $photoParser, ActionItemParser $actionItemParser)
+	public function updateBulk(Request $request, Parser $parser, InspectionMajorAssemblyRepository $inspectionMajorAssemblyRepository, InspectionSubAssemblyRepository $inspectionSubAssemblyRepository, CommentParser $commentParser, MachineGeneralTestParser $machineGeneralTestParser, OilTestParser $oilTestParser, WearTestParser $wearTestParser, PhotoParser $photoParser, ActionItemParser $actionItemParser)
 	{
 		$technician = $this->getUser()->getTechnician();
 
@@ -165,7 +165,7 @@ class InspectionController extends APIController
 		$input['technician'] = $technician->getId();
 
 		/** @var Inspection $entity */
-		$entity = $parser->handle($input, $id);
+		$entity = $parser->handle($input, $input['id']);
 
 		if(array_key_exists('comments', $input) == TRUE)
 		{

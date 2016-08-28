@@ -36,8 +36,8 @@ $api->version(
 		$api->get('inspections/incomplete', 'App\API\V1\Controllers\InspectionController@getIncompleteList');
 		$api->post('inspections/{id}/download', 'App\API\V1\Controllers\InspectionController@download');
 		$api->get('inspections/{id}/graphs', 'App\API\V1\Controllers\InspectionController@graphs');
-		$api->post('inspections/bulk', 'App\API\V1\Controllers\InspectionController@createBulk');
-		$api->post('inspections/{id}/bulk', 'App\API\V1\Controllers\InspectionController@updateBulk');
+		//$api->post('inspections/bulk', 'App\API\V1\Controllers\InspectionController@createBulk');
+		$api->post('inspections/bulk', 'App\API\V1\Controllers\InspectionController@updateBulk');
 		$api->get('photos/{id}/photo', 'App\API\V1\Controllers\PhotoController@photo');
 		$api->get('downtime/machine/{id}', 'App\API\V1\Controllers\DowntimeController@machine');
 		$api->post('downtime/bulk', 'App\API\V1\Controllers\DowntimeController@createBulk');
