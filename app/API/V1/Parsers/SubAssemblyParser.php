@@ -36,8 +36,8 @@ class SubAssemblyParser extends Parser
 				'majorAssembly'  => 'required',
 				'name'           => 'required',
 				'machineGeneral' => 'required|bool',
-				'oilTest'        => 'required|bool',
-				'wearTest'       => 'required|bool',
+				'oil'        => 'required|bool',
+				'wear'       => 'required|bool',
 				'uniqueDetails'  => 'required|array',
 			)
 		);
