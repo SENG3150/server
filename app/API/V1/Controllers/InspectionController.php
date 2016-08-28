@@ -110,48 +110,7 @@ class InspectionController extends APIController
 		return $this->response->collection(Collection::make($entities), new Transformer());
 	}
 
-	public function createBulk(Request $request, Repository $repository, Parser $parser, InspectionMajorAssemblyParser $inspectionMajorAssemblyParser, InspectionSubAssemblyParser $inspectionSubAssemblyParser, EntityManagerInterface $em)
-	{
-		/** @var Inspection $entity */
-		$entity = $parser->handle($request);
-
-		$input = $request->input();
-
-		if(array_key_exists('majorAssemblies', $input) == TRUE)
-		{
-			foreach($input['majorAssemblies'] as $majorAssembly)
-			{
-				$majorAssembly['inspection'] = $entity->getId();
-
-				/** @var InspectionMajorAssembly $majorAssemblyEntity */
-				$majorAssemblyEntity = $inspectionMajorAssemblyParser->handle($majorAssembly);
-
-				if(array_key_exists('subAssemblies', $majorAssembly) == TRUE)
-				{
-					foreach($majorAssembly['subAssemblies'] as $subAssembly)
-					{
-						$subAssembly['inspection']    = $entity->getId();
-						$subAssembly['majorAssembly'] = $majorAssemblyEntity->getId();
-
-						/** @var InspectionSubAssembly $subAssemblyEntity */
-						$subAssemblyEntity = $inspectionSubAssemblyParser->handle($subAssembly);
-
-						$em->detach($subAssemblyEntity);
-					}
-				}
-
-				$em->detach($majorAssemblyEntity);
-			}
-		}
-
-		$em->detach($entity);
-
-		$entity = $repository->find($entity->getId());
-
-		return $this->response->item($entity, new Transformer());
-	}
-
-	public function updateBulk(Request $request, Parser $parser, InspectionMajorAssemblyRepository $inspectionMajorAssemblyRepository, InspectionSubAssemblyRepository $inspectionSubAssemblyRepository, CommentParser $commentParser, MachineGeneralTestParser $machineGeneralTestParser, OilTestParser $oilTestParser, WearTestParser $wearTestParser, PhotoParser $photoParser, ActionItemParser $actionItemParser)
+	public function bulk(Request $request, Repository $repository, Parser $parser, InspectionMajorAssemblyParser $inspectionMajorAssemblyParser, InspectionSubAssemblyParser $inspectionSubAssemblyParser, InspectionMajorAssemblyRepository $inspectionMajorAssemblyRepository, InspectionSubAssemblyRepository $inspectionSubAssemblyRepository, CommentParser $commentParser, MachineGeneralTestParser $machineGeneralTestParser, OilTestParser $oilTestParser, WearTestParser $wearTestParser, PhotoParser $photoParser, ActionItemParser $actionItemParser, EntityManagerInterface $em)
 	{
 		$technician = $this->getUser()->getTechnician();
 
@@ -165,7 +124,42 @@ class InspectionController extends APIController
 		$input['technician'] = $technician->getId();
 
 		/** @var Inspection $entity */
-		$entity = $parser->handle($input, $input['id']);
+		$entity = $parser->handle($input);
+		
+		// Check if this was a new inspection
+		if(array_key_exists('id', $input) == FALSE)
+		{
+			if(array_key_exists('majorAssemblies', $input) == TRUE)
+			{
+				foreach($input['majorAssemblies'] as $majorAssembly)
+				{
+					$majorAssembly['inspection'] = $entity->getId();
+					
+					/** @var InspectionMajorAssembly $majorAssemblyEntity */
+					$majorAssemblyEntity = $inspectionMajorAssemblyParser->handle($majorAssembly);
+					
+					if(array_key_exists('subAssemblies', $majorAssembly) == TRUE)
+					{
+						foreach($majorAssembly['subAssemblies'] as $subAssembly)
+						{
+							$subAssembly['inspection']    = $entity->getId();
+							$subAssembly['majorAssembly'] = $majorAssemblyEntity->getId();
+							
+							/** @var InspectionSubAssembly $subAssemblyEntity */
+							$subAssemblyEntity = $inspectionSubAssemblyParser->handle($subAssembly);
+							
+							$em->detach($subAssemblyEntity);
+						}
+					}
+					
+					$em->detach($majorAssemblyEntity);
+				}
+			}
+			
+			$em->detach($entity);
+			
+			$entity = $repository->find($entity->getId());
+		}
 
 		if(array_key_exists('comments', $input) == TRUE)
 		{
