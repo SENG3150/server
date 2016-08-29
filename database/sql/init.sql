@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.2
--- https://www.phpmyadmin.net/
+-- version 4.0.10deb1
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 27, 2016 at 06:12 PM
--- Server version: 5.6.17
--- PHP Version: 5.5.12
+-- Host: localhost
+-- Generation Time: Aug 29, 2016 at 05:53 PM
+-- Server version: 5.5.46-0ubuntu0.14.04.2-log
+-- PHP Version: 5.5.9-1ubuntu4.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -22,8 +22,9 @@ USE `seng3150`;
 -- Table structure for table `action_items`
 --
 
-CREATE TABLE `action_items` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `action_items`;
+CREATE TABLE IF NOT EXISTS `action_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `machine_general_test_id` int(11) DEFAULT NULL,
   `oil_test_id` int(11) DEFAULT NULL,
   `wear_test_id` int(11) DEFAULT NULL,
@@ -31,8 +32,13 @@ CREATE TABLE `action_items` (
   `status` longtext COLLATE utf8_unicode_ci NOT NULL,
   `issue` longtext COLLATE utf8_unicode_ci NOT NULL,
   `action` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `time_actioned` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `time_actioned` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_6D025F123774302` (`machine_general_test_id`),
+  UNIQUE KEY `UNIQ_6D025F13039B455` (`oil_test_id`),
+  UNIQUE KEY `UNIQ_6D025F1E5C32A3E` (`wear_test_id`),
+  KEY `IDX_6D025F1E6C5D496` (`technician_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=45 ;
 
 --
 -- Dumping data for table `action_items`
@@ -90,16 +96,18 @@ INSERT INTO `action_items` (`id`, `machine_general_test_id`, `oil_test_id`, `wea
 -- Table structure for table `administrators`
 --
 
-CREATE TABLE `administrators` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `administrators`;
+CREATE TABLE IF NOT EXISTS `administrators` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` longtext COLLATE utf8_unicode_ci NOT NULL,
   `first_name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `last_name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `email` longtext COLLATE utf8_unicode_ci NOT NULL,
   `password` longtext COLLATE utf8_unicode_ci NOT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
-  `time_deleted` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `time_deleted` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `administrators`
@@ -116,8 +124,9 @@ INSERT INTO `administrators` (`id`, `username`, `first_name`, `last_name`, `emai
 -- Table structure for table `comments`
 --
 
-CREATE TABLE `comments` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `comments`;
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `inspection_id` int(11) DEFAULT NULL,
   `major_assembly_id` int(11) DEFAULT NULL,
   `sub_assembly_id` int(11) DEFAULT NULL,
@@ -127,8 +136,17 @@ CREATE TABLE `comments` (
   `technician_id` int(11) DEFAULT NULL,
   `domain_expert_id` int(11) DEFAULT NULL,
   `text` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `time_commented` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `time_commented` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_5F9E962AF02F2DDF` (`inspection_id`),
+  KEY `IDX_5F9E962AF50BDA8F` (`major_assembly_id`),
+  KEY `IDX_5F9E962A2FD708D2` (`sub_assembly_id`),
+  KEY `IDX_5F9E962AE6C5D496` (`technician_id`),
+  KEY `IDX_5F9E962A23265EAA` (`domain_expert_id`),
+  KEY `IDX_5F9E962A23774302` (`machine_general_test_id`),
+  KEY `IDX_5F9E962A3039B455` (`oil_test_id`),
+  KEY `IDX_5F9E962AE5C32A3E` (`wear_test_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `comments`
@@ -148,16 +166,18 @@ INSERT INTO `comments` (`id`, `inspection_id`, `major_assembly_id`, `sub_assembl
 -- Table structure for table `domain_experts`
 --
 
-CREATE TABLE `domain_experts` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `domain_experts`;
+CREATE TABLE IF NOT EXISTS `domain_experts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` longtext COLLATE utf8_unicode_ci NOT NULL,
   `first_name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `last_name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `email` longtext COLLATE utf8_unicode_ci NOT NULL,
   `password` longtext COLLATE utf8_unicode_ci NOT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
-  `time_deleted` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `time_deleted` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `domain_experts`
@@ -173,13 +193,16 @@ INSERT INTO `domain_experts` (`id`, `username`, `first_name`, `last_name`, `emai
 -- Table structure for table `downtime_data`
 --
 
-CREATE TABLE `downtime_data` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `downtime_data`;
+CREATE TABLE IF NOT EXISTS `downtime_data` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `machine_id` int(11) DEFAULT NULL,
   `systemName` longtext COLLATE utf8_unicode_ci NOT NULL,
   `downTimeHours` decimal(10,5) NOT NULL,
-  `reason` longtext COLLATE utf8_unicode_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `reason` longtext COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`id`),
+  KEY `IDX_65889860F6B75B26` (`machine_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -187,8 +210,9 @@ CREATE TABLE `downtime_data` (
 -- Table structure for table `inspections`
 --
 
-CREATE TABLE `inspections` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `inspections`;
+CREATE TABLE IF NOT EXISTS `inspections` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `machine_id` int(11) DEFAULT NULL,
   `technician_id` int(11) DEFAULT NULL,
   `scheduler_id` int(11) DEFAULT NULL,
@@ -198,8 +222,13 @@ CREATE TABLE `inspections` (
   `time_started` datetime DEFAULT NULL,
   `time_completed` datetime DEFAULT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
-  `time_deleted` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `time_deleted` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_86254990F6B75B26` (`machine_id`),
+  KEY `IDX_86254990E6C5D496` (`technician_id`),
+  KEY `IDX_86254990A9D0F7D9` (`scheduler_id`),
+  KEY `IDX_86254990A40BC2D5` (`schedule_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `inspections`
@@ -214,11 +243,15 @@ INSERT INTO `inspections` (`id`, `machine_id`, `technician_id`, `scheduler_id`, 
 -- Table structure for table `inspection_major_assemblies`
 --
 
-CREATE TABLE `inspection_major_assemblies` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `inspection_major_assemblies`;
+CREATE TABLE IF NOT EXISTS `inspection_major_assemblies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `inspection_id` int(11) DEFAULT NULL,
-  `major_assembly_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `major_assembly_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_3B3925CAF02F2DDF` (`inspection_id`),
+  KEY `IDX_3B3925CAF50BDA8F` (`major_assembly_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `inspection_major_assemblies`
@@ -237,21 +270,24 @@ INSERT INTO `inspection_major_assemblies` (`id`, `inspection_id`, `major_assembl
 -- Table structure for table `inspection_schedules`
 --
 
-CREATE TABLE `inspection_schedules` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `inspection_schedules`;
+CREATE TABLE IF NOT EXISTS `inspection_schedules` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `inspection_id` int(11) DEFAULT NULL,
   `value` int(11) NOT NULL,
   `period` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
-  `time_deleted` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `time_deleted` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_CD7145D6F02F2DDF` (`inspection_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `inspection_schedules`
 --
 
 INSERT INTO `inspection_schedules` (`id`, `inspection_id`, `value`, `period`, `deleted`, `time_deleted`) VALUES
-(1, 1, 3, 'hours', 0, NULL);
+(1, 1, 1, 'days', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -259,12 +295,17 @@ INSERT INTO `inspection_schedules` (`id`, `inspection_id`, `value`, `period`, `d
 -- Table structure for table `inspection_sub_assemblies`
 --
 
-CREATE TABLE `inspection_sub_assemblies` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `inspection_sub_assemblies`;
+CREATE TABLE IF NOT EXISTS `inspection_sub_assemblies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `inspection_id` int(11) DEFAULT NULL,
   `major_assembly_id` int(11) DEFAULT NULL,
-  `sub_assembly_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `sub_assembly_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_7EDC2D8EF02F2DDF` (`inspection_id`),
+  KEY `IDX_7EDC2D8EF50BDA8F` (`major_assembly_id`),
+  KEY `IDX_7EDC2D8E2FD708D2` (`sub_assembly_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `inspection_sub_assemblies`
@@ -308,13 +349,16 @@ INSERT INTO `inspection_sub_assemblies` (`id`, `inspection_id`, `major_assembly_
 -- Table structure for table `machines`
 --
 
-CREATE TABLE `machines` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `machines`;
+CREATE TABLE IF NOT EXISTS `machines` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `model_id` int(11) DEFAULT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
-  `time_deleted` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `time_deleted` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_F1CE8DED7975B7E7` (`model_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `machines`
@@ -332,29 +376,34 @@ INSERT INTO `machines` (`id`, `model_id`, `name`, `deleted`, `time_deleted`) VAL
 -- Table structure for table `major_assemblies`
 --
 
-CREATE TABLE `major_assemblies` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `major_assemblies`;
+CREATE TABLE IF NOT EXISTS `major_assemblies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `model_id` int(11) DEFAULT NULL,
-  `name` longtext COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `name` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `time_deleted` datetime DEFAULT NULL,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `IDX_CF992C667975B7E7` (`model_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `major_assemblies`
 --
 
-INSERT INTO `major_assemblies` (`id`, `model_id`, `name`) VALUES
-(1, 1, 'Hoist System (HST)'),
-(2, 1, 'Crowd System (CWD)'),
-(3, 1, 'Swing System (SWG)'),
-(4, 1, 'Propel System (PPL)'),
-(5, 1, 'Brakes'),
-(6, 5, 'Major Assembly 1'),
-(7, 5, 'Major Assembly 2'),
-(8, 5, 'Major Assembly 3'),
-(9, 5, 'Major Assembly 4'),
-(10, 5, 'Major Assembly 5'),
-(11, 5, 'Major Assembly 6'),
-(12, 4, 'Major Assembly 1');
+INSERT INTO `major_assemblies` (`id`, `model_id`, `name`, `time_deleted`, `deleted`) VALUES
+(1, 1, 'Hoist System (HST)', NULL, 0),
+(2, 1, 'Crowd System (CWD)', NULL, 0),
+(3, 1, 'Swing System (SWG)', NULL, 0),
+(4, 1, 'Propel System (PPL)', NULL, 0),
+(5, 1, 'Brakes', NULL, 0),
+(6, 5, 'Major Assembly 1', NULL, 0),
+(7, 5, 'Major Assembly 2', NULL, 0),
+(8, 5, 'Major Assembly 3', NULL, 0),
+(9, 5, 'Major Assembly 4', NULL, 0),
+(10, 5, 'Major Assembly 5', NULL, 0),
+(11, 5, 'Major Assembly 6', NULL, 0),
+(12, 4, 'Major Assembly 1', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -362,12 +411,14 @@ INSERT INTO `major_assemblies` (`id`, `model_id`, `name`) VALUES
 -- Table structure for table `models`
 --
 
-CREATE TABLE `models` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `models`;
+CREATE TABLE IF NOT EXISTS `models` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
-  `time_deleted` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `time_deleted` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `models`
@@ -386,8 +437,9 @@ INSERT INTO `models` (`id`, `name`, `deleted`, `time_deleted`) VALUES
 -- Table structure for table `photos`
 --
 
-CREATE TABLE `photos` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `photos`;
+CREATE TABLE IF NOT EXISTS `photos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `inspection_id` int(11) DEFAULT NULL,
   `major_assembly_id` int(11) DEFAULT NULL,
   `sub_assembly_id` int(11) DEFAULT NULL,
@@ -396,9 +448,18 @@ CREATE TABLE `photos` (
   `wear_test_id` int(11) DEFAULT NULL,
   `technician_id` int(11) DEFAULT NULL,
   `domain_expert_id` int(11) DEFAULT NULL,
-  `text` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `format` longtext COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `text` longtext COLLATE utf8_unicode_ci,
+  `format` longtext COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_876E0D9F02F2DDF` (`inspection_id`),
+  KEY `IDX_876E0D9F50BDA8F` (`major_assembly_id`),
+  KEY `IDX_876E0D92FD708D2` (`sub_assembly_id`),
+  KEY `IDX_876E0D923774302` (`machine_general_test_id`),
+  KEY `IDX_876E0D93039B455` (`oil_test_id`),
+  KEY `IDX_876E0D9E5C32A3E` (`wear_test_id`),
+  KEY `IDX_876E0D9E6C5D496` (`technician_id`),
+  KEY `IDX_876E0D923265EAA` (`domain_expert_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -406,53 +467,58 @@ CREATE TABLE `photos` (
 -- Table structure for table `sub_assemblies`
 --
 
-CREATE TABLE `sub_assemblies` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `sub_assemblies`;
+CREATE TABLE IF NOT EXISTS `sub_assemblies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `major_assembly_id` int(11) DEFAULT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `machine_general` tinyint(1) NOT NULL,
   `oil` tinyint(1) NOT NULL,
   `wear` tinyint(1) NOT NULL,
-  `unique_details` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT '(DC2Type:array)'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `unique_details` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT '(DC2Type:array)',
+  `time_deleted` datetime DEFAULT NULL,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `IDX_73F3A10DF50BDA8F` (`major_assembly_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=33 ;
 
 --
 -- Dumping data for table `sub_assemblies`
 --
 
-INSERT INTO `sub_assemblies` (`id`, `major_assembly_id`, `name`, `machine_general`, `oil`, `wear`, `unique_details`) VALUES
-(1, 1, 'Hoist Ropes - House', 1, 0, 0, 'a:0:{}'),
-(2, 1, 'Hoist Ropes - Equaliser', 1, 0, 0, 'a:0:{}'),
-(3, 2, 'Crowd Motor Base', 0, 1, 0, 'a:0:{}'),
-(4, 2, 'LH Saddle Block Bush', 0, 1, 0, 'a:0:{}'),
-(5, 2, 'RH Saddle Block Bush', 0, 1, 0, 'a:0:{}'),
-(6, 2, 'LV Saddle Block Wearplate', 0, 1, 0, 'a:0:{}'),
-(7, 2, 'LH Saddle Block Wearplate', 0, 1, 0, 'a:0:{}'),
-(8, 2, 'RV Saddle Block Wearplate', 0, 1, 0, 'a:0:{}'),
-(9, 2, 'RH Saddle Block Wearplate', 0, 1, 0, 'a:0:{}'),
-(10, 2, 'LH Crowd Rack', 0, 1, 0, 'a:0:{}'),
-(11, 2, 'RH Crowd Rack', 0, 1, 0, 'a:0:{}'),
-(12, 2, 'LH Crowd Pinion', 0, 1, 0, 'a:0:{}'),
-(13, 2, 'RH Crowd Pinion', 0, 1, 0, 'a:0:{}'),
-(14, 3, 'Roller Circle', 0, 0, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}'),
-(15, 3, 'Swing Pinion Gears', 0, 0, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}'),
-(16, 3, 'Swing Rear Gear', 0, 0, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}'),
-(17, 4, 'LHS Crawler Pads', 1, 1, 0, 'a:0:{}'),
-(18, 4, 'RHS Crawler Pads', 1, 1, 0, 'a:0:{}'),
-(19, 4, 'LHS Propel Idler Bush', 1, 1, 0, 'a:0:{}'),
-(20, 4, 'RHS Propel Idler Bush', 1, 1, 0, 'a:0:{}'),
-(21, 4, 'LHS Propel Guide Rail', 1, 1, 0, 'a:0:{}'),
-(22, 4, 'RHS Propel Guide Rail', 1, 1, 0, 'a:0:{}'),
-(23, 5, 'Front Hoist Brake', 0, 1, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}'),
-(24, 5, 'Rear Hoist Brake', 0, 1, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}'),
-(25, 5, 'Crowd Brake', 0, 1, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}'),
-(26, 5, 'Rear Swing Brake', 0, 1, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}'),
-(27, 5, 'RHF Swing Brake', 0, 1, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}'),
-(28, 5, 'LHF Swing Brake', 0, 1, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}'),
-(29, 5, 'RH Propel Brake', 0, 1, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}'),
-(30, 5, 'LH Propel Brake', 0, 1, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}'),
-(31, 6, 'Sub Assembly 1', 1, 0, 0, 'a:0:{}'),
-(32, 12, '1', 0, 1, 0, 'a:0:{}');
+INSERT INTO `sub_assemblies` (`id`, `major_assembly_id`, `name`, `machine_general`, `oil`, `wear`, `unique_details`, `time_deleted`, `deleted`) VALUES
+(1, 1, 'Hoist Ropes - House', 1, 0, 0, 'a:0:{}', NULL, 0),
+(2, 1, 'Hoist Ropes - Equaliser', 1, 0, 0, 'a:0:{}', NULL, 0),
+(3, 2, 'Crowd Motor Base', 0, 1, 0, 'a:0:{}', NULL, 0),
+(4, 2, 'LH Saddle Block Bush', 0, 1, 0, 'a:0:{}', NULL, 0),
+(5, 2, 'RH Saddle Block Bush', 0, 1, 0, 'a:0:{}', NULL, 0),
+(6, 2, 'LV Saddle Block Wearplate', 0, 1, 0, 'a:0:{}', NULL, 0),
+(7, 2, 'LH Saddle Block Wearplate', 0, 1, 0, 'a:0:{}', NULL, 0),
+(8, 2, 'RV Saddle Block Wearplate', 0, 1, 0, 'a:0:{}', NULL, 0),
+(9, 2, 'RH Saddle Block Wearplate', 0, 1, 0, 'a:0:{}', NULL, 0),
+(10, 2, 'LH Crowd Rack', 0, 1, 0, 'a:0:{}', NULL, 0),
+(11, 2, 'RH Crowd Rack', 0, 1, 0, 'a:0:{}', NULL, 0),
+(12, 2, 'LH Crowd Pinion', 0, 1, 0, 'a:0:{}', NULL, 0),
+(13, 2, 'RH Crowd Pinion', 0, 1, 0, 'a:0:{}', NULL, 0),
+(14, 3, 'Roller Circle', 0, 0, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}', NULL, 0),
+(15, 3, 'Swing Pinion Gears', 0, 0, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}', NULL, 0),
+(16, 3, 'Swing Rear Gear', 0, 0, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}', NULL, 0),
+(17, 4, 'LHS Crawler Pads', 1, 1, 0, 'a:0:{}', NULL, 0),
+(18, 4, 'RHS Crawler Pads', 1, 1, 0, 'a:0:{}', NULL, 0),
+(19, 4, 'LHS Propel Idler Bush', 1, 1, 0, 'a:0:{}', NULL, 0),
+(20, 4, 'RHS Propel Idler Bush', 1, 1, 0, 'a:0:{}', NULL, 0),
+(21, 4, 'LHS Propel Guide Rail', 1, 1, 0, 'a:0:{}', NULL, 0),
+(22, 4, 'RHS Propel Guide Rail', 1, 1, 0, 'a:0:{}', NULL, 0),
+(23, 5, 'Front Hoist Brake', 0, 1, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}', NULL, 0),
+(24, 5, 'Rear Hoist Brake', 0, 1, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}', NULL, 0),
+(25, 5, 'Crowd Brake', 0, 1, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}', NULL, 0),
+(26, 5, 'Rear Swing Brake', 0, 1, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}', NULL, 0),
+(27, 5, 'RHF Swing Brake', 0, 1, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}', NULL, 0),
+(28, 5, 'LHF Swing Brake', 0, 1, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}', NULL, 0),
+(29, 5, 'RH Propel Brake', 0, 1, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}', NULL, 0),
+(30, 5, 'LH Propel Brake', 0, 1, 1, 'a:2:{i:0;s:7:"Field 1";i:1;s:7:"Field 2";}', NULL, 0),
+(31, 6, 'Sub Assembly 1', 1, 0, 0, 'a:0:{}', NULL, 0),
+(32, 12, '1', 0, 1, 0, 'a:0:{}', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -460,8 +526,9 @@ INSERT INTO `sub_assemblies` (`id`, `major_assembly_id`, `name`, `machine_genera
 -- Table structure for table `technicians`
 --
 
-CREATE TABLE `technicians` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `technicians`;
+CREATE TABLE IF NOT EXISTS `technicians` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` longtext COLLATE utf8_unicode_ci NOT NULL,
   `first_name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `last_name` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -470,8 +537,9 @@ CREATE TABLE `technicians` (
   `temporary` tinyint(1) NOT NULL,
   `login_expires_time` datetime DEFAULT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
-  `time_deleted` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `time_deleted` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `technicians`
@@ -488,11 +556,15 @@ INSERT INTO `technicians` (`id`, `username`, `first_name`, `last_name`, `email`,
 -- Table structure for table `tests_machine_general`
 --
 
-CREATE TABLE `tests_machine_general` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tests_machine_general`;
+CREATE TABLE IF NOT EXISTS `tests_machine_general` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `inspection_id` int(11) DEFAULT NULL,
-  `sub_assembly_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `sub_assembly_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_8FE60922FD708D2` (`sub_assembly_id`),
+  KEY `IDX_8FE6092F02F2DDF` (`inspection_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `tests_machine_general`
@@ -514,8 +586,9 @@ INSERT INTO `tests_machine_general` (`id`, `inspection_id`, `sub_assembly_id`) V
 -- Table structure for table `tests_oil`
 --
 
-CREATE TABLE `tests_oil` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tests_oil`;
+CREATE TABLE IF NOT EXISTS `tests_oil` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `inspection_id` int(11) DEFAULT NULL,
   `sub_assembly_id` int(11) DEFAULT NULL,
   `lead` int(11) NOT NULL,
@@ -527,39 +600,42 @@ CREATE TABLE `tests_oil` (
   `sodium` int(11) NOT NULL,
   `aluminium` int(11) NOT NULL,
   `water` decimal(10,5) DEFAULT NULL,
-  `viscosity` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `viscosity` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_D259A22FD708D2` (`sub_assembly_id`),
+  KEY `IDX_D259A2F02F2DDF` (`inspection_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `tests_oil`
 --
 
 INSERT INTO `tests_oil` (`id`, `inspection_id`, `sub_assembly_id`, `lead`, `copper`, `tin`, `iron`, `pq90`, `silicon`, `sodium`, `aluminium`, `water`, `viscosity`) VALUES
-(1, 1, 3, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(2, 1, 4, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(3, 1, 5, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(4, 1, 6, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(5, 1, 7, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(6, 1, 8, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(7, 1, 9, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(8, 1, 10, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(9, 1, 11, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(10, 1, 12, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(11, 1, 13, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(12, 1, 17, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(13, 1, 18, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(14, 1, 19, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(15, 1, 20, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(16, 1, 21, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(17, 1, 22, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(18, 1, 23, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(19, 1, 24, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(20, 1, 25, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(21, 1, 26, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(22, 1, 27, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(23, 1, 28, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(24, 1, 29, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(25, 1, 30, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10);
+(1, 1, 3, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(2, 1, 4, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(3, 1, 5, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(4, 1, 6, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(5, 1, 7, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(6, 1, 8, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(7, 1, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(8, 1, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(9, 1, 11, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(10, 1, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(11, 1, 13, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(12, 1, 17, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(13, 1, 18, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(14, 1, 19, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(15, 1, 20, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(16, 1, 21, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(17, 1, 22, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(18, 1, 23, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(19, 1, 24, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(20, 1, 25, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(21, 1, 26, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(22, 1, 27, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(23, 1, 28, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(24, 1, 29, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(25, 1, 30, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10);
 
 -- --------------------------------------------------------
 
@@ -567,13 +643,17 @@ INSERT INTO `tests_oil` (`id`, `inspection_id`, `sub_assembly_id`, `lead`, `copp
 -- Table structure for table `tests_wear`
 --
 
-CREATE TABLE `tests_wear` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tests_wear`;
+CREATE TABLE IF NOT EXISTS `tests_wear` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `inspection_id` int(11) DEFAULT NULL,
   `sub_assembly_id` int(11) DEFAULT NULL,
   `smu` int(11) NOT NULL,
-  `unique_details` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT '(DC2Type:array)'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `unique_details` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT '(DC2Type:array)',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_7DC817592FD708D2` (`sub_assembly_id`),
+  KEY `IDX_7DC81759F02F2DDF` (`inspection_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `tests_wear`
@@ -592,252 +672,6 @@ INSERT INTO `tests_wear` (`id`, `inspection_id`, `sub_assembly_id`, `smu`, `uniq
 (10, 1, 29, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}'),
 (11, 1, 30, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `action_items`
---
-ALTER TABLE `action_items`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_6D025F123774302` (`machine_general_test_id`),
-  ADD UNIQUE KEY `UNIQ_6D025F13039B455` (`oil_test_id`),
-  ADD UNIQUE KEY `UNIQ_6D025F1E5C32A3E` (`wear_test_id`),
-  ADD KEY `IDX_6D025F1E6C5D496` (`technician_id`);
-
---
--- Indexes for table `administrators`
---
-ALTER TABLE `administrators`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `comments`
---
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_5F9E962AF02F2DDF` (`inspection_id`),
-  ADD KEY `IDX_5F9E962AF50BDA8F` (`major_assembly_id`),
-  ADD KEY `IDX_5F9E962A2FD708D2` (`sub_assembly_id`),
-  ADD KEY `IDX_5F9E962AE6C5D496` (`technician_id`),
-  ADD KEY `IDX_5F9E962A23265EAA` (`domain_expert_id`),
-  ADD KEY `IDX_5F9E962A23774302` (`machine_general_test_id`),
-  ADD KEY `IDX_5F9E962A3039B455` (`oil_test_id`),
-  ADD KEY `IDX_5F9E962AE5C32A3E` (`wear_test_id`);
-
---
--- Indexes for table `domain_experts`
---
-ALTER TABLE `domain_experts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `downtime_data`
---
-ALTER TABLE `downtime_data`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_65889860F6B75B26` (`machine_id`);
-
---
--- Indexes for table `inspections`
---
-ALTER TABLE `inspections`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_86254990F6B75B26` (`machine_id`),
-  ADD KEY `IDX_86254990E6C5D496` (`technician_id`),
-  ADD KEY `IDX_86254990A9D0F7D9` (`scheduler_id`),
-  ADD KEY `IDX_86254990A40BC2D5` (`schedule_id`);
-
---
--- Indexes for table `inspection_major_assemblies`
---
-ALTER TABLE `inspection_major_assemblies`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_3B3925CAF02F2DDF` (`inspection_id`),
-  ADD KEY `IDX_3B3925CAF50BDA8F` (`major_assembly_id`);
-
---
--- Indexes for table `inspection_schedules`
---
-ALTER TABLE `inspection_schedules`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_CD7145D6F02F2DDF` (`inspection_id`);
-
---
--- Indexes for table `inspection_sub_assemblies`
---
-ALTER TABLE `inspection_sub_assemblies`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_7EDC2D8EF02F2DDF` (`inspection_id`),
-  ADD KEY `IDX_7EDC2D8EF50BDA8F` (`major_assembly_id`),
-  ADD KEY `IDX_7EDC2D8E2FD708D2` (`sub_assembly_id`);
-
---
--- Indexes for table `machines`
---
-ALTER TABLE `machines`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_F1CE8DED7975B7E7` (`model_id`);
-
---
--- Indexes for table `major_assemblies`
---
-ALTER TABLE `major_assemblies`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_CF992C667975B7E7` (`model_id`);
-
---
--- Indexes for table `models`
---
-ALTER TABLE `models`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `photos`
---
-ALTER TABLE `photos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_876E0D9F02F2DDF` (`inspection_id`),
-  ADD KEY `IDX_876E0D9F50BDA8F` (`major_assembly_id`),
-  ADD KEY `IDX_876E0D92FD708D2` (`sub_assembly_id`),
-  ADD KEY `IDX_876E0D923774302` (`machine_general_test_id`),
-  ADD KEY `IDX_876E0D93039B455` (`oil_test_id`),
-  ADD KEY `IDX_876E0D9E5C32A3E` (`wear_test_id`),
-  ADD KEY `IDX_876E0D9E6C5D496` (`technician_id`),
-  ADD KEY `IDX_876E0D923265EAA` (`domain_expert_id`);
-
---
--- Indexes for table `sub_assemblies`
---
-ALTER TABLE `sub_assemblies`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_73F3A10DF50BDA8F` (`major_assembly_id`);
-
---
--- Indexes for table `technicians`
---
-ALTER TABLE `technicians`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tests_machine_general`
---
-ALTER TABLE `tests_machine_general`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_8FE60922FD708D2` (`sub_assembly_id`),
-  ADD KEY `IDX_8FE6092F02F2DDF` (`inspection_id`);
-
---
--- Indexes for table `tests_oil`
---
-ALTER TABLE `tests_oil`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_D259A22FD708D2` (`sub_assembly_id`),
-  ADD KEY `IDX_D259A2F02F2DDF` (`inspection_id`);
-
---
--- Indexes for table `tests_wear`
---
-ALTER TABLE `tests_wear`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_7DC817592FD708D2` (`sub_assembly_id`),
-  ADD KEY `IDX_7DC81759F02F2DDF` (`inspection_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `action_items`
---
-ALTER TABLE `action_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
---
--- AUTO_INCREMENT for table `administrators`
---
-ALTER TABLE `administrators`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `comments`
---
-ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `domain_experts`
---
-ALTER TABLE `domain_experts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `downtime_data`
---
-ALTER TABLE `downtime_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `inspections`
---
-ALTER TABLE `inspections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `inspection_major_assemblies`
---
-ALTER TABLE `inspection_major_assemblies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `inspection_schedules`
---
-ALTER TABLE `inspection_schedules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `inspection_sub_assemblies`
---
-ALTER TABLE `inspection_sub_assemblies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
---
--- AUTO_INCREMENT for table `machines`
---
-ALTER TABLE `machines`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `major_assemblies`
---
-ALTER TABLE `major_assemblies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
---
--- AUTO_INCREMENT for table `models`
---
-ALTER TABLE `models`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `photos`
---
-ALTER TABLE `photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sub_assemblies`
---
-ALTER TABLE `sub_assemblies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
---
--- AUTO_INCREMENT for table `technicians`
---
-ALTER TABLE `technicians`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `tests_machine_general`
---
-ALTER TABLE `tests_machine_general`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `tests_oil`
---
-ALTER TABLE `tests_oil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
---
--- AUTO_INCREMENT for table `tests_wear`
---
-ALTER TABLE `tests_wear`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- Constraints for dumped tables
 --
