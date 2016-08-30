@@ -26,13 +26,13 @@ class ActionItem extends Entity
     protected $status;
 
     /**
-     * @ORM\Column(name="issue", type="text")
+     * @ORM\Column(name="issue", type="text", nullable=true)
      * @var string $issue
      */
     protected $issue;
 
     /**
-     * @ORM\Column(name="action", type="text")
+     * @ORM\Column(name="action", type="text", nullable=true)
      * @var string $action
      */
     protected $action;

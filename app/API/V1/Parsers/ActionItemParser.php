@@ -55,8 +55,6 @@ class ActionItemParser extends Parser
 			array(
 				'technician'   => 'required',
 				'status'       => 'required',
-				'issue'        => 'required',
-				'action'       => 'required',
 				'timeActioned' => 'required|isodatetime',
 			)
 		);
