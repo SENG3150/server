@@ -35,7 +35,7 @@ class TechnicianTransformer extends Transformer
 				'temporary'        => $entity->isTemporary(),
 				'loginExpiresTime' => $entity->getLoginExpiresTime(),
 				'expired'          => $entity->hasLoginExpired(),
-				'emailHash'        => md5(strtolower(trim($entity->getEmail()))),
+				'emailHash'        => $entity->getEmailHash(),
 			);
 		}
 		
@@ -63,4 +63,21 @@ class TechnicianTransformer extends Transformer
 		}
 	}
 	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return array
+	 */
+	public function includePhoto(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getEmailHash(), new GravatarTransformer());
+		}
+		
+		else
+		{
+			return NULL;
+		}
+	}
 }

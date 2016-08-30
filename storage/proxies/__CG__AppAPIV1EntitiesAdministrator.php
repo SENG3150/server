@@ -334,6 +334,17 @@ class Administrator extends \App\API\V1\Entities\Administrator implements \Doctr
     /**
      * {@inheritDoc}
      */
+    public function getEmailHash()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEmailHash', []);
+
+        return parent::getEmailHash();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function offsetExists($index)
     {
 

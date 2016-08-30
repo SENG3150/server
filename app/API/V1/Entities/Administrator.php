@@ -195,4 +195,12 @@ class Administrator extends Entity implements Primary
     {
         return password_verify($password, $this->getPassword());
     }
+	
+	/**
+	 * @return string
+	 */
+	public function getEmailHash()
+	{
+		return md5(strtolower(trim($this->getEmail())));
+	}
 }

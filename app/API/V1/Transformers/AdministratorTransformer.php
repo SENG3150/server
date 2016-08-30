@@ -12,6 +12,15 @@ class AdministratorTransformer extends Transformer
 	 *
 	 * @return array
 	 */
+	protected $availableIncludes = array(
+		'photo',
+	);
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return array
+	 */
 	public function transform(Entity $entity)
 	{
 		if($this->verifyItem($entity) == TRUE)
@@ -23,13 +32,31 @@ class AdministratorTransformer extends Transformer
 				'firstName' => $entity->getFirstName(),
 				'lastName'  => $entity->getLastName(),
 				'email'     => $entity->getEmail(),
-				'emailHash' => md5(strtolower(trim($entity->getEmail()))),
+				'emailHash' => $entity->getEmailHash(),
 			);
 		}
 		
 		else
 		{
 			return array();
+		}
+	}
+	
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return array
+	 */
+	public function includePhoto(Entity $entity)
+	{
+		if($this->verifyItem($entity) == TRUE)
+		{
+			return $this->item($entity->getEmailHash(), new GravatarTransformer());
+		}
+		
+		else
+		{
+			return NULL;
 		}
 	}
 }

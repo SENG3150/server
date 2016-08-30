@@ -290,4 +290,12 @@ class Technician extends Entity implements Primary
 
 		return $this;
 	}
+	
+	/**
+	 * @return string
+	 */
+	public function getEmailHash()
+	{
+		return md5(strtolower(trim($this->getEmail())));
+	}
 }

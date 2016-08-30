@@ -411,6 +411,17 @@ class Technician extends \App\API\V1\Entities\Technician implements \Doctrine\OR
     /**
      * {@inheritDoc}
      */
+    public function getEmailHash()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEmailHash', []);
+
+        return parent::getEmailHash();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function offsetExists($index)
     {
 
