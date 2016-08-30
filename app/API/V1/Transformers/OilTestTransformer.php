@@ -46,7 +46,7 @@ class OilTestTransformer extends Transformer
 				'silicon'   => $entity->getSilicon(),
 				'sodium'    => $entity->getSodium(),
 				'aluminium' => $entity->getAluminium(),
-				'water'     => $entity->getWater(),
+				'water'     => floatval($entity->getWater()),
 				'viscosity' => $entity->getViscosity(),
 			);
 		}
