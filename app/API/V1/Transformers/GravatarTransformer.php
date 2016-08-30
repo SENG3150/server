@@ -14,7 +14,7 @@ class GravatarTransformer extends Transformer
 	public function transform($emailHash)
 	{
 		return array(
-			'raw' => file_get_contents('https://www.gravatar.com/avatar/' . $emailHash . '?d=mm&s=42')
+			'raw' => base64_encode(file_get_contents('https://www.gravatar.com/avatar/' . $emailHash . '?d=mm&s=42')),
 		);
 	}
 }

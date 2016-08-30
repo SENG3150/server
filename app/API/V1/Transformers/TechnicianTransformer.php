@@ -14,6 +14,7 @@ class TechnicianTransformer extends Transformer
 	 */
 	protected $availableIncludes = array(
 		'inspections',
+		'photo',
 	);
 	
 	/**
