@@ -284,6 +284,7 @@ class InspectionController extends APIController
 										$actionItem = $machineGeneralTest['actionItem'];
 										
 										$actionItem['machineGeneralTest'] = $machineGeneralTestEntity->getId();
+										$actionItem['technician'] = $technician->getId();
 										
 										$actionItemEntity = $actionItemParser->handle($actionItem);
 									}
@@ -326,6 +327,7 @@ class InspectionController extends APIController
 										$actionItem = $oilTest['actionItem'];
 										
 										$actionItem['oilTest'] = $oilTestEntity->getId();
+										$actionItem['technician'] = $technician->getId();
 										
 										$actionItemEntity = $actionItemParser->handle($actionItem);
 									}
@@ -368,6 +370,7 @@ class InspectionController extends APIController
 										$actionItem = $wearTest['actionItem'];
 										
 										$actionItem['wearTest'] = $wearTestEntity->getId();
+										$actionItem['technician'] = $technician->getId();
 										
 										$actionItemEntity = $actionItemParser->handle($actionItem);
 									}
