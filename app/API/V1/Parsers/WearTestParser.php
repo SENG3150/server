@@ -36,7 +36,7 @@ class WearTestParser extends Parser
 				'inspection'    => 'required',
 				'subAssembly'   => 'required',
 				'smu'           => 'required|integer',
-				'uniqueDetails' => 'required|array',
+				'uniqueDetails' => 'array',
 			)
 		);
 		
