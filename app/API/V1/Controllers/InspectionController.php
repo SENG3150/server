@@ -186,10 +186,13 @@ class InspectionController extends APIController
 			{
 				foreach($input['comments'] as $comment)
 				{
-					$comment['inspection'] = $entity->getId();
-					$comment['technician'] = $technician->getId();
-					
-					$commentEntity = $commentParser->handle($comment);
+					if(array_key_exists('id', $comment) == FALSE)
+					{
+						$comment['inspection'] = $entity->getId();
+						$comment['technician'] = $technician->getId();
+						
+						$commentEntity = $commentParser->handle($comment);
+					}
 				}
 			}
 			
@@ -216,10 +219,13 @@ class InspectionController extends APIController
 						{
 							foreach($majorAssembly['comments'] as $comment)
 							{
-								$comment['majorAssembly'] = $majorAssemblyEntity->getId();
-								$comment['technician']    = $technician->getId();
-								
-								$commentEntity = $commentParser->handle($comment);
+								if(array_key_exists('id', $comment) == FALSE)
+								{
+									$comment['majorAssembly'] = $majorAssemblyEntity->getId();
+									$comment['technician']    = $technician->getId();
+									
+									$commentEntity = $commentParser->handle($comment);
+								}
 							}
 						}
 						
@@ -246,10 +252,13 @@ class InspectionController extends APIController
 									{
 										foreach($subAssembly['comments'] as $comment)
 										{
-											$comment['subAssembly'] = $subAssemblyEntity->getId();
-											$comment['technician']  = $technician->getId();
-											
-											$commentEntity = $commentParser->handle($comment);
+											if(array_key_exists('id', $comment) == FALSE)
+											{
+												$comment['subAssembly'] = $subAssemblyEntity->getId();
+												$comment['technician']  = $technician->getId();
+												
+												$commentEntity = $commentParser->handle($comment);
+											}
 										}
 									}
 									
@@ -278,10 +287,13 @@ class InspectionController extends APIController
 										{
 											foreach($machineGeneralTest['comments'] as $comment)
 											{
-												$comment['machineGeneralTest'] = $machineGeneralTestEntity->getId();
-												$comment['technician']         = $technician->getId();
-												
-												$commentEntity = $commentParser->handle($comment);
+												if(array_key_exists('id', $comment) == FALSE)
+												{
+													$comment['machineGeneralTest'] = $machineGeneralTestEntity->getId();
+													$comment['technician']         = $technician->getId();
+													
+													$commentEntity = $commentParser->handle($comment);
+												}
 											}
 										}
 										
@@ -321,10 +333,13 @@ class InspectionController extends APIController
 										{
 											foreach($oilTest['comments'] as $comment)
 											{
-												$comment['oilTest']    = $oilTestEntity->getId();
-												$comment['technician'] = $technician->getId();
-												
-												$commentEntity = $commentParser->handle($comment);
+												if(array_key_exists('id', $comment) == FALSE)
+												{
+													$comment['oilTest']    = $oilTestEntity->getId();
+													$comment['technician'] = $technician->getId();
+													
+													$commentEntity = $commentParser->handle($comment);
+												}
 											}
 										}
 										
@@ -364,10 +379,13 @@ class InspectionController extends APIController
 										{
 											foreach($wearTest['comments'] as $comment)
 											{
-												$comment['wearTest']   = $wearTestEntity->getId();
-												$comment['technician'] = $technician->getId();
-												
-												$commentEntity = $commentParser->handle($comment);
+												if(array_key_exists('id', $comment) == FALSE)
+												{
+													$comment['wearTest']   = $wearTestEntity->getId();
+													$comment['technician'] = $technician->getId();
+													
+													$commentEntity = $commentParser->handle($comment);
+												}
 											}
 										}
 										
