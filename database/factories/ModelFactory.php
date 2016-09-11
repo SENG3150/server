@@ -11,11 +11,26 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->name,
-        'email' => $faker->safeEmail,
-        'password' => bcrypt(str_random(10)),
-        'remember_token' => str_random(10),
-    ];
-});
+$factory->define(
+	App\API\V1\Entities\Administrator::class,
+	function ()
+	{
+		return new App\API\V1\Entities\Administrator();
+	}
+);
+
+$factory->define(
+	App\API\V1\Entities\DomainExpert::class,
+	function ()
+	{
+		return new \App\API\V1\Entities\DomainExpert();
+	}
+);
+
+$factory->define(
+	App\API\V1\Entities\Technician::class,
+	function () use ($factory)
+	{
+		return new App\API\V1\Entities\Technician();
+	}
+);

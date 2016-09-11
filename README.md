@@ -181,6 +181,11 @@ If your changes to an entity modify its database structure, you can persist this
 
 	php artisan doctrine:schema:update
 	
+## Testing
+The package includes some tests that are run through [PHPUnit](https://phpunit.de/). To do this, run the following command in the terminal:
+
+	vendor\bin\phpunit
+	
 ## Logging In
 Make a POST request to ```/auth/authenticate``` with ```Content-Type``` set to ```application/json```. The JSON structure should look like the following:
 	

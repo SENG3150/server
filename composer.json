@@ -18,7 +18,8 @@
     "wemersonjanuario/wkhtmltopdf-windows": "0.12.*",
     "intervention/validation": "^1.1",
     "h4cc/wkhtmltopdf-amd64": "0.12.3",
-    "h4cc/wkhtmltoimage-amd64": "0.12.3"
+    "h4cc/wkhtmltoimage-amd64": "0.12.3",
+    "laravel-doctrine/migrations": "1.0.*"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

@@ -157,6 +157,7 @@ return [
 		App\Providers\RouteServiceProvider::class,
 
 		LaravelDoctrine\ORM\DoctrineServiceProvider::class,
+		LaravelDoctrine\Migrations\MigrationsServiceProvider::class,
 		Dingo\Api\Provider\LaravelServiceProvider::class,
 		Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 		Barryvdh\Snappy\ServiceProvider::class,

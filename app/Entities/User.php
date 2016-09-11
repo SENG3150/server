@@ -36,6 +36,11 @@ class User extends \ArrayObject implements Authenticatable, JWTSubject
 	 */
 	public function getId()
 	{
+		if($this->id == NULL)
+		{
+			$this->id = $this->type . '-' . $this->getPrimary()->getUsername();
+		}
+		
 		return $this->id;
 	}
 	

@@ -66,18 +66,16 @@ class Technician extends Entity implements Primary
 	 */
 	protected $loginExpiresTime;
 
-
 	/**
 	 * @ORM\OneToMany(targetEntity="Inspection", mappedBy="technician", cascade={"persist"}, fetch="EXTRA_LAZY")
 	 * @var Inspection[]|ArrayCollection $inspections
 	 */
-
 	protected $inspections;
+	
 	/**
 	 * @return int
 	 *
 	 */
-
 	public function getId()
 	{
 		return $this->id;

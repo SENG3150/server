@@ -15,13 +15,15 @@ class AuthServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
-		Auth::provider('user', function ($app, array $config)
-		{
-			return new UserProvider();
-		}
+		Auth::provider(
+			'users',
+			function ($app, array $config)
+			{
+				return new UserProvider();
+			}
 		);
 	}
-
+	
 	/**
 	 * Register bindings in the container.
 	 *
