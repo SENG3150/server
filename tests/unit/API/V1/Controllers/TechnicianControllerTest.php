@@ -1,6 +1,10 @@
 <?php
 
-class TechnicianTest extends TestCase
+namespace Tests\Unit\App\API\V1\Controllers;
+
+use TestCase;
+
+class TechnicianControllerTest extends TestCase
 {
 	public function testGetList()
 	{
