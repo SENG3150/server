@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2016 at 10:55 AM
+-- Generation Time: Oct 12, 2016 at 05:36 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -88,7 +88,7 @@ INSERT INTO `action_items` (`id`, `machine_general_test_id`, `oil_test_id`, `wea
 DROP TABLE IF EXISTS `administrators`;
 CREATE TABLE `administrators` (
   `id` int(11) NOT NULL,
-  `username` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `first_name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `last_name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `email` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -148,7 +148,7 @@ INSERT INTO `comments` (`id`, `inspection_id`, `major_assembly_id`, `sub_assembl
 DROP TABLE IF EXISTS `domain_experts`;
 CREATE TABLE `domain_experts` (
   `id` int(11) NOT NULL,
-  `username` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `first_name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `last_name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `email` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -487,7 +487,7 @@ INSERT INTO `sub_assemblies` (`id`, `major_assembly_id`, `name`, `machine_genera
 DROP TABLE IF EXISTS `technicians`;
 CREATE TABLE `technicians` (
   `id` int(11) NOT NULL,
-  `username` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `first_name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `last_name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `email` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -638,7 +638,8 @@ ALTER TABLE `action_items`
 -- Indexes for table `administrators`
 --
 ALTER TABLE `administrators`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UNIQ_73A716FF85E0677` (`username`);
 
 --
 -- Indexes for table `comments`
@@ -658,7 +659,8 @@ ALTER TABLE `comments`
 -- Indexes for table `domain_experts`
 --
 ALTER TABLE `domain_experts`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UNIQ_6144ED3CF85E0677` (`username`);
 
 --
 -- Indexes for table `downtime_data`
@@ -752,7 +754,8 @@ ALTER TABLE `sub_assemblies`
 -- Indexes for table `technicians`
 --
 ALTER TABLE `technicians`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UNIQ_63FB4240F85E0677` (`username`);
 
 --
 -- Indexes for table `tests_machine_general`

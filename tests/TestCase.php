@@ -20,6 +20,11 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 	protected $baseUrl = 'http://localhost';
 	
 	/**
+	 * @var \Doctrine\ORM\EntityManagerInterface $em
+	 */
+	protected $em;
+	
+	/**
 	 * Creates the application.
 	 *
 	 * @return \Illuminate\Foundation\Application
@@ -41,6 +46,8 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 		parent::setUp();
 		
 		$this->baseUrl = env('APP_URL');
+		
+		$this->em = $this->app->make(\Doctrine\ORM\EntityManagerInterface::class);
 		
 		App::register('App\API\V1\Providers\APIServiceProvider');
 		

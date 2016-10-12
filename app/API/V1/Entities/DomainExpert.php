@@ -24,7 +24,7 @@ class DomainExpert extends Entity implements Primary
 	protected $id;
 	
 	/**
-	 * @ORM\Column(name="username", type="text")
+	 * @ORM\Column(name="username", type="string", unique=true, length=32)
 	 * @var string $username
 	 */
 	protected $username;
