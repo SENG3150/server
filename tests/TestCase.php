@@ -34,7 +34,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 	}
 	
 	/**
-	 *
+	 * Called before each test runs
 	 */
 	protected function setUp()
 	{

@@ -82,7 +82,7 @@ class PhotoParser extends Parser
 			);
 		}
 
-		$photo = base64_decode($input['photo']);
+		$photo = base64_decode($input['photo'], TRUE);
 
 		if($photo === FALSE)
 		{
