@@ -25,10 +25,15 @@ class PhotoEndpointTest extends TestCase
 				array(
 					'errors' => array(
 						'photo' => array(
-							'The photo was not valid base64.'
+							'The photo was not valid base64.',
 						)
 					)
 				)
 			);
+	}
+	
+	public function testPostAndRetrieve()
+	{
+		// TODO: Post a photo to the server and then retrieve it and verify that the image contents match
 	}
 }
