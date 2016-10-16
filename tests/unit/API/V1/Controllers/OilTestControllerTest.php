@@ -8,6 +8,7 @@ use TestCase;
  * Class OilTestControllerTest
  * @package Tests\Unit\App\API\V1\Controllers
  * @group oilTestController
+ * @group controller
  */
 class OilTestControllerTest extends TestCase
 {
@@ -37,7 +38,7 @@ class OilTestControllerTest extends TestCase
     public function testCreate()
     {
         $inspection = 1;
-        $subAssembly = 1;
+        $subAssembly = 2;
         $lead = random_int(0, 100);
         $copper = random_int(0, 100);
         $tin = random_int(0, 100);

@@ -11,6 +11,7 @@ use Carbon\Carbon;
  * Class InspectionControllerTest
  * @package Tests\Unit\App\API\V1\Controllers
  * @group inspectionController
+ * @group controller
  */
 class InspectionControllerTest extends TestCase
 {

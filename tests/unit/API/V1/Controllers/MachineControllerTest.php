@@ -8,6 +8,7 @@ use TestCase;
  * Class MachineControllerTest
  * @package Tests\Unit\App\API\V1\Controllers
  * @group machineController
+ * @group controller
  */
 class MachineControllerTest extends TestCase
 {

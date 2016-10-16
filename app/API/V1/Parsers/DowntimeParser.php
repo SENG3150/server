@@ -11,6 +11,12 @@ class DowntimeParser extends Parser
 {
 	/** @var Repository $repository */
 	var $repository;
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->repository = App::make(Repository::class);
+	}
 	
 	public function create($input, $recursive = TRUE)
 	{

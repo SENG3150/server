@@ -11,6 +11,7 @@ use TestCase;
  * Class ActionItemControllerTest
  * @package Tests\Unit\App\API\V1\Controllers
  * @group actionItemController
+ * @group controller
  */
 class ActionItemControllerTest extends TestCase
 {
@@ -45,8 +46,6 @@ class ActionItemControllerTest extends TestCase
         ->assertResponseStatus(404);
     }
 
-    //TODO : Figure out why create gives following 500 error:
-    // Integrity constraint violation: 1062 Duplicate entry '1' for key 'UNIQ_6D025F123774302'
     public function testCreateWithWearTest()
     {
         $status = str_random(10);
@@ -67,11 +66,14 @@ class ActionItemControllerTest extends TestCase
                     "action" => $action,
                     "timeActioned" => $timeActioned,
                     "technician" => $technician,
-                    "wearTest" => 1
+                    "wearTest" => 12
                 ])
             ->assertResponseStatus(201);
     }
 
+    /**
+     * @group curr
+     */
     public function testCreateWithMachineGenTest()
     {
         $status = str_random(10);
@@ -92,7 +94,7 @@ class ActionItemControllerTest extends TestCase
                     "action" => $action,
                     "timeActioned" => $timeActioned,
                     "technician" => $technician,
-                    "machineGeneralTest" => 1
+                    "machineGeneralTest" => 9
                 ])
             ->assertResponseStatus(201);
     }
@@ -117,7 +119,7 @@ class ActionItemControllerTest extends TestCase
                     "action" => $action,
                     "timeActioned" => $timeActioned,
                     "technician" => $technician,
-                    "oilTest" => 1
+                    "oilTest" => 26
                 ])
             ->assertResponseStatus(201);
     }

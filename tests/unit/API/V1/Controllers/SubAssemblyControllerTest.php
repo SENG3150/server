@@ -6,6 +6,7 @@ use TestCase;
 
 /**
  * @group subAssemblyController
+ * @group controller
  */
 class SubAssemblyControllerTest extends TestCase
 {

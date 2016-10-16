@@ -8,6 +8,7 @@ use TestCase;
  * Class MachineGeneralTestControllerTest
  * @package Tests\Unit\App\API\V1\Controllers
  * @group machineGeneralTestController
+ * @group controller
  */
 class MachineGeneralTestControllerTest extends TestCase
 {
@@ -32,15 +33,16 @@ class MachineGeneralTestControllerTest extends TestCase
                 )
             );
     }
-    //TODO figure out 500 duplicate error
+
+
     public function testCreate(){
-        $inspection = 1;
-        $subAssembly = 1;
+        $inspection = 2;
+        $subAssembly = 4;
         
         $this->actingAsAdministrator()
             ->json(
                 'POST',
-                '/machineGeneralTests/',
+                '/machineGeneralTests',
                 [
                     'inspection' => $inspection,
                     'subAssembly' => $subAssembly
@@ -48,16 +50,16 @@ class MachineGeneralTestControllerTest extends TestCase
             )
             ->assertResponseStatus(201);
     }
-    //TODO testUpdate -fix
+
     public function testUpdate(){
-        $subAssembly = 2;
+        $actionItem = 4;
 
         $this->actingAsAdministrator()
             ->json(
                 'POST',
                 '/machineGeneralTests/1',
                 [
-                    'subAssembly' => $subAssembly
+                    'actionItem' => $actionItem
                 ]
             )
             ->assertResponseStatus(202);
@@ -65,7 +67,7 @@ class MachineGeneralTestControllerTest extends TestCase
             ->json('GET', '/machineGeneralTests/1')
             ->seeJson(
                 [
-                    'subAssembly' => $subAssembly
+                    'timeActioned' => "2016-05-14T17:00:00+1000"
                 ]
             );
     }

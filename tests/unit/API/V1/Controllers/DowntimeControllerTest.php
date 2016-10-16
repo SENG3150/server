@@ -4,12 +4,15 @@ namespace Tests\Unit\App\API\V1\Controllers;
 
 use App\API\V1\Controllers\DowntimeController;
 use App\API\V1\Entities\Downtime;
+use App\API\V1\Parsers\DowntimeParser;
+use Illuminate\Http\Request;
 use TestCase;
 
 /**
  * Class DowntimeControllerTest
  * @package Tests\Unit\App\API\V1\Controllers
  * @group downtimeController
+ * @group controller
  */
 class DowntimeControllerTest extends TestCase
 {
@@ -71,13 +74,10 @@ class DowntimeControllerTest extends TestCase
         )->assertResponseStatus(201);
     }
 
-    //TODO Figure out why downtime update calls 500 error and crashes: Call to a member function find() on null. Seems to be passing null through as ID
     public function testUpdate()
     {
         $system = str_random();
         $downtimeHrs = (random_int(0, 1000) / 10);
-        //remember to unmark skipped when fixed
-        $this->markTestSkipped();
 
         $this
             ->actingAsDomainExpert()
@@ -101,10 +101,7 @@ class DowntimeControllerTest extends TestCase
                     'systemName' => $system,
                     'downTimeHours' => $downtimeHrs,
                 )
-
             );
-
-
     }
 
     public function testDelete()
@@ -113,12 +110,6 @@ class DowntimeControllerTest extends TestCase
             ->actingAsAdministrator()
             ->json('DELETE', '/downtime/1')
             ->assertResponseStatus(405);
-    }
-
-    //TODO testMachine. Seems to simply call the getter of a machine given a key
-    public function testMachine()
-    {
-
     }
 
     public function testCreateBulk()

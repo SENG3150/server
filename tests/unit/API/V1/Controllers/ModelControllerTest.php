@@ -8,6 +8,7 @@ use TestCase;
  * Class ModelControllerTest
  * @package Tests\Unit\App\API\V1\Controllers
  * @group modelController
+ * @group controller
  */
 class ModelControllerTest extends TestCase
 {
@@ -59,14 +60,15 @@ class ModelControllerTest extends TestCase
             );
     }
 
+    /**
+     * @group curr
+     */
     public function testDelete()
     {
         $this
             ->actingAsAdministrator()
             ->json('DELETE', 'models/1')
-            ->assertResponseStatus(202);
-        $this
-            ->actingAsAdministrator()
+            ->assertResponseStatus(202)
             ->json('DELETE', 'models/1')
             ->json('GET', 'models/1')
             ->assertResponseStatus(404);

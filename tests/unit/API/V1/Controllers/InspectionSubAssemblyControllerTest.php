@@ -8,6 +8,7 @@ use TestCase;
  * Class InspectionSubAssemblyControllerTest
  * @package Tests\Unit\App\API\V1\Controllers
  * @group inspectionSubAssemblyController
+ * @group controller
  */
 class InspectionSubAssemblyControllerTest extends TestCase
 {

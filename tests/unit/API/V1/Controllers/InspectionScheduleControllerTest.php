@@ -8,6 +8,7 @@ use TestCase;
  * Class InspectionScheduleControllerTest
  * @package Tests\Unit\App\API\V1\Controllers
  * @group inspectionScheduleController
+ * @group controller
  */
 class InspectionScheduleControllerTest extends TestCase
 {

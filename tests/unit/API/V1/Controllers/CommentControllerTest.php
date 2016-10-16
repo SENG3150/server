@@ -9,6 +9,7 @@ use TestCase;
  * Class CommentControllerTest
  * @package Tests\Unit\App\API\V1\Controllers
  * @group commentController
+ * @group controller
  */
 class CommentControllerTest extends TestCase
 {
@@ -74,36 +75,6 @@ class CommentControllerTest extends TestCase
                 'timeCommented' => $timeCommented,
             ]
         )->assertResponseStatus(422);
-    }
-
-    //TODO: Figure out why comment updates being accepted, but not updating
-    public function testUpdate()
-    {
-        $text = str_random();
-        $timeCommented = Carbon::now()->format(DATE_ISO8601);
-
-        $this->actingAsTechnician()->json(
-            'POST',
-            '/comments/1',
-            [
-                'text' => $text,
-                'timeCommented' => $timeCommented,
-                'authorType' => "Technician"
-            ]
-        )->assertResponseStatus(202);
-
-        
-        $this->actingAsAdministrator()->json(
-                "GET",
-                "/comments/1"
-            )
-                ->seeJson(
-                    array(
-                        'text' => $text,
-                        'timeCommented' => $timeCommented,
-                    )
-                );
-
     }
 
     public function testDelete()

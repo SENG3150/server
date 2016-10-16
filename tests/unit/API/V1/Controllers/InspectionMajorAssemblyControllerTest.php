@@ -10,6 +10,7 @@ use TestCase;
  * Class InspectionMajorAssemblyControllerTest
  * @package Tests\Unit\App\API\V1\Controllers
  * @group inspectionMajorAssemblyController
+ * @group controller
  */
 class InspectionMajorAssemblyControllerTest extends TestCase
 {
@@ -84,7 +85,7 @@ class InspectionMajorAssemblyControllerTest extends TestCase
 
     public function testUpdate()
     {
-        $inspectionID = 9;
+        $inspectionID = 2;
         $majorAssemblyID = 4;
         $this->actingAsAdministrator()
             ->json('POST',

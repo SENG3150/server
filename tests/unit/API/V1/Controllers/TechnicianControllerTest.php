@@ -8,6 +8,7 @@ use TestCase;
  * Class TechnicianControllerTest
  * @package Tests\Unit\App\API\V1\Controllers
  * @group TechnicianController
+ * @group controller
  */
 class TechnicianControllerTest extends TestCase
 {

@@ -8,6 +8,7 @@ use TestCase;
  * Class WearTestControllerTest
  * @package Tests\Unit\App\API\V1\Controllers
  * @group wearTestController
+ * @group controller
  */
 class WearTestControllerTest extends TestCase
 {
