@@ -8,190 +8,76 @@ use TestCase;
 
 class ActionItemTest extends TestCase
 {
-
+	
 	public function testID()
 	{
-		$randID = rand(100,150);
+		$randID = rand(100, 150);
 		$entity = new ActionItem();
-		$entity -> setId($randID);
-		$this->assertTrue($entity->getId()==$randID);
+		$entity->setId($randID);
+		$this->assertTrue($entity->getId() == $randID);
 	}
-
-	/**
-	 * @return string
-	 */
+	
 	public function testStatus()
 	{
-		$status = str_random(10);
-
-		$this
-			->actingAsDomainExpert()
-			->json(
-				'POST',
-				'/actionItems/1',
-				[
-					'status' => $status,
-				]
-			)
-			->assertResponseStatus(202);
-
-		$this
-			->actingAsDomainExpert()
-			->json(
-				'GET',
-				'/actionItems/1'
-			)
-			->seeJson(
-				array(
-					'status' => $status,
-				)
-			);
+		$text   = str_random(10);
+		$entity = new ActionItem();
+		$entity->setStatus($text);
+		$this->assertTrue($entity->getStatus() == $text);
 	}
-
-	/**
-	 * @return string
-	 */
+	
 	public function testGetIssue()
 	{
-		$issue = str_random(10);
-
-		$this
-			->actingAsDomainExpert()
-			->json(
-				'POST',
-				'/actionItems/1',
-				[
-					'issue' => $issue,
-				]
-			)
-			->assertResponseStatus(202);
-
-		$this
-			->actingAsDomainExpert()
-			->json(
-				'GET',
-				'/actionItems/1'
-			)
-			->seeJson(
-				array(
-					'issue' => $issue,
-				)
-			);
+		$text   = str_random(10);
+		$entity = new ActionItem();
+		$entity->setIssue($text);
+		$this->assertTrue($entity->getIssue() == $text);
 	}
-
-	/**
-	 * @return string
-	 */
+	
 	public function testGetAction()
 	{
-		$action = str_random(10);
-
-		$this
-			->actingAsDomainExpert()
-			->json(
-				'POST',
-				'/actionItems/1',
-				[
-					'action' => $action,
-				]
-			)
-			->assertResponseStatus(202);
-
-		$this
-			->actingAsDomainExpert()
-			->json(
-				'GET',
-				'/actionItems/1'
-			)
-			->seeJson(
-				array(
-					'action' => $action,
-				)
-			);
+		$text   = str_random(10);
+		$entity = new ActionItem();
+		$entity->setAction($text);
+		$this->assertTrue($entity->getAction() == $text);
 	}
-
-	/**
-	 * @return \DateTime
-	 */
+	
 	public function testGetTimeActioned()
 	{
-		$year = rand(2009, 2016);
-		$month = rand(1, 12);
-		$day = rand(1, 28);
-		$hour = rand(0, 23);
-		$minute = rand(0, 59);
-		$second = rand(0, 59);
-
-		$timeActioned = Carbon::create($year,$month ,$day , $hour, $minute, $second)->format(DATE_ISO8601);
-
-
-		$this
-			->actingAsDomainExpert()
-			->json(
-				'POST',
-				'/actionItems/1',
-				[
-					'timeActioned' => $timeActioned,
-				]
-			)
-			->assertResponseStatus(202);
-
-		$this
-			->actingAsDomainExpert()
-			->json(
-				'GET',
-				'/actionItems/1'
-			)
-			->seeJson(
-				array(
-					'timeActioned' => $timeActioned,
-				)
-			);
+		$timeActioned = Carbon::create(rand(2009, 2016), rand(1, 12), rand(1, 28), rand(0, 23), rand(0, 59), rand(0, 59));
+		$entity       = new ActionItem();
+		$entity->setTimeActioned($timeActioned);
+		$this->assertTrue($entity->getTimeActioned() == $timeActioned);
 	}
-
-
-	/**
-	 * @return \App\API\V1\Entities\MachineGeneralTest
-	*/
+	
 	public function testGetMachineGeneralTest()
 	{
-		$randID = rand(100,150);
+		$randID = rand(100, 150);
 		$entity = new ActionItem();
-		$entity -> setMachineGeneralTest($randID);
-		$this->assertTrue($entity->getMachineGeneralTest()==$randID);
+		$entity->setMachineGeneralTest($randID);
+		$this->assertTrue($entity->getMachineGeneralTest() == $randID);
 	}
-
-	/**
-	 * @return \App\API\V1\Entities\OilTest
-	 */
+	
 	public function testGetOilTest()
 	{
-		$randID = rand(100,150);
+		$randID = rand(100, 150);
 		$entity = new ActionItem();
-		$entity -> setOilTest($randID);
-		$this->assertTrue($entity->getOilTest()==$randID);
+		$entity->setOilTest($randID);
+		$this->assertTrue($entity->getOilTest() == $randID);
 	}
-
-	/**
-	 * @return \App\API\V1\Entities\WearTest
-	 */
+	
 	public function testGetWearTest()
 	{
-		$randID = rand(100,150);
+		$randID = rand(100, 150);
 		$entity = new ActionItem();
-		$entity -> setWearTest($randID);
-		$this->assertTrue($entity->getWearTest()==$randID);
+		$entity->setWearTest($randID);
+		$this->assertTrue($entity->getWearTest() == $randID);
 	}
-
-	/**
-	 * @return \App\API\V1\Entities\Technician
-	 */
+	
 	public function testGetTechnician()
 	{
-		$randID = rand(100,150);
+		$randID = rand(100, 150);
 		$entity = new ActionItem();
-		$entity -> setTechnician($randID);
-		$this->assertTrue($entity->getTechnician()==$randID);
-
-	}/**/
+		$entity->setTechnician($randID);
+		$this->assertTrue($entity->getTechnician() == $randID);
+	}
 }

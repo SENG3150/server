@@ -7,9 +7,7 @@ use TestCase;
 
 class DomainExpertTest extends TestCase
 {
-	/**
-	 * @return string
-	 */
+
 	public function testUsername()
 	{
 		$username = str_random(10);
@@ -18,9 +16,6 @@ class DomainExpertTest extends TestCase
 		$this->assertTrue($entity->getUsername()==$username);
 	}
 
-	/**
-	 * @return string
-	 */
 	public function testFirstName()
 	{
 		$firstName = str_random(10);
@@ -29,9 +24,6 @@ class DomainExpertTest extends TestCase
 		$this->assertTrue($entity->getFirstName()==$firstName);
 	}
 
-	/**
-	 * @return string
-	 */
 	public function testLastName()
 	{
 		$lastName = str_random(10);
@@ -40,9 +32,6 @@ class DomainExpertTest extends TestCase
 		$this->assertTrue($entity->getLastName()==$lastName);
 	}
 
-	/**
-	 * @return string
-	 */
 	public function testEmail()
 	{
 		$email = str_random(10);
@@ -50,10 +39,7 @@ class DomainExpertTest extends TestCase
 		$entity -> setEmail($email);
 		$this->assertTrue($entity->getEmail()==$email);
 	}
-
-	/**
-	 * @return string
-	 */
+	
 	public function testPassword()
 	{
 		$password = str_random(10);
