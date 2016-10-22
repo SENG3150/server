@@ -60,7 +60,8 @@ class InspectionControllerTest extends TestCase
 					'scheduler'       => $schedulerID,
 					'majorAssemblies' => []
 				]
-			)->assertResponseStatus(201);
+			)
+			->assertResponseStatus(201);
 	}
 	
 	public function testUpdate()

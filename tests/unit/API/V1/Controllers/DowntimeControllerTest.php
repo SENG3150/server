@@ -69,7 +69,8 @@ class DowntimeControllerTest extends TestCase
 					'downTimeHours' => $downtimeHrs,
 					'machine'       => 1
 				]
-			)->assertResponseStatus(201);
+			)
+			->assertResponseStatus(201);
 	}
 	
 	public function testUpdate()
