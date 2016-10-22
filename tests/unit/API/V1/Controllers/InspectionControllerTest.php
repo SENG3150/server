@@ -13,7 +13,8 @@ class InspectionControllerTest extends TestCase
 {
 	public function testGetList()
 	{
-		$this->actingAsDomainExpert()
+		$this
+			->actingAsDomainExpert()
 		     ->json(
 			     'GET',
 			     '/inspections'
@@ -27,7 +28,8 @@ class InspectionControllerTest extends TestCase
 	
 	public function testGet()
 	{
-		$this->actingAsDomainExpert()
+		$this
+			->actingAsDomainExpert()
 		     ->json(
 			     'GET',
 			     '/inspections/1'

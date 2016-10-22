@@ -26,8 +26,8 @@ class OilTestControllerTest extends TestCase
 	
 	public function testGet()
 	{
-		
-		$this->actingAsAdministrator()
+		$this
+			->actingAsAdministrator()
 		     ->json('GET', '/oilTests/1')
 		     ->seeJson(
 			     [

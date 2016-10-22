@@ -106,7 +106,8 @@ class PhotoControllerTest extends TestCase
 			'BAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJma' .
 			'oqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD5rJyaKKK/Az/aA//Z';
 		
-		$this->actingAsAdministrator()
+		$this
+			->actingAsAdministrator()
 		     ->json(
 			     'POST',
 			     '/photos',
@@ -122,7 +123,8 @@ class PhotoControllerTest extends TestCase
 	
 	public function testDelete()
 	{
-		$this->actingAsAdministrator()
+		$this
+			->actingAsAdministrator()
 		     ->json('DELETE', '/photos/1')
 		     ->assertResponseStatus(405);
 	}

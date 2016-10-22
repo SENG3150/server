@@ -77,7 +77,8 @@ class WearTestControllerTest extends TestCase
 			)
 			->assertResponseStatus(202);
 		
-		$this->actingAsAdministrator()
+		$this
+			->actingAsAdministrator()
 		     ->json('GET', '/wearTests/1')
 		     ->seeJson(
 			     [

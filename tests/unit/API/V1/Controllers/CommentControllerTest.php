@@ -83,7 +83,8 @@ class CommentControllerTest extends TestCase
 	
 	public function testDelete()
 	{
-		$this->actingAsAdministrator()
+		$this
+			->actingAsAdministrator()
 		     ->json('DELETE', '/comments/1')
 		     ->assertResponseStatus(405);
 	}

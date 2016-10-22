@@ -52,7 +52,8 @@ class ActionItemControllerTest extends TestCase
 		$timeActioned = Carbon::now()->format(DATE_ISO8601);
 		$technician   = 1;
 		
-		$this->actingAsDomainExpert()
+		$this
+			->actingAsDomainExpert()
 		     ->json(
 			     "POST",
 			     "/actionItems",
@@ -77,7 +78,8 @@ class ActionItemControllerTest extends TestCase
 		$timeActioned = Carbon::now()->format(DATE_ISO8601);
 		$technician   = 1;
 		
-		$this->actingAsDomainExpert()
+		$this
+			->actingAsDomainExpert()
 		     ->json(
 			     "POST",
 			     "/actionItems",
@@ -102,7 +104,8 @@ class ActionItemControllerTest extends TestCase
 		$timeActioned = Carbon::now()->format(DATE_ISO8601);
 		$technician   = 1;
 		
-		$this->actingAsDomainExpert()
+		$this
+			->actingAsDomainExpert()
 		     ->json(
 			     "POST",
 			     "/actionItems",
