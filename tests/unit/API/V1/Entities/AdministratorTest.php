@@ -7,7 +7,6 @@ use TestCase;
 
 class AdministratorTest extends TestCase
 {
-	
 	public function testUsername()
 	{
 		$username = str_random(10);
@@ -47,7 +46,6 @@ class AdministratorTest extends TestCase
 		$entity->setPassword($password);
 		$this->assertTrue($entity->matchesPassword($password));
 	}
-	
 	
 	public function testName()
 	{

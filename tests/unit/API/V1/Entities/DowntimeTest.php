@@ -7,7 +7,6 @@ use TestCase;
 
 class DowntimeTest extends TestCase
 {
-	
 	public function testID()
 	{
 		$randID = rand(100, 150);

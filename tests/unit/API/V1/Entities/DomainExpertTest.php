@@ -7,56 +7,53 @@ use TestCase;
 
 class DomainExpertTest extends TestCase
 {
-
 	public function testUsername()
 	{
 		$username = str_random(10);
-		$entity = new DomainExpert();
-		$entity -> setUsername($username);
-		$this->assertTrue($entity->getUsername()==$username);
+		$entity   = new DomainExpert();
+		$entity->setUsername($username);
+		$this->assertTrue($entity->getUsername() == $username);
 	}
-
+	
 	public function testFirstName()
 	{
 		$firstName = str_random(10);
-		$entity = new DomainExpert();
-		$entity -> setFirstName($firstName);
-		$this->assertTrue($entity->getFirstName()==$firstName);
+		$entity    = new DomainExpert();
+		$entity->setFirstName($firstName);
+		$this->assertTrue($entity->getFirstName() == $firstName);
 	}
-
+	
 	public function testLastName()
 	{
 		$lastName = str_random(10);
-		$entity = new DomainExpert();
-		$entity -> setLastName($lastName);
-		$this->assertTrue($entity->getLastName()==$lastName);
+		$entity   = new DomainExpert();
+		$entity->setLastName($lastName);
+		$this->assertTrue($entity->getLastName() == $lastName);
 	}
-
+	
 	public function testEmail()
 	{
-		$email = str_random(10);
+		$email  = str_random(10);
 		$entity = new DomainExpert();
-		$entity -> setEmail($email);
-		$this->assertTrue($entity->getEmail()==$email);
+		$entity->setEmail($email);
+		$this->assertTrue($entity->getEmail() == $email);
 	}
 	
 	public function testPassword()
 	{
 		$password = str_random(10);
-		$entity = new DomainExpert();
-		$entity -> setPassword($password);
+		$entity   = new DomainExpert();
+		$entity->setPassword($password);
 		$this->assertTrue($entity->matchesPassword($password));
 	}
-
-
+	
 	public function testName()
 	{
-		$first = str_random(10);
-		$last = str_random(10);
+		$first  = str_random(10);
+		$last   = str_random(10);
 		$entity = new DomainExpert();
-		$entity -> setFirstName($first);
-		$entity -> setLastName($last);
-		$this->assertTrue($entity->getName()===$first.' '.$last);
+		$entity->setFirstName($first);
+		$entity->setLastName($last);
+		$this->assertTrue($entity->getName() === $first . ' ' . $last);
 	}
-	
 }
