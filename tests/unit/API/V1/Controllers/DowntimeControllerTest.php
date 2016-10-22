@@ -2,15 +2,9 @@
 
 namespace Tests\Unit\App\API\V1\Controllers;
 
-use App\API\V1\Controllers\DowntimeController;
-use App\API\V1\Entities\Downtime;
-use App\API\V1\Parsers\DowntimeParser;
-use Illuminate\Http\Request;
 use TestCase;
 
 /**
- * Class DowntimeControllerTest
- * @package Tests\Unit\App\API\V1\Controllers
  * @group   downtimeController
  * @group   controller
  */

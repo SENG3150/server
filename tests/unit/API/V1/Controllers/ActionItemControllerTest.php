@@ -2,14 +2,10 @@
 
 namespace Tests\Unit\App\API\V1\Controllers;
 
-use App\API\V1\Entities\Technician;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use TestCase;
 
 /**
- * Class ActionItemControllerTest
- * @package Tests\Unit\App\API\V1\Controllers
  * @group   actionItemController
  * @group   controller
  */
@@ -72,9 +68,6 @@ class ActionItemControllerTest extends TestCase
 		     ->assertResponseStatus(201);
 	}
 	
-	/**
-	 * @group curr
-	 */
 	public function testCreateWithMachineGenTest()
 	{
 		$status = str_random(10);

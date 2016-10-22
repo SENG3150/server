@@ -6,8 +6,6 @@ use Carbon\Carbon;
 use TestCase;
 
 /**
- * Class CommentControllerTest
- * @package Tests\Unit\App\API\V1\Controllers
  * @group   commentController
  * @group   controller
  */

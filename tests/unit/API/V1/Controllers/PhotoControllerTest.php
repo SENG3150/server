@@ -5,8 +5,6 @@ namespace Tests\Unit\App\API\V1\Controllers;
 use TestCase;
 
 /**
- * Class PhotoControllerTest
- * @package Tests\Unit\App\API\V1\Controllers
  * @group   photoController
  * @group   controller
  */
@@ -35,7 +33,6 @@ class PhotoControllerTest extends TestCase
 				]
 			);
 	}
-	
 	
 	public function testCreate()
 	{

@@ -5,8 +5,6 @@ namespace Tests\Unit\App\API\V1\Controllers;
 use TestCase;
 
 /**
- * Class MajorAssemblyControllerTest
- * @package Tests\Unit\App\API\V1\Controllers
  * @group   majorAssemblyController
  * @group   controller
  */

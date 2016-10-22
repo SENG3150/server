@@ -2,14 +2,10 @@
 
 namespace Tests\Unit\App\API\V1\Controllers;
 
-use App\API\V1\Controllers\InspectionController;
-use App\API\V1\Repositories\InspectionRepository;
 use TestCase;
 use Carbon\Carbon;
 
 /**
- * Class InspectionControllerTest
- * @package Tests\Unit\App\API\V1\Controllers
  * @group   inspectionController
  * @group   controller
  */

@@ -5,8 +5,6 @@ namespace Tests\Unit\App\API\V1\Controllers;
 use TestCase;
 
 /**
- * Class ModelControllerTest
- * @package Tests\Unit\App\API\V1\Controllers
  * @group   modelController
  * @group   controller
  */
@@ -76,9 +74,6 @@ class ModelControllerTest extends TestCase
 			);
 	}
 	
-	/**
-	 * @group curr
-	 */
 	public function testDelete()
 	{
 		$this

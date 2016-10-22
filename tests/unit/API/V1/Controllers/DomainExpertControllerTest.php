@@ -5,8 +5,6 @@ namespace Tests\Unit\App\API\V1\Controllers;
 use TestCase;
 
 /**
- * Class DomainExpertControllerTest
- * @package Tests\Unit\App\API\V1\Controllers
  * @group   domainExpertController
  * @group   controller
  */

@@ -2,13 +2,9 @@
 
 namespace Tests\Unit\App\API\V1\Controllers;
 
-use App\API\V1\Entities\InspectionMajorAssembly;
-use App\API\V1\Entities\MajorAssembly;
 use TestCase;
 
 /**
- * Class InspectionMajorAssemblyControllerTest
- * @package Tests\Unit\App\API\V1\Controllers
  * @group   inspectionMajorAssemblyController
  * @group   controller
  */
