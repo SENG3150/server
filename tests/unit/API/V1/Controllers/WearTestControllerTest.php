@@ -36,8 +36,8 @@ class WearTestControllerTest extends TestCase
     }
     
     public function testCreate(){
-        $inspection = 1;
-        $subAssembly = 1;
+        $inspection = 2;
+        $subAssembly = 2;
         $smu = random_int(0,100);
         $this->actingAsAdministrator()
              ->json('POST',
@@ -51,8 +51,8 @@ class WearTestControllerTest extends TestCase
     }
     
     public function testUpdate(){
-        $inspection = 1;
-        $subAssembly = 1;
+        $inspection = 2;
+        $subAssembly = 2;
         $smu = random_int(0,100);
         $this->actingAsAdministrator()
             ->json('POST',

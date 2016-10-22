@@ -1,14 +1,24 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.2
--- https://www.phpmyadmin.net/
+-- version 4.5.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2016 at 05:36 AM
--- Server version: 5.6.17
--- PHP Version: 5.5.12
+-- Generation Time: Oct 22, 2016 at 08:50 AM
+-- Server version: 5.7.11
+-- PHP Version: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `seng3150`
+--
 
 -- --------------------------------------------------------
 
@@ -16,7 +26,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `action_items`
 --
 
-DROP TABLE IF EXISTS `action_items`;
 CREATE TABLE `action_items` (
   `id` int(11) NOT NULL,
   `machine_general_test_id` int(11) DEFAULT NULL,
@@ -85,7 +94,6 @@ INSERT INTO `action_items` (`id`, `machine_general_test_id`, `oil_test_id`, `wea
 -- Table structure for table `administrators`
 --
 
-DROP TABLE IF EXISTS `administrators`;
 CREATE TABLE `administrators` (
   `id` int(11) NOT NULL,
   `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
@@ -112,7 +120,6 @@ INSERT INTO `administrators` (`id`, `username`, `first_name`, `last_name`, `emai
 -- Table structure for table `comments`
 --
 
-DROP TABLE IF EXISTS `comments`;
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `inspection_id` int(11) DEFAULT NULL,
@@ -145,7 +152,6 @@ INSERT INTO `comments` (`id`, `inspection_id`, `major_assembly_id`, `sub_assembl
 -- Table structure for table `domain_experts`
 --
 
-DROP TABLE IF EXISTS `domain_experts`;
 CREATE TABLE `domain_experts` (
   `id` int(11) NOT NULL,
   `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
@@ -171,7 +177,6 @@ INSERT INTO `domain_experts` (`id`, `username`, `first_name`, `last_name`, `emai
 -- Table structure for table `downtime_data`
 --
 
-DROP TABLE IF EXISTS `downtime_data`;
 CREATE TABLE `downtime_data` (
   `id` int(11) NOT NULL,
   `machine_id` int(11) DEFAULT NULL,
@@ -180,13 +185,35 @@ CREATE TABLE `downtime_data` (
   `reason` longtext COLLATE utf8_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `downtime_data`
+--
+
+INSERT INTO `downtime_data` (`id`, `machine_id`, `systemName`, `downTimeHours`, `reason`) VALUES
+(1, 1, 'S343', '0.10000', 'ELECTRICAL'),
+(2, 1, 'S343', '0.50000', 'SCHED MAINT'),
+(3, 1, 'S343', '0.20000', 'BUCKET'),
+(4, 1, 'S343', '0.00000', 'BUCKET'),
+(5, 1, 'S343', '0.90000', 'BUCKET'),
+(6, 1, 'S343', '0.30000', 'PRE-MAINT INSPECT'),
+(7, 1, 'S343', '11.20000', 'SCHED MAINT'),
+(8, 1, 'S343', '11.00000', 'SCHED MAINT'),
+(9, 1, 'S343', '2.90000', 'SL OVERRUN'),
+(10, 1, 'S343', '0.20000', 'ENGINE'),
+(11, 1, 'S343', '3.70000', 'SCHED MAINT'),
+(12, 1, 'S343', '0.50000', 'SWING SYS'),
+(13, 1, 'S343', '1.20000', 'ELECTRICAL'),
+(14, 1, 'S343', '4.20000', 'SCHED MAINT'),
+(15, 1, 'S343', '0.70000', 'BOOM'),
+(16, 1, 'S343', '1.90000', 'BOOM'),
+(17, 1, 'S343', '0.90000', 'ELECTRICAL');
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `inspections`
 --
 
-DROP TABLE IF EXISTS `inspections`;
 CREATE TABLE `inspections` (
   `id` int(11) NOT NULL,
   `machine_id` int(11) DEFAULT NULL,
@@ -206,7 +233,8 @@ CREATE TABLE `inspections` (
 --
 
 INSERT INTO `inspections` (`id`, `machine_id`, `technician_id`, `scheduler_id`, `schedule_id`, `time_created`, `time_scheduled`, `time_started`, `time_completed`, `time_deleted`, `deleted`) VALUES
-(1, 1, 1, 1, NULL, '2016-08-26 10:00:00', '2016-08-26 12:00:00', '2016-08-26 12:00:00', '2016-08-26 14:00:00', NULL, 0);
+(1, 1, 1, 1, NULL, '2016-08-26 10:00:00', '2016-08-26 12:00:00', '2016-08-26 12:00:00', '2016-08-26 14:00:00', NULL, 0),
+(2, 1, 3, 1, NULL, '2016-10-18 19:10:03', '2016-10-25 19:09:40', NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -214,7 +242,6 @@ INSERT INTO `inspections` (`id`, `machine_id`, `technician_id`, `scheduler_id`, 
 -- Table structure for table `inspection_major_assemblies`
 --
 
-DROP TABLE IF EXISTS `inspection_major_assemblies`;
 CREATE TABLE `inspection_major_assemblies` (
   `id` int(11) NOT NULL,
   `inspection_id` int(11) DEFAULT NULL,
@@ -230,7 +257,8 @@ INSERT INTO `inspection_major_assemblies` (`id`, `inspection_id`, `major_assembl
 (2, 1, 2),
 (3, 1, 3),
 (4, 1, 4),
-(5, 1, 5);
+(5, 1, 5),
+(7, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -238,7 +266,6 @@ INSERT INTO `inspection_major_assemblies` (`id`, `inspection_id`, `major_assembl
 -- Table structure for table `inspection_schedules`
 --
 
-DROP TABLE IF EXISTS `inspection_schedules`;
 CREATE TABLE `inspection_schedules` (
   `id` int(11) NOT NULL,
   `inspection_id` int(11) DEFAULT NULL,
@@ -248,13 +275,19 @@ CREATE TABLE `inspection_schedules` (
   `deleted` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `inspection_schedules`
+--
+
+INSERT INTO `inspection_schedules` (`id`, `inspection_id`, `value`, `period`, `time_deleted`, `deleted`) VALUES
+(1, 2, 1, 'years', NULL, 0);
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `inspection_sub_assemblies`
 --
 
-DROP TABLE IF EXISTS `inspection_sub_assemblies`;
 CREATE TABLE `inspection_sub_assemblies` (
   `id` int(11) NOT NULL,
   `inspection_id` int(11) DEFAULT NULL,
@@ -296,7 +329,8 @@ INSERT INTO `inspection_sub_assemblies` (`id`, `inspection_id`, `major_assembly_
 (27, 1, 5, 27),
 (28, 1, 5, 28),
 (29, 1, 5, 29),
-(30, 1, 5, 30);
+(30, 1, 5, 30),
+(32, 2, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -304,7 +338,6 @@ INSERT INTO `inspection_sub_assemblies` (`id`, `inspection_id`, `major_assembly_
 -- Table structure for table `machines`
 --
 
-DROP TABLE IF EXISTS `machines`;
 CREATE TABLE `machines` (
   `id` int(11) NOT NULL,
   `model_id` int(11) DEFAULT NULL,
@@ -329,7 +362,6 @@ INSERT INTO `machines` (`id`, `model_id`, `name`, `time_deleted`, `deleted`) VAL
 -- Table structure for table `major_assemblies`
 --
 
-DROP TABLE IF EXISTS `major_assemblies`;
 CREATE TABLE `major_assemblies` (
   `id` int(11) NOT NULL,
   `model_id` int(11) DEFAULT NULL,
@@ -362,7 +394,6 @@ INSERT INTO `major_assemblies` (`id`, `model_id`, `name`, `time_deleted`, `delet
 -- Table structure for table `migrations`
 --
 
-DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
   `version` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -381,7 +412,6 @@ INSERT INTO `migrations` (`version`) VALUES
 -- Table structure for table `models`
 --
 
-DROP TABLE IF EXISTS `models`;
 CREATE TABLE `models` (
   `id` int(11) NOT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -406,7 +436,6 @@ INSERT INTO `models` (`id`, `name`, `time_deleted`, `deleted`) VALUES
 -- Table structure for table `photos`
 --
 
-DROP TABLE IF EXISTS `photos`;
 CREATE TABLE `photos` (
   `id` int(11) NOT NULL,
   `inspection_id` int(11) DEFAULT NULL,
@@ -421,13 +450,19 @@ CREATE TABLE `photos` (
   `format` longtext COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `photos`
+--
+
+INSERT INTO `photos` (`id`, `inspection_id`, `major_assembly_id`, `sub_assembly_id`, `machine_general_test_id`, `oil_test_id`, `wear_test_id`, `technician_id`, `domain_expert_id`, `text`, `format`) VALUES
+(1, 1, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, 'jpeg');
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `sub_assemblies`
 --
 
-DROP TABLE IF EXISTS `sub_assemblies`;
 CREATE TABLE `sub_assemblies` (
   `id` int(11) NOT NULL,
   `major_assembly_id` int(11) DEFAULT NULL,
@@ -484,7 +519,6 @@ INSERT INTO `sub_assemblies` (`id`, `major_assembly_id`, `name`, `machine_genera
 -- Table structure for table `technicians`
 --
 
-DROP TABLE IF EXISTS `technicians`;
 CREATE TABLE `technicians` (
   `id` int(11) NOT NULL,
   `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
@@ -513,7 +547,6 @@ INSERT INTO `technicians` (`id`, `username`, `first_name`, `last_name`, `email`,
 -- Table structure for table `tests_machine_general`
 --
 
-DROP TABLE IF EXISTS `tests_machine_general`;
 CREATE TABLE `tests_machine_general` (
   `id` int(11) NOT NULL,
   `inspection_id` int(11) DEFAULT NULL,
@@ -532,7 +565,8 @@ INSERT INTO `tests_machine_general` (`id`, `inspection_id`, `sub_assembly_id`) V
 (5, 1, 19),
 (6, 1, 20),
 (7, 1, 21),
-(8, 1, 22);
+(8, 1, 22),
+(9, 2, 7);
 
 -- --------------------------------------------------------
 
@@ -540,7 +574,6 @@ INSERT INTO `tests_machine_general` (`id`, `inspection_id`, `sub_assembly_id`) V
 -- Table structure for table `tests_oil`
 --
 
-DROP TABLE IF EXISTS `tests_oil`;
 CREATE TABLE `tests_oil` (
   `id` int(11) NOT NULL,
   `inspection_id` int(11) DEFAULT NULL,
@@ -586,7 +619,8 @@ INSERT INTO `tests_oil` (`id`, `inspection_id`, `sub_assembly_id`, `lead`, `copp
 (22, 1, 27, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
 (23, 1, 28, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
 (24, 1, 29, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
-(25, 1, 30, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10);
+(25, 1, 30, 1, 2, 3, 4, 5, 6, 7, 8, '9.50000', 10),
+(26, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, '0.00000', 0);
 
 -- --------------------------------------------------------
 
@@ -594,7 +628,6 @@ INSERT INTO `tests_oil` (`id`, `inspection_id`, `sub_assembly_id`, `lead`, `copp
 -- Table structure for table `tests_wear`
 --
 
-DROP TABLE IF EXISTS `tests_wear`;
 CREATE TABLE `tests_wear` (
   `id` int(11) NOT NULL,
   `inspection_id` int(11) DEFAULT NULL,
@@ -618,7 +651,8 @@ INSERT INTO `tests_wear` (`id`, `inspection_id`, `sub_assembly_id`, `smu`, `uniq
 (8, 1, 27, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}'),
 (9, 1, 28, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}'),
 (10, 1, 29, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}'),
-(11, 1, 30, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}');
+(11, 1, 30, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}'),
+(12, 2, 1, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}');
 
 --
 -- Indexes for dumped tables
@@ -809,27 +843,27 @@ ALTER TABLE `domain_experts`
 -- AUTO_INCREMENT for table `downtime_data`
 --
 ALTER TABLE `downtime_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `inspections`
 --
 ALTER TABLE `inspections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `inspection_major_assemblies`
 --
 ALTER TABLE `inspection_major_assemblies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `inspection_schedules`
 --
 ALTER TABLE `inspection_schedules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `inspection_sub_assemblies`
 --
 ALTER TABLE `inspection_sub_assemblies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `machines`
 --
@@ -849,7 +883,7 @@ ALTER TABLE `models`
 -- AUTO_INCREMENT for table `photos`
 --
 ALTER TABLE `photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `sub_assemblies`
 --
@@ -864,17 +898,17 @@ ALTER TABLE `technicians`
 -- AUTO_INCREMENT for table `tests_machine_general`
 --
 ALTER TABLE `tests_machine_general`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `tests_oil`
 --
 ALTER TABLE `tests_oil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `tests_wear`
 --
 ALTER TABLE `tests_wear`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- Constraints for dumped tables
 --
@@ -883,10 +917,10 @@ ALTER TABLE `tests_wear`
 -- Constraints for table `action_items`
 --
 ALTER TABLE `action_items`
-  ADD CONSTRAINT `FK_6D025F1E6C5D496` FOREIGN KEY (`technician_id`) REFERENCES `technicians` (`id`),
   ADD CONSTRAINT `FK_6D025F123774302` FOREIGN KEY (`machine_general_test_id`) REFERENCES `tests_machine_general` (`id`),
   ADD CONSTRAINT `FK_6D025F13039B455` FOREIGN KEY (`oil_test_id`) REFERENCES `tests_oil` (`id`),
-  ADD CONSTRAINT `FK_6D025F1E5C32A3E` FOREIGN KEY (`wear_test_id`) REFERENCES `tests_wear` (`id`);
+  ADD CONSTRAINT `FK_6D025F1E5C32A3E` FOREIGN KEY (`wear_test_id`) REFERENCES `tests_wear` (`id`),
+  ADD CONSTRAINT `FK_6D025F1E6C5D496` FOREIGN KEY (`technician_id`) REFERENCES `technicians` (`id`);
 
 --
 -- Constraints for table `comments`
@@ -920,8 +954,8 @@ ALTER TABLE `inspections`
 -- Constraints for table `inspection_major_assemblies`
 --
 ALTER TABLE `inspection_major_assemblies`
-  ADD CONSTRAINT `FK_3B3925CAF50BDA8F` FOREIGN KEY (`major_assembly_id`) REFERENCES `major_assemblies` (`id`),
-  ADD CONSTRAINT `FK_3B3925CAF02F2DDF` FOREIGN KEY (`inspection_id`) REFERENCES `inspections` (`id`);
+  ADD CONSTRAINT `FK_3B3925CAF02F2DDF` FOREIGN KEY (`inspection_id`) REFERENCES `inspections` (`id`),
+  ADD CONSTRAINT `FK_3B3925CAF50BDA8F` FOREIGN KEY (`major_assembly_id`) REFERENCES `major_assemblies` (`id`);
 
 --
 -- Constraints for table `inspection_schedules`
@@ -988,3 +1022,7 @@ ALTER TABLE `tests_oil`
 ALTER TABLE `tests_wear`
   ADD CONSTRAINT `FK_7DC817592FD708D2` FOREIGN KEY (`sub_assembly_id`) REFERENCES `inspection_sub_assemblies` (`id`),
   ADD CONSTRAINT `FK_7DC81759F02F2DDF` FOREIGN KEY (`inspection_id`) REFERENCES `inspections` (`id`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
