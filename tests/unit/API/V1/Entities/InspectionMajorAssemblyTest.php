@@ -7,7 +7,6 @@ use TestCase;
 
 class InspectionMajorAssemblyTest extends TestCase
 {
-	
 	public function testID()
 	{
 		$randID = rand(100, 150);

@@ -57,7 +57,6 @@ class TechnicianTest extends TestCase
 		$this->assertTrue($entity->matchesPassword($password));
 	}
 	
-	
 	public function testName()
 	{
 		$first  = str_random(10);

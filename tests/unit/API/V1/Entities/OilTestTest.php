@@ -63,8 +63,6 @@ class OilTestTest extends TestCase
 		$this->assertTrue($entity->getLead() == $randID);
 	}
 	
-	protected $lead;
-	
 	public function testCopper()
 	{
 		$copper = rand(100, 150);

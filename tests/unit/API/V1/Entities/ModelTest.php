@@ -31,7 +31,6 @@ class ModelTest extends TestCase
 		$this->assertTrue($entity->getMajorAssemblies() == $randID);
 	}
 	
-	
 	public function testMachines()
 	{
 		$randID = rand(100, 150);
