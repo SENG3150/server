@@ -114,22 +114,16 @@ class DowntimeControllerTest extends TestCase
 	
 	public function testCreateBulk()
 	{
-		$downtimeArray = array();
+		$downtime = array();
 		
 		for($i = 0; $i < 100; $i++)
 		{
-			$system      = str_random();
-			$downtimeHrs = random_int(0, 1000 / 10);
-			$reason      = str_random();
-			$downtime    =
-				[
-					'systemName'    => $system,
-					'downTimeHours' => $downtimeHrs,
-					'reason'        => $reason,
-					'machine'       => 1
-				
-				];
-			array_push($downtimeArray, $downtime);
+			$downtime[] = array(
+				'systemName'    => str_random(),
+				'downTimeHours' => random_int(0, 1000 / 10),
+				'reason'        => str_random(),
+				'machine'       => 1
+			);
 		}
 		
 		$this
@@ -137,7 +131,7 @@ class DowntimeControllerTest extends TestCase
 			->json(
 				'POST',
 				'/downtime/bulk',
-				$downtimeArray
+				$downtime
 			)
 			->assertResponseStatus(201);
 	}
