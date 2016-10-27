@@ -8,7 +8,6 @@ use TestCase;
 
 class ActionItemTest extends TestCase
 {
-	
 	public function testID()
 	{
 		$randID = rand(100, 150);

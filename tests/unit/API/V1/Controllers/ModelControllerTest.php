@@ -46,7 +46,8 @@ class ModelControllerTest extends TestCase
 				[
 					'name' => $name
 				]
-			)->assertResponseStatus(201);
+			)
+			->assertResponseStatus(201);
 	}
 	
 	public function testUpdate()

@@ -28,14 +28,14 @@ class OilTestControllerTest extends TestCase
 	{
 		$this
 			->actingAsAdministrator()
-		     ->json('GET', '/oilTests/1')
-		     ->seeJson(
-			     [
-				     'lead'   => 1,
-				     'copper' => 2,
-				     'tin'    => 3,
-			     ]
-		     );
+			->json('GET', '/oilTests/1')
+			->seeJson(
+				[
+					'lead'   => 1,
+					'copper' => 2,
+					'tin'    => 3,
+				]
+			);
 	}
 	
 	public function testCreate()
@@ -55,22 +55,23 @@ class OilTestControllerTest extends TestCase
 		
 		$this
 			->actingAsAdministrator()
-			->json('POST',
-			       '/oilTests',
-			       array(
-				       'inspection'  => $inspection,
-				       'subAssembly' => $subAssembly,
-				       'lead'        => $lead,
-				       'copper'      => $copper,
-				       'tin'         => $tin,
-				       'iron'        => $iron,
-				       'pq90'        => $pq90,
-				       'silicon'     => $silicon,
-				       'sodium'      => $sodium,
-				       'aluminium'   => $aluminium,
-				       'water'       => $water,
-				       'viscosity'   => $viscosity
-			       )
+			->json(
+				'POST',
+				'/oilTests',
+				array(
+					'inspection'  => $inspection,
+					'subAssembly' => $subAssembly,
+					'lead'        => $lead,
+					'copper'      => $copper,
+					'tin'         => $tin,
+					'iron'        => $iron,
+					'pq90'        => $pq90,
+					'silicon'     => $silicon,
+					'sodium'      => $sodium,
+					'aluminium'   => $aluminium,
+					'water'       => $water,
+					'viscosity'   => $viscosity
+				)
 			)
 			->assertResponseStatus(201);
 	}
@@ -81,11 +82,13 @@ class OilTestControllerTest extends TestCase
 		
 		$this
 			->actingAsAdministrator()
-			->json('POST', '/oilTests/1',
-			       [
-				       'copper' => $copper
-			
-			       ]
+			->json(
+				'POST',
+				'/oilTests/1',
+				[
+					'copper' => $copper
+				
+				]
 			)
 			->assertResponseStatus(202);
 		

@@ -40,7 +40,8 @@ class MajorAssemblyControllerTest extends TestCase
 		$modelNo = 1;
 		
 		$this
-			->actingAsAdministrator()->json(
+			->actingAsAdministrator()
+			->json(
 				'POST',
 				'/majorAssemblies',
 				[

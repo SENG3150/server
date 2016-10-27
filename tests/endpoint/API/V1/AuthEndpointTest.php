@@ -88,8 +88,49 @@ class AuthEndpointTest extends TestCase
 	
 	public function testCreateTechnicianAndLogin()
 	{
-		// TODO: Write a test that will create a random technician in one call, then authenticate as that technician in another call, and finally call GET /auth/me to verify that the token is working
+
+		$username  = str_random();
+		$firstName = str_random();
+		$lastName  = str_random();
+		$email     = str_random() . '@' . str_random() . '.com';
+		$password  = str_random();
+		$token     = str_random();
+		$temporary = FALSE;
 		
-		// For the final call you will need to manually set the Authorization header, for an example check \tests\TestCase.php line 162, or ask Mitchell
+		$headers['Authorization'] = 'Bearer ' . $this->getToken();
+
+		$this
+			->actingAsAdministrator()
+			->json(
+				'POST',
+				'/technicians',
+				[
+					'username'  => $username,
+					'firstName' => $firstName,
+					'lastName'  => $lastName,
+					'email'     => $email,
+					'password'  => $password,
+					'temporary' => $temporary,
+				]
+			)->assertResponseStatus(201);
+		
+		$this
+			->json(
+				'POST',
+				'/auth/authenticate',
+				[
+					'type'     => 'technician',
+					'username' => 'technician',
+					'password' => 'technician',
+				]
+			)
+			->assertResponseStatus(200);
+		
+		$this
+			->setToken($token)
+			->assertResponseStatus(200);
+		
+		$this
+			->assertEquals($this->getToken(),$token);
 	}
 }
