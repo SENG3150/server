@@ -2,45 +2,62 @@
 
 namespace Tests\Endpoint\App\API\V1;
 
+use Carbon\Carbon;
 use TestCase;
 
 class InspectionEndpointTest extends TestCase
 {
-	public function testBulkCreate()
-	{
-		$this
-			->actingAsTechnician()
-			->json(
-				'POST',
-				'/inspections/bulk',
-				[
-					// TODO: Fill in valid JSON to make an inspection
-				]
-			)
-			->assertResponseStatus(200)
-			->seeJsonStructure(
-				array(
-					// TODO: Refill in previous JSON to verify inspection details were correct
-				)
-			);
-	}
-	
-	public function testBulkUpdate()
-	{
-		$this
-			->actingAsTechnician()
-			->json(
-				'POST',
-				'/inspections/bulk',
-				[
-					// TODO: Fill in valid JSON to update an inspection
-				]
-			)
-			->assertResponseStatus(200)
-			->seeJsonStructure(
-				array(
-					// TODO: Refill in previous JSON to verify inspection details were correct
-				)
-			);
-	}
+
+    public function testBulkCreate()
+    {
+        $machineID = 1;
+        $time = Carbon::now()->format(DATE_ISO8601);
+        $this
+            ->actingAsTechnician()
+            ->json(
+                'POST',
+                '/inspections/bulk',
+                [
+                    'machine' => $machineID,
+                    'timeScheduled' => $time
+                ]
+            )
+            ->assertResponseStatus(200);
+        
+        $this->actingAsAdministrator()
+            ->json('GET',
+                '/inspections/3')
+            ->seeJson(
+                array(
+                    'timeCreated' => Carbon::now()->format(DATE_ISO8601),
+                    'timeScheduled' => $time,
+                )
+            );
+    }
+
+    public function testBulkUpdate()
+    {
+        $time = Carbon::now()->format(DATE_ISO8601);
+        $this
+            ->actingAsTechnician()
+            ->json(
+                'POST',
+                '/inspections/bulk',
+                [
+                    'id' => 1,
+                    'timeCompleted' => $time
+                ]
+            )
+            ->assertResponseStatus(200);
+
+        $this
+            ->actingAsAdministrator()
+            ->json('GET',
+                '/inspections/1')
+            ->seeJson(
+                array(
+                    'timeCompleted' => $time
+                )
+            );
+    }
 }
