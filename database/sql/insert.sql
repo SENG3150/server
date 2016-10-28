@@ -100,11 +100,37 @@ INSERT INTO `domain_experts` (`username`, `first_name`, `last_name`, `email`, `p
 -- --------------------------------------------------------
 
 --
+-- Dumping data for table `downtime_data`
+--
+
+INSERT INTO `downtime_data` (`machine_id`, `systemName`, `downTimeHours`, `reason`) VALUES
+(1, 'S343', '0.10000', 'ELECTRICAL'),
+(1, 'S343', '0.50000', 'SCHED MAINT'),
+(1, 'S343', '0.20000', 'BUCKET'),
+(1, 'S343', '0.00000', 'BUCKET'),
+(1, 'S343', '0.90000', 'BUCKET'),
+(1, 'S343', '0.30000', 'PRE-MAINT INSPECT'),
+(1, 'S343', '11.20000', 'SCHED MAINT'),
+(1, 'S343', '11.00000', 'SCHED MAINT'),
+(1, 'S343', '2.90000', 'SL OVERRUN'),
+(1, 'S343', '0.20000', 'ENGINE'),
+(1, 'S343', '3.70000', 'SCHED MAINT'),
+(1, 'S343', '0.50000', 'SWING SYS'),
+(1, 'S343', '1.20000', 'ELECTRICAL'),
+(1, 'S343', '4.20000', 'SCHED MAINT'),
+(1, 'S343', '0.70000', 'BOOM'),
+(1, 'S343', '1.90000', 'BOOM'),
+(1, 'S343', '0.90000', 'ELECTRICAL');
+
+-- --------------------------------------------------------
+
+--
 -- Dumping data for table `inspections`
 --
 
 INSERT INTO `inspections` (`machine_id`, `technician_id`, `scheduler_id`, `schedule_id`, `time_created`, `time_scheduled`, `time_started`, `time_completed`, `deleted`, `time_deleted`) VALUES
-(1, 1, 1, NULL, '2016-08-26 10:00:00', '2016-08-26 12:00:00', '2016-08-26 12:00:00', '2016-08-26 14:00:00', 0, NULL);
+(1, 1, 1, NULL, '2016-08-26 10:00:00', '2016-08-26 12:00:00', '2016-08-26 12:00:00', '2016-08-26 14:00:00', 0, NULL),
+(1, 3, 1, NULL, '2016-10-18 19:10:03', '2016-10-25 19:09:40', NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -117,7 +143,17 @@ INSERT INTO `inspection_major_assemblies` (`inspection_id`, `major_assembly_id`)
 (1, 2),
 (1, 3),
 (1, 4),
-(1, 5);
+(1, 5),
+(2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Dumping data for table `inspection_schedules`
+--
+
+INSERT INTO `inspection_schedules` (`inspection_id`, `value`, `period`, `time_deleted`, `deleted`) VALUES
+(2, 1, 'years', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -155,7 +191,8 @@ INSERT INTO `inspection_sub_assemblies` (`inspection_id`, `major_assembly_id`, `
 (1, 5, 27),
 (1, 5, 28),
 (1, 5, 29),
-(1, 5, 30);
+(1, 5, 30),
+(2, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -201,6 +238,15 @@ INSERT INTO `models` (`name`, `deleted`, `time_deleted`) VALUES
 ('Model 3', 0, NULL),
 ('Model 4', 0, NULL),
 ('Model 5', 0, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Dumping data for table `photos`
+--
+
+INSERT INTO `photos` (`inspection_id`, `major_assembly_id`, `sub_assembly_id`, `machine_general_test_id`, `oil_test_id`, `wear_test_id`, `technician_id`, `domain_expert_id`, `text`, `format`) VALUES
+(1, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, 'jpeg');
 
 -- --------------------------------------------------------
 
@@ -267,7 +313,8 @@ INSERT INTO `tests_machine_general` (`inspection_id`, `sub_assembly_id`) VALUES
 (1, 19),
 (1, 20),
 (1, 21),
-(1, 22);
+(1, 22),
+(2, 7);
 
 -- --------------------------------------------------------
 
@@ -300,7 +347,8 @@ INSERT INTO `tests_oil` (`inspection_id`, `sub_assembly_id`, `lead`, `copper`, `
 (1, 27, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
 (1, 28, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
 (1, 29, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
-(1, 30, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10);
+(1, 30, 1, 2, 3, 4, 5, 6, 7, 8, 9.50000, 10),
+(2, 1, 0, 0, 0, 0, 0, 0, 0, 0, '0.00000', 0);
 
 -- --------------------------------------------------------
 
@@ -319,4 +367,5 @@ INSERT INTO `tests_wear` (`inspection_id`, `sub_assembly_id`, `smu`, `unique_det
 (1, 27, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}'),
 (1, 28, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}'),
 (1, 29, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}'),
-(1, 30, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}');
+(1, 30, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}'),
+(2, 1, 0, 'a:2:{s:7:"Field 1";s:7:"Value 1";s:7:"Field 2";s:7:"Value 2";}');

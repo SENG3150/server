@@ -16,16 +16,13 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- Database: `seng3150`
---
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `action_items`
 --
 
+DROP TABLE IF EXISTS `action_items`;
 CREATE TABLE `action_items` (
   `id` int(11) NOT NULL,
   `machine_general_test_id` int(11) DEFAULT NULL,
@@ -94,6 +91,7 @@ INSERT INTO `action_items` (`id`, `machine_general_test_id`, `oil_test_id`, `wea
 -- Table structure for table `administrators`
 --
 
+DROP TABLE IF EXISTS `administrators`;
 CREATE TABLE `administrators` (
   `id` int(11) NOT NULL,
   `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
@@ -120,6 +118,7 @@ INSERT INTO `administrators` (`id`, `username`, `first_name`, `last_name`, `emai
 -- Table structure for table `comments`
 --
 
+DROP TABLE IF EXISTS `comments`;
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `inspection_id` int(11) DEFAULT NULL,
@@ -152,6 +151,7 @@ INSERT INTO `comments` (`id`, `inspection_id`, `major_assembly_id`, `sub_assembl
 -- Table structure for table `domain_experts`
 --
 
+DROP TABLE IF EXISTS `domain_experts`;
 CREATE TABLE `domain_experts` (
   `id` int(11) NOT NULL,
   `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
@@ -177,6 +177,7 @@ INSERT INTO `domain_experts` (`id`, `username`, `first_name`, `last_name`, `emai
 -- Table structure for table `downtime_data`
 --
 
+DROP TABLE IF EXISTS `downtime_data`;
 CREATE TABLE `downtime_data` (
   `id` int(11) NOT NULL,
   `machine_id` int(11) DEFAULT NULL,
@@ -214,6 +215,7 @@ INSERT INTO `downtime_data` (`id`, `machine_id`, `systemName`, `downTimeHours`, 
 -- Table structure for table `inspections`
 --
 
+DROP TABLE IF EXISTS `inspections`;
 CREATE TABLE `inspections` (
   `id` int(11) NOT NULL,
   `machine_id` int(11) DEFAULT NULL,
@@ -242,6 +244,7 @@ INSERT INTO `inspections` (`id`, `machine_id`, `technician_id`, `scheduler_id`, 
 -- Table structure for table `inspection_major_assemblies`
 --
 
+DROP TABLE IF EXISTS `inspection_major_assemblies`;
 CREATE TABLE `inspection_major_assemblies` (
   `id` int(11) NOT NULL,
   `inspection_id` int(11) DEFAULT NULL,
@@ -266,6 +269,7 @@ INSERT INTO `inspection_major_assemblies` (`id`, `inspection_id`, `major_assembl
 -- Table structure for table `inspection_schedules`
 --
 
+DROP TABLE IF EXISTS `inspection_schedules`;
 CREATE TABLE `inspection_schedules` (
   `id` int(11) NOT NULL,
   `inspection_id` int(11) DEFAULT NULL,
@@ -288,6 +292,7 @@ INSERT INTO `inspection_schedules` (`id`, `inspection_id`, `value`, `period`, `t
 -- Table structure for table `inspection_sub_assemblies`
 --
 
+DROP TABLE IF EXISTS `inspection_sub_assemblies`;
 CREATE TABLE `inspection_sub_assemblies` (
   `id` int(11) NOT NULL,
   `inspection_id` int(11) DEFAULT NULL,
@@ -338,6 +343,7 @@ INSERT INTO `inspection_sub_assemblies` (`id`, `inspection_id`, `major_assembly_
 -- Table structure for table `machines`
 --
 
+DROP TABLE IF EXISTS `machines`;
 CREATE TABLE `machines` (
   `id` int(11) NOT NULL,
   `model_id` int(11) DEFAULT NULL,
@@ -362,6 +368,7 @@ INSERT INTO `machines` (`id`, `model_id`, `name`, `time_deleted`, `deleted`) VAL
 -- Table structure for table `major_assemblies`
 --
 
+DROP TABLE IF EXISTS `major_assemblies`;
 CREATE TABLE `major_assemblies` (
   `id` int(11) NOT NULL,
   `model_id` int(11) DEFAULT NULL,
@@ -394,6 +401,7 @@ INSERT INTO `major_assemblies` (`id`, `model_id`, `name`, `time_deleted`, `delet
 -- Table structure for table `migrations`
 --
 
+DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
   `version` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -412,6 +420,7 @@ INSERT INTO `migrations` (`version`) VALUES
 -- Table structure for table `models`
 --
 
+DROP TABLE IF EXISTS `models`;
 CREATE TABLE `models` (
   `id` int(11) NOT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -436,6 +445,7 @@ INSERT INTO `models` (`id`, `name`, `time_deleted`, `deleted`) VALUES
 -- Table structure for table `photos`
 --
 
+DROP TABLE IF EXISTS `photos`;
 CREATE TABLE `photos` (
   `id` int(11) NOT NULL,
   `inspection_id` int(11) DEFAULT NULL,
@@ -463,6 +473,7 @@ INSERT INTO `photos` (`id`, `inspection_id`, `major_assembly_id`, `sub_assembly_
 -- Table structure for table `sub_assemblies`
 --
 
+DROP TABLE IF EXISTS `sub_assemblies`;
 CREATE TABLE `sub_assemblies` (
   `id` int(11) NOT NULL,
   `major_assembly_id` int(11) DEFAULT NULL,
@@ -519,6 +530,7 @@ INSERT INTO `sub_assemblies` (`id`, `major_assembly_id`, `name`, `machine_genera
 -- Table structure for table `technicians`
 --
 
+DROP TABLE IF EXISTS `technicians`;
 CREATE TABLE `technicians` (
   `id` int(11) NOT NULL,
   `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
@@ -547,6 +559,7 @@ INSERT INTO `technicians` (`id`, `username`, `first_name`, `last_name`, `email`,
 -- Table structure for table `tests_machine_general`
 --
 
+DROP TABLE IF EXISTS `tests_machine_general`;
 CREATE TABLE `tests_machine_general` (
   `id` int(11) NOT NULL,
   `inspection_id` int(11) DEFAULT NULL,
@@ -574,6 +587,7 @@ INSERT INTO `tests_machine_general` (`id`, `inspection_id`, `sub_assembly_id`) V
 -- Table structure for table `tests_oil`
 --
 
+DROP TABLE IF EXISTS `tests_oil`;
 CREATE TABLE `tests_oil` (
   `id` int(11) NOT NULL,
   `inspection_id` int(11) DEFAULT NULL,
@@ -628,6 +642,7 @@ INSERT INTO `tests_oil` (`id`, `inspection_id`, `sub_assembly_id`, `lead`, `copp
 -- Table structure for table `tests_wear`
 --
 
+DROP TABLE IF EXISTS `tests_wear`;
 CREATE TABLE `tests_wear` (
   `id` int(11) NOT NULL,
   `inspection_id` int(11) DEFAULT NULL,
