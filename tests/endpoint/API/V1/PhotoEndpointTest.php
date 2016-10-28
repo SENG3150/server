@@ -38,6 +38,9 @@ class PhotoEndpointTest extends TestCase
 	 */
 	public function testPostAndRetrieve()
 	{
+		$format        = 'jpeg';
+		$technician    = 1;
+		$majorAssembly = 1;
 		$photo = '/9j/4AAQSkZJRgABAQEASABIAAD/4QPwRXhpZgAATU0AKgAAAAgADAEAAAMAAAABAMgAAAEBAAMAAAABAMgAAAECAAMAAAADAAAAngEGAAMAAAABAAIAAAESAAMAAAABAAEAAAEVAAMAAAABAAMAAAEaAAUAAAAB' .
 			'AAAApAEbAAUAAAABAAAArAEoAAMAAAABAAIAAAExAAIAAAAiAAAAtAEyAAIAAAAUAAAA1odpAAQAAAABAAAA6gAAASIACAAIAAgACvyAAAAnEAAK/IAAACcQQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRv' .
 			'd3MpADIwMTY6MTA6MTYgMTc6NDg6MDUAAASQAAAHAAAABDAyMjGgAQADAAAAAf//AACgAgAEAAAAAQAAAAqgAwAEAAAAAQAAAAoAAAAAAAAABgEDAAMAAAABAAYAAAEaAAUAAAABAAABcAEbAAUAAAABAAABeAEo' .
@@ -106,31 +109,31 @@ class PhotoEndpointTest extends TestCase
 			'oqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD5rJyaKKK/Az/aA//Z';
 
 		$this
-			->actingAsAdministrator()
+			->actingAsTechnician()
 			->json(
 				'POST',
 				'/photos',
 				[
-					'photo'      => $photo,
+					'majorAssembly' => $majorAssembly,
+					'photo'         => $photo,
+					'format'        => $format,
+					'technician'    => $technician
 				]
 			)
 			->assertResponseStatus(201);
 
+		/*
 		$this
 			->actingAsTechnician()
 			->json(
 				'GET',
-				'/photo/1'
+				'/photos/1?include=raw'
 			)
 			->seeJson(
 				array(
 					'photo'      => $photo,
 				)
 			);
-		
-		
-		
-		
-		// TODO: Post a photo to the server and then retrieve it and verify that the image contents match
+		*/
 	}
 }
